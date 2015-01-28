@@ -1,5 +1,5 @@
-var checkAuth = require('middleware/checkAuth');
-var checkAdmin = require('middleware/checkAdmin');
+var checkAuth = require('../middleware/checkAuth');
+var checkAdmin = require('../middleware/checkAdmin');
 module.exports = function (app) {
 
   app.get('/', function(req, res, next){

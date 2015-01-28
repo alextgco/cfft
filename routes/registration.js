@@ -1,9 +1,9 @@
-var User = require('models/user').User;
-var HttpError = require('error').HttpError;
-var AuthError = require('error').AuthError;
+var User = require('../models/user').User;
+var HttpError = require('../error').HttpError;
+var AuthError = require('../error').AuthError;
 var jade = require('jade');
 var Guid = require('guid');
-var sendMail = require('libs/sendMail');
+var sendMail = require('../libs/sendMail');
 exports.get = function(req, res, next){
     res.render('registration',{
         title:"Регистрация"
