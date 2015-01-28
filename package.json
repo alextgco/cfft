@@ -8,8 +8,7 @@
   "main": "./bin/www",
   "repository":{
       "type":"git",
-      "url":"https://github.com/cfft/first"
-
+      "url":"https://github.com/cfft"
   },
   "dependencies": {
     "body-parser": "~1.10.1",
