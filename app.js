@@ -6,9 +6,8 @@ var mongoose = require('./libs/mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var config = require('config');
+var config = require('./config');
 
-var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
@@ -21,7 +20,7 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-var HttpError = require('error').HttpError;
+var HttpError = require('./error').HttpError;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -38,10 +37,10 @@ app.use(session({
     res.send("Visits " + req.session.numb);
 });*/
 
-app.use(require('middleware/sendHttpError'));
-app.use(require('middleware/loadUser'));
+app.use(require('./middleware/sendHttpError'));
+app.use(require('./middleware/loadUser'));
 
-require('routes')(app);
+require('./routes')(app);
 app.use(express.static(path.join(__dirname, 'public')));
 /*
 app.use('/', routes);
