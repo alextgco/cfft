@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>cfft.ru | &#1043;&#1083;&#1072;&#1074;&#1085;&#1072;&#1103; &#1089;&#1090;&#1088;&#1072;&#1085;&#1080;&#1094;&#1072;</title>
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-3.3.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/fontAwesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-datepicker-master/css/datepicker.css">
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-datepicker-master/css/datepicker3.css">
+    <link rel="stylesheet" type="text/css" href="plugins/select2/dist/select2.css">
+    <link rel="stylesheet" type="text/css" href="plugins/select2/dist/select2-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/core.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="plugins/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="plugins/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="plugins/mustache.js"></script>
+    <script type="text/javascript" src="plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="plugins/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="plugins/bootstrap-datepicker-master/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="plugins/bootstrap-datepicker-master/js/locales/bootstrap-datepicker.ru.js"></script>
+    <script type="text/javascript" src="plugins/mask.min.js"></script>
+    <script type="text/javascript" src="plugins/select2/dist/select2.js"></script>
+    <script type="text/javascript" src="plugins/select2/dist/select2_locale_ru.js"></script>
+    <script type="text/javascript" src="js/core.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="page-header">
+        <div class="container">
+          <div id="logo" class="logo">c<span class="redLogo">ff</span>t.ru</div>
+          <div class="main-menu-wrapper">
+            <ul id="top-main-menu" class="main-menu">
+              <li><a href="watch"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;&#1042;&#1080;&#1076;&#1077;&#1086;</a></li>
+              <li><a href="events"><i class="fa fa-calendar"></i>&nbsp;&nbsp;&#1057;&#1086;&#1073;&#1099;&#1090;&#1080;&#1103;</a></li>
+              <li id="userObject" data-view="login"><i class="fa fa-key"></i>&nbsp;&nbsp;Войти</li>
+              <li data-view="login"><a href="registration"><i class="fa fa-key"></i>&nbsp;&nbsp;&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1103;</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="page-content">
+        <div class="container">
+          <h2>&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1103;</h2>
+          <hr>
+          <div class="row">
+            <div class="col-md-12">
+              <form id="form-registration" name="form-registration">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="control-label">&#1055;&#1086;&#1095;&#1090;&#1072;:<span class="red-star">*</span></label>
+                        <input type="text" data-server_name="email" data-title="Почта" data-required="true" data-editor="email" placeholder="Почта" class="form-control fc-field">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="control-label">Пароль<span class="red-star">*</span></label>
+                        <div class="input-group">
+                          <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                          <input type="password" data-server_name="password" data-title="Пароль" data-required="true" data-editor="text" placeholder="Пароль" class="form-control fc-field">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="control-label">Подтверждение пароля<span class="red-star">*</span></label>
+                        <div class="input-group">
+                          <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                          <input type="password" data-server_name="confirm_password" data-title="Подтверждение пароля" data-required="true" data-editor="text" placeholder="Подтверждение пароля" class="form-control fc-field">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label">&#1048;&#1084;&#1103;:<span class="red-star">*</span></label>
+                    <input type="text" data-server_name="name" data-title="Имя" data-required="true" data-editor="text" placeholder="Имя" class="form-control fc-field">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">&#1060;&#1072;&#1084;&#1080;&#1083;&#1080;&#1103;:<span class="red-star">*</span></label>
+                    <input type="text" data-server_name="surname" data-title="Фамилия" data-required="true" data-editor="text" placeholder="Фамилия" class="form-control fc-field">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">&#1054;&#1090;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086;:</label>
+                    <input type="text" data-server_name="secondname" data-title="Отчество" data-required="false" data-editor="text" placeholder="Отчество" class="form-control fc-field">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">&#1055;&#1086;&#1083;:</label>
+                    <select data-server_name="gender" data-title="Пол" data-editor="select" class="form-control fc-field">
+                      <option>&#1052;&#1091;&#1078;&#1089;&#1082;&#1086;&#1081;</option>
+                      <option>&#1046;&#1077;&#1085;&#1089;&#1082;&#1080;&#1081;</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">&#1044;&#1072;&#1090;&#1072; &#1088;&#1086;&#1078;&#1076;&#1077;&#1085;&#1080;&#1103;:</label>
+                    <div class="input-group">
+                      <input type="text" data-server_name="birthday" data-title="Дата рождения" data-editor="date" placeholder="Дата рождения" class="form-control cf_datepicker fc-field">
+                      <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" data-server_name="isAgree" data-title="Согласен(на) на рассылку" data-editor="checkbox" class="fc-field">&#1071; &#1093;&#1086;&#1095;&#1091; &#1087;&#1086;&#1083;&#1091;&#1095;&#1072;&#1090;&#1100; &#1091;&#1074;&#1077;&#1076;&#1086;&#1084;&#1083;&#1077;&#1085;&#1080;&#1103; &#1080; &#1085;&#1086;&#1074;&#1086;&#1089;&#1090;&#1080;
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label">&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;:</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">+7</div>
+                      <input type="text" data-server_name="phone" data-title="Телефон" data-editor="phone" placeholder="Телефон" class="form-control maskedPhone fc-field">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">&#1057;&#1090;&#1088;&#1072;&#1085;&#1072;:<span class="red-star">*</span></label>
+                    <select data-server_name="country" data-title="Страна" data-required="true" data-editor="select" class="form-control fc-field">
+                      <option>&#1056;&#1086;&#1089;&#1089;&#1080;&#1103;</option>
+                      <option>&#1042;&#1077;&#1083;&#1080;&#1082;&#1086;&#1073;&#1088;&#1080;&#1090;&#1072;&#1085;&#1080;&#1103;</option>
+                      <option>&#1057;&#1064;&#1040;</option>
+                      <option>&#1041;&#1077;&#1083;&#1100;&#1075;&#1080;&#1103;</option>
+                      <option>&#1058;&#1072;&#1090;&#1072;&#1088;&#1089;&#1090;&#1072;&#1085;</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">&#1043;&#1086;&#1088;&#1086;&#1076;:<span class="red-star">*</span></label>
+                    <select data-server_name="city" data-title="Город" data-required="true" data-editor="select" class="form-control fc-field">
+                      <option>&#1052;&#1086;&#1089;&#1082;&#1074;&#1072;</option>
+                      <option>&#1057;&#1072;&#1085;&#1082;&#1090;-&#1055;&#1077;&#1090;&#1077;&#1088;&#1073;&#1091;&#1088;&#1075;</option>
+                      <option>&#1045;&#1082;&#1072;&#1090;&#1077;&#1088;&#1080;&#1085;&#1073;&#1091;&#1088;&#1075;</option>
+                      <option>&#1058;&#1074;&#1077;&#1088;&#1100;</option>
+                      <option>&#1050;&#1072;&#1083;&#1091;&#1075;&#1072;</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">&#1050;&#1083;&#1091;&#1073;:<span class="red-star">*</span></label>
+                    <select data-server_name="club" data-title="Клуб" data-required="true" data-editor="select" class="form-control fc-field">
+                      <option>&#1053;&#1077; &#1089;&#1086;&#1089;&#1090;&#1086;&#1102; &#1074; &#1082;&#1083;&#1091;&#1073;&#1077;</option>
+                      <option>&#1050;&#1083;&#1091;&#1073; 1</option>
+                      <option>&#1050;&#1083;&#1091;&#1073; 2</option>
+                      <option>&#1050;&#1083;&#1091;&#1073; 3</option>
+                      <option>&#1050;&#1083;&#1091;&#1073; 4</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">&#1042;&#1077;&#1089;:</label>
+                    <div class="input-group">
+                      <input type="number" data-server_name="weight" data-title="Вес" data-editor="number" placeholder="Вес" class="form-control fc-field">
+                      <div class="input-group-addon">&#1082;&#1075;.</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">&#1056;&#1086;&#1089;&#1090;:</label>
+                    <div class="input-group">
+                      <input type="number" data-server_name="tall" data-title="Рост" data-editor="number" placeholder="Рост" class="form-control fc-field">
+                      <div class="input-group-addon">&#1089;&#1084;.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <hr>
+                    <div class="col-md-12">
+                      <div id="confirm_registration" class="sBtn red marL1 flRight">&#1047;&#1072;&#1088;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100;&#1089;&#1103;</div>
+                      <div id="reg_by_vk" class="sBtn blue marL1 flRight reg_by"><i class="fa fa-vk"></i></div>
+                      <div id="reg_by_fb" class="sBtn blue marL1 flRight reg_by"><i class="fa fa-facebook"></i></div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div id="after-registration">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h3>Регистрация прошла успешно!</h3>
+                    <p>
+                      На указанный вами адрес было выслано письмо с подтверждением,
+                      перейдите по ссылке в письме, что бы подтвердить регистрацию.
+                    </p>
+                    <div class="sBtn yellow flRight"><a href="/"><i class="fa fa-home"></i>&nbsp;&nbsp;На главную</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="adv-block-wrapper">
+          <div>
+            <div class="container padTop30">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="adv-bunner-wrapper"><img src="img/adv_bunner_big.jpg"></div>
+                </div>
+                <div class="col-md-3">
+                  <div class="adv-bunner-wrapper"><img src="img/adv_bunner.jpg"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="js/registration.js"></script>
+      <div class="page-footer">
+        <div class="big-content-wrapper">
+          <div class="bot_bg bot_position">
+            <div class="container">
+              <div id="footer_logo" class="logo">c<span class="redLogo">ff</span>t.ru</div>
+              <div id="bot-main-menu" class="main-menu-wrapper">
+                <ul class="main-menu">
+                  <li>&#1043;&#1083;&#1072;&#1074;&#1085;&#1072;&#1103;</li>
+                  <li>&#1054;&#1073;&#1086; &#1084;&#1085;&#1077;</li>
+                  <li>&#1052;&#1077;&#1088;&#1086;&#1087;&#1088;&#1080;&#1103;&#1090;&#1080;&#1103;</li>
+                  <li>&#1042;&#1080;&#1076;&#1077;&#1086;</li>
+                  <li>Crossfit</li>
+                  <li>&#1048;&#1075;&#1088;&#1099;</li>
+                  <li>&#1042;&#1086;&#1081;&#1090;&#1080;</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

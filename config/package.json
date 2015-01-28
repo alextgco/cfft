@@ -1,0 +1,11 @@
+{
+  "name": "config",
+  "subdomain": "alextgco-config",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "version": "0.0.0",
+  "engines": {
+    "node": "0.10.x"
+  }
+}

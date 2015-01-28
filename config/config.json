@@ -1,0 +1,29 @@
+{
+  "port":3000,
+  "mongoose":{
+    "uri":"mongodb://nodejitsu:44219d517fa3f6c2c9074b37b012ac94@troup.mongohq.com:10016/nodejitsudb2972759241",
+    "options":{
+      "server":{}
+    }
+  },
+  "session":{
+    "secret":"secret123",
+    "key":"mysid",
+    "cookie":{
+      "path":"/",
+      "httpOnly":true,
+      "maxAge":null
+    }
+  },
+  "mail":{
+    "mailTransport":{
+      "service": "Gmail",
+      "auth": {
+        "user": "ivantgco@gmail.com",
+        "pass": "kuba09kah"
+      }
+    },
+    "from":"ivantgco@gmail.com"
+  }
+
+}

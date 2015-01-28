@@ -1,0 +1,33 @@
+block header
+   .page-header
+      .container
+         #logo.logo
+            | c
+            span.redLogo ff
+            | t.ru
+         .main-menu-wrapper
+            ul#top-main-menu.main-menu
+               li
+                  a(href="watch")
+                     i.fa.fa-video-camera
+                     |&nbsp;&nbsp;&#1042;&#1080;&#1076;&#1077;&#1086;
+               li
+                  a(href="events")
+                     i.fa.fa-calendar
+                     |&nbsp;&nbsp;&#1057;&#1086;&#1073;&#1099;&#1090;&#1080;&#1103;
+               if !user
+                  li#userObject(data-view="login")
+                     i.fa.fa-key
+                     |&nbsp;&nbsp;Войти
+                  li(data-view="login")
+                     a(href="registration")
+                        i.fa.fa-key
+                        |&nbsp;&nbsp;&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1103;
+               else
+                  li#userLogout(data-view="login")
+                     i.fa.fa-key
+                     |&nbsp;&nbsp;Выйти
+                  li(data-view="login")
+                     a(href="profile")
+                        i.fa.fa-user
+                        |&nbsp;&nbsp;&#1055;&#1088;&#1086;&#1092;&#1080;&#1083;&#1100;
