@@ -13,6 +13,7 @@ html
     link(rel="stylesheet", type="text/css", href="plugins/select2/dist/select2-bootstrap.css")
     link(rel="stylesheet", type="text/css", href="css/core.css")
     link(rel="stylesheet", type="text/css", href="css/style.css")
+    link(rel="stylesheet", type="text/css", href="css/redesign.css")
     script(type="text/javascript", src="plugins/jquery-1.11.0.min.js")
     script(type="text/javascript", src="plugins/bootstrap-3.3.2-dist/js/bootstrap.min.js")
     script(type="text/javascript", src="plugins/mustache.js")
@@ -29,6 +30,8 @@ html
     script(type="text/javascript", src="js/login.js")
   body
     .page-wrapper
+      if toastr
+        include notifier
       include header
       block content
       include footer
