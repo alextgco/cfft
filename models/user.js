@@ -148,6 +148,12 @@ scheme.statics.registration = function(obj, callback){
         });
     });
 };
+scheme.statics.remove = function(userId, callback){
+    var User = this;
+    User.findByIdAndRemove (userId,function(err){
+        callback(err);
+    });
+};
 scheme.statics.setAdmin = function(user, callback){
     var User = this;
     user.isAdmin = true;
@@ -161,18 +167,6 @@ scheme.statics.confirmEmail = function(email, p, callback){
     User.findOneAndUpdate({email:email},{confirmed:true},function(err,user){
         callback(err, user);
     });
-    /*var user = User.findOne({email:email},function(err, user){
-        if (err) return callback(err);
-        if (user){
-            user.confirmed = true;
-            user.save(function (err) {
-                if (err) {
-                    return callback(err);
-                }
-                callback(null,user);
-            });
-        }
-    });*/
 };
 
 

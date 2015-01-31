@@ -3,6 +3,8 @@ var HttpError = require('../error').HttpError;
 var AuthError = require('../error').AuthError;
 var jade = require('jade');
 var Guid = require('guid');
+var sendConfirm = require('../modules/regMailer').sendConfirm;
+
 var sendMail = require('../libs/sendMail');
 exports.get = function(req, res, next){
     res.render('registration',{
@@ -42,24 +44,22 @@ exports.post = function(req, res, next){
         if (req.host=='localhost'){
             host += ':3000';
         }
-
-        var lnk = host+ '/reqConfirm?email='+obj.email+'&p='+guid;
-        //var html = jade.renderFile('../views/', {lnk:'asd'});
-        var html = ' <p>Вы упешно зарегистрировались на портале cfft.ru, посвященном CrossFit!<br/>' +
-            'Перейдите по <a href="'+lnk+
-            '">этой ссылке</a>, что бы подтвердить регистрацию.</p>' +
-            '<p><br/>С уважением, Карягин Илья.</p>';
-        var o = {
+        sendConfirm({
+            host:host,
             email:obj.email,
-            subject:'Подтверждение регистрации',
-            html:html
-        };
-        sendMail(o,function(err){
+            guid:guid
+        }, function(err){
             if (err){
-                console.log(err);
-                return res.json(403, err);
+                User.remove(user.id,function(err){
+                    if (err){
+                        return res.json(403, err);
+                    }
+                    return res.json(403, {message:"Не удалось завершить регистрацию"});
+                });
+            }else{
+                return res.json(200, {toastr:{type:'success',message:"На почту, указанную при регистрации отправлено письмо со ссылкой на подтверждение регистрации"}});
             }
-            res.json(200, {toastr:{type:'success',message:"На почту, указанную при регистрации отправлено письмо со ссылкой на подтверждение регистрации"}});
         });
+
     });
 };
