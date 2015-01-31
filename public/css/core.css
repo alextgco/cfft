@@ -178,36 +178,36 @@ h1,h2,h3,h4,h5,h6, label{
 
 
 @media (min-width: 1200px){
-    .container{
-        width: 1000px;
-    }
+    /*.container{*/
+        /*width: 1000px;*/
+    /*}*/
 
 }
 @media (max-width: 1200px){
-    .main-slider-wrapper{
-        padding: 0!important;
-    }
+    /*.main-slider-wrapper{*/
+        /*padding: 0!important;*/
+    /*}*/
 
-    .big-content-wrapper{
-        padding: 0!important;
-    }
+    /*.big-content-wrapper{*/
+        /*padding: 0!important;*/
+    /*}*/
 
-    .fadeRight{
-        right: 0!important;
-    }
+    /*.fadeRight{*/
+        /*right: 0!important;*/
+    /*}*/
 }
 
 @media (min-width: 1700px){
-    .main-slider-wrapper{
-        padding: 0 15%!important;
-    }
+    /*.main-slider-wrapper{*/
+        /*padding: 0 15%!important;*/
+    /*}*/
 
-    .big-content-wrapper{
-        padding: 0 15%!important;
-    }
+    /*.big-content-wrapper{*/
+        /*padding: 0 15%!important;*/
+    /*}*/
 
-    .fadeRight{
-        right: 15%!important;
-    }
+    /*.fadeRight{*/
+        /*right: 15%!important;*/
+    /*}*/
 }
 

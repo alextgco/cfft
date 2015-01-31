@@ -1,35 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>cfft.ru | &#1043;&#1083;&#1072;&#1074;&#1085;&#1072;&#1103; &#1089;&#1090;&#1088;&#1072;&#1085;&#1080;&#1094;&#1072;</title>
-    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-3.3.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="plugins/fontAwesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="plugins/toastr/toastr.min.css">
-    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-datepicker-master/css/datepicker.css">
-    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-datepicker-master/css/datepicker3.css">
-    <link rel="stylesheet" type="text/css" href="plugins/select2/dist/select2.css">
-    <link rel="stylesheet" type="text/css" href="plugins/select2/dist/select2-bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/core.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="plugins/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="plugins/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="plugins/mustache.js"></script>
-    <script type="text/javascript" src="plugins/bootbox.min.js"></script>
-    <script type="text/javascript" src="plugins/toastr/toastr.min.js"></script>
-    <script type="text/javascript" src="plugins/bootstrap-datepicker-master/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="plugins/bootstrap-datepicker-master/js/locales/bootstrap-datepicker.ru.js"></script>
-    <script type="text/javascript" src="plugins/mask.min.js"></script>
-    <script type="text/javascript" src="plugins/select2/dist/select2.js"></script>
-    <script type="text/javascript" src="plugins/select2/dist/select2_locale_ru.js"></script>
-    <script type="text/javascript" src="js/core.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
-  </head>
   <body>
     <div class="page-wrapper">
+      <div class="page-header preheader">
+        <div class="container orange">
+          <div class="contact-us"><i class="fa fa-phone">&nbsp;&nbsp;</i>cfft_info@gmail.com | +7 (499) 984-55-44</div>
+        </div>
+      </div>
       <div class="page-header">
         <div class="container">
           <div id="logo" class="logo">c<span class="redLogo">ff</span>t.ru</div>
@@ -37,8 +14,10 @@
             <ul id="top-main-menu" class="main-menu">
               <li><a href="watch"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;&#1042;&#1080;&#1076;&#1077;&#1086;</a></li>
               <li><a href="events"><i class="fa fa-calendar"></i>&nbsp;&nbsp;&#1057;&#1086;&#1073;&#1099;&#1090;&#1080;&#1103;</a></li>
-              <li id="userObject" data-view="login"><i class="fa fa-key"></i>&nbsp;&nbsp;Войти</li>
+              <li id="userObject" data-view="login"><a href="#"><i class="fa fa-key"></i>&nbsp;&nbsp;Войти</a></li>
               <li data-view="login"><a href="registration"><i class="fa fa-key"></i>&nbsp;&nbsp;&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1103;</a></li>
+              <li><a href="#" class="open-calendar"><i class="fa fa-calendar"></i></a></li>
+              <div class="calendar-wrapper"></div>
             </ul>
           </div>
         </div>
@@ -282,4 +261,37 @@
       </div>
     </div>
   </body>
+  <head>
+    <meta charset="UTF-8">
+    <title>cfft.ru | &#1043;&#1083;&#1072;&#1074;&#1085;&#1072;&#1103; &#1089;&#1090;&#1088;&#1072;&#1085;&#1080;&#1094;&#1072;</title>
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-3.3.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/fontAwesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-datepicker-master/css/datepicker.css">
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-datepicker-master/css/datepicker3.css">
+    <link rel="stylesheet" type="text/css" href="plugins/select2/dist/select2.css">
+    <link rel="stylesheet" type="text/css" href="plugins/select2/dist/select2-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="plugins/fullcalendar-2.2.6/fullcalendar.min.css">
+    <link rel="stylesheet" type="text/css" href="css/core.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/redesign.css">
+    <script type="text/javascript" src="plugins/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="plugins/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="plugins/mustache.js"></script>
+    <script type="text/javascript" src="plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="plugins/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="plugins/bootstrap-datepicker-master/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="plugins/bootstrap-datepicker-master/js/locales/bootstrap-datepicker.ru.js"></script>
+    <script type="text/javascript" src="plugins/mask.min.js"></script>
+    <script type="text/javascript" src="plugins/select2/dist/select2.js"></script>
+    <script type="text/javascript" src="plugins/select2/dist/select2_locale_ru.js"></script>
+    <script type="text/javascript" src="plugins/fullcalendar-2.2.6/lib/moment.min.js"></script>
+    <script type="text/javascript" src="plugins/fullcalendar-2.2.6/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="plugins/fullcalendar-2.2.6/lang/ru.js"></script>
+    <script type="text/javascript" src="js/core.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+  </head>
 </html>

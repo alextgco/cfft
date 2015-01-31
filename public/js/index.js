@@ -29,6 +29,12 @@ $(document).ready(function(){
             CKEDITOR.replace(te);
         }
 
+        $('.calendar-wrapper').fullCalendar({
+            lang: 'ru',
+            height: 650,
+            width: 450
+        });
+
     }());
 
 

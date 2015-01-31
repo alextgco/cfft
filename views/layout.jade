@@ -1,5 +1,12 @@
 doctype html
 html
+  body
+    .page-wrapper
+      if toastr
+        include notifier
+      include header
+      block content
+      include footer
   head
     meta(charset="UTF-8")
     title cfft.ru | &#1043;&#1083;&#1072;&#1074;&#1085;&#1072;&#1103; &#1089;&#1090;&#1088;&#1072;&#1085;&#1080;&#1094;&#1072;
@@ -11,8 +18,10 @@ html
     link(rel="stylesheet", type="text/css", href="plugins/bootstrap-datepicker-master/css/datepicker3.css")
     link(rel="stylesheet", type="text/css", href="plugins/select2/dist/select2.css")
     link(rel="stylesheet", type="text/css", href="plugins/select2/dist/select2-bootstrap.css")
+    link(rel="stylesheet", type="text/css", href="plugins/fullcalendar-2.2.6/fullcalendar.min.css")
     link(rel="stylesheet", type="text/css", href="css/core.css")
     link(rel="stylesheet", type="text/css", href="css/style.css")
+    link(rel="stylesheet", type="text/css", href="css/redesign.css")
     script(type="text/javascript", src="plugins/jquery-1.11.0.min.js")
     script(type="text/javascript", src="plugins/bootstrap-3.3.2-dist/js/bootstrap.min.js")
     script(type="text/javascript", src="plugins/mustache.js")
@@ -23,12 +32,10 @@ html
     script(type="text/javascript", src="plugins/mask.min.js")
     script(type="text/javascript", src="plugins/select2/dist/select2.js")
     script(type="text/javascript", src="plugins/select2/dist/select2_locale_ru.js")
+    script(type="text/javascript", src="plugins/fullcalendar-2.2.6/lib/moment.min.js")
+    script(type="text/javascript", src="plugins/fullcalendar-2.2.6/fullcalendar.min.js")
+    script(type="text/javascript", src="plugins/fullcalendar-2.2.6/lang/ru.js")
     script(type="text/javascript", src="js/core.js")
     script(type="text/javascript", src="js/index.js")
     script(type="text/javascript", src="js/script.js")
     script(type="text/javascript", src="js/login.js")
-  body
-    .page-wrapper
-      include header
-      block content
-      include footer
