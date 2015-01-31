@@ -1,0 +1,99 @@
+.admin-text{
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.admin_layout .page-header>.container{
+    background-image: none;
+}
+.admin_layout #logo{
+    float: left;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 4px;
+    margin-left: 14px;
+    color: #333;
+}
+.admin_layout .page-header{
+    background-color: #f7f7f7;
+}
+.admin-main-menu-wrapper{
+    background-color: #555;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+}
+.admin-main-menu{
+    margin: 0;
+    padding: 0;
+}
+.admin-main-menu li{
+    list-style: none;
+    float: left;
+    /*border-right: 1px solid #ddd;*/
+}
+.admin-main-menu li:first-child{
+    /*border-left: 1px solid #ddd;*/
+}
+.admin-main-menu li a{
+    text-decoration: none;
+    color: #fff;
+    padding: 6px 16px;
+    display: block;
+    font-family: openSans, arial, sans-serif;
+}
+.admin-main-menu li:hover{
+
+}
+.admin-main-menu li a:hover{
+    background-color: #111;
+    color: #fff;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+}
+.admin-main-menu li.active a{
+    background-color: #e01b1a;
+    font-family: opensanssemibold, arial, sans-serif;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+}
+.admin-main-menu li.active a:hover{
+    background-color: #e01b1a;
+    font-family: opensanssemibold, arial, sans-serif;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+}
+.admin_layout .events-list-wrapper{
+
+}
+.admin_layout .events-list-wrapper ul{
+
+}
+.admin_layout .events-list-wrapper ul li{
+
+}
+.admin_layout .events-list-wrapper ul li a{
+
+}
+.admin_layout .event-item-info{
+    padding-left: 90px;
+}
+.admin_layout .event-item-image{
+    width: 80px;
+    float: left;
+    margin-right: 20px;
+}
+.admin_layout .event-item-image img{
+    width: 100%;
+}
+.admin_layout .event-item-title{
+    font-size: 13px;
+    font-weight: bold;
+    padding-left: 12px;
+    font-family: arial, sans-serif;
+}
+
+.admin_layout .event-item-desc{
+    font-size: 12px;
+
+}
+.admin_layout .event-item-date{
+    position: absolute;
+    top: 18px;
+    right: 20px;
+}
