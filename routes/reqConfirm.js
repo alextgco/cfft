@@ -7,13 +7,12 @@ exports.get = function(req, res, next){
     User.find({email:email,mailKey:p},function(err, user){
         if (err){
             console.log(err);
-            return;
+            return next(err);
         }
         User.confirmEmail(email,p,function(err,user){
             if (err) {
                 console.log(err);
-                res.send(200);
-                return;
+                return next(err);
             }
             var o = {
                 email: email,
@@ -21,10 +20,11 @@ exports.get = function(req, res, next){
                 html: 'Вы успешно зарегистрировались'
             };
             sendMail(o, function (err) {
-                if (err) {
-                    console.log(err);
-                }
-                res.send(200);
+                console.log(err);
+                // Не будем здесь обрабатывать ош.
+                next();
+                //res.send(200);
+
             });
         });
     });

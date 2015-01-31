@@ -38,9 +38,12 @@ exports.post = function(req, res, next){
             }
         }
         // Здесь отправка на почту
-        //var domen =
-        var hst = req.host+":"+app.get("port");
-        var lnk = 'http://localhost:3000/reqConfirm?email='+obj.email+'&p='+guid;
+        var host = req.protocol +'://'+ req.host;
+        if (req.host=='localhost'){
+            host += ':3000';
+        }
+
+        var lnk = host+ '/reqConfirm?email='+obj.email+'&p='+guid;
         //var html = jade.renderFile('../views/', {lnk:'asd'});
         var html = ' <p>Вы упешно зарегистрировались на портале cfft.ru, посвященном CrossFit!<br/>' +
             'Перейдите по <a href="'+lnk+
