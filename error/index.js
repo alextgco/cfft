@@ -21,5 +21,14 @@ function AuthError(message){
 util.inherits(AuthError, Error);
 AuthError.prototype.name = 'AuthError';
 
+function MyError(message){
+    Error.apply(this,arguments);
+    Error.captureStackTrace(this, MyError);
+    this.message= message;
+}
+util.inherits(MyError, Error);
+MyError.prototype.name = 'MyError';
+
+exports.MyError = MyError;
 exports.AuthError = AuthError;
 exports.HttpError = HttpError;
