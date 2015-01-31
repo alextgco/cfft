@@ -22,8 +22,9 @@ block header
                      |&nbsp;&nbsp;&#1057;&#1086;&#1073;&#1099;&#1090;&#1080;&#1103;
                if !user
                   li#userObject(data-view="login")
-                     i.fa.fa-key
-                     |&nbsp;&nbsp;Войти
+                     a(href="#")
+                        i.fa.fa-key
+                        |&nbsp;&nbsp;Войти
                   li(data-view="login")
                      a(href="registration")
                         i.fa.fa-key
@@ -36,3 +37,8 @@ block header
                      a(href="profile")
                         i.fa.fa-user
                         |&nbsp;&nbsp;&#1055;&#1088;&#1086;&#1092;&#1080;&#1083;&#1100;
+               li
+                  a(href="#").open-calendar
+                     i.fa.fa-calendar
+               .calendar-wrapper
+
