@@ -17,6 +17,18 @@ $(document).ready(function(){
 
         $('select').select2();
 
+        var cf_text_editors = $('.cf_text_editor');
+        for(var i=0; i<cf_text_editors.length; i++){
+            var te = cf_text_editors.eq(i)[0];
+            CKEDITOR.replace(te);
+        }
+
+        var cf_text_editors_simple = $('.cf_text_editor_simple');
+        for(var i=0; i<cf_text_editors_simple.length; i++){
+            var te = cf_text_editors_simple.eq(i)[0];
+            CKEDITOR.replace(te);
+        }
+
     }());
 
 

@@ -1,7 +1,7 @@
 {
   "port":3000,
   "mongoose":{
-    "uri":"mongodb://nodejitsu:44219d517fa3f6c2c9074b37b012ac94@troup.mongohq.com:10016/nodejitsudb2972759241",
+    "uri":"mongodb://nodejitsu:097ed9f45db8dc9e71dd91bd78ff7e40@troup.mongohq.com:10021/nodejitsudb3522215215",
     "options":{
       "server":{}
     }
@@ -19,8 +19,8 @@
     "mailTransport":{
       "service": "Gmail",
       "auth": {
-        "user": "ivantgco@gmail.com",
-        "pass": "kuba09kah"
+        "user": "alextgco@gmail.com",
+        "pass": "aambfi5y"
       }
     },
     "from":"ivantgco@gmail.com"

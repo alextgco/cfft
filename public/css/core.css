@@ -95,6 +95,9 @@ h1,h2,h3,h4,h5,h6, label{
 .marL1{
     margin-left: 1px;
 }
+.marRight3{
+    margin-right: 3px ;
+}
 .marLeftMinus10{
     margin-left: -10px;
 }

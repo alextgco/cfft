@@ -2,36 +2,6 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <style type="text/css">
-        .main-wrapper{
-            color: #222;
-            font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
-            font-size: 18px;
-        }
-        .main-header{
-            background-color: #111;
-            padding: 10px 20px 9px 20px;
-            border-radius: 10px 10px 0 0
-        }
-        .logo{
-            color: #fff;
-            font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
-            font-size: 38px;
-        }
-        .red{
-            color: #e01b1a;
-        }
-        .main-content{
-            padding: 20px;
-            background-color: #f7f7f7;
-            border-bottom: 3px solid #D2D2D2;
-            border-radius: 0 0 10px 10px;
-        }
-        .headline{
-            font-size: 24px;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
 
@@ -42,7 +12,7 @@
     <div class="main-content">
         <div class="headline">Поздравляем!</div>
         <p>Вы упешно зарегистрировались на портале cfft.ru, посвященном CrossFit!<br/>
-        Перейдите по <a href="">этой ссылке</a>, что бы подтвердить регистрацию.</p>
+        Перейдите по <a href="{{link}}">этой ссылке</a>, что бы подтвердить регистрацию.</p>
         <p>
             <br/>
             С уважением, Карягин Илья.
@@ -51,8 +21,37 @@
     </div>
     <div class="main-footer"></div>
 </div>
- 
 
+<style type="text/css">
+    .main-wrapper{
+        color: #222;
+        font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+        font-size: 18px;
+    }
+    .main-header{
+        background-color: #111;
+        padding: 10px 20px 9px 20px;
+        border-radius: 10px 10px 0 0
+    }
+    .logo{
+        color: #fff;
+        font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+        font-size: 38px;
+    }
+    .red{
+        color: #e01b1a;
+    }
+    .main-content{
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-bottom: 3px solid #D2D2D2;
+        border-radius: 0 0 10px 10px;
+    }
+    .headline{
+        font-size: 24px;
+        font-weight: bold;
+    }
+</style>
 
 </body>
 </html>

@@ -1,5 +1,23 @@
 var CF = {};
 (function(){
+    CF.getJsonFromUrl = function(){
+        var query = location.search.substr(1);
+        var result = {};
+        query.split("&").forEach(function(part) {
+            var item = part.split("=");
+            result[item[0]] = decodeURIComponent(item[1]);
+        });
+        return result;
+    };
+    CF.guid = function() {
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+            var r, v;
+            r = Math.random() * 16 | 0;
+            v = (c === "x" ? r : r & 0x3 | 0x8);
+            return v.toString(16);
+        }).toUpperCase();
+    };
+
     CF.sendQuery = function(obj, cb){
         switch (obj.object){
             case 'register_user':

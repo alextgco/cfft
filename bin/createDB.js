@@ -3,15 +3,17 @@ var async = require('async');
 var User = require('../models/user').User;
 
 
-async.series([
-    open,
-    dropDatabase,
-    requireModels,
-    createUsers
-],function(err){
-    console.log(arguments);
-    mongoose.disconnect();
-});
+var start = function(){
+    async.series([
+        open,
+        dropDatabase,
+        requireModels,
+        createUsers
+    ], function (err) {
+        console.log(arguments);
+        mongoose.disconnect();
+    });
+};
 
 
 function open(callback){
@@ -42,3 +44,4 @@ function createUsers(callback){
     },callback);
     console.log('createUsers');
 }
+module.exports = start;

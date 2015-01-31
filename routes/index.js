@@ -3,8 +3,12 @@ var checkAdmin = require('../middleware/checkAdmin');
 module.exports = function (app) {
 
   app.get('/', function(req, res, next){
+    //var host = ‌‌req.protocol + req.host
+    if (req.host == 'localhost'){
+
+    }
     res.render('mainPage',{
-      title:"index"
+      title:""
     })
   });
   app.get('/admin', checkAdmin, require('./admin').get);
@@ -17,6 +21,10 @@ module.exports = function (app) {
   app.get('/registration', require('./registration').get);
   app.post('/registration', require('./registration').post);
   app.get('/reqConfirm', require('./reqConfirm').get);
+  app.get('/createDB', function(){
+    var createDB = require('../bin/createDB');
+    createDB();
+  });
 
   /*app.get('/users', function (req, res, next) {ss
     User.find({}, function (err, users) {
