@@ -58,7 +58,7 @@
     background-color: #000;
 }
 a.open-calendar{
-    padding: 31px 24px 27px 24px!important;
+    padding: 31px 32px 27px 32px!important;
 }
 
 .open-calendar i{
@@ -68,7 +68,7 @@ a.open-calendar{
 .calendar-wrapper{
     position: absolute;
     right: 0;
-    top: 90px;
+    top: 83px;
     width: 360px;
     z-index: 10;
     background-color: #000;
@@ -78,8 +78,35 @@ a.open-calendar{
 }
 .fc-toolbar h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: 20px;
     color: #ddd;
-    padding-left: 20px;
-    padding-top: 9px;
+    margin-left: 10px!important;
+    margin-top: 9px;
+}
+.big-content-wrapper{
+    opacity: 0.5;
+
+}
+.fc-button-group button:hover{
+    background-color: #111;
+}
+.fc-button-group button{
+    height: 44px!important;
+    width: 44px;
+    background-color: transparent;
+    background-image: none;
+    text-align: center;
+    padding: 0!important;
+    color: #ddd;
+    text-shadow: 0 0 0 transparent;
+    border-radius: 0!important;
+    border: 0!important;
+    box-shadow: 0 0 0 transparent;
+    outline: 0!important;
+}
+
+
+.fc-toolbar{
+    /*padding: 6px 9px;*/
+    margin-bottom: 0;
 }

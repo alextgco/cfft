@@ -31,8 +31,7 @@ $(document).ready(function(){
 
         $('.calendar-wrapper').fullCalendar({
             lang: 'ru',
-            height: 650,
-            width: 450
+            height: 420
         });
 
     }());
