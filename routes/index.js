@@ -5,7 +5,7 @@ module.exports = function (app) {
   app.get('/', function(req, res, next){
     res.render('mainPage',{
       title:""
-    })
+    });
   });
   app.get('/admin', checkAdmin, require('./admin').get);
   app.post('/admin/api', checkAdmin, require('./adminApi').post);
@@ -16,6 +16,13 @@ module.exports = function (app) {
   app.get('/private', checkAuth, require('./private').get);
   app.get('/registration', require('./registration').get);
   app.post('/registration', require('./registration').post);
+  app.get('/reqConfirm', require('./reqConfirm').get);
+  app.get('/registration_error', function(req, res, next){
+    res.render('registration_error');
+  });
+  app.get('/registration_success', function(req, res, next){
+    res.render('registration_success');
+  });
   app.get('/reqConfirm', require('./reqConfirm').get);
   app.get('/createDB', function(){
     var createDB = require('../bin/createDB');
