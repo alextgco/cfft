@@ -55,11 +55,16 @@
     margin: 0;
 }
 .main-menu-wrapper li:hover{
-    background-color: #000;
+    background-color: #332C29;
 }
 a.open-calendar{
     padding: 31px 32px 27px 32px!important;
 }
+
+a.open-calendar.opened{
+    background-color: #332C29;
+}
+
 
 .open-calendar i{
     font-size: 24px;
@@ -71,17 +76,18 @@ a.open-calendar{
     top: 83px;
     width: 360px;
     z-index: 10;
-    background-color: #000;
+    background-color: rgba(51, 44, 41, 0.5);
 }
 .fc-today-button{
     display: none;
 }
 .fc-toolbar h2 {
     margin: 0;
-    font-size: 20px;
+    font-size: 15px;
     color: #ddd;
     margin-left: 10px!important;
-    margin-top: 9px;
+    margin-top: 14px;
+    text-transform: uppercase;
 }
 .big-content-wrapper{
     opacity: 0.5;
@@ -109,4 +115,76 @@ a.open-calendar{
 .fc-toolbar{
     /*padding: 6px 9px;*/
     margin-bottom: 0;
+}
+
+.fc td, .fc th{
+    border: 0;
+}
+.fc-unthemed .fc-today{
+    background: #2E2E2E;
+    color: #FFF;
+
+}
+
+
+.fc-basic-view .fc-day-number,
+.fc-basic-view .fc-week-number{
+    padding: 0 6px;
+}
+
+.fc-widget-header{
+    background-color: #000;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.container.noPad{
+    padding: 0;
+}
+
+.main-slider-slide-left,
+.main-slider-slide-right {
+    position: relative;
+    height: 40px;
+    float: left;
+    width: 40px;
+    background-color: #e01b1a;
+    color: #fff;
+    font-size: 30px;
+    margin-top: 0;
+    cursor: pointer;
+    z-index: 11;
+    padding-top: 0;
+    text-align: center;
+}
+.main-slider-controls{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+}
+.main-slider-dots-wrapper{
+    float: left;
+}
+.main-slider-dots-wrapper ul{
+    margin: 0;
+    padding: 0;
+}
+
+.main-slider-dots-wrapper ul li{
+    list-style: none;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    float: left;
+    text-align: center;
+    padding-top: 11px;
+    background-color: rgba(255,255,255,0.6);
+
+}
+
+.main-slider-dots-wrapper ul li:hover{
+    background-color: rgba(255,255,255,0.8);
+    color: #000;
+}
+.main-slider-wrapper-new{
+    height: 470px;
 }

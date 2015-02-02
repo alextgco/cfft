@@ -29,6 +29,17 @@ $(document).ready(function(){
             CKEDITOR.replace(te);
         }
 
+        $('.open-calendar').off('click').on('click', function(){
+            var calendarWrapper = $('.calendar-wrapper');
+            if($(this).hasClass('opened')){
+                $(this).removeClass('opened');
+                calendarWrapper.hide(0);
+            }else{
+                $(this).addClass('opened');
+                calendarWrapper.show(0);
+            }
+        });
+
         $('.calendar-wrapper').fullCalendar({
             lang: 'ru',
             height: 420
