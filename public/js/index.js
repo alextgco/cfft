@@ -39,11 +39,12 @@ $(document).ready(function(){
                 calendarWrapper.show(0);
             }
         });
-
+        $('.calendar-wrapper').css('opacity', 0);
         $('.calendar-wrapper').fullCalendar({
             lang: 'ru',
             height: 420
         });
+        $('.calendar-wrapper').css('opacity', 1).hide(0);
 
     }());
 
