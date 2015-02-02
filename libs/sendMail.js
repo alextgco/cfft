@@ -7,7 +7,7 @@ var send = function(obj, callback){
     var mailOptions = {
         from: config.get('mail:from'),
         to: obj.email,
-        subject: 'Тема письма', // Subject line
+        subject: obj.subject || 'Тема письма', // Subject line
         text: obj.text || 'Текст письма', // plaintext body
         html: obj.html || 'Текст письма html'
     };
