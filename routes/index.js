@@ -16,22 +16,7 @@ module.exports = function (app) {
   app.get('/private', checkAuth, require('./private').get);
   app.get('/registration', require('./registration').get);
   app.post('/registration', require('./registration').post);
-  app.get('/reqConfirm', require('./reqConfirm').get, function(req, res, next){
-    var t,m;
-    if (err){
-      t = 'error';
-      m = 'Не удалось подтвердить пользователя';
-    }else{
-      t = 'success';
-      m = 'Регистарция успешно подтверждена.';
-    }
-    res.render('mainPage',{
-      toastr:{
-        type:t,
-        message:m
-      }
-    })
-  });
+  app.get('/reqConfirm', require('./reqConfirm').get);
   app.get('/createDB', function(){
     var createDB = require('../bin/createDB');
     createDB();

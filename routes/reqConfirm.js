@@ -1,5 +1,13 @@
 var User = require('../models/user').User;
-var sendMail = require('../libs/sendMail');
+var sendSuccessConfirm = require('../modules/regMailer').sendSuccessConfirm;
+
+var finish = function(err, res){
+    if (err){
+        return res.redirect('./registration_error');
+    }else{
+        return res.redirect('./registration_success');
+    }
+};
 
 exports.get = function(req, res, next){
     var email = req.query.email;
@@ -7,23 +15,16 @@ exports.get = function(req, res, next){
     User.find({email:email,mailKey:p},function(err, user){
         if (err){
             console.log(err);
-            return next(err);
+            return finish(err, res);
         }
         User.confirmEmail(email,p,function(err,user){
             if (err) {
                 console.log(err);
-                return next(err);
+                return finish(err, res);
             }
-            var o = {
-                email: email,
-                subject: 'Успешная регистрация',
-                html: 'Вы успешно зарегистрировались'
-            };
-            sendMail(o, function (err) {
-                console.log(err);
-                // Не будем здесь обрабатывать ош.
-                next();
-                //res.send(200);
+            sendSuccessConfirm({email:email}, function(err){
+                // Здесь не будем обрабатывать err
+                finish(null, res);
 
             });
         });

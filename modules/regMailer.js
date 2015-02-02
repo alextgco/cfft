@@ -24,4 +24,21 @@ var sendConfirm = function(obj, callback){
         callback(null);
     });
 };
+var sendSuccessConfirm = function(obj, callback){
+    if (typeof obj!='object'){
+        return callback(new MyError(''));
+    }
+    var o = {
+        email: obj.email,
+        subject: 'Успешная регистрация',
+        html: 'Вы успешно зарегистрировались'
+    };
+    sendMail(o, function (err) {
+        callback(err);
+
+
+    });
+};
+
 module.exports.sendConfirm = sendConfirm;
+module.exports.sendSuccessConfirm = sendSuccessConfirm;
