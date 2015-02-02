@@ -188,3 +188,49 @@ a.open-calendar.opened{
 .main-slider-wrapper-new{
     /*height: 470px;*/
 }
+.modal-header{
+    border-bottom: 1px solid #121212;
+    background-color: #ff7d00;
+    color: #fff;
+}
+.modal-body{
+    position: relative;
+    padding: 15px;
+    color: #fff;
+    text-shadow: 0 0 0 transparent;
+    background-color: #444;
+}
+
+.modal-body input{
+    background-color: #222;
+    border-color: #000;
+}
+
+.modal-body label{
+    font-weight: normal;
+}
+
+.modal-body .input-group-addon:first-child{
+    background-color: #000;
+    color: #ff7d00;
+    border-color: #000;
+}
+.modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    background-color: #333;
+    border-color: #222;
+}
+.modal-footer .btn {
+    margin-bottom: 0;
+    margin-left: 5px;
+    background-color: #000;
+    background-image: none;
+    border: 0;
+    outline: 0;
+    box-shadow: 0 0 0;
+    border-radius: 0;
+    color: #fff;
+    text-shadow: 0 0 0 transperent;
+}

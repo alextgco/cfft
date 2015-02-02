@@ -4,7 +4,7 @@
       <env name="NODE_PATH" value="." />
       <env name="DEBUG" value="Net" />
     </envs>
-    <browser url="http://localhost:3000/" />
+    <browser start="false" url="http://localhost:3000/" with-js-debugger="false" />
     <RunnerSettings RunnerId="Basic" />
     <RunnerSettings RunnerId="NodeJS.run" />
     <RunnerSettings RunnerId="debuggableProgram" />
