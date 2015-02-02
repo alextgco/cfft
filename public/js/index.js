@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     (function(){
         $('#logo').off('click').on('click', function(){
-            document.location.href = 'index.html';
+            document.location.href = './';
         });
 
         $('.cf_datepicker').datepicker({
