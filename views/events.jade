@@ -1,0 +1,59 @@
+extends layout
+block content
+    .container
+        h2 &Mcy;&iecy;&rcy;&ocy;&pcy;&rcy;&icy;&yacy;&tcy;&icy;&yacy;
+            hr
+            .row
+                .col-md-4
+                    .form-group
+                        label &Pcy;&ocy;&icy;&scy;&kcy; &mcy;&iecy;&rcy;&ocy;&pcy;&rcy;&icy;&yacy;&tcy;&icy;&jcy;
+                        input.form-control.search-event(type='text', placeholder='Введите название')
+                .col-md-6
+                    .form-group
+                        label &Dcy;&acy;&tcy;&acy; &mcy;&iecy;&rcy;&ocy;&pcy;&rcy;&icy;&yacy;&tcy;&icy;&yacy;
+                        .input-group
+                            .input-group-addon &Scy;:
+                            input.cf_datepicker.event-from-date.form-control(type='text', placeholder='')
+                            .input-group-addon &Pcy;&ocy;:
+                            input.cf_datepicker.event-to-date.form-control(type='text', placeholder='')
+            .row
+                .col-md-12
+                    .events-list-wrapper
+                        ul.events-list
+                            li.event-item(data-id='')
+                                .event-item-img
+                                    img(src='img/event1.jpg')
+                                .event-item-info
+                                    .event-item-title
+                                        .titleInner
+                                            a(href='event') V &Ocy;&ncy;&lcy;&acy;&jcy;&ncy; &icy;&gcy;&rcy;&ycy;
+                                        .dateInner 30 &yacy;&ncy;&vcy;&acy;&rcy;&yacy; 2015
+                                    p.event-item-desc
+                                        | &Ucy; &ncy;&acy;&scy; &mcy;&acy;&lcy;&iecy;&ncy;&softcy;&kcy;&icy;&jcy; &pcy;&rcy;&acy;&zcy;&dcy;&ncy;&icy;&kcy;. 5 &lcy;&iecy;&tcy; &ncy;&acy;&zcy;&acy;&dcy; &IEcy;&gcy;&ocy;&rcy;&ocy;&mcy; &Gcy;&ocy;&lcy;&ucy;&bcy;&iecy;&vcy;&ycy;&mcy; &bcy;&ycy;&lcy;&icy; &pcy;&rcy;&ocy;&vcy;&iecy;&dcy;&iecy;&ncy;&ycy; &pcy;&iecy;&rcy;&vcy;&ycy;&iecy; On-line &Icy;&gcy;&rcy;&ycy;.
+                                        | 5 &lcy;&iecy;&tcy; &ncy;&acy;&zcy;&acy;&dcy; &ncy;&acy;&shcy;&iecy; &scy;&ocy;&ocy;&bcy;&shchcy;&iecy;&scy;&tcy;&vcy;&ocy; &bcy;&ycy;&lcy;&ocy; &scy;&kcy;&rcy;&ocy;&mcy;&ncy;&ycy;&mcy; &kcy;&lcy;&ucy;&bcy;&ocy;&mcy; &iecy;&dcy;&icy;&ncy;&ocy;&mcy;&ycy;&shcy;&lcy;&iecy;&ncy;&ncy;&icy;&kcy;&ocy;&vcy;, &tcy;&iecy;&pcy;&iecy;&rcy;&softcy; &ecy;&tcy;&ocy; &dcy;&icy;&ncy;&acy;&mcy;&icy;&chcy;&ncy;&ocy; &rcy;&acy;&zcy;&vcy;&icy;&vcy;&acy;&yucy;&shchcy;&iecy;&iecy;&scy;&yacy;
+                                        | Community!
+                            li.event-item(data-id='')
+                                .event-item-img
+                                    img(src='img/event2.jpg')
+                                .event-item-info
+                                    .event-item-title
+                                        .titleInner
+                                            a(href='event') Great outdoor workout
+                                        .dateInner 23 &fcy;&iecy;&vcy;&rcy;&acy;&lcy;&yacy; 2015
+                                    p.event-item-desc
+                                        | &Scy;&tcy;&acy;&tcy;&softcy; &dcy;&ocy;&ncy;&ocy;&rcy;&ocy;&mcy; &mcy;&ocy;&zhcy;&iecy;&tcy; &pcy;&rcy;&acy;&kcy;&tcy;&icy;&chcy;&iecy;&scy;&kcy;&icy; &lcy;&yucy;&bcy;&ocy;&jcy; &zcy;&dcy;&ocy;&rcy;&ocy;&vcy;&ycy;&jcy; &chcy;&iecy;&lcy;&ocy;&vcy;&iecy;&kcy;, &iecy;&scy;&lcy;&icy; &ocy;&ncy; &scy;&tcy;&acy;&rcy;&shcy;&iecy; 18 &lcy;&iecy;&tcy;, &ncy;&iecy; &icy;&mcy;&iecy;&iecy;&tcy;
+                                        | &pcy;&rcy;&ocy;&tcy;&icy;&vcy;&ocy;&pcy;&ocy;&kcy;&acy;&zcy;&acy;&ncy;&icy;&jcy; &kcy; &dcy;&ocy;&ncy;&ocy;&rcy;&scy;&tcy;&vcy;&ucy;, &acy; &iecy;&gcy;&ocy; &vcy;&iecy;&scy; &bcy;&ocy;&lcy;&softcy;&shcy;&iecy; 50 &kcy;&gcy;.
+                            li.event-item(data-id='')
+                                .event-item-img
+                                    img(src='img/event3.jpg')
+                                .event-item-info
+                                    .event-item-title
+                                        .titleInner
+                                            a(href='event') Reebok Crossfit Games 2014
+                                        .dateInner 08 &mcy;&acy;&rcy;&tcy;&acy; 2015
+                                    p.event-item-desc
+                                        | &Ncy;&acy;&pcy;&ocy;&mcy;&icy;&ncy;&acy;&iecy;&mcy;, &chcy;&tcy;&ocy; &dcy;&lcy;&yacy; &tcy;&ocy;&gcy;&ocy;, &chcy;&tcy;&ocy;&bcy;&ycy; &scy;&tcy;&acy;&tcy;&softcy; &dcy;&ocy;&ncy;&ocy;&rcy;&ocy;&mcy; &TScy;&iecy;&ncy;&tcy;&rcy;&acy; &kcy;&rcy;&ocy;&vcy;&icy; &Fcy;&Mcy;&Bcy;&Acy; &Rcy;&ocy;&scy;&scy;&icy;&icy; &ncy;&iecy; &ocy;&bcy;&yacy;&zcy;&acy;&tcy;&iecy;&lcy;&softcy;&ncy;&ocy;
+                                        | &icy;&mcy;&iecy;&tcy;&softcy; &rcy;&iecy;&gcy;&icy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&yucy; &vcy; &Mcy;&ocy;&scy;&kcy;&vcy;&iecy; &icy;&lcy;&icy; &Mcy;&ocy;&scy;&kcy;&ocy;&vcy;&scy;&kcy;&ocy;&jcy; &ocy;&bcy;&lcy;&acy;&scy;&tcy;&icy;. &Tcy;&iecy;&mcy;, &ucy; &kcy;&ocy;&gcy;&ocy; &ncy;&iecy;&tcy; &pcy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&ncy;&ocy;&jcy; &icy;&lcy;&icy; &vcy;&rcy;&iecy;&mcy;&iecy;&ncy;&ncy;&ocy;&jcy;
+                                        | &rcy;&iecy;&gcy;&icy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&icy;, &dcy;&ocy;&scy;&tcy;&acy;&tcy;&ocy;&chcy;&ncy;&ocy; &vcy;&zcy;&yacy;&tcy;&softcy; &scy; &scy;&ocy;&bcy;&ocy;&jcy; &pcy;&acy;&scy;&pcy;&ocy;&rcy;&tcy; &icy; &scy;&pcy;&rcy;&acy;&vcy;&kcy;&ucy; &scy; &mcy;&iecy;&scy;&tcy;&acy; &rcy;&acy;&bcy;&ocy;&tcy;&ycy; &icy;&lcy;&icy; &ucy;&chcy;&iecy;&bcy;&ycy; &vcy; &Mcy;&ocy;&scy;&kcy;&vcy;&iecy;
+                                        | (&Mcy;&ocy;&scy;&kcy;&ocy;&vcy;&scy;&kcy;&ocy;&jcy; &ocy;&bcy;&lcy;&acy;&scy;&tcy;&icy;) &pcy;&rcy;&ocy;&icy;&zcy;&vcy;&ocy;&lcy;&softcy;&ncy;&ocy;&jcy; &fcy;&ocy;&rcy;&mcy;&ycy;, &pcy;&ocy;&dcy;&tcy;&vcy;&iecy;&rcy;&zhcy;&dcy;&acy;&yucy;&shchcy;&ucy;&yucy; &fcy;&acy;&kcy;&tcy; &tcy;&rcy;&ucy;&dcy;&ocy;&ucy;&scy;&tcy;&rcy;&ocy;&jcy;&scy;&tcy;&vcy;&acy; &icy;&lcy;&icy;
+                                        | &pcy;&rcy;&ocy;&khcy;&ocy;&zhcy;&dcy;&iecy;&ncy;&icy;&yacy; &ocy;&bcy;&ucy;&chcy;&iecy;&ncy;&icy;&yacy;.

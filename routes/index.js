@@ -17,6 +17,12 @@ module.exports = function (app) {
   app.get('/registration', require('./registration').get);
   app.post('/registration', require('./registration').post);
   app.get('/reqConfirm', require('./reqConfirm').get);
+  app.get('/events', function(req, res, next){
+    res.render('events');
+  });
+  app.get('/event', function(req, res, next){
+    res.render('event');
+  });
   app.get('/registration_error', function(req, res, next){
     res.render('registration_error');
   });

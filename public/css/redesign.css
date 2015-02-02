@@ -248,6 +248,7 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #171717;
+    font-size: 14px;
 }
 .bot_bg{
     background-image: none;
@@ -341,4 +342,10 @@ body{
 
 .row-block-btn:hover{
     background-color: #e05e00;
+}
+.event-item-desc{
+    font-size: 14px;
+}
+.form-group label{
+    font-size: 14px;
 }
