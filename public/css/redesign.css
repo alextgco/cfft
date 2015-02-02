@@ -222,15 +222,15 @@ a.open-calendar.opened{
     background-color: #333;
     border-color: #222;
 }
-.modal-footer .btn {
-    margin-bottom: 0;
-    margin-left: 5px;
-    background-color: #000;
-    background-image: none;
-    border: 0;
-    outline: 0;
-    box-shadow: 0 0 0;
-    border-radius: 0;
-    color: #fff;
-    text-shadow: 0 0 0 transperent;
-}
+/*.modal-footer .btn {*/
+    /*margin-bottom: 0;*/
+    /*margin-left: 5px;*/
+    /*background-color: #000;*/
+    /*background-image: none;*/
+    /*border: 0;*/
+    /*outline: 0;*/
+    /*box-shadow: 0 0 0;*/
+    /*border-radius: 0;*/
+    /*color: #fff;*/
+    /*text-shadow: 0 0 0 transperent;*/
+/*}*/
