@@ -342,8 +342,9 @@ $(document).ready(function(){
                     params: params
                 }, function(res){
                     console.log(res);
-
-                    //toastr[res.toastr.type](res.toastr.message);
+                    if(res.toastr){
+                        toastr[res.toastr.type](res.toastr.message);
+                    }
                 });
             }
         });

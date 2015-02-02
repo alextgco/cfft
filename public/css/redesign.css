@@ -159,7 +159,7 @@ a.open-calendar.opened{
 .main-slider-controls{
     position: absolute;
     bottom: 0;
-    left: 50%;
+    left: 0;
 }
 .main-slider-dots-wrapper{
     float: left;
@@ -186,5 +186,5 @@ a.open-calendar.opened{
     color: #000;
 }
 .main-slider-wrapper-new{
-    height: 470px;
+    /*height: 470px;*/
 }
