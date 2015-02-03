@@ -1,7 +1,33 @@
 .preheader{
     /*background-color: #FF6B00;*/
     /*margin-top: 20px;*/
+    position: relative;
 }
+
+.preheaderButtons-wrapper{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+.preheaderButtons-wrapper .preheaderBtn{
+    float: left;
+}
+.preheaderBtn a{
+    padding-top: 7px;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: block;
+    padding-bottom: 7px;
+    color: #fff;
+    text-decoration: none;
+}
+.preheaderBtn a:hover{
+    background-color: rgba(0,0,0,0.2);
+}
+
+
+
 .page-header>.container{
     background-image: none;
     background-color: #121212;
@@ -24,7 +50,8 @@
 }
 #logo {
     float: left;
-    padding: 19px 20px 19px 20px;
+    /*padding: 19px 20px 19px 20px;*/
+    padding: 9px 20px 9px 20px;
     margin: 0;
     margin-left: -15px;
 }
@@ -40,7 +67,8 @@
 
 .main-menu-wrapper li a{
     color: #fff;
-    padding: 31px 24px 32px 24px;
+    /*padding: 31px 24px 32px 24px;*/
+    padding: 21px 24px 22px 24px;
     text-decoration: none;
     float: left;
 
@@ -58,7 +86,8 @@
     background-color: #332C29;
 }
 a.open-calendar{
-    padding: 31px 32px 27px 32px!important;
+    /*padding: 31px 32px 27px 32px!important;*/
+    padding: 21px 32px 17px 32px!important;
 }
 
 a.open-calendar.opened{
@@ -186,7 +215,7 @@ a.open-calendar.opened{
     color: #000;
 }
 .main-slider-wrapper-new{
-    /*height: 470px;*/
+
 }
 .modal-header{
     border-bottom: 1px solid #121212;
