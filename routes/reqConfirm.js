@@ -12,23 +12,27 @@ var finish = function(err, res){
 exports.get = function(req, res, next){
     var email = req.query.email;
     var p = req.query.p;
-    User.find({email:email,mailKey:p},function(err, user){
+    if (p=='done'){
+        return finish(true, res);
+    }
+    User.confirmEmail(email,p,function(err,user){
+        if (err) {
+            console.log(err);
+            return finish(err, res);
+        }
+        sendSuccessConfirm({email:email}, function(err){
+            // Здесь не будем обрабатывать err
+            finish(null, res);
+
+        });
+    });
+   /* User.find({email:email,mailKey:p},function(err, user){
         if (err){
             console.log(err);
             return finish(err, res);
         }
-        User.confirmEmail(email,p,function(err,user){
-            if (err) {
-                console.log(err);
-                return finish(err, res);
-            }
-            sendSuccessConfirm({email:email}, function(err){
-                // Здесь не будем обрабатывать err
-                finish(null, res);
 
-            });
-        });
-    });
+    });*/
 };
 /*
 

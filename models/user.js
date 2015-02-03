@@ -1,6 +1,7 @@
 var crypto = require('crypto');
 var async = require('async');
 var AuthError = require('../error').AuthError;
+var MyError = require('../error').MyError;
 var Guid = require('guid');
 var guid = Guid.create();
 
@@ -141,6 +142,7 @@ scheme.statics.registration = function(obj, callback){
         if (user){
             return callback(new AuthError('Такой пользователь уже существует'));
         }
+
         user = new User(obj);
         user.save(function(err){
             if (err) return callback(err);
@@ -164,8 +166,13 @@ scheme.statics.setAdmin = function(user, callback){
 };
 scheme.statics.confirmEmail = function(email, p, callback){
     var User = this;
-    User.findOneAndUpdate({email:email},{confirmed:true},function(err,user){
-        callback(err, user);
+    User.findOneAndUpdate({email:email, mailKey:p},{confirmed:true},function(err,user){
+        if (!user){
+            return callback(new MyError('Пользователь не найден'));
+        }
+        User.findByIdAndUpdate(user.id, {mailKey:'done'},function(err, user){
+            callback(err, user);
+        });
     });
 };
 
