@@ -1,6 +1,8 @@
-var mongoose = require('mongoose');
+var mongoose = require('../libs/mongoose');
 var async = require('async');
 var User = require('../models/user').User;
+var Country = require('../models/country').Country;
+var City = require('../models/city').City;
 
 
 var start = function(){
@@ -11,12 +13,13 @@ var start = function(){
         createUsers
     ], function (err) {
         console.log(arguments);
-        mongoose.disconnect();
+        mongoose.connection.db.close();
     });
 };
 
 
 function open(callback){
+
     mongoose.connection.on('open',callback);
     console.log('open');
 }
@@ -44,4 +47,33 @@ function createUsers(callback){
     },callback);
     console.log('createUsers');
 }
+function createCountries(callback){
+    var countries = [
+        {name:"Россия"}
+    ];
+    var cities = {
+        "Россия":['Москва, Питер, Екатеринбург']
+    };
+    async.each(countries,function(item,callback){
+        var country = new Country(item);
+        var citys = cities[item.name];
+        if (citys){
+            async.each(citys,function(cityItem,callback){
+                var city = new City({name:cityItem});
+                city.save(function(err){
+                    if (err){
+                        return;
+                    }
+                    country.cities.push(city.id);
+                });
+
+            },function(){
+                country.save(callback);
+            });
+        }
+    },callback);
+    console.log('createCountries');
+}
 module.exports = start;
+
+start();
