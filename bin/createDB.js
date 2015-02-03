@@ -10,10 +10,19 @@ var start = function(){
         open,
         dropDatabase,
         requireModels,
-        createUsers
+        createUsers/*,
+        createCountries*/
     ], function (err) {
         console.log(arguments);
-        mongoose.connection.db.close();
+        setTimeout(
+            function() {
+                mongoose.disconnect(function(err) {
+                    if (err) throw err;
+                    console.log('disconnected');
+                });
+            },
+            1000
+        );
     });
 };
 
