@@ -20,6 +20,9 @@ module.exports = function (app) {
   app.get('/events', function(req, res, next){
     res.render('events');
   });
+  app.get('/profile', function(req, res, next){
+    res.render('profile');
+  });
   app.get('/event', function(req, res, next){
     res.render('event');
   });

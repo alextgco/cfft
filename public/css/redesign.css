@@ -14,11 +14,12 @@
     float: left;
 }
 .preheaderBtn a{
-    padding-top: 7px;
+    padding-top: 8px;
     padding-right: 10px;
     padding-left: 10px;
     display: block;
-    padding-bottom: 7px;
+    font-size: 13px;
+    padding-bottom: 8px;
     color: #fff;
     text-decoration: none;
 }
@@ -26,11 +27,16 @@
     background-color: rgba(0,0,0,0.2);
 }
 
-
+.orangeBg{
+    background-color: rgb(255, 138, 6);
+}
+.orangeCol{
+    color: rgb(255, 138, 6);
+}
 
 .page-header>.container{
     background-image: none;
-    background-color: #121212;
+    background-color: rgb(255, 138, 6);
 }
 .page-header{
     background-color: transparent;
@@ -50,13 +56,14 @@
 }
 #logo {
     float: left;
-    /*padding: 19px 20px 19px 20px;*/
-    padding: 9px 20px 9px 20px;
+    /* padding: 19px 20px 19px 20px; */
+    padding: 8px 30px 10px 30px;
     margin: 0;
     margin-left: -15px;
+    background-color: rgb(228, 114, 3);
 }
 #logo:hover{
-    background-color: #000;
+    background-color: rgb(255, 138, 6);
 }
 #top-main-menu {
     float: right;
@@ -68,7 +75,7 @@
 .main-menu-wrapper li a{
     color: #fff;
     /*padding: 31px 24px 32px 24px;*/
-    padding: 21px 24px 22px 24px;
+    padding: 23px 24px 20px 24px;;
     text-decoration: none;
     float: left;
 
@@ -87,7 +94,7 @@
 }
 a.open-calendar{
     /*padding: 31px 32px 27px 32px!important;*/
-    padding: 21px 32px 17px 32px!important;
+    padding: 23px 32px 14px 32px!important;
 }
 
 a.open-calendar.opened{
@@ -176,7 +183,7 @@ a.open-calendar.opened{
     height: 40px;
     float: left;
     width: 40px;
-    background-color: #e01b1a;
+    background-color: #333;
     color: #fff;
     font-size: 30px;
     margin-top: 0;
@@ -377,4 +384,94 @@ body{
 }
 .form-group label{
     font-size: 14px;
+}
+
+.nearrest-wow-event-wrapper{
+    height: 320px;
+    background-color: #d2d2d2;
+    position: relative;
+}
+
+.nearrest-wow-header{
+    text-align: center;
+    font-family: opensansbold, arial, sans-serif;
+    font-size: 18px;
+    padding: 10px 15px;
+    color: #222;
+    background-color: #eee;
+    /*border-bottom: 2px solid #333;*/
+}
+.nearrest-wow-content{
+    font-family: opensanssemibold,arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    padding: 10px;
+
+}
+.nearrest-wow-timer{
+    padding: 15px 0;
+    padding-top: 0;
+    text-align: center;
+    width: 100%;
+    color: #111;
+    font-family: opensanssemibold,arial, sans-serif;
+    /*background-color: #222;*/
+}
+.nearrest-wow-order{
+    position: absolute;
+    bottom: 0;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    font-family: opensanssemibold,arial, sans-serif;
+    background-color: #FF6B00;
+    cursor: pointer;
+}
+.nearrest-wow-order:hover{
+    background-color: #d85b00;
+}
+.preheader>.container{
+    background-color: #333;
+}
+.page-header.main-header{
+    box-shadow: 0 0 4px #000;
+    z-index: 100;
+    position: relative;
+}
+.nearrest-wow-from-to-date{
+    font-size: 13px;
+    color: #444;
+}
+.nearrest-wow-exercises{
+    text-align: center;
+}
+.nearrest-wow-timer-row{
+    width: 100%;
+    background-color: #E7E7E7;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+    /*box-shadow: inset 1px 1px 1px rgba(0,0,0,0.3);*/
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+.nearrest-wow-timer-row .tblc{
+    display: inline-block;
+    padding: 0px 7px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 2px;
+    margin-right: 4px;
+    margin-left: 4px;
+    box-shadow: inset 2px 2px 2px rgba(0,0,0,0.8);
+}
+.grey{
+    color: #777;
+}
+.user-photo{
+    width: 100%;
+}
+.user-photo img{
+    width: 100%;
 }
