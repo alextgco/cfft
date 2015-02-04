@@ -55,9 +55,9 @@ function getCitiesPortion(country_id,offset,callback){
     })
 }
 
-getCities(function(){
-/*    console.log(countries[0]);
-    console.log(cities[0]);*/
+/*getCities(function(){
+*//*    console.log(countries[0]);
+    console.log(cities[0]);*//*
     for (var i in cities) {
         if (cities[i].title=="Москва"){
             console.log(cities[i]);
@@ -66,10 +66,14 @@ getCities(function(){
 
     }
 });
-return;
+return;*/
 
-
-
+/*
+{ id: 1,
+    title: 'Москва',
+    important: 1,
+    country_id: 1,
+    country_title: 'Россия' }*/
 
 var start = function(){
     async.series([
@@ -79,7 +83,8 @@ var start = function(){
         requireModels,*/
         createUsers,
         getCities,
-        createCountries
+        createCities/*,
+        createCountries*/
     ], function (err) {
         console.log(arguments);
         setTimeout(
@@ -87,6 +92,8 @@ var start = function(){
                 mongoose.disconnect(function(err) {
                     if (err) throw err;
                     console.log('disconnected');
+                    var t2 = new Date().getTime();
+                    console.log(t2-t1);
                 });
             },
             1000
@@ -113,7 +120,7 @@ function requireModels(callback){
     console.log('requireModels');
 }
 function dropCollections(callback){
-    var colls = ['users','clubs','countries','cities'];
+    var colls = ['users','clubs','cities'];
     async.each(colls,function(item,callback){
         debugger;
         mongoose.connection.db.dropCollection(item,function(err){
@@ -147,29 +154,19 @@ function createUsers(callback){
     },callback);
     console.log('createUsers');
 }
-function createCountries(callback){
 
-    async.each(countries,function(item,callback){
-        var country = new Country(item);
-        var citys = cities[item.name];
-        if (citys){
-            async.each(citys,function(cityItem,callback){
-                var city = new City({name:cityItem});
-                city.save(function(err){
-                    if (err){
-                        return callback(err);
-                    }
-                    country.cities.push(city.id);
-                    callback();
-                });
+function createCities(callback){
 
-            },function(){
-                country.save(callback);
-            });
-        }
+    async.each(cities,function(item,callback){
+        var city = new City(item);
+        city.save(function(err){
+            if (err){
+                return callback(err);
+            }
+            callback();
+        });
     },callback);
-    console.log('createCountries');
 }
 module.exports = start;
 
-//start();
+start();
