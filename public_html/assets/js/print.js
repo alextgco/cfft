@@ -117,17 +117,15 @@ $(document).on('print',function(e,data){
                     params:{}
                 },function(instanceContent){
                     MB.User.printInstance = instanceContent;
-                    MB.User.printInstance.addItems(data.ticket_stack, true, function(tickets){
-                        console.log('addedItems:', tickets);
-                        var item = MB.User.printInstance.removeItem({print_status:'IN_PRINT'},2);
-                        console.log('item',item);
-                    });
+                    var tickets = MB.User.printInstance.addItems(data.ticket_stack, true);
+                    console.log('addedItems:', tickets);
+                    /*var item = MB.User.printInstance.removeItem({print_status:'IN_PRINT'},2);
+                    console.log('item',item);*/
                 });
             }else{
                 MB.User.printInstance.addItems(data.tickets, true, function(tickets){
+                    var tickets = MB.User.printInstance.addItems(data.ticket_stack, true);
                     console.log('addedItems:', tickets);
-                    var item = MB.User.printInstance.getItem({print_status:'IN_PRINT'});
-                    console.log('item',item);
                 });
             }
 

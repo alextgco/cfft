@@ -68,7 +68,7 @@
                     }
                 }
             }
-            return item;
+            return tickets.blank_types;
         },
         getItem:function(obj, many){
             if (typeof obj!=='object'){
