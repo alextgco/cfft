@@ -1,0 +1,55 @@
+#!/usr/bin/perl
+#------------------------------------------------------------------------------
+
+#$ENV{ORACLE_HOME} = '/u01/app/oracle/product/12.1.0/dbhome_1';
+
+my $host="localhost";
+my $port="";
+my $SID="orcl";
+my $user="ticket_b2c";
+my $password="qweqwe";
+
+#------------------------------------------------------------------------------
+
+use utf8;
+use CGI qw/param/;
+use Encode;
+use DBI;
+use CGI;
+# not nessasary
+$ENV{NLS_LANG} = 'AMERICAN_AMERICA.UTF8';
+
+#my $dbh=DBI->connect("dbi:Oracle:host=$host;service_name=$SID;port=$port",$user, $password,{AutoCommi=>0,RaiseError=>1}) or die "No connect to DB:$DBI::errstr\n";
+my $dbh=DBI->connect("dbi:Oracle:host=$host;service_name=$SID;port=$port",$user, $password ) || die "Database connection not made";
+
+$dbh->{LongReadLen} = 524288 * 20;
+
+## если ключ HTTP_X_FORWARDED_FOR определен
+if ( $ENV{ HTTP_X_FORWARDED_FOR } ) {
+   ## в переменную $ip записывается IP-адрес клиента, подключенного через прокси
+   $ip = $ENV{ HTTP_X_FORWARDED_FOR};
+} else {
+   ## в противном случае запишем в $ip удаленный IP-адрес клиента
+   $ip = $ENV{ REMOTE_ADDR };
+}
+my $xdata =  "<query><action_id>622</action_id><frame>0_N5KxAQXUzWGY</frame><command>get_action_scheme</command><in_out_key>0Fe_db4wXIF5cOCNhnnL</in_out_key></query>";
+my $xdata =  "<query><action_id>622</action_id><frame>0_N5KxAQXUzWGY</frame><command>get_action_scheme</command><in_out_key>0Fe_db4wXIF5cOCNhnnL</in_out_key></query>";
+$xdata =~  s/\n//gi;
+my $res;
+
+my $rs=$dbh->prepare('declare begin :res := TICKET_B2C.b2e_gateway_api.Request(:xreq,:xip); end;');
+
+$rs->bind_param(":xreq",$xdata);
+$rs->bind_param(":xip",$ip);
+$rs->bind_param_inout(":res",\$res,0,{ ora_type => 112 });
+
+$rs->execute();
+$rs->finish;
+$rc = $dbh->disconnect;
+
+#print "Content-type: application/json\n\n";
+#print "Content-type: json\n\n";
+
+print "Content-type: text/html\n\n";
+
+print $ARGV[0];

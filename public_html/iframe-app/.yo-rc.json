@@ -1,0 +1,26 @@
+{
+  "generator-backbone": {
+    "appPath": "app",
+    "appName": "Application",
+    "testFramework": "mocha",
+    "templateFramework": "lodash",
+    "coffee": false,
+    "compassBootstrap": false,
+    "includeRequireJS": true
+  },
+  "generator-bbb": {
+    "name": "application",
+    "testFramework": "qunit",
+    "moduleStyle": "amd",
+    "indent": {
+      "style": "tab",
+      "size": 1
+    },
+    "paths": {
+      "base": ".",
+      "tests": "test",
+      "modules": "app/modules"
+    }
+  },
+  "generator-mocha": {}
+}

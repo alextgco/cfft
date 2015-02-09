@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="assets/js/libs/jquery/jquery-2.0.3.js"></script>
+    <!--<script type="text/javascript" src="assets/js/main.js"></script>-->
+</head>
+<body>
+
+
+
+<table id="output" width="100%" style="border-collapse: collapse;">
+    <thead></thead>
+    <tbody></tbody>
+   <!-- <tr><td>
+        Для смены пароля обращяться:
+    </td>
+        <td>
+            Туда и сюда....
+        </td>
+    </tr>-->
+</table>
+
+<script>
+
+
+    var search = decodeURI(document.location.href);
+    var query = search.match(/<query\>.+<\/query>/)[0];
+    console.log(query);
+
+    $.getJSON("/cgi-bin/b2cJ/?p_xml="+query,function(data){
+
+        if (data.DATA===null){
+            return;
+        }
+
+        var th = "<tr>";
+        for (var k1 in data.NAMES){
+            th += "<td>"+data.NAMES[k1]+"</td>";
+        }
+        th += "</tr>";
+        var trs = "";
+        for(var k2 in data.DATA){
+            var trD = data.DATA[k2];
+            trs = "<tr>";
+            for (var k3 in trD){
+                th += "<td>"+trD[k3]+"</td>";
+            }
+            trs += "</tr>";
+        }
+
+        var html = "<table><tbody>"+th+trs+"</tbody></table>";
+        console.log(html);
+        window.open('data:application/vnd.ms-excel,' + '\uFEFF' + encodeURIComponent(html),"_self");
+     /*   $("#output").append(th);
+        $("#output").append(trs);
+        console.log($("#output").html());*/
+        //$("#output").html(th+trs);
+
+    });
+    //window.open('data:application/vnd.ms-excel; UNICODE,' + encodeURIComponent(html));
+
+</script>
+
+</body>
+</html>

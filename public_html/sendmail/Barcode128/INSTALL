@@ -1,0 +1,11 @@
+#==============================================================================#
++--------------------------------------+
+| phpCode128 Installation Instructions |
++--------------------------------------+
+
+1)	Upload all of the files extracted from the distribution file onto your 
+	web server.
+	
+2)	Include the code128.class.php file wherever you need to use phpCode128.
+	include('path/to/code128.class.php');
+#==============================================================================#

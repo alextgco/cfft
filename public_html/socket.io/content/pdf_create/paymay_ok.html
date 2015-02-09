@@ -1,0 +1,56 @@
+<script src="/core/jquery/jquery.js" type="text/javascript"></script>
+<script src="/core/jquery/jquery.timers.js" type="text/javascript"></script>
+<script src="/core/js/functions.js" type="text/javascript"></script>
+<script>
+
+var json = {command:"get_order_tickets",params:{"id":"15717"}}
+send_query(json,function(result){
+  if($(result).find("rc").text() == 0){
+    alert(result);
+  } 
+  else {
+    alert("Что-то не так")
+  }
+});
+$(document).ready(function () {
+
+  /*
+  $(".timer").everyTime(1000, function(i) {
+    var time = 15-i;
+   $(this).html(time)
+   if(time == 0){window.location.href="http://192.168.1.101/content/scene"}
+  });
+  */
+})
+</script>
+<style>
+  .block {
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid green;
+    box-shadow: 0 0 5px green;
+    background: #CCFFCC;
+  }
+  .block .timer {
+    color: red;
+  }
+</style>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<div class="block">
+  Оплата произведена успешно!
+  <br/>
+  Перенаправление обратно на сайт сработает через <span class="timer">15</span>
+  </br>
+  <a href="http://192.168.1.101/content/scene">Либо нажмите на эту ссылку  </a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<head>
+<script src="jquery.js" type="text/javascript"></script>
+<script src="functions.js" type="text/javascript"></script>
+<script>
+
+var get = {};
+location.search.substr(1).replace(/([^=&]+)=([^&]*)/g, function(o, k, v) {
+   get[k] = v;
+});
+
+</script>
+
+
+<script> 
+/*
+var url_xml = "http://192.168.1.101/cgi-bin/b2c?p_xml=%3Cquery%3E%3Ccommand%get_order_tickets%3C/command%3E%order_id%3E"+get['order_id']+"%3C/event_item_id%3E%3C/query%3E";
+$.ajax({
+  type: "GET",
+  url: url_xml,
+  dataType: "xml",
+  success: xmlParser
+});
+
+function xmlParser(xml){
+
+}
+*/
+
+var json = {command:"get_order_tickets",params:{"order_id":get['order_id']}}
+send_query(json,function(xml){
+  var arr = create_array($(xml));
+  //console.log("arr",arr);
+  var data = {"arr":arr};
+  $.ajax({
+    type: "GET",
+    url: "http://192.168.2.28/pdf_create.php",
+    data: data,
+  })
+  .done(function(msg) {
+    
+  });
+});
+
+function create_array(xml) {
+  var arr = {};
+  var counter = 0;
+  $(xml).find("ROW").each(function(){
+    if($(this).find("BARCODE").text()!=""){
+      arr[counter] = {};
+      arr[counter]["BARCODE"]=$(this).find("BARCODE").text();
+      arr[counter]["EVENT"]=$(this).find("EVENT").text();
+      arr[counter]["EVENT_DATE"]=$(this).find("EVENT_DATE").text();
+      arr[counter]["VENUE"]=$(this).find("VENUE").text();
+      arr[counter]["AREA"]=$(this).find("AREA").text();
+      arr[counter]["ROW"]=$(this).find("ROW").text();
+      arr[counter]["PLACE"]=$(this).find("PLACE").text();
+      arr[counter]["SALE_PRICE"]=$(this).find("SALE_PRICE").text();
+      counter++;
+    }
+    
+  })
+  return arr;
+}
+
+
+</script>
+</head>

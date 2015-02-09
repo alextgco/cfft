@@ -1,0 +1,20 @@
+<div class="basketListContainer">
+    <div class="titleBasket">
+        <div class="label"><%= lang.basket %></div>
+        <div class="close">х</div>
+    </div>
+    <div class="list">
+        <ul id="basketList">
+            <% _.each(orders,function (order) { %>
+            <% order = order.attributes %>
+            <li data-id="<%= order.id %>">
+                <div class="title"><%= order.name %> <%= order.short_day %></div>
+                <div class="zone"><%= order.zone %></div>
+                <div class="rowPlace"><%= lang.line %>: <%= order.line %> <%= lang.place %>: <%= order.place %></div>
+                <div class="price"><%= order.price %> <%= lang.currency %>.</div>
+                <div class="removeItem"></div>
+            </li>
+            <% }); %>
+        </ul>
+    </div>
+</div>

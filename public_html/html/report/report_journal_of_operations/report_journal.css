@@ -1,0 +1,27 @@
+table {
+
+}
+table tr td,table tr th {
+    padding: 1px 5px;
+}
+
+table tr th.table_title {
+    font-size: 14px;
+    text-align: left;
+}
+
+table tr th {
+    font-size: 12px;
+}
+
+table tr td {
+    font-size: 12px;
+    text-align: center;
+}
+table tr td.coast {
+    text-align: right;
+}
+
+table tr td{
+    border-bottom: 2px dotted;
+}

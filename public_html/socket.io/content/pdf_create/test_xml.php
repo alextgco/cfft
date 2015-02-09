@@ -1,0 +1,44 @@
+<?php
+
+$s =<<<EOS
+<result>
+<rc>0</rc>
+<ROWS>
+<ROW>
+<ORDER_ID>15717</ORDER_ID>
+<BARCODE>7614491851</BARCODE>
+<EVENT_DESCR>Концерт Маэстро Спивакова</EVENT_DESCR>
+<EVENT_DATE>2013-05-11 22:11:00</EVENT_DATE>
+<VENUE>Светлановский зал (Большой)</VENUE>
+<AREA_GROUP_NAME>Бельэтаж правая сторона</AREA_GROUP_NAME>
+<ROW>1</ROW>
+<PLACE>17</PLACE>
+<SALE_PRICE>1000</SALE_PRICE>
+</ROW>
+<ROW>
+<ORDER_ID>15718</ORDER_ID>
+<BARCODE>9806082783</BARCODE>
+<EVENT_DESCR>Концерт Маэстро Спивакова</EVENT_DESCR>
+<EVENT_DATE>2013-05-11 22:11:00</EVENT_DATE>
+<VENUE>Светлановский зал (Большой)</VENUE>
+<AREA_GROUP_NAME>Бельэтаж правая сторона</AREA_GROUP_NAME>
+<ROW>2</ROW>
+<PLACE>20</PLACE>
+<SALE_PRICE>1000</SALE_PRICE>
+</ROW>
+<ROW>
+<ORDER_ID>15719</ORDER_ID>
+<BARCODE>1052647464</BARCODE>
+<EVENT_DESCR>Концерт Маэстро Спивакова</EVENT_DESCR>
+<EVENT_DATE>2013-05-11 22:11:00</EVENT_DATE>
+<VENUE>Светлановский зал (Большой)</VENUE>
+<AREA_GROUP_NAME>Бельэтаж правая ст. неудобные места</AREA_GROUP_NAME>
+<ROW>3</ROW>
+<PLACE>19</PLACE>
+<SALE_PRICE>1000</SALE_PRICE>
+</ROW>
+</ROWS>
+</result>
+EOS;
+
+?>

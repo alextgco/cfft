@@ -1,0 +1,303 @@
+<script src="jquery/jquery.js"></script>
+
+
+<script>
+    var TicketForActionClass = function(obj){
+        this.selector = "#actionId";
+        this.resultDiv = "#resultDiv";
+        this.resultForm = "#resultForm";
+    }
+    TicketForActionClass.prototype.init = function(){
+        this.render();
+        this.handleAction();
+    }
+    TicketForActionClass.prototype.render = function(){
+        var html = ""+
+        '<span>Id мероприятия: </span>'+
+        '<input type="text">'+
+        '<button>Go</button>';
+        $(this.selector).html(html);
+    }
+    TicketForActionClass.prototype.handleAction = function(){
+        var _this = this;
+        $(this.selector).find("button").click(function(){
+            _this.getTicketForAction();
+        })
+    }
+    TicketForActionClass.prototype.getTicketForAction = function(callback){
+        var _this = this;
+        var actionId = $(this.selector).find("input").val();
+        sendQuery({
+            command: "get",
+            subcommand: "order_ticket",
+            sid: "vhbmTBuSPXJaojVJDAhXOFWQquXHdWKLKfRPuzTTmmOzrZmSLo",
+            params:{
+                where:" action_id = "+actionId
+            }
+        }, function(result){
+            if(typeof callback == "function"){
+                callback(result);
+            }
+            else {
+                var obj = jsonToObj(result);
+                _this.outputTickets(obj);
+            }
+        });
+    }
+    TicketForActionClass.prototype.outputTickets = function(obj){
+
+        this.tickets = jsonToObj(this.JSON);
+        var _this = this;
+        this.TicketRender(this.tickets);
+        this.TicketTableStyle(this.tickets);
+        this.TicketHandleAction();
+    }
+
+    TicketForActionClass.prototype.TicketRender = function(obj){
+        var thObj = {
+            idorder:{title:"id order",key:"ORDER_ID"},
+            idticket:{title:"id ticket",key:"ORDER_TICKET_ID"},
+            crm_user_name:{title:"user name",key:"CRM_USER_NAME"},
+            crm_user_phone:{title:"user phone",key:"CRM_USER_PHONE"},
+            crm_user_email:{title:"user email",key:"CRM_USER_EMAIL"},
+            barcode:{title:"barcode",key:"BARCODE"}
+        }
+        this.thObj = thObj;
+        var html;
+        html+= "<table>";
+        html+= "<tr class='th'>";
+        for(key in thObj){
+            html+= "<th>"+thObj[key]['title']+"</th>";
+        }
+        html+= "</tr>";
+        html+= "</table>";
+        html+= '<div class="content"><table>';
+        for(i in obj){
+            html+= '<tr>';
+            for(key in thObj){
+                html+= '<td>'+obj[i][thObj[key]['key']]+"</td>";
+            }
+            html+= '</tr>';
+            
+        }
+        html+= '</table></div>';
+        html+= '<button id="createPDF">Сформировать PDF</button>'
+        $(this.resultDiv).html(html);
+    }
+
+    TicketForActionClass.prototype.TicketTableStyle = function(){
+        var resultDiv = $(this.resultDiv);
+        /*
+        resultDiv.css({
+            height:"300px",
+            overflow:"auto"
+        })
+        */
+        var contentDiv = $(this.resultDiv).find("div.content");
+        contentDiv.css({
+            height:"300px",
+            overflow:"auto"
+        })
+        tds = [];
+        contentDiv.find("tr").find("td").each(function(i){
+            tds[i] = $(this).css("width");
+        })
+        $(this.resultDiv).find("tr.th").find("th").each(function(i){
+            $(this).css("width",tds[i]);
+        })
+    }
+
+    TicketForActionClass.prototype.TicketHandleAction = function(){
+        var _this = this;
+        $(this.resultDiv).find("#createPDF").click(function(){
+            _this.createPDF();
+        })
+    }
+
+    TicketForActionClass.prototype.createPDF = function(){
+        var _this = this;
+        var POST = {};
+        var obj = _this.tickets;
+        var thObj = _this.thObj;
+        var html = "";
+        html+= "<button>GO</button>";
+        for(i in obj){
+            POST[i] = {};
+            for(key in thObj){
+                POST[i][key] = obj[i][thObj[key]['key']];
+                
+            }
+            for(key in obj[i]){
+                html+= '<input type="text" name="'+i+'['+key+']" value="'+obj[i][key]+'" />'+"\n\r";
+            }
+            
+        }
+        $(_this.resultForm).html(html);
+        
+        $.ajax({
+            type: "POST",
+            url: "ticket_for_action.php",
+            data: _this.tickets,
+            dataType: "json"
+        }).done(function(){
+            log("COMPLITE")
+        })
+        
+        
+    }
+
+
+
+
+    $(document).ready(function(){
+        var $_GET = GET();
+        if($_GET!=""){
+            var sid = $_GET['sid'];
+            var actionId = $_GET['action_id'];
+            sendQuery({
+                command: "get",
+                subcommand: "web_tickets_for_action",
+                sid: sid,
+                params:{
+                    action_id:actionId
+                }
+            }, function(result){
+                var obj = jsonToObj(result);
+                log(obj)
+                var html = "";
+                for(i in obj){
+                    for(key in obj[i]){
+                        html+= '<input type="hidden" name="'+i+'['+key+']" value="'+obj[i][key]+'" />'+"\n\r";
+                    }
+                }
+                $("#resultForm").html(html);
+                 $("#resultForm").submit();
+            });
+        }
+        else {
+            var TicketForAction = new TicketForActionClass().init();
+        }
+    })
+
+
+    /*
+    function getTicketForAction(){
+        var actionId = $(actionIdDiv).find("input").val();
+        console.log(actionId);
+    }
+    */
+
+
+
+
+
+
+
+
+// -----------------//
+// Работа с JSON
+// -----------------//
+
+function jsonToObj(obj) {
+    var obj_true = {};
+    var objIndex = {};
+    if(obj['DATA']!=undefined){
+        for (i in obj['DATA']){
+            for(var index in obj['NAMES']){
+                if(obj_true[i] == undefined){obj_true[i] = {};}
+                obj_true[i][obj['NAMES'][index]] = obj['DATA'][i][index];
+            }
+        }
+    }
+    else if(obj['data']!=undefined) {
+        for (i in obj['data']){
+            if(obj['names']!=undefined){
+                for(var index in obj['names']){
+                    if(obj_true[i] == undefined){obj_true[i] = {};}
+                    obj_true[i][obj['names'][index]] = obj['data'][i][index];
+                }
+            }else if(obj['data_columns']!=undefined){
+                for(var index in obj['data_columns']){
+                    if(obj_true[i] == undefined){obj_true[i] = {};}
+                    obj_true[i][obj['data_columns'][index]] = obj['data'][i][index];
+                }
+            }
+
+        }
+    }
+
+    return obj_true;
+};
+
+function sendQuery(obj, callback) {
+    var o = obj.subcommand;
+    delete obj.subcommand;
+    obj.object = o;
+    var xml = "";
+    var url = "/cgi-bin/b2cJ";
+    xml = "p_xml=<query>";
+    if (typeof obj === "object") {
+      if (obj.hasOwnProperty("command")) {
+          for (var i in obj) {
+              if (obj.hasOwnProperty(i)) {
+                  if (i === "params") {
+                      if (typeof obj[i] === "object") {
+                          for (var j in obj.params) {
+                              xml += "<" + j + ">" + obj.params[j] + "</" + j + ">";
+                          }
+                      }
+                  } else {
+                    xml += "<" + i + ">" + obj[i] + "</" + i + ">";
+                  }              
+              }
+          }    
+      }
+    }
+    xml += "</query>";
+    $.getJSON( url, xml, function (response, textStatus, jqXHR) {
+        callback(response);
+        if (textStatus === "success") {
+          if (response && typeof response === "object") {
+            if (response.hasOwnProperty("RC")) {
+              var rc = parseInt(response.RC);
+
+              if (rc === 0) {
+                  
+              } else {
+
+
+              }
+            }
+          }
+        }
+    });
+};
+
+
+
+function GET(){
+  var $_GET = {};
+  document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+    function decode(s) {
+      return decodeURIComponent(s.split("+").join(" "));
+    }
+    $_GET[decode(arguments[1])] = decode(arguments[2]);
+  });
+  return $_GET;
+}
+
+
+function log(obj){
+    console.log(obj);
+}
+
+</script>
+
+<div  id="actionId">
+
+</div>
+
+<div id="resultDiv"></div>
+<form id="resultForm" action="ticket_for_action.php" method="POST">
+    
+</form>

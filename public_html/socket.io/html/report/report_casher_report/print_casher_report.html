@@ -1,0 +1,126 @@
+<link rel="stylesheet" type="text/css" href="../report.css"/>
+
+<script type="text/javascript" src="../js.js"></script>
+<script type="text/javascript" src="/multibooker/metronic/admin/template_content/assets/plugins/jquery-1.10.2.min.js"></script>
+
+
+<script>
+
+$_GET = GET();
+var params = {};
+for (key in $_GET){
+  if(key!="subcommand" && key!="sid"){
+    params[key] = $_GET[key];
+  }
+}
+
+
+$(document).ready(function(){
+    var subcommand = $_GET['subcommand'];  
+    send_query({command:"get",object:subcommand,sid:$_GET['sid'],params:params},function(result){
+        var xml = result;
+        xml_header = xmlToObject(result,"REPORT",{"LINE_1":"LINE_1","LINE_2":"LINE_2","LINE_3":"LINE_3","LINE_4":"LINE_4","LINE_5":"LINE_5"});
+        xml_bottom = xmlToObject(result,"REPORT",{"TOTAL_RECEIVED_QTY":"TOTAL_RECEIVED_QTY","TOTAL_RECEIVED_TOTAL":"TOTAL_RECEIVED_TOTAL","TOTAL_SOLD_QTY":"TOTAL_SOLD_QTY","TOTAL_SOLD_TOTAL":"TOTAL_SOLD_TOTAL","TOTAL_RETURNED_QTY":"TOTAL_RETURNED_QTY","TOTAL_RETURNED_TOTAL":"TOTAL_RETURNED_TOTAL"});
+        /*
+        xml = xmlToObject(result,"REPORT_TABLE",{"ACTION":"ACTION","TICKET_PRICE":"TICKET_PRICE","RECEIVED_QTY":"RECEIVED_QTY","RECEIVED_TOTAL":"RECEIVED_TOTAL","SOLD_QTY":"SOLD_QTY","SOLD_TOTAL":"SOLD_TOTAL","RETURNED_QTY":"RETURNED_QTY","RETURNED_TOTAL":"RETURNED_TOTAL"});
+        */
+
+        $.get("report.html", function(data) {
+          var report = $(data);
+          var title = $($(data)[0]);
+          var table_header = $($(data)[2]);
+          var table = $($(data)[4]);
+          var html = "";
+          html+= '<link type="text/css" rel="stylesheet" href="report_casher_report.css">';
+          html+= "<center>";
+          for(name in xml_header[0]){
+            title.find("."+name).html(xml_header[0][name]);
+          }
+          html+=title.html();
+          html+=table_header.html();
+          html+= "<table>";
+          $(xml).find("REPORT_TABLE").each(function(i){
+            var action = $(this).find("ACTION").text();
+            html+= "<tr class='report_action'><td colspan='7'>"+action+"</td></tr>";
+            
+            $(this).find("LINE").each(function(){
+              $(this).find("*").each(function(){
+                if(this.tagName.indexOf("QTY")!=-1){
+                  table.find("."+this.tagName).css("text-align","center");
+                }
+                table.find("."+this.tagName).html($(this).text());
+              })
+              html+="<tr>"+table.find("tr").html()+"</tr>";
+            })
+            html+= "<tr class='itogo'>";
+            html+= "<td class='title'> Итого </td>";
+            $(this).find("ITOGO").each(function(){
+              $(this).find("*").each(function(){
+                if(this.tagName.indexOf("QTY")!=-1){
+                  html+= "<td style='text-align:center;'>"+$(this).text()+"</td>";
+                }
+                else {
+                  html+= "<td>"+$(this).text()+"</td>";
+                }
+              })
+            })
+            html+= "</tr>";
+            
+             //html+=table.html();
+            //log($(this).find("*"));
+            //table.find("."+name).html(xml[i][name]);
+          })
+          html+= "<tr class='br'><td colspan='7'></td></tr>";
+          $(xml).find("TOTAL").each(function(i){
+            html+="<tr class='total'><td>Итого</td>";
+            $(this).find("*").each(function(){
+              if(this.tagName.indexOf("QTY")!=-1){
+                  html+= "<td style='text-align:center;'>"+$(this).text()+"</td>";
+                }
+                else {
+                  html+= "<td>"+$(this).text()+"</td>";
+                }
+            })
+            html+="</tr>";
+          })
+          html+="</table>"
+
+          html+="</center>";
+
+          /*
+          for(i in xml){
+            for(name in xml[i]){
+              table.find("."+name).html(xml[i][name]);
+            }
+            html+=table.html();
+          }
+          */
+          
+          
+          /*
+          for (i in xml){
+            for (name in xml[i]){
+              if(name == "BARCODE"){
+                ticket.find("."+name).html("<div>"+xml[i][name]+"</div>");
+              }
+              else {
+                ticket.find("."+name).html(xml[i][name]);
+              }
+              
+            }
+            html+= ticket.html();
+          }
+          */
+          $("#report").html(html);
+           window.print();
+        });
+    });
+});
+
+
+</script>
+
+
+<div id="report">
+
+</div>

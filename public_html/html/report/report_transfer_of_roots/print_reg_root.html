@@ -1,0 +1,120 @@
+<link rel="stylesheet" type="text/css" href="../report.css"/>
+<link href="/multibooker/metronic/admin/template_content/assets/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
+
+
+
+<script type="text/javascript" src="/multibooker/metronic/admin/template_content/assets/plugins/jquery-1.10.2.min.js"></script>
+<script src="/multibooker/metronic/admin/template_content/assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+
+<script src="/multibooker/metronic/admin/template_content/assets/plugins/bootstrap-toastr/toastr.min.js"></script>
+
+
+
+<script type="text/javascript" src="../js.js"></script>
+<script src="/multibooker/assets/js/main.js"></script>
+
+
+<style>
+
+ @media screen {
+    #report{
+        display: none;
+    }
+
+ }
+@media print {
+  #report{
+      display: block;
+  }
+  
+  table tr.th {
+    background: #ccc;
+  }
+}
+
+
+@media print{
+  .btn.print {
+    display: none;
+  }
+}
+
+table {
+  width: 100%;
+    border-collapse:collapse !important;
+}
+table td{
+  border: 1px solid;
+}
+
+table tr.th {
+  background: #ccc;
+}
+table th {
+  border: 1px solid;
+  background: #ccc;
+}
+</style>
+
+<script>
+
+$_GET = GET();
+var params = {};
+for (key in $_GET){
+  if(key!="subcommand" && key!="sid"){
+    params[key] = $_GET[key];
+  }
+}
+
+
+$(document).ready(function(){
+    var subcommand = $_GET['subcommand'];  
+    send_query({command:"get",object:subcommand,sid:$_GET['sid'],params:params},function(result){
+        result = parseResult(result);
+        var xml = xmlToObject(result,"LINE");
+        var html = '';
+        html+= '<div class="report">'+
+          '<div>'+
+            ''+$(result).find('LINE_1').text()+
+            '<center>'+
+              '<p><b>'+$(result).find('LINE_2').text()+'</b></p>'+
+              '<p><b>'+$(result).find('LINE_3').text()+'</b></p>'+
+              '<p>'+$(result).find('LINE_4').text()+'</p>'+
+            '</center>'+
+            '<hr>'+
+            '<div style="text-align:right;"><b>'+$(result).find('LINE_5').text()+'</b></div>'+
+            '<b>'+$(result).find('LINE_6').text()+'</b>'+
+          '</div>'+
+          '<table>'+
+            '<tr class="th">'+
+              '<th>Системный №</th><th>Цена билета</th><th>Серия</th><th>Номер</th><th>Название сектора</th><th>Ряд</th><th>Место</th>'+
+            '</tr>';
+          for(var i in xml){
+            html+= "<tr>";
+            for(key in xml[i]){
+              html+= '<td>'+xml[i][key]+'</td>';
+            }
+            html+= "</tr>";
+          }
+          html+= ''+
+          '</table>'+
+          '<center>'+
+            '<p><b>'+$(result).find('ITOGO_1').text()+'</b></p>'+
+            '<p><b>'+$(result).find('ITOGO_2').text()+'</b></p>'+
+          '</center>'+
+          '<p>'+$(result).find('ITOGO_3').text()+'_______________________/__________________________</p>'+
+          '<p>'+$(result).find('ITOGO_4').text()+'_______________________/__________________________</p>'+
+        '</div>';
+
+        $("#report").html(html);
+        window.print();
+    });
+});
+
+
+</script>
+
+
+<div id="report">
+
+</div>

@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title> Multibox </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <!-- <link href="core/bootstrap/ccs/bootstrap.css" rel="stylesheet" type="text/css"> -->
+  <link href="/content/scene/css/main.css" rel="stylesheet" type="text/css">
+  <link href="/content/scene/css/tipTip.css" rel="stylesheet" type="text/css">
+  <link href="css/test.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript">
+    var jQuery = this.jQuery || "jQuery", // For testing .noConflict()
+    $ = this.$ || "$",
+    originaljQuery = jQuery,
+    original$ = $;
+  </script>
+ 
+  <!-- Библиотеки jquery -->
+  <script src="/core/jquery/jquery.js" type="text/javascript"></script>
+  <!-- <script src="core/jquery/jquery-ui.js" type="text/javascript"></script> -->
+  <!-- <script src="core/jquery/jquery.fancybox.js" type="text/javascript"></script> -->
+  <!-- <script src="core/jquery/jquery.fancybox-buttons.js" type="text/javascript"></script> -->
+  <!-- <script src="core/jquery/jquery.fancybox-thumbs.js" type="text/javascript"></script> -->
+  <!-- <script src="core/jquery/jquery.fancybox-media.js" type="text/javascript"></script> -->
+  <!-- <script src="core/jquery/jquery.lazyload.js" type="text/javascript"></script> -->
+  <script src="/core/jquery/jquery.cookie.js" type="text/javascript"></script>
+  <!--<script src="/core/jquery/jquery.hotkeys.js" type="text/javascript"></script>-->
+  <!--<script src="/core/jquery/jquery.templ.js" type="text/javascript"></script> -->
+  <!--<script type="text/javascript" src="http://crypto-js.googlecode.com/files/2.3.0-crypto-md5.js"></script>-->
+
+  <!-- <script src="core/jquery/jquery.mCustomScrollbar.js" type="text/javascript"></script> -->
+  <script src="/core/jquery/jquery.mousewheel.min.js" type="text/javascript"></script>
+  <!--<script src="/core/jquery/jquery.timeago.js" type="text/javascript"></script>-->
+  <!--<script src="/core/jquery/jquery.timeago.ru_locale.js" type="text/javascript"></script>-->
+  <!-- <script src="core/jquery/jquery.wookmark.js" type="text/javascript"></script> -->
+
+  <script type="text/javascript" src="/core/js/functions.js"></script>
+
+  <script type="text/javascript" src="js/test.js"></script>
+
+  <script type="text/javascript" src="js/jquery.tipTip.minified.js"></script>
+  <script type="text/javascript" src="js/cms.js"></script>
+
+</head>
+<body>
+  <div class="background"></div>
+  <div class="glass"></div>
+  <div class="glass_transparency"></div>
+  <div class="main">
+  
+  <div class="mmenu">
+    <ul>
+      <li><a class="change_vid" id="vid_1" title="Кружочки">Вид 1</a></li>
+      <li><a class="change_vid" id="vid_2">Вид 2</a></li>
+      <div class="test_post">
+        <a>test_post</a>
+      </div>
+      <br clear="both">
+    </ul>
+  </div>
+  <div class="parent">
+    <div id="places" style="cursor: default;">
+      <div class="scalebox" style="position: absolute; top: 4px; width: 26px; height: 26px; left: -10px;">
+        <img class="loader" src="img/throbber.gif"/>
+      </div>
+      <div id="scalepanel">
+        <a onclick="myplace.scaleplus();return false" href="#">
+        <img width="32" height="32" border="0" style="margin-bottom:10px" src="/img/zoom-in.png">
+        </a>
+        <br>
+        <a onclick="myplace.scaleminus();return false" href="#">
+        <img width="32" height="32" border="0" src="/img/zoom-out.png">
+        </a>
+      </div>
+
+      <div id="orderbox">
+        <form method="post" action="/site/order?perfomanceid=23088947">
+          <div class="hbox" style="display: none;">
+            <p>
+              Выбрано мест:
+              <span class="count">0</span>
+            </p>
+            <p>
+              На сумму:
+              <span class="amount">0</span>
+            </p>
+            <div class="hplaces" style="visibility: hidden;"></div>
+            <input id="order_true" class="btn btn-large btn-mmdm" type="button" value="Оплатить" name="">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div id="tiptip_holder" style="display:none;max-width: 200px; margin: 271px 0px 0px 601px; opacity: 0.9557016383177226;" class="tip_bottom"><div id="tiptip_arrow" style="margin-left: 58.5px; margin-top: -12px;"><div id="tiptip_arrow_inner"></div></div><div id="tiptip_content">Амфитеатр середина<br>ряд 7, место 5<br>стоимость: 600 руб.</div></div>
+
+
+<form method="POST" action="https://secure.acquiropay.com/" id="FormPay">
+
+</form>
+
+<div style="display:none;" id="test_post">
+  <form method="POST" action="http://81.200.5.254:888/cgi-bin/acqp_callback" target="_blank">
+    <label>payment_id<input type="text" name="payment_id" value="222" /></label>
+    <label>datetime<input type="text" name="datetime" value="2013-09-12 19:24:36" /></label>
+    <label>status<input type="text" name="status" value="OK" /></label>
+    <label>extended_status<input type="text" name="extended_status" value="extended_status" /></label>
+    <label>pp_identity<input type="text" name="pp_identity" value="VISA" /></label>
+    <label>cf<input type="text" name="cf" value="15593" /></label>
+    <label>cf2<input type="text" name="cf2" value="cf2" /></label>
+    <label>cf3<input type="text" name="cf3" value="cf3" /></label>
+    <label>sign<input type="text" name="sign" value="sign" /></label>
+    <br>
+    <button>OK</button>
+  </form>
+</div>
+
+
+<!--
+<div class="ModalWin">
+  <iframe id="frame_pay" src="http://192.168.1.101/content/scene/paymay.html" style="width: 100%;height:100%;"></iframe>
+</div>
+-->
+
+</div>
+</body>
+</html>

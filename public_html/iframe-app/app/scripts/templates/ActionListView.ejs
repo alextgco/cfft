@@ -1,0 +1,28 @@
+<div class="action-list-container">
+<% var action = collection.at(0); %>
+    <div data-action_id="<%= action.get("ACTION_ID") %>" class="action">
+         <%= action.get("ACTION") %>, <%= action.get("day") %> <%= action.get("mth") %> <%= action.get("time") %>; <%= action.get("HALL") %>
+         <!--<span class="freePlaceCount">Свободных мест: !<%= action.get("FREE_PLACE_COUNT") %></span>-->
+    </div>
+    <% if (collection.length>1) { %>
+        <div style="float:right;z-index: 1000000000" class="list-expand"></div>
+    <% } %>
+</div>
+<% if (collection.length>1) { %>
+    <div class="list-container">
+        <div class="columns">
+            <div class="column-actions">
+                <%= lang.actions %>
+            </div>
+            <div class="column-places">
+                <%= lang.freePlaces %>
+            </div>
+        </div>
+        <% _.each(collection.slice(1,collection.length),function (action,index) { %>
+            <div data-action_id="<%=  action.get("ACTION_ID") %>" class="action_in">
+                <div class="act"><%= (action.get("NAME")) ? action.get("NAME"):action.get("ACTION") %> , <%= action.get("day") %> <%= action.get("mth") %> <%= action.get("time") %>; <%= action.get("HALL") %></div>
+                <div class="free_place"><%= action.get("FREE_PLACE_COUNT") %></div>
+            </div>
+        <% });%>
+    </div>
+<% } %>

@@ -1,0 +1,222 @@
+
+<div class="insertIntoHeader">
+    <div class="order-status" data-color="{+{STATUS}+}">{+{STATUS_RU}+}</div><div class="order-created">{+{ORDER_DATE_TIME}+}</div>
+</div>
+
+<div class="row h100">
+    <div class="col-md-12 h100">
+        <div class="col-md-4  overY-h">
+
+            <div class="row">
+                <div>{{{AGENT_NAME}}}</div>
+            </div>
+
+            <!--<div class="row">-->
+                <!--<div class="fn-field" data-column="">-->
+                    <!--<label>Наценка (%, для всех билетов):</label>-->
+                    <!--<input id="setDiscount" type="text" class="fn-control fn-datetime-control fn-with-btn" data-column="" value="" />-->
+                    <!--<div id="confirmDiscount" class="fn-control disabled fn-btn fn-append-btn">Установить</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;<div>{{{DISCOUNT}}}</div>&ndash;&gt;-->
+            <!--</div>-->
+
+            <div id="rightSeparator"></div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="row">
+                <div>{{{COMMENTS}}}</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="row">
+                <div>
+                    <div class="fn-field" data-column="">
+                        <label>Резерв до (для зарезервированных билетов):</label>
+                        <input type="text" class="fn-control fn-datetime-control fn-with-btn reserveToDate" data-column="" value="" />
+                        <div class="fn-control disabled fn-btn fn-append-btn confirmReserve">Установить</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flLeft wid100pr">
+            <!--<div class="row">-->
+                <div class="fn-train-overflow">
+                    <div class="fn-train">
+                        <div class="fn-vagon">
+
+                            <div class="fn-child-objects-tabs-wrapper marTop10"></div>
+
+                            <div class="flLeft wid100pr marTop10">
+                                <div class="totalBlock">
+                                    <div class="afterChildLoaded flLeft orderTotalTickets ">{{{TICKETS_COUNT}}}</div>
+                                    <div class="afterChildLoaded flLeft marLeft10 orderTotalAmount withAppend" data-append="<span class='appendText'> Руб.</span>">{{{TOTAL_ORDER_AMOUNT}}}</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="fn-vagon">
+                            <div class="marTop10 linesTblWrapper">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+        </div>
+
+
+
+        <div class="fn-buttons-row formOrder-bottom-buttons-block">
+
+            <div class="paddingRight15">
+
+                <div class="fn-btn fn-small-btn green flLeft splicedRoundedBtn to_realization"><i class="fa fa-share-square-o"></i>&nbsp;&nbsp;Выдать по квоте</div>&nbsp;
+                <div class="fn-btn fn-small-btn blue flLeft splicedRoundedBtn back_realization"><i class="fa fa-reply"></i>&nbsp;&nbsp;Вернуть квоту</div>
+                <div class="fn-btn fn-small-btn green flLeft splicedRoundedBtn close_realization"><i class="fa fa-check"></i>&nbsp;&nbsp;Закрыть квоту</div>
+                <div class="fn-btn fn-small-btn red flLeft splicedRoundedBtn cancel_realization"><i class="fa fa-times"></i>&nbsp;&nbsp;Отменить квоту</div>
+
+                <div class="fn-btn fn-small-btn dark flLeft splicedRoundedBtn to_XML_for_concert_ru"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;xml concert.ru</div>
+
+                <div class="fn-btn fn-small-btn dark flLeft splicedRoundedBtn to_reports hidden back"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Назад</div>
+
+                <div class="fn-btn fn-small-btn black flRight splicedRoundedBtn disabled printBtn"><i class="fa fa-print"></i>&nbsp;&nbsp;Печать&nbsp;&nbsp;<span class="formOrder-current-print-status">{+{PRINTED_TICKETS_COUNT}+} / {+{TICKETS_COUNT}+}</span></div>
+
+
+                <!--<div class="fn-btn fn-small-btn dark flLeft splicedRoundedBtn report_to_realization"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Накладная на выдачу</div>&nbsp;-->
+                <!--<div class="fn-btn fn-small-btn dark flLeft splicedRoundedBtn report_back_realization"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Накладная на возврат</div>-->
+                <!--<div class="fn-btn fn-small-btn dark flLeft splicedRoundedBtn report_close_realization"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Накладная на закрытие</div>-->
+
+                <!--<div id="cancel_order" class="fn-btn fn-small-btn red disabled flLeft splicedRoundedBtn">Отменить заказ</div>-->
+                <!--<div id="return_order" class="fn-btn fn-small-btn blue disabled flLeft splicedRoundedBtn">Вернуть заказ</div>-->
+                <!--<div id="demo_print" class="fn-btn fn-small-btn blue flLeft splicedRoundedBtn">Демо печать</div>-->
+            </div>
+
+            <!--<div class="formOrder-roundedButtons-wrapper quoteView">-->
+                <!--<div class="printBtn disabled flRight marLeft13 roundedButton">-->
+                    <!--<i class="fa fa-print"></i>-->
+                    <!--<div class="formOrder-current-print-status">{+{PRINTED_TICKETS_COUNT}+} / {+{TICKETS_COUNT}+}</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+
+            <!--<div class="formOrder_main_buttons">-->
+
+
+                <!--&lt;!&ndash;<div class="reportBtn disabled flRight marLeft13"><i class="fa fa-file-text-o"></i></div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="reportBtn-dd">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<ul>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li class="delivery_note2_btn">Накладная по заказу</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li class="">***</li>&lt;!&ndash;return_delivery_note_btn&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
+    </div>
+</div>
+
+
+<style type="text/css">
+    #rightSeparator{
+        position: absolute;
+        right: 0;
+        height: 100%;
+        background-color: #ddd;
+        width: 1px;
+        top: 42px;
+        z-index: 1;
+        display: none;
+    }
+    .h100{
+        height: 100%;
+    }
+    .overY-h{
+        overflow-y: hidden;
+    }
+    #confirmReserve{
+        position: absolute;
+        right: 35px;
+        top: 36px;
+        background-color: #f7f7f7;
+        color: #222;
+        padding: 7px 25px 6px 25px;
+        font-family: openSans, arial, sans-serif;
+        font-size: 14px;
+        height: 34px;
+        cursor: pointer;
+        border: 1px solid #d1d1d1;
+    }
+    #confirmReserve:hover{
+        background-color: #f2f2f2;
+    }
+    #confirmReserve.disabled{
+        color: #c5c5c5;
+    }
+    #confirmDiscount{
+        position: absolute;
+        right: 35px;
+        top: 36px;
+        background-color: #f7f7f7;
+        color: #222;
+        padding: 7px 25px 6px 25px;
+        font-family: openSans, arial, sans-serif;
+        font-size: 14px;
+        height: 34px;
+        cursor: pointer;
+        border: 1px solid #d1d1d1;
+    }
+    #confirmDiscount:hover{
+        background-color: #f2f2f2;
+    }
+    #confirmDiscount.disabled{
+        color: #c5c5c5;
+    }
+    #reject_bso{
+        background-color: #8a3f3f;
+        color: #fff;
+        border: 1px solid #8a3f3f;
+        margin-left: 5px;
+    }
+    #reject_bso:hover{
+        background-color: #b44545!important;
+        color: #fff!important;
+        border: 1px solid #b44545!important;
+    }
+    .totalBlock{
+        /*position: absolute;*/
+        /*bottom: 6px;*/
+        /*right: 6px;*/
+        float: right;
+    }
+    .totalBlock .fn-field{
+        border-right: 0;
+        background-color: transparent!important;
+        padding: 3px 0 0 0;
+    }
+    .totalBlock .fn-field.fn-readonly-field{
+        height: 34px;
+    }
+    .printStatusRow{
+        float: left;
+        padding: 10px 15px;
+        margin-top: 10px;
+        background-color: #dbebf4;
+        border-radius: 3px!important;
+        font-family: openSans, arialm sans-serif;
+        font-size: 16px;
+        color: #222;
+        text-shadow: 0 1px 0 #fff;
+    }
+    .printStatusRow i{
+        font-size: 18px;
+        color: black;
+        padding-right: 9px;
+    }
+    .ifAgentSelected{
+        display: none;
+    }
+
+</style>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Ценовые распясовки </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+    <script type="text/javascript" src="html/contents/mapEditor/mapForEditor.js"></script>
+    <script type="text/javascript" src="html/contents/mapEditor/mapEditor.js"></script>
+    <link href="html/contents/mapEditor/mapEditor.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body style="overflow: hidden;">
+<div id="mapEditor">
+<div id="box_for_mapEditor" class="box_for_canvas">
+
+
+    <!--<canvas height='2000' width='2000' id='canvas1'>Обновите браузер</canvas>-->
+
+</div>
+
+<div id="right_column">
+<div class="col-md-12">
+    <div id="right_column_switch_content_box">
+        <div class="rcsc_btn" id="rcsc_btn0" title="Режим работы с фоном схемы"><span>Фон</span></div>
+        <div class="rcsc_btn selected" id="rcsc_btn1" title="Режим работы с местами схемы"><span>Места</span></div>
+        <div class="rcsc_btn" id="rcsc_btn2" title="Режим работы с обводками схемы"><span>Обводки</span></div>
+        <div class="rcsc_btn" id="rcsc_btn3" title="Режим работы с надписями схемы"><span>Надписи</span></div>
+    </div>
+</div>
+    <!--reLoadFunc-->
+
+    <div class="right_column_block" id="right_column_block0"  style="display: none;">
+
+        <div class="col-md-12 one_checkbox">
+            <input type="checkbox" id="show_background" value="Показывать">
+            <label for="show_background">Показывать</label>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn btn-default" id="load_background"><i class="fa fa-user"></i> Загрузить</button>
+            <button type="button" class="btn btn-default" id="clear_background"><i class="fa fa-cogs"></i> Удалить</button>
+
+        </div>
+
+    </div>
+
+
+    <div class="right_column_block" id="right_column_block1">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-default" id="save_scheme_item"><i class="fa fa-user"></i> Сохранить</button>
+            <button type="button" class="btn btn-default" id="squaresCancelBtn"><i class="fa fa-cogs"></i> Отменить</button>
+        </div>
+
+
+        <div class="col-md-5">
+            <label for="count_lines">Рядов:</label>
+            <input type="text" id="count_lines" class="shortInput" value="1">
+        </div>
+        <div class="col-md-7">
+            <label for="count_places">Мест:</label>
+            <input type="text" id="count_places" class="shortInput" value="1">
+        </div>
+      <!--  <div class="col-md-12">
+
+        </div>    -->
+        <div class="col-md-12">
+            <label for="group_name">Название группы:</label>
+            <input type="text" id="group_name" value="Автогруппа">
+        </div>
+        <div class="col-md-6"><button type="button" style="width:100%; font-size:1em;" class="btn btn-default" id="create_group"><i class="fa fa-user"></i> Создать группу</button></div>
+        <div class="col-md-6"><button type="button" style="width:100%; font-size:1em;" class="btn btn-default" id="unite_group"><i class="fa fa-cogs"></i> Объеденить в группу</button></div>
+        <div class="col-md-6"><button type="button" style="width:100%;" class="btn btn-default" id="copy_selection"><i class="fa fa-cogs"></i> Копировать</button></div>
+        <div class="col-md-6"><button type="button" style="width:100%;" class="btn btn-default" id="delete_selection"><i class="fa fa-cogs"></i> Удалить</button></div>
+        <div class="col-md-12">
+            <button type="button" style="width: 100%;" class="btn btn-default" id="clear_selection"><i class="fa fa-cogs"></i> Снять выделение</button>
+        </div>
+        <!--<div>
+            <label for="count_places">Мест:</label>
+            <input type="text" id="count_places" value="1"><br>
+        </div>-->
+        <div style="display: none;">
+            <div>
+                <label for="X">X:</label>
+                <input type="text" id="X" class="Xinput" value="100"><br>
+            </div>
+            <div>
+                <label for="Y">Y:</label>
+                <input type="text" id="Y" class="Yinput" value="100"><br>
+            </div>
+            <div>
+                <label for="W">W:</label>
+                <input type="text" id="W" class="Winput" value="40"><br>
+            </div>
+            <div>
+                <label for="H">H:</label>
+                <input type="text" id="H" class="Hinput" value="40"><br>
+            </div>
+            <div>
+
+                <label for="Xcoef">Xcoef:</label>
+                <input type="text" id="Xcoef" value="0.1"><br>
+            </div>
+            <div>
+                <label for="Ycoef">Ycoef:</label>
+                <input type="text" id="Ycoef" value="0.1"><br>
+            </div>
+            <div>
+
+                <label for="COLOR">COLOR:</label>
+                <input type="text" id="COLOR" value="#e7ebf3"><br>
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-12" id="for_groups">
+            <!--<div class="one_group"></div>-->
+        </div>
+
+       <!-- <div id="save_scheme_item" style="cursor: pointer; color: #00f;">Сохранить новые</div>
+        <div id="del_scheme_item" style="cursor: pointer; color: #F00;">Удалить все</div>-->
+
+        <!--<div id="select_area_group" style="cursor: pointer; color: #00f;">Определить зону</div>-->
+
+        <div class="col-md-12 one_checkbox">
+            <input type="checkbox" id="invert_line_place" value="Показывать">
+            <label for="invert_line_place">Инвертировать ряд-место.</label>
+        </div>
+        <!--<input type="checkbox" id="invert_line_place">
+        <label for="invert_line_place">Инвертировать ряд-место.</label>-->
+        <div class="col-md-6">
+            <label for="shift_lines">Начиная с ряда:</label>
+            <input type="text" id="shift_lines" class="shortInput" value="1">
+        </div>
+        <div class="col-md-6">
+            <label for="shift_places">Начиная с места:</label>
+            <input type="text" id="shift_places" class="shortInput" value="1">
+        </div>
+        <div class="col-md-12">
+            <label for="one_row">Принудительный номер ряда:</label>
+            <input type="text" id="one_row" class="shortInput" value="1">
+        </div>
+
+        <!--<div>
+            <label for="shift_lines">Начиная с ряда:</label>
+            <input type="text" id="shift_lines" value="1">
+        </div>
+        <div>
+            <label for="shift_places">Начиная с места:</label>
+            <input type="text" id="shift_places" value="1">
+        </div>-->
+        <div class="col-md-6"><button type="button" style="width:100%; font-size:1em;" class="btn btn-default" id="fillNumLT"><i class="fa fa-user"></i> Слева сверху</button></div>
+        <div class="col-md-6"><button type="button" style="width:100%; font-size:1em;" class="btn btn-default" id="fillNumRT"><i class="fa fa-user"></i> Справа сверху</button></div>
+        <div class="col-md-6"><button type="button" style="width:100%; font-size:1em;" class="btn btn-default" id="fillNumLB"><i class="fa fa-user"></i> Слева снизу</button></div>
+        <div class="col-md-6"><button type="button" style="width:100%; font-size:1em;" class="btn btn-default" id="fillNumRB"><i class="fa fa-user"></i> Справа снизу</button></div>
+ <!--       <div id="fillNumLT" style="cursor: pointer; color: #00f;">Слева сверху</div>
+        <div id="fillNumRT" style="cursor: pointer; color: #00f;">Справа сверху</div>
+        <div id="fillNumRB" style="cursor: pointer; color: #00f;">Справа снизу</div>
+        <div id="fillNumLB" style="cursor: pointer; color: #00f;">Слева снизу</div>-->
+        <!--<label for="one_row">Принудительный номер ряда:</label>
+        <input type="text" id="one_row">-->
+
+
+
+
+    </div>
+
+    <div class="right_column_block" id="right_column_block2" style="display: none;">
+        <div id="save_strokes" style="cursor: pointer; color: #00f;">Сохранить</div>
+        <div>Обводки:</div>
+        <div>
+            <label for="stroke_name">Наименование:</label>
+            <input type="text" id="stroke_name" value="Авто">
+        </div>
+        <div id="add_stroke" style="cursor: pointer; color: #00f;">Добавить</div>
+        <div id="for_strokes"></div>
+
+        <div>Точки:</div>
+
+        <div id="point_edit_box">
+            <div class="point_edit_btn selected" id="point_edit_btn1" title="Режим добавления"><span>Добавление</span></div>
+            <div class="point_edit_btn" id="point_edit_btn2" title="Режим редактирования"><span>Редактирование</span></div>
+            <!--<div class="point_edit_btn" id="point_edit_btn3"><span>3</span></div>-->
+        </div>
+        <ul id="for_points"></ul>
+
+        <div>Линии:</div>
+        <div style="margin-top: 10px;">
+            <input type="radio" name="lineType" id="lineType1" value="M" class="lineType" checked>
+            <label for="lineType1"> Стартовая точка</label>
+        </div>
+        <div>
+            <input type="radio" name="lineType" id="lineType2"  value="L" class="lineType">
+            <label for="lineType2"> Прямая</label>
+        </div>
+        <div>
+            <input type="radio" name="lineType" id="lineType3" value="Q" class="lineType">
+            <label for="lineType3"> Кривая бэзье (квадрат)</label>
+        </div>
+        <div>
+            <input type="radio" name="lineType" id="lineType4" value="C" class="lineType">
+            <label for="lineType4"> Кривая бэзье (куб)</label>
+        </div>
+
+
+        <div id="add_line" style="cursor: pointer; color: #00f;">Добавить</div>
+        <ul id="for_lines"></ul>
+        <div id="create_Stroke" style="cursor: pointer; color: #00f;">Создать обводку</div>
+    </div>
+
+    <div class="right_column_block" id="right_column_block3" style="display: none;">
+        <!--<div>Надписи:</div>-->
+
+        <div>
+            <label for="label_text">Добавить надпись:</label>
+            <input type="text" id="label_text" value="Автонадпись">
+        </div>
+        <div>
+            <label for="label_size">Размер шрифта:</label>
+            <input type="text" id="label_size" value="40">
+        </div>
+        <div>
+            <label for="label_rotation">Поворот:</label>
+            <input type="text" id="label_rotation" value="0">
+        </div>
+        <div>
+            <label for="X2">X:</label>
+            <input type="text" id="X2" class="Xinput" value="100"><br>
+        </div>
+        <div>
+            <label for="Y2">Y:</label>
+            <input type="text" id="Y2" class="Yinput" value="100"><br>
+        </div>
+
+        <div id="add_label" style="cursor: pointer; color: #00f;">Добавить</div>
+        <div id="save_label" style="cursor: pointer; color: #00f;">Сохранить</div>
+
+        <ul id="for_labels"></ul>
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+</div>
+</body>
+</html>
+

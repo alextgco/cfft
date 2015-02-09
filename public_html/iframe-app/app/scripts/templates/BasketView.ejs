@@ -1,0 +1,42 @@
+<div class="returnButton">
+    <p><%= lang.ret %></p>
+</div>
+<div class="panel">
+    <div class="panelContainer">
+        <div class="left_layout">
+            <div id="saleSiteFee"><p><%= lang.service_fee %>: <%= saleSiteFee %> <%= lang.currency %>.</p></div>
+            <div id="totalAmount"><p><%= lang.summ %>: <%= totalAmount %> <%= lang.currency %>.</p></div>
+        </div>
+        <div class="right_layout">
+            <div id="clearBasket" class="button_in"><p><%= lang.clear_basket %></p></div>
+            <div id="goToPay" class="button_in"><p><%= lang.pay %></p></div>
+        </div>
+    </div>
+</div>
+<div class="basketListContainer">
+    <div class="titleBasket">
+        <div class="label"><%= lang.basket %></div>
+        <div class="close"></div>
+    </div>
+    <div class="list">
+        <ul id="basketList">
+            <% _.each(orders,function (order) { %>
+            <% order = order.attributes %>
+            <li data-id="<%= order.id %>">
+                <div class="removeItem"></div>
+                <div class="block">
+                    <div class="title"><%= order.name %> <%= order.short_day %></div>
+                    <div class="zone"><%= order.zone %></div>
+                    <div class="rowPlace"><%= lang.line %>: <%= order.line %> <%= lang.place %>: <%= order.place %></div>
+                </div>
+                <div class="price"><%= order.price %> <%= lang.currency %>.</div>
+            </li>
+            <% }); %>
+        </ul>
+    </div>
+</div>
+<div style="display: none">
+    <form method="POST" action="https://secure.acquiropay.com/" id="FormPay">
+
+    </form>
+</div>

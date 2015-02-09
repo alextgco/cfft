@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title> Multibooker </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <!-- <link href="core/bootstrap/ccs/bootstrap.css" rel="stylesheet" type="text/css"> -->
+  <!-- <link href="/core/css/bootstrap.css" rel="stylesheet" type="text/css">-->
+
+  <link href="css/main.css" rel="stylesheet" type="text/css">
+  <link href="css/tipTip.css" rel="stylesheet" type="text/css">
+  <link href="css/test.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript">
+    var jQuery = this.jQuery || "jQuery", // For testing .noConflict()
+    $ = this.$ || "$",
+    originaljQuery = jQuery,
+    original$ = $;
+  </script>
+ 
+  <!-- Библиотеки jquery -->
+  <script type="text/javascript" src="js/jquery/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery/jquery.cookie.js"></script>
+  <script type="text/javascript" src="js/jquery/jquery.mask.js"></script>
+
+  <script type="text/javascript" src="js/jquery/jquery.mousewheel.min.js"></script>
+
+  <script type="text/javascript" src="js/js.js"></script>
+  <script type="text/javascript" src="js/func.js"></script>
+  <script type="text/javascript" src="js/watch.js"></script>
+
+  <script type="text/javascript" src="js/jquery.tipTip.minified.js"></script>
+  <script type="text/javascript" src="js/cms.js"></script>
+
+</head>
+<body>
+  <div class="POST"></div>
+  <div class="background"></div>
+  <div class="glass"></div>
+  <div class="glass_transparency"></div>
+  <div class="main">
+    <div class="alertWin">
+      <div class="alertWinContent">Одно из мест занято!</div>
+      <div class="alertWinButtons">
+        <a href="" class="btn">Обновить</a>
+      </div>
+    </div>
+    <div class="formpay">
+      <br>
+      <form method="POST" action="https://secure.acquiropay.com/" id="FormPay">
+        <center>
+          <h2> Купить электронный билет </h2>
+        </center>
+        <div class="left">
+        <label>
+          <div class="label">Имя</div>
+          <div><input type="text" name="first_name" value=""/></div>
+        </label>
+        <label>
+          <div class="label">Фамилия</div>
+          <div><input type="text" name="last_name" value=""/></div>
+        </label>
+        </div>
+        <div class="right">
+          <label>
+            <div class="label">Телефон</div>
+            <div><input type="text" name="phone" value=""/></div>
+          </label>
+          <label>
+            <div class="label">E-mail</div>
+            <div><input type="text" name="email" value=""/></div>
+          </label>
+        </div>
+        <br clear="both" />
+        <div class="error">
+          <center><div class="error_msg"> Заполните все поля </div></center>
+        </div>
+        <center>
+          <input type="button" id="form_crm_btn" class="btn btn-large btn-mmdm" value="Далее" />
+          <a href="" class="btn btn-large"> Отмена </a>
+        </center>
+      </form>
+    </div>
+    <div id="parent" class="parent">
+      <div id="places" style="cursor: default;">
+        <div class="scalebox" style="position: absolute; top: 4px; width: 26px; height: 26px; left: -10px;">
+          <img class="loader" src="img/throbber.gif"/>
+        </div>
+        <div id="scalepanel">
+          <a onclick="myplace.scaleplus();return false" href="#">
+          <img width="32" height="32" border="0" style="margin-bottom:10px" src="img/zoom-in.png">
+          </a>
+          <br>
+          <a onclick="myplace.scaleminus();return false" href="#">
+          <img width="32" height="32" border="0" src="img/zoom-out.png">
+          </a>
+        </div>
+        <div id="orderbox">
+          <form method="post" action="/site/order?perfomanceid=23088947">
+            <div class="hbox" style="display: none;">
+              <p>
+                Выбрано мест:
+                <span class="count">0</span>
+              </p>
+              <p>
+                На сумму:
+                <span class="amount">0</span>
+              </p>
+              <div class="hplaces" style="visibility: hidden;"></div>
+              <input id="order_true" class="btn btn-large btn-mmdm" type="button" value="Оплатить" name="">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="tiptip_holder" class="tip_bottom">
+      <div id="tiptip_content"></div>
+    </div>
+
+    <div style="display:none;" id="test_post">
+      <form method="POST" action="http://81.200.5.254:888/cgi-bin/acqp_callback" target="_blank">
+        <label>payment_id<input type="text" name="payment_id" value="222" /></label>
+        <label>datetime<input type="text" name="datetime" value="2013-09-12 19:24:36" /></label>
+        <label>status<input type="text" name="status" value="OK" /></label>
+        <label>extended_status<input type="text" name="extended_status" value="extended_status" /></label>
+        <label>pp_identity<input type="text" name="pp_identity" value="VISA" /></label>
+        <label>cf<input type="text" name="cf" value="15593" /></label>
+        <label>cf2<input type="text" name="cf2" value="cf2" /></label>
+        <label>cf3<input type="text" name="cf3" value="cf3" /></label>
+        <label>sign<input type="text" name="sign" value="sign" /></label>
+        <br>
+        <button>OK</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

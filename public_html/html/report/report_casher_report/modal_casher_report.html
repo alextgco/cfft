@@ -1,0 +1,34 @@
+<div id="box_for_cashier_list container">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="cashier_list"><h4>Пользователь:</h4></label><br/>
+            <select id="cashier_list"></select>
+        </div>
+    </div>
+    <div class="date_block row">
+        <div class="col-md-2">
+            <label for="from_date"><h4>Дата с:</h4></label>
+            <input type="text" id="from_date" class="date_inp" size="10"/>
+        </div>
+        <div class="col-md-2">
+            <label for="to_date"><h4>Дата по:</h4></label>
+            <input type="text" id="to_date" class="date_inp" size="10"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Тип оплаты:</h4>
+        </div>
+    </div>
+    <div class="row payType">
+        <div class="col-md-2">
+            <input id="payTypeCASH" type="radio" name="cash_visa" value="CASH" checked>
+            <label for="payTypeCASH">Наличными:</label>
+        </div>
+        <div class="col-md-2">
+            <input id="payTypeCARD" type="radio" name="cash_visa" value="CARD">
+            <label for="payTypeCARD">Картой:</label>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

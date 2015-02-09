@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Multibooker </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <!-- <script src="../assets/js/libs/jquery/jquery-2.0.3.min.js"></script>
+    <script src="../assets/js/libs/jquery/plugins/jquery.mousewheel.min.js"></script>
+    <link href="iFrame.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/map.css" rel="stylesheet" type="text/css">
+    <script src="../socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../assets/js/no_select.js"></script>
+    <script type="text/javascript" src="core.js"></script>
+    <script type="text/javascript" src="../assets/js/selector.js"></script>
+    <script type="text/javascript" src="../assets/js/map.js"></script>
+    <script type="text/javascript" src="iFrame.js"></script>-->
+
+    <!--[if lt IE 9]>
+
+
+
+
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/tipTip.css" rel="stylesheet" type="text/css">
+    <link href="css/test.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="js/js.js"></script>
+    <script type="text/javascript" src="js/func.js"></script>
+    <script type="text/javascript" src="js/watch.js"></script>
+2222222
+    <script type="text/javascript" src="js/jquery.tipTip.minified.js"></script>
+    <script type="text/javascript" src="js/cms.js"></script>
+
+    <![endif]-->
+
+
+
+</head>
+<body style="overflow: hidden;">
+
+<div id="action_web">
+    <div class="otParent iFrameParent" id="otParent">
+        <div class="otContent iFrameContent">
+            <p>Выбрано билетов:&nbsp;<span id="ticketsSelected">12</span></p>
+            <p>На сумму:&nbsp;<span id="ticketsTotal">9800</span>&nbsp;руб.</p>
+        </div>
+        <div class="otButtons iFrameButtons" id="toPay">
+            <div class="btn btn-default newStyle">Оплатить</div>
+        </div>
+    </div>
+
+    <div id="iFrameAlert" class="iFrameParent">
+        <div id="iFrameAlertContent" class="iFrameContent">
+            <p></p>
+        </div>
+        <div class="iFrameButtons">
+            <div class="btn btn-default newStyle" id="iFrameAlertConfirm">Ок</div>
+            <div class="btn btn-default newStyle" id="iFrameAlertCancel">Отмена</div>
+        </div>
+    </div>
+
+    <div id="iFrameLegend" class="iFrameParent">
+        <div id="iFrameLegendContent" class="iFrameContent">
+
+            <div class="iFrameHeadline">Стоимость мест:</div>
+
+            <ul id="iFrameLegendList">
+
+            </ul>
+        </div>
+    </div>
+
+    <div id="box_for_action_web"></div>
+
+</div>
+
+
+
+<div style="display:none;">
+    <form method="POST" action="https://secure.acquiropay.com/" id="FormPay"></form>
+</div>
+
+
+<!--[if lt IE 9]>
+
+<div class="POST"></div>
+<div class="background"></div>
+<div class="glass"></div>
+<div class="glass_transparency"></div>
+<div class="main">
+    <div class="alertWin">
+        <div class="alertWinContent">Одно из мест занято!</div>
+        <div class="alertWinButtons">
+            <a href="" class="btn">Обновить</a>
+        </div>
+    </div>
+    <div class="formpay">
+        <form method="POST" action="https://secure.acquiropay.com/" id="FormPay"></form>
+    </div>
+    <div id="parent" class="parent">
+        <div id="places" style="cursor: default;">
+            <div class="scalebox" style="position: absolute; top: 4px; width: 26px; height: 26px; left: -10px;">
+                <img class="loader" src="img/throbber.gif"/>
+            </div>
+            <div id="scalepanel">
+                <a onclick="myplace.scaleplus();return false" href="#">
+                    <img width="32" height="32" border="0" style="margin-bottom:10px" src="img/zoom-in.png">
+                </a>
+                <br>
+                <a onclick="myplace.scaleminus();return false" href="#">
+                    <img width="32" height="32" border="0" src="img/zoom-out.png">
+                </a>
+            </div>
+            <div id="orderbox">
+                <form method="post" action="/site/order?perfomanceid=23088947">
+                    <div class="hbox" style="display: none;">
+                        <p>
+                            Выбрано мест:
+                            <span class="count">0</span>
+                        </p>
+                        <p>
+                            На сумму:
+                            <span class="amount">0</span>
+                        </p>
+                        <div class="hplaces" style="visibility: hidden;"></div>
+                        <input id="order_true" class="btn btn-large btn-mmdm" type="button" value="Оплатить" name="">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="tiptip_holder" class="tip_bottom">
+        <div id="tiptip_content"></div>
+    </div>
+
+
+</div>
+<![endif]-->
+
+
+
+</body>
+</html>

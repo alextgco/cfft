@@ -1,0 +1,13 @@
+14:31:39 GMT+0400 (MSK): sdasdasd
+14:31:39 GMT+0400 (MSK): 121212
+<query><command>get</command><object>export_order</object><order_id>3001</order_id><sid>YaHepuqRZzvsubOPLsxVWsWopSuZUbgmcNbTmUdCtEGNAGSajI</sid><in_out_key>TbE0rGriXNDws-0HXHDK</in_out_key></query>
+
+var o = {
+     mode:"XML",
+     command:"get",
+     object:"export_order",
+     sid:"wOOzbSBsikNesbQQUOGIUcxWLDakZFKsJboJxayzjZNatfzCHa",
+     params:{
+         order_id:"3001"
+     }
+ }

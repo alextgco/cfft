@@ -1,0 +1,129 @@
+<link rel="stylesheet" type="text/css" href="../report.css"/>
+
+<script type="text/javascript" src="../js.js"></script>
+<script type="text/javascript" src="/multibooker/metronic/admin/template_content/assets/plugins/jquery-1.10.2.min.js"></script>
+<style>
+
+ @media screen {
+    #report{
+        display: none;
+    }
+
+ }
+@media print {
+  #report{
+      display: block;
+  }
+  
+  table tr.th {
+    background: #ccc;
+  }
+}
+
+
+@media print{
+  .btn.print {
+    display: none;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse:collapse !important;
+}
+table td{
+  padding: 1px 2px;
+  border: 1px solid;
+}
+
+table tr.th {
+  min-width: 100px;
+  text-align: center;
+}
+table th {
+  border: 1px solid;
+  background: #ccc;
+}
+
+table tr.tBody {
+
+}
+</style>
+
+<script>
+
+$_GET = GET();
+var params = {};
+for (key in $_GET){
+  if(key!="subcommand" && key!="sid"){
+    params[key] = $_GET[key];
+  }
+}
+
+
+$(document).ready(function(){
+    var subcommand = $_GET['subcommand'];  
+    send_query({command:"get",object:subcommand,sid:$_GET['sid'],params:params},function(result){
+        var xml = xmlToObject(result,"LINE");
+        var html = '';
+        html+= '<div class="report">'+
+          '<div>'+
+            ''+$(result).find('LINE_1').text()+
+            '<center>'+
+              '<p><b>'+$(result).find('LINE_2').text()+'</b></p>'+
+              '<p><b>'+$(result).find('LINE_3').text()+'</b></p>'+
+              '<p>'+$(result).find('LINE_4').text()+'</p>'+
+            '</center>'+
+            '<div style="text-align:right;"><b>'+$(result).find('LINE_5').text()+'</b></div>'+
+            '<b>'+$(result).find('LINE_6').text()+'</b>'+
+          '</div>'+
+          '<table>'+
+            '<tr class="th">'+
+              '<td rowspan="2">Продавец</td><td colspan="2">Выдано</td><td colspan="2">Продано</td><td colspan="2">Возврат</td><td rowspan="2">%</td><td rowspan="2">Вознагра<br/>ждение</td><td rowspan="2">Сдано в кассу <br/>или на р/с</td>'+
+            '</tr>'+
+            '<tr class="th">'+
+              '<td>Число</td><td>Сумма</td><td>Число</td><td>Сумма</td><td>Число</td><td>Сумма</td>'+
+            '</tr>';
+          for(var i in xml){
+            if(xml[i]['BOLD']!=undefined){var weight = "bold";}else {var weight = "normal";}
+            log(xml[i]['NAME'])
+            html+= "<tr>";
+            for(key in xml[i]){
+              if(key == "NAME"){
+                html+= '<td align="left" style="font-weight:'+weight+'">'+xml[i][key]+'</td>';
+              }
+              else if(key == "TABLE_TITLE"){
+                html+= '<td colspan="10" style="border: none;"><b>'+xml[i][key]+'</b></td>';
+              }
+              else if(key == "BOLD"){
+
+              }
+              else {
+                html+= '<td align="right" style="font-weight:'+weight+'">'+xml[i][key]+'</td>';
+              }
+            }
+            html+= "</tr>";
+          }
+          html+= ''+
+          '</table>'+
+          '<div>'+
+            '<p>'+$(result).find('ITOGO_1').text()+'</p>'+
+            '<p>'+$(result).find('ITOGO_2').text()+'</p>'+
+          '</div>'+
+          '<p><b>'+$(result).find('ITOGO_3').text()+'</b></p>'+
+          '<p><b>'+$(result).find('ITOGO_4').text()+'</b><u>'+$(result).find('ITOGO_5').text()+'</u></p>'+
+          '<p style="float:right;font-size:10px;border-bottom:1px solid;">'+$(result).find('ITOGO_6').text()+'</p>'+
+        '</div>';
+
+        $("#report").html(html);
+        window.print();
+    });
+});
+
+
+</script>
+
+
+<div id="report">
+
+</div>

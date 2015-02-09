@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="../assets/js/libs/jquery/jquery-2.0.3.js"></script>
+    <title></title>
+</head>
+<body>
+<label for="EMAIL">EMAIL</label>
+<input id="EMAIL" value="pswwgr@mail.ru"><br>
+<label for="TICKET_TEMPLATE">Шаблон</label>
+<input id="TICKET_TEMPLATE" value="MOSKVICH"><br>
+<input type="button" id="send" value="Отправить">
+<script>
+    $(document).ready(function(){
+        $("#send").on("click",function(){
+         /*   var s = {
+                "TOKEN":"UrD5aPYZhxbvetYLDx1crUD1YBuNtpoIDzRf2OmWf0wTZHcc2U",
+                "JSON": JSON.stringify({
+                    "extra_data": {
+                        "ORDER_ID": "2429",
+                        "EMAIL": $("#EMAIL").val(),
+                        "TICKET_TEMPLATE":$("#TICKET_TEMPLATE").val(),
+                        "SALE_SITE_NAME": "Barvikha Luxury Village",
+                        "AGENT_PRICE_MARGIN_PERCENT": "100",
+                        "ADDITIONAL_EMAIL_ADDRESSES": ""
+                    },
+                    "data_columns": ["ORDER_ID", "ORDER_TICKET_ID", "ACTION_ID", "BARCODE", "ACTION_NAME", "ACTION_DATE", "HALL", "AREA", "AGE_CATEGORY", "LINE", "LINE_TITLE", "PLACE", "PLACE_TITLE", "PRICE", "CRM_USER_NAME"],
+                    "data": [
+                        ["2429", "8457", "305", "2606828690", "Новогодняя вечеринка у Деда мороза", "12-06-2014 14:00:00", "Теннисный корт", "", "", "6", "Ряд", "1", "Место", "1200", "FSD SDF"]
+                    ]
+                })
+            };*/
+            var j = {
+                "extra_data": {
+                    "ORDER_ID": "2429",
+                    "EMAIL": $("#EMAIL").val(),
+                    "TICKET_TEMPLATE":$("#TICKET_TEMPLATE").val(),
+                    "SALE_SITE_NAME": "Barvikha Luxury Village",
+                    "AGENT_PRICE_MARGIN_PERCENT": "100",
+                    "ADDITIONAL_EMAIL_ADDRESSES": ""
+                },
+                "data_columns": ["ORDER_ID", "ORDER_TICKET_ID", "ACTION_ID", "BARCODE", "ACTION_NAME", "ACTION_DATE", "HALL", "AREA", "AGE_CATEGORY", "LINE", "LINE_TITLE", "PLACE", "PLACE_TITLE", "PRICE", "CRM_USER_NAME"],
+                "data": [
+                    ["2429", "8457", "305", "2606828690", "Новогодняя вечеринка у Деда мороза", "12-06-2014 14:00:00", "Теннисный корт", "", "", "6", "Ряд", "1", "Место", "1200", "FSD SDF"]
+                ]
+            };
+            var js = JSON.stringify(j);
+            console.log(js);
+            $.post("sendmail.php",{"TOKEN":"UrD5aPYZhxbvetYLDx1crUD1YBuNtpoIDzRf2OmWf0wTZHcc2U",JSON:js},function(result){
+                console.log(result);
+            });
+        });
+    });
+
+</script>
+
+</body>
+</html>

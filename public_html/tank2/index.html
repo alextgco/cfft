@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Multibooker TANK </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+    <script src="../assets/js/libs/jquery/jquery-2.0.3.min.js"></script>
+    <script src="../socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../assets/js/client.js"></script>
+    <script type="text/javascript" src="tank.js"></script>
+
+
+
+</head>
+<body style="overflow: hidden;">
+<h1>Нагрузка на сервер:</h1>                                      <br>
+<label>sid:</label>                                               <br>
+<input type="text" id="sid" value="zuzCypZTETevdQEhWOwCWqOJVxbMlJMtOsiOdJYwYDNmxtFONg" size="100">                  <br>
+<label>command:</label>                                           <br>
+<input type="text" id="command" value="get" size="50">                      <br>
+<label>object:</label>                                            <br>
+<input type="text" id="object" value="hall_scheme_item" size="50">                          <br>
+<label>Имя первого параметра:</label>                             <br>
+<input type="text" id="paramName1" value="hall_scheme_id" size="50">                      <br>
+<label>Значение первого параметра:</label>                        <br>
+<input type="text" id="paramVal1" value="4" size="50">                       <br>
+<label>Имя второго параметра:</label>                             <br>
+<input type="text" id="paramName2" value="" size="50">                      <br>
+<label>Значение второго параметра:</label>                        <br>
+<input type="text" id="paramVal2" value="" size="50">                       <br>
+<label>Интервал:</label>                                          <br>
+<input type="text" id="interval" value="2000" size="20">                       <br>
+<label>Сократить ответ до X символов (0 = не сокращать):</label>                                          <br>
+<input type="text" id="substr" value="0" size="0">                       <br>
+<h1>Response:</h1>                                      <br>
+<textarea cols="120" rows="20" id="response"></textarea>                   <br>
+<button id="start">Старт</button>
+<button id="stop">Стоп</button>
+<label>Отправлено:</label>
+<input id="sended" disabled="disabled" value="0">
+<label>Получено:</label>
+<input id="responsed" disabled="disabled" value="0">
+
+
+
+
+
+
+</body>
+</html>

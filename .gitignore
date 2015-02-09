@@ -29,3 +29,11 @@ build/Release
 node_modules
 
 
+
+.forever
+.mc
+.config
+.npm
+log
+oradiag_multibooker
+node/log

@@ -1,0 +1,280 @@
+html, body{
+    /*background-color: #333;*/
+    margin: 0;
+    padding: 0;
+}
+#RP-wrapper{
+
+}
+.actions_list{
+    width: 1249px;
+    background-color: #fff;
+    float: left;
+    padding: 10px 0 30px 40px;
+    margin: 0;
+    height: 759px;
+    border: 1px solid #ddd;
+}
+.actions_list li{
+    list-style: none;
+    float: left;
+    width: 282px;
+    margin-right: 24px!important;
+    margin-bottom: 24px!important;
+    height: 378px;
+    background-color: #0055a5!important;
+    padding: 17px!important;
+    box-sizing: border-box;
+    position: relative;
+}
+.actions_list li:active{
+    background-color: #ee1b2d;
+}
+.actions_list li:active .nextText{
+    color: #fff;
+}
+.actions_list li:active .backText{
+    color: #fff;
+}
+
+.actions_list li.nextBtnClass:active{
+    background-color: #f8981c;
+}
+.actions_list li.backBtnClass:active{
+    background-color: #c3b9b4;
+}
+.actions_list li:nth-child(4n){
+    margin-right: 0;
+}
+
+.actions_list li .img{
+    width: 248px;
+    height: 248px;
+    background-color: #fff;
+
+}
+.actions_list li .img img{
+    width: 100%;
+}
+.actions_list li .title{
+    font-family: arial, sans-serif;
+    color: #fff;
+    font-size: 18px;
+    max-height: 60px;
+    margin-top: 10px;
+    line-height: 20px;
+    overflow: hidden;
+}
+.actions_list li .hall{
+    position: absolute;
+    font-size: 11px;
+    color: #fff;
+    font-family: arial, sans-serif;
+    bottom: 30px;
+    width: 190px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.actions_list li .time{
+    position: absolute;
+    font-size: 11px;
+    color: #fff;
+    font-family: arial, sans-serif;
+    bottom: 16px;
+}
+.actions_list li .day{
+    position: absolute;
+    font-size: 18px;
+    color: #fff;
+    font-family: arial, sans-serif;
+    bottom: 12px;
+    right: 16px;
+}
+.actions_list li .backText,
+.actions_list li .nextText{
+    display: none;
+    font-size: 35px;
+    font-family: arial, sans-serif;
+    color: #658dc8;
+    position: absolute;
+    bottom: 150px;
+    left: 59px;
+}
+.actions_list li .backText{
+    left: 89px;
+    top: 177px;
+}
+.actions_list li.nextBtnClass .nextText{
+    display: block;
+}
+.actions_list li.backBtnClass .backText{
+    display: block;
+}
+.actions_list li.nextBtnClass .title,
+.actions_list li.nextBtnClass .img,
+.actions_list li.nextBtnClass .hall,
+.actions_list li.nextBtnClass .day,
+.actions_list li.nextBtnClass .time,
+.actions_list li.backBtnClass .title,
+.actions_list li.backBtnClass .img,
+.actions_list li.backBtnClass .hall,
+.actions_list li.backBtnClass .day,
+.actions_list li.backBtnClass .time
+{
+    display: none;
+}
+.actions_wagon.active{
+    display: block;
+}
+.actions_wagon{
+    /*display: none;*/
+    position: relative;
+    float: left;
+}
+
+#box_for_multibooker_frame{
+    /*float: right;*/
+    position: relative;
+    height: 100%;
+    width: 100%;
+    z-index: 8;
+}
+#box-for-hall{
+    width: 1289px;
+    background-color: #fff;
+    float: left;
+    padding: 10px 0 10px 0;
+    margin: 0;
+    height: 789px;
+    display: none;
+    position: relative;
+}
+#iFrameLegend{
+    height: 789px!important;
+    width: 229px!important;
+    right: 0!important;
+}
+#action_web{
+    overflow: inherit!important;
+}
+.iFrameParent{
+    box-shadow:0 0 0!important;
+}
+
+/* terminal user interface */
+
+#zoom-wrapper{
+    position: absolute;
+    bottom: 10px;
+    right: 250px;
+    z-index: 1500;
+    color: #fff;
+}
+
+#zoom-wrapper div{
+    height: 70px;
+    width: 70px;
+    background-color: rgba(101,141,200,0.5);
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-top: 7px;
+    box-sizing: border-box;
+}
+#zoom-wrapper div:active{
+    background-color: rgba(101,141,200,0.7);
+}
+#zoom-out{
+    padding-top: 1px!important;
+}
+#move-wrapper{
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    z-index: 1500;
+    background-color: rgba(0,0,0,0.2);
+    height: 150px;
+    width: 150px;
+    border-radius: 76px;
+}
+#move-wrapper div{
+    height: 60px;
+    width: 60px;
+    border-radius: 31px;
+    background-color: #ddd;
+    color: #333;
+    position: absolute;
+    font-family: arial, sans-serif;
+    text-align: center;
+    padding-top: 21px;
+    box-sizing: border-box;
+}
+#move-wrapper div:active{
+    background-color: #eee;
+}
+#move-top{
+    top: -10px;
+    left: 45px;
+}
+#move-right{
+    top: 45px;
+    right: -10px;
+}
+#move-bottom{
+    bottom: -10px;
+    left: 45px;
+}
+#move-left{
+    top: 45px;
+    left: -10px;
+}
+#backToAfisha{
+    height: 100px;
+    width: 232px;
+    position: absolute;
+    background-color: rgb(111, 128, 195);
+    color: #fff;
+    z-index: 1000;
+    bottom: -1px;
+    right: -1px;
+    font-family: arial, sans-serif;
+    font-size: 24px;
+    padding-top: 38px;
+    box-sizing: border-box;
+    text-align: center;
+}
+#box-for-multibooker-widget{
+    height: 801px!important;
+    width: 1291px!important;
+    box-shadow: 0 0 0;
+    border: 1px solid #ddd;
+    background-color: #f7f7f7;
+}
+.actions_wagon{
+    display: none;
+}
+.actions_wagon.activeVagon{
+    display: block;
+}
+.rama{
+    box-shadow: 0 0 0!important;
+}
+.box_for_zoom{
+    display: none;
+}
+#box_for_multibooker_afisha{
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+.otParent{
+    box-shadow: 3px 3px 6px #464646!important;
+}
+
+#iFrameAlert{
+    box-shadow: 3px 3px 6px #464646!important;
+}
+
+

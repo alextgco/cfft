@@ -1,0 +1,97 @@
+<link rel="stylesheet" type="text/css" href="../report.css"/>
+<link rel="stylesheet" type="text/css" href="report_casher_report.css"/>
+<link href="/multibooker/metronic/admin/template_content/assets/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript" src="/multibooker/metronic/admin/template_content/assets/plugins/jquery-1.10.2.min.js"></script>
+<script src="/multibooker/metronic/admin/template_content/assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+
+<script src="/multibooker/metronic/admin/template_content/assets/plugins/bootstrap-toastr/toastr.min.js"></script>
+
+<script type="text/javascript" src="../js.js"></script>
+<script src="/multibooker/assets/js/main.js"></script>
+
+<script>
+
+$_GET = GET();
+var params = {};
+for (key in $_GET){
+  if(key!="subcommand" && key!="sid"){
+    params[key] = $_GET[key];
+  }
+}
+
+
+$(document).ready(function(){
+    var subcommand = $_GET['subcommand'];  
+    send_query({command:"get",object:subcommand,sid:$_GET['sid'],params:params},function(result){
+        result = parseResult(result);
+        var html = "";
+        html+= '<div class="LINE_1">'+$(result).find("LINE_1").text()+'</div>';
+        html+= '<br/>';
+        html+= '<div class="LINE_2">'+$(result).find("LINE_2").text()+'</div>';
+        html+= '<div class="LINE_3">'+$(result).find("LINE_3").text()+'</div>';
+        html+= '<div class="LINE_4">'+$(result).find("LINE_4").text()+'</div>';
+        html+= '<div class="LINE_5">'+$(result).find("LINE_5").text()+'</div>';
+        html+= ''+
+            '<table class="table_head">'+
+              '<tr class="th">'+
+                '<td rowspan="2" class="th_one">Цена за билет</td>'+
+                '<td colspan="2" class="th_two">Получено</td>'+
+                '<td colspan="2" class="th_three">Продано</td>'+
+                '<td colspan="2" class="th_four">Возврат</td>'+
+              '</tr>'+
+              '<tr class="th">'+
+                '<td class="tr_two">Кол-во</td>'+
+                '<td class="tr_two">На сумму</td>'+
+                '<td class="tr_three">Кол-во</td>'+
+                '<td class="tr_four">На сумму</td>'+
+                '<td class="tr_five">Кол-во</td>'+
+                '<td class="tr_six">На сумму</td>'+
+              '</tr>';
+        $(result).find("REPORT_TABLE").each(function(){
+            var thisHtml = this;
+            
+            $(thisHtml).find("ACTION").each(function(){
+                html+= "<tr class='report_action'><td colspan='7'>"+$(this).text()+"</td></tr>";
+            })
+            $(thisHtml).find("LINE").each(function(){
+                html+= ''+
+                '<tr>'+
+                    '<td class="TICKET_PRICE tr_one">'+$(this).find("TICKET_PRICE").text()+'</td>'+
+                    '<td class="RECEIVED_QTY tr_two">'+$(this).find("RECEIVED_QTY").text()+'</td>'+
+                    '<td class="RECEIVED_TOTAL tr_three">'+$(this).find("RECEIVED_TOTAL").text()+'</td>'+
+                    '<td class="SOLD_QTY tr_four">'+$(this).find("SOLD_QTY").text()+'</td>'+
+                    '<td class="SOLD_TOTAL tr_five">'+$(this).find("SOLD_TOTAL").text()+'</td>'+
+                    '<td class="RETURNED_QTY tr_six">'+$(this).find("RETURNED_QTY").text()+'</td>'+
+                    '<td class="RETURNED_TOTAL tr_seven">'+$(this).find("RETURNED_TOTAL").text()+'</td>'+
+                '</tr>';
+            })
+            $(thisHtml).find("ITOGO").each(function(){
+                html+= ''+
+                '<tr>'+
+                    '<td class="TICKET_PRICE tr_one">Итого</td>'+
+                    '<td class="RECEIVED_QTY tr_two">'+$(this).find("ITOGO_RECEIVED_QTY").text()+'</td>'+
+                    '<td class="RECEIVED_TOTAL tr_three">'+$(this).find("ITOGO_RECEIVED_TOTAL").text()+'</td>'+
+                    '<td class="SOLD_QTY tr_four">'+$(this).find("ITOGO_SOLD_QTY").text()+'</td>'+
+                    '<td class="SOLD_TOTAL tr_five">'+$(this).find("ITOGO_SOLD_TOTAL").text()+'</td>'+
+                    '<td class="RETURNED_QTY tr_six">'+$(this).find("ITOGO_RETURNED_QTY").text()+'</td>'+
+                    '<td class="RETURNED_TOTAL tr_seven">'+$(this).find("ITOGO_RETURNED_TOTAL").text()+'</td>'+
+                '</tr>';
+            })
+
+
+            
+        })
+        html+= '</table>';
+        $("#report").html(html);
+        window.print();
+    });
+});
+
+
+</script>
+
+
+<div id="report">
+
+</div>

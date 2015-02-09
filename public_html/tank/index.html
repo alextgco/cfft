@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Multibooker TANK </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+    <script src="../assets/js/libs/jquery/jquery-2.0.3.min.js"></script>
+    <script src="../socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../assets/js/socketClient.js"></script>
+    <script type="text/javascript" src="tank.js"></script>
+
+
+
+</head>
+<body style="overflow: hidden;">
+<h1>Нагрузка на сервер:</h1>                                      <br>
+<label>sid:</label>                                               <br>
+<input type="text" id="sid" value="LvenSAcflvOjpIXhyDlwmIBdVsufcYHOBJtIGlODYDTnBSVDDQ" size="100">                  <br>
+<!--<label>command:</label>                                           <br>
+<input type="text" id="command" value="operation" size="50">                      <br>
+<label>object:</label>                                            <br>
+<input type="text" id="object" value="block_by_cashier" size="50">                          <br>
+<label>Имя первого параметра:</label>                             <br>
+<input type="text" id="paramName1" value="action_scheme_id" size="50">                      <br>
+<label>Значение первого параметра:</label>                        <br>-->
+<select id="commands"></select><br>
+<label>command:</label>                                           <br>
+<input type="text" id="command" value="get" size="50">                      <br>
+<label>object:</label>                                            <br>
+<input type="text" id="object" value="hall_scheme_item" size="50">                          <br>
+<label>Имя первого параметра:</label>                             <br>
+<input type="text" id="paramName1" value="hall_scheme_id" size="50">                      <br>
+<label>Значение первого параметра:</label>                        <br>
+<input type="text" id="paramVal1" value="22" size="50">                       <br>
+<label>Имя второго параметра:</label>                             <br>
+<input type="text" id="paramName2" value="" size="50">                      <br>
+<label>Значение второго параметра:</label>                        <br>
+<input type="text" id="paramVal2" value="" size="50">                       <br>
+<label>Интервал:</label>                                          <br>
+<input type="text" id="interval" value="1000" size="20">                       <br>
+<label>Сократить ответ до X символов (0 = не сокращать):</label>                                          <br>
+<input type="text" id="substr" value="0" size="0">                       <br>
+<label>Показывать Response:</label>
+<input type="checkbox" id="show_response">                       <br>
+<h1>Response:</h1>                                      <br>
+<textarea cols="60" rows="20" id="response"></textarea>
+<textarea cols="80" rows="20" id="responseText"></textarea>                   <br>
+
+<label>Отправлено:</label>
+<input id="sended" disabled="disabled" value="0">
+<label>Получено всего:</label>
+<input id="responsed" disabled="disabled" value="0">
+<label>Получено успешных:</label>
+<input id="responsedOk" disabled="disabled" style="color:#00c800;" value="0">
+<label>Получено с ошибками:</label>
+<input id="responsedError" disabled="disabled" style="color:#f00;" value="0">
+<label>Максимальная разность:</label>
+<input id="maxDelta" disabled="disabled" style="color:#f00;" value="0">   <br>
+<button id="start">Старт</button>
+<button id="stop">Стоп</button>
+<button id="clear">Сброс</button>
+
+
+
+
+
+
+</body>
+</html>

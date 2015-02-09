@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+## если perl в другом каталоге - #!/usr/bin/perl
+
+#use v5.14;
+
+use utf8;
+print "Content-type: text/html\n\n";
+print "asdasdfsfds";

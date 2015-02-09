@@ -1,0 +1,81 @@
+#!/usr/bin/perl
+
+#------------------------------------------------------------------------------
+
+$ENV{ORACLE_HOME} = '/app/grid/product/12.1.0/dbhome_1';
+$ENV{NLS_LANG} = 'AMERICAN_AMERICA.UTF8';
+
+my $host="localhost";
+my $port="";
+my $SID="orcl";
+my $user="ticket_b2c";
+my $password="qweqwe";
+
+
+#------------------------------------------------------------------------------
+use CGI qw/param/;
+use Encode;
+use vars qw($ORACLE_HOME $ORACLE_SID);
+use DBI;
+use DBD::Oracle qw( SQLCS_IMPLICIT SQLCS_NCHAR );
+use CGI;
+#use XML::LibXML;
+
+my $dbh=DBI->connect("dbi:Oracle:host=$host;service_name=$SID;port=$port",$user, $password,{AutoCommit=>0,RaiseError=>1}) or die "No connect to DB:$DBI::errstr\n";
+
+$dbh->{LongReadLen} = 524288 * 2;
+
+my $xdata = '<query>
+<command>payment_callback</command>
+<token>AowXqyAkmkCEmYDUxJJrjASOK4Zw6IuWiMjwUeC4245q9eNXyH</token>
+<exp_year>'.param('exp_year').'</exp_year>
+<pan_mask>'.param('pan_mask').'</pan_mask>
+<payment_id>'.param('payment_id').'</payment_id>
+<datetime>'.param('datetime').'</datetime>
+<timestamp>'.param('timestamp').'</timestamp>
+<cardholder>'.param('cardholder').'</cardholder>
+<transaction_status>'.param('transaction_status').'</transaction_status>
+<exp_month>'.param('exp_month').'</exp_month>
+<amount>'.param('amount').'</amount>
+<cf3>'.param('cf3').'</cf3>
+<cf2>'.param('cf2').'</cf2>
+<auth_code>'.param('auth_code').'</auth_code>
+<rrn>'.param('rrn').'</rrn>
+<cf>'.param('cf').'</cf>
+<status>'.param('status').'</status>
+<transaction_cf>'.param('transaction_cf').'</transaction_cf>
+<transaction_id>'.param('transaction_id').'</transaction_id>
+<sign>'.param('sign').'</sign>
+<pp_identity>'.param('pp_identity').'</pp_identity>
+<phone>'.param('phone').'</phone>
+<email>'.param('email').'</email>
+</query>';
+
+
+## если ключ HTTP_X_FORWARDED_FOR определен
+if ( $ENV{ HTTP_X_FORWARDED_FOR } ) {
+
+   ## в переменную $ip записывается IP-адрес
+   ## клиента, подключенного через прокси
+   $ip = $ENV{ HTTP_X_FORWARDED_FOR};
+} else {
+
+   ## в противном случае запишем в $ip
+   ## удаленный IP-адрес клиента
+   $ip = $ENV{ REMOTE_ADDR };
+}
+
+my $res;
+
+my $rs=$dbh->prepare('declare begin :res := TICKET_B2C.b2e_gateway_api.Request(:xreq,:xip); end;');
+
+$rs->bind_param(":xreq",$xdata);
+$rs->bind_param(":xip",$ip);
+$rs->bind_param_inout(":res",\$res,0,{ ora_type => 112 });
+$rs->execute();
+
+$rs->finish;
+
+
+print "Content-type: text/xml\n\n";
+print $res;
