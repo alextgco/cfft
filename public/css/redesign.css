@@ -293,7 +293,7 @@ a.open-calendar.opened{
     font-family: opensanssemibold, arial, sans-serif;
 }
 body{
-    background-image: url("../img/bg.png");
+    background-image: url("../img/bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #171717;
@@ -699,4 +699,10 @@ body{
 .preSocial{
     margin-top: 6px;
     margin-right: 10px;
+}
+.fullDarkHeader{
+    text-align: center;
+    background-color: #121212;
+    color: #fff;
+    padding: 10px 0 10px 0;
 }
