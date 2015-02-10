@@ -78,7 +78,7 @@ $(document).ready(function(){
         var slideLeft = function(cb){
             var currLeft = parseInt(sl_ul.data('shift')) || 0;
             if(Math.abs(currLeft) == (sl_lis.length-1)*100){
-                return;
+                return false;
             }
             var value = currLeft - 100;
 

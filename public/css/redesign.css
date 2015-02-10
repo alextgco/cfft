@@ -253,6 +253,7 @@ a.open-calendar.opened{
 .modal-body input{
     background-color: #222;
     border-color: #000;
+    color: #ccc;
 }
 
 .modal-body label{
@@ -627,6 +628,8 @@ body{
 
 .partners img{
     width: 100%;
+    display: block;
+    margin: 0 auto;
     max-width: 220px;
 }
 
@@ -705,4 +708,15 @@ body{
     background-color: #121212;
     color: #fff;
     padding: 10px 0 10px 0;
+}
+.order-event-part-result-row {
+    border-bottom: 1px solid #121212;
+    /* margin-bottom: 10px; */
+    background-color: transparent;
+    padding-top: 10px;
+}
+.input-group-addon {
+    color: #ccc;
+    background-color: #000;
+    border: 1px solid #000;
 }
