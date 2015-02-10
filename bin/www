@@ -5,16 +5,14 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('Net:server');
+var debug = require('debug')('temp0:server');
 var http = require('http');
-var config = require('../config');
 
 /**
  * Get port from environment and store in Express.
  */
 
-//var port = normalizePort(process.env.PORT || '3000');
-var port = config.get('port') || 3000;
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**

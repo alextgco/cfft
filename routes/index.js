@@ -33,10 +33,7 @@ module.exports = function (app) {
     res.render('registration_success');
   });
   app.get('/reqConfirm', require('./reqConfirm').get);
-  app.get('/createDB', function(){
-    var createDB = require('../bin/createDB');
-    createDB();
-  });
+
 
   /*app.get('/users', function (req, res, next) {ss
     User.find({}, function (err, users) {

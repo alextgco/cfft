@@ -5,180 +5,51 @@ var MyError = require('../error').MyError;
 var Guid = require('guid');
 var guid = Guid.create();
 
-var Club = require('../models/club').Club;
 
-var mongoose = require('../libs/mongoose'),
-    Schema = mongoose.Schema;
+var user = {
+    authorize:function(username, password, callback){
+        pool.getConnection(function(err,conn) {
+            if (err) {
+                callback(err)
+            } else {
+                conn.queryRow("select id, email, salt, hashedPassword from users where email = ?", [username], function (err, row) {
+                    if (err) {
+                        return callback(err);
+                    }
+                    conn.release();
 
-var scheme = new Schema({
-        firstname: {
-            type: String,
-            required: true
-        },
-        surname: {
-            type: String,
-            required: true
-        },
-        secondname: {
-            type: String,
-            required: false
-        },
-        phone: {
-            type: String,
-            required: false
-        },
-        city: {
-            type: String,
-            required: false
-        },
-        gender: {
-            type: String,
-            required: false
-        },
-        weight: {
-            type: Number,
-            required: false
-        },
-        birthday: {
-            type: Date,
-            required: false
-        },
-        height: {
-            type: Number,
-            required: false
-        },
-        photo: {
-            type: String,
-            required: false
-        },
-        clubs: [Club],
-        isAgree: {
-            type: Boolean,
-            required: false
-        },
-        raiting: {
-            type: Number,
-            required: false
-        },
-        isBanned: {
-            type: Boolean,
-            required: false
-        },
-        bannetToDate: {
-            type: Date,
-            required: false
-        },
-        email: {
-            type: String,
-            unique: true,
-            required: true
-        },
-        hashedPassword:{
-            type:String,
-            required:true
-        },
-        salt:{
-            type:String,
-            required:true
-        },
-        created:{
-            type:Date,
-            default: Date.now
-        },
-        confirmed:{
-            type:Boolean,
-            default: false
-        },
-        mailKey:{
-            type:String
+                    var check = checkPassword(row.salt,password, row.hashedPassword);
+                    if (!check){
+                        callback(new AuthError('Пароль не верный'));
+                    }else{
+                        callback(null,row);
+                    }
+                });
 
-        },
-        isAdmin:{
-            type: Boolean,
-            default: false
-        }
-    }
-);
-
-scheme.methods.encryptPassword = function(password){
-    return crypto.createHmac('sha1',this.salt).update(password).digest('hex');
-};
-
-scheme.virtual('password')
-    .set(function(password){
-        this._plainPassword = password;
-        this.salt = Math.random() + '';
-        this.hashedPassword = this.encryptPassword(password);
-    }
-);
-scheme.methods.checkPassword = function(password){
-    return this.encryptPassword(password) === this.hashedPassword;
-};
-
-scheme.statics.authorize = function(username, password, callback){
-    var User = this;
-    async.waterfall([
-        function(callback){
-            User.findOne({email:username,confirmed:true},callback);
-        },
-        function(user, callback){
-            if (user){
-                if (user.checkPassword(password)){
-                    callback(null,user);
-                }else{
-                    callback(new AuthError('Пароль не верный'));
-                }
-            }else{
-                callback(new AuthError('Пользователь не найден'));
             }
-        }
-    ],callback);
-};
-
-scheme.statics.registration = function(obj, callback){
-    var User = this;
-    var user = User.findOne({email:obj.email},function(err, user){
-        if (err) return callback(err);
-        if (user){
-            return callback(new AuthError('Такой пользователь уже существует'));
-        }
-
-        user = new User(obj);
-        user.save(function(err){
-            if (err) return callback(err);
-            return callback(null, user);
         });
-    });
+    }
 };
-scheme.statics.remove = function(userId, callback){
-    var User = this;
-    User.findByIdAndRemove (userId,function(err){
-        callback(err);
-    });
+
+var encryptPassword = function(password){
+    var salt = Math.random() + '';
+    return {
+        hashedPassword:crypto.createHmac('sha1',salt).update(password).digest('hex'),
+        salt:salt
+    };
 };
-scheme.statics.setAdmin = function(user, callback){
-    var User = this;
-    user.isAdmin = true;
-    user.save(function(err){
-        if (err) return callback(err);
-        return callback(null, user);
-    });
-};
-scheme.statics.confirmEmail = function(email, p, callback){
-    var User = this;
-    User.findOneAndUpdate({email:email, mailKey:p},{confirmed:true},function(err,user){
-        if (!user){
-            return callback(new MyError('Пользователь не найден'));
-        }
-        User.findByIdAndUpdate(user.id, {mailKey:'done'},function(err, user){
-            callback(err, user);
-        });
-    });
+//console.dir(encryptPassword("123"));
+
+var checkPassword = function(salt, password, hashedPassword){
+    var pass = crypto.createHmac('sha1',salt).update(password).digest('hex');
+    return pass === hashedPassword;
 };
 
 
+module.exports = user;
 
-exports.User = mongoose.model('User',scheme);
+
+//exports.User = mongoose.model('User',scheme);
 //var User = mongoose.model('User',scheme);
 //var user = new User({username:'Вася',password:'123'});
 //user.set('password','dfsa');

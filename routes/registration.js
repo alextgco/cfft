@@ -1,4 +1,4 @@
-var User = require('../models/user').User;
+//var User = require('../models/user').User;
 var HttpError = require('../error').HttpError;
 var AuthError = require('../error').AuthError;
 var jade = require('jade');
@@ -31,7 +31,7 @@ exports.post = function(req, res, next){
         mailKey:guid
     };
 
-    User.registration(obj,function(err, user){
+    /*User.registration(obj,function(err, user){
         if (err){
             if (err instanceof AuthError){
                 return res.json(403, err);
@@ -61,5 +61,5 @@ exports.post = function(req, res, next){
             }
         });
 
-    });
+    });*/
 };

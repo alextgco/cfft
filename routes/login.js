@@ -1,7 +1,8 @@
-var User = require('../models/user').User;
+//var User = require('../models/user').User;
 
 var HttpError = require('../error').HttpError;
 var AuthError = require('../error').AuthError;
+var user = require('../models/user');
 
 
 exports.get = function(req, res, next){
@@ -13,7 +14,7 @@ exports.get = function(req, res, next){
 exports.post = function(req, res, next){
     var login = req.body.login;
     var password = req.body.password;
-    User.authorize(login, password, function(err, user){
+    user.authorize(login,password,function(err,user){
         if (err){
             if (err instanceof AuthError){
                 return res.json(403, err);
@@ -21,10 +22,10 @@ exports.post = function(req, res, next){
                 return next(err);
             }
         }
-        req.session.user = user._id;
+        req.session.user = user.id;
         res.send(200);
-        //res.redirect('/');
     });
+
 
 
 };

@@ -1,11 +1,5 @@
 {
   "port":3000,
-  "mongoose":{
-    "uri":"mongodb://nodejitsu:eef7837cc1170b3b27c1bf03b8ab6aaa@troup.mongohq.com:10041/nodejitsudb4862650141",
-    "options":{
-      "server":{}
-    }
-  },
   "session":{
     "secret":"secret123",
     "key":"mysid",
@@ -14,6 +8,13 @@
       "httpOnly":true,
       "maxAge":null
     }
+  },
+  "mysqlConnection":{
+    "port": "3306",
+    "host": "localhost",
+    "user": "root",
+    "password": "aambfi5y",
+    "database": "cfft"
   },
   "mail":{
     "mailTransport":{
