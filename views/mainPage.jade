@@ -44,6 +44,14 @@ block content
                                     |54
                                 .tblc.secs.pr25
                                     |44
+                                .t_tblc.pr25
+                                    |дня
+                                .t_tblc.hours.pr25
+                                    |час
+                                .t_tblc.mins.pr25
+                                    |мин
+                                .t_tblc.secs.pr25
+                                    |сек
                         .nearrest-wow-exercises
                             | 3 rounds for time
                             br
@@ -51,20 +59,8 @@ block content
                             br
                             | 10 burpees
                     .nearrest-wow-order
-                        i.fa.fa-flag &nbsp;&nbsp;
                         | Принять участие
-        //.container.adv-block
-        //    .row
-        //        .col-md-4
-        //            h3 Скажи плиз
-        //            p advertisment text block
-        //        .col-md-4
-        //            h3 что тут
-        //            p advertisment text block
-        //        .col-md-4
-        //            h3 разместить?
-        //            p advertisment text block
-        .container.marBot30
+        .container
             .row
                 .col-md-3.noPad
                     .calendar-title
@@ -72,8 +68,11 @@ block content
                     .calendar-wrapper
                 .col-md-9.noPad
                     .leaderboard-wrapper
+                        .col-md-12.noPad
+                            .leaderboard-title.ta-center
+                                | Таблица лидеров
                         .col-md-6.noPad
-                            .leaderboard-title
+                            div.genderLabel.male
                                 | Мужчины
                             ul.leaderboard-content
                                 li
@@ -112,7 +111,7 @@ block content
                                     .leader-rating
                                         | 151
                         .col-md-6.noPad
-                            .leaderboard-title
+                            div.genderLabel.famale
                                 | Женщины
                             ul.leaderboard-content
                                 li
@@ -154,17 +153,33 @@ block content
                         //    .leaderboard-title
                         //        | Чемпионы
                         //    ul.leaderboard-content
-
-        .adv-block-wrapper
-            div
-                .container.padTop30
-                    .row
-                        .col-md-9
-                            .adv-bunner-wrapper
-                                img(src="img/adv_bunner_big.jpg")
-                        .col-md-3
-                            .adv-bunner-wrapper
-                                img(src="img/adv_bunner.jpg")
+        .container.partners.marBot30
+            h3
+                | Единомышленники
+            .row
+                .col-md-12
+                    .col-md-2
+                        img(src="img/part1.png")
+                    .col-md-2
+                        img(src="img/part2.png")
+                    .col-md-2
+                        img(src="img/part3.png")
+                    .col-md-2
+                        img(src="img/part4.png")
+                    .col-md-2
+                        img(src="img/part1.png")
+                    .col-md-2
+                        img(src="img/part2.png")
+        //.adv-block-wrapper
+        //    div
+        //        .container.padTop30
+        //            .row
+        //                .col-md-9
+        //                    .adv-bunner-wrapper
+        //                        img(src="img/adv_bunner_big.jpg")
+        //                .col-md-3
+        //                    .adv-bunner-wrapper
+        //                        img(src="img/adv_bunner.jpg")
 
 
     //.page-content
