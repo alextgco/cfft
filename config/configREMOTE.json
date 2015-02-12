@@ -1,0 +1,30 @@
+{
+  "port":3000,
+  "session":{
+    "secret":"secret123",
+    "key":"mysid",
+    "cookie":{
+      "path":"/",
+      "httpOnly":true,
+      "maxAge":null
+    }
+  },
+  "mysqlConnection":{
+    "port": "3306",
+    "host": "localhost",
+    "user": "root",
+    "password": "aambfi5y",
+    "database": "cfft"
+  },
+  "mail":{
+    "mailTransport":{
+      "service": "Gmail",
+      "auth": {
+        "user": "alextgco@gmail.com",
+        "pass": "aambfi5y"
+      }
+    },
+    "from":"ivantgco@gmail.com"
+  }
+
+}

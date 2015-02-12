@@ -8,7 +8,7 @@ var session = require('express-session');
 var SessionStore = require('express-mysql-session');
 var config = require('./config');
 var app = express();
-global.pool = require('./libs/mysqlConnect');
+//global.pool = require('./libs/mysqlConnect');
 process.on('exit', function(code) {
     pool.end();
 });
@@ -28,17 +28,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //var options = config.get('mysqlConnection');
-var options = {
+/*var options = {
     host: 'localhost',
     port: 3306,
     user: 'root',
     password: 'aambfi5y',
     database: 'cfft',
     createDatabaseTable:true
-};
+};*/
 
-var sessionStore = new SessionStore(options);
-
+var sessionStore = new SessionStore(config.get('mysqlConnection'));
+/*
 app.use(session({
     secret: config.get('session:secret'),
     key: config.get('session:key'),
@@ -46,7 +46,7 @@ app.use(session({
     store: sessionStore,
     resave: true,
     saveUninitialized: true
-}));
+}));*/
 
 app.use(require('./middleware/sendHttpError'));
 //app.use(require('./middleware/loadUser'));
@@ -91,3 +91,4 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+//git remote set-url origin ssh://cfft1@dotcloudapp.com/repository.git

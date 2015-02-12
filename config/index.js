@@ -1,7 +1,12 @@
 var nconf = require('nconf');
 var path = require('path');
+var filename = 'config.json';
+var remote = false;
+if (remote){
+    filename = 'configREMOTE.json';
+}
 nconf.argv()
     .env()
-    .file({file:path.join(__dirname,'config.json')});
+    .file({file:path.join(__dirname,filename)});
 
 module.exports = nconf;
