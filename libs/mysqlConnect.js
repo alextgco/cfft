@@ -10,7 +10,10 @@ cMysql.on('connection', function(connection) {
     mysqlUtilities.upgrade(connection);
     mysqlUtilities.introspection(connection);
 });
-
+cMysql.on('error', function(err) {
+    console.log('MySQL ERROR --------');
+    console.log(err);
+});
 
 
 module.exports = cMysql;
