@@ -11,10 +11,10 @@
   },
   "mysqlConnection":{
     "port": "3306",
-    "host": "localhost",
-    "user": "root",
-    "password": "aambfi5y",
-    "database": "cfft"
+    "host": "173.194.241.167",
+    "user": "deptezf2upj",
+    "password": "rqDwMqx3bHzL",
+    "database": "deptezf2upj"
   },
   "mail":{
     "mailTransport":{
