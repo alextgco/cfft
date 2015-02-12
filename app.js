@@ -91,6 +91,7 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+//git remote set-url origin https://github.com/alextgco/cfft
 //git remote set-url origin ssh://cfft1@dotcloudapp.com/repository.git
 //dcapp cfft1/default push
 //dcapp cfft1/default deploy
