@@ -1,7 +1,7 @@
 var nconf = require('nconf');
 var path = require('path');
 var filename = 'config.json';
-var remote = true;
+var remote = false;
 if (remote){
     filename = 'configREMOTE.json';
 }

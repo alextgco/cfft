@@ -95,3 +95,4 @@ node_modules
 .idea
 
 config/config.json
+config/index.js

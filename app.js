@@ -38,7 +38,6 @@ app.use(cookieParser());
 };*/
 
 var sessionStore = new SessionStore(config.get('mysqlConnection'));
-/*
 app.use(session({
     secret: config.get('session:secret'),
     key: config.get('session:key'),
@@ -46,10 +45,10 @@ app.use(session({
     store: sessionStore,
     resave: true,
     saveUninitialized: true
-}));*/
+}));
 
 app.use(require('./middleware/sendHttpError'));
-//app.use(require('./middleware/loadUser'));
+app.use(require('./middleware/loadUser'));
 require('./routes')(app);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -95,3 +94,5 @@ module.exports = app;
 //git remote set-url origin ssh://cfft1@dotcloudapp.com/repository.git
 //dcapp cfft1/default push
 //dcapp cfft1/default deploy
+
+//mysql -u deptezf2upj -p deptezf2upj --host=173.194.241.167
