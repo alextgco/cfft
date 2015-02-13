@@ -705,13 +705,24 @@ body{
 }
 .fullDarkHeader{
     text-align: center;
-    background-color: #121212;
-    color: #fff;
-    padding: 10px 0 10px 0;
+    /* background-color: #121212; */
+    background-image: url(../img/partners_header_bg.png);
+    color: #4d4d4d;
+    text-transform: uppercase;
+    height: 24px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.fullDarkHeader-inner{
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 0 12px;
+    line-height: 24px;
 }
 .order-event-part-result-row {
     border-bottom: 1px solid #121212;
     /* margin-bottom: 10px; */
+    color: #333;
     background-color: transparent;
     padding-top: 10px;
 }
