@@ -20,11 +20,12 @@
     display: block;
     font-size: 13px;
     padding-bottom: 8px;
-    color: #fff;
+    color: #9d9d9d;
     text-decoration: none;
 }
 .preheaderBtn a:hover{
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(47, 31, 19, 1);
+    color: #fff;
 }
 
 .orangeBg{
@@ -35,8 +36,9 @@
 }
 
 .page-header>.container{
-    background-image: none;
-    background-color: rgb(255, 138, 6);
+    background-color: rgb(40,40,40);
+    background-image: url(../img/partners_header_bg.png);
+    background-size: inherit;
 }
 .page-header{
     background-color: transparent;
@@ -50,7 +52,7 @@
 }
 .contact-us{
     padding: 8px 7px;
-    color: #fff;
+    color: #9d9d9d;
     font-size: 13px;
     font-family: opensanssemibold, arial, sans-serif;
 }
@@ -442,19 +444,20 @@ body{
     height: 47px;
     text-align: center;
     width: 100%;
-    color: #ff8a06;
+    color: #252525;
     font-family: opensanssemibold,arial, sans-serif;
     padding-top: 14px;
-    background-color: #222;
+    background-color: #ff8a06;
     cursor: pointer;
     font-size: 14px;
     text-transform: uppercase;
 }
 .nearrest-wow-order:hover{
-    background-color: #121212;
+    background-color: #FF7706;
+    color: #000;
 }
 .preheader>.container{
-    background-color: #333;
+    background-color: #000;
 }
 .page-header.main-header{
     box-shadow: 0 0 4px #000;

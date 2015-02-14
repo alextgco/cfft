@@ -1,41 +1,24 @@
-var mongoose = require('../libs/mongoose'),
-    Schema = mongoose.Schema;
+var MyError = require('../error').MyError;
 
-var scheme = new Schema({
-        name: {
-            type: String,
-            unique: true,
-            required: true
-        },
-        photo: {
-            type: String,
-            required: false
-        },
-        city: {
-            type: String,
-            required: false
-        },
-        address: {
-            type: String,
-            required: false
-        },
-        url: {
-            type: String,
-            required: false
-        },
-        phones: [{phone:String}],
-        emails:[{email:String}],
-        affiliate: [{name:String}],
-        created:{
-            type:Date,
-            default: Date.now
-        },
-        confirmed:{
-            type:Boolean,
-            default: false
-        }
+var club = {
+    getById: function(club_id, callback){
+        pool.getConnection(function(err,conn) {
+            if (err) {
+                callback(err)
+            } else {
+                conn.queryRow("select * from clubs where id = ?", [club_id], function (err, row) {
+                    if (err) {
+                        return callback(err);
+                    }
+                    conn.release();
+                    var check = checkPassword(row.salt,password, row.hashedPassword);
+                    if (!check){
+                        callback(new AuthError('Пароль не верный'));
+                    }else{
+                        callback(null,row);
+                    }
+                });
+            }
+        });
     }
-);
-
-
-exports.Club = mongoose.model('Club',scheme);
+};

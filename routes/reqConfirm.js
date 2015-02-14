@@ -1,3 +1,4 @@
+var user = require('../models/user');
 var sendSuccessConfirm = require('../modules/regMailer').sendSuccessConfirm;
 
 var finish = function(err, res){
@@ -14,6 +15,17 @@ exports.get = function(req, res, next){
     if (p=='done'){
         return finish(true, res);
     }
+    user.confirmEmail(email,p, function(err){
+        if (err) {
+            console.log(err);
+            return finish(err, res);
+        }
+        sendSuccessConfirm({email:email}, function(err){
+            // Здесь не будем обрабатывать err
+            finish(null, res);
+
+        });
+    });
     /*User.confirmEmail(email,p,function(err,user){
         if (err) {
             console.log(err);
