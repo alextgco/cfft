@@ -95,3 +95,7 @@ node_modules
 .idea
 
 config/config.json
+
+bin/TEMPFILE
+bin/fillDB.js
+bin/cities.sql
