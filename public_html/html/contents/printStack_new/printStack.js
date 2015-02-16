@@ -15,9 +15,26 @@
 
 
     var tickets = {
-        portion:2,
-        blank_types:{},
-
+        portion:5,
+        /**
+         * Устанавливает по сколько билетов выводить на стр. Если передан второй параметр, перерисует форму
+         * @param num
+         * @param render
+         */
+        setPortion:function(num,render){
+            if (isNaN(+num)){
+                console.log('В tickets.setPortion не передано число');
+                return;
+            }
+            tickets.portion = +num;
+            if (render){
+                tickets.renderTickets();
+            }
+        },
+        blank_types: {},
+        updateStatus:function(blank_types,status){
+            if (typeof tickets.blank_types[blank_types]!=='object'){}
+        },
         /**
          * Функция подготавливает клиентскую модель билета на основе серверной и возвращает объект
          * !Внимание! Функция не добавляет получившийся объект в items
@@ -41,8 +58,6 @@
                 blank_type:obj.TICKET_PACK_TYPE
             };
         },
-
-
         /**
          * Добавляет билеты в скоуп
          * @param packs билеты
@@ -100,7 +115,7 @@
             return (many)?finded:finded[0];
         },
         updateItem:function(changes, where, many){
-            if (typeof where!=='object' || changes!=='object'){
+            if (typeof where!=='object' || typeof changes!=='object'){
                 return false;
             }
             var item = tickets.getItem(where,many);
@@ -159,62 +174,229 @@
                 clearEmpty(tickets.blank_types[i1]);
             }
             return count;
-        }
+        },
+        renderTickets: function(cb){
 
+            var container = contentWrapper.find('.printStack-parent-wrapper');
+
+            var tpl = '<div class="tabsParent sc_tabulatorParent floated">'+
+                        '<div class="tabsTogglersRow sc_tabulatorToggleRow">'+
+                        '{{#tabs}}' +
+                            '<div class="tabToggle sc_tabulatorToggler {{opened}}" dataitem="{{dataitem}}">'+
+                            '<span class="childObjectTabTitle" data-name="{{name}}" data-item="{{dataitem}}">{{{tab_title}}}</span>'+
+                            '</div>'+
+                        '{{/tabs}}' +
+                        '</div>'+
+
+                        '<div class="ddRow sc_tabulatorDDRow">'+
+                        '{{#tabContents}}' +
+                            '<div class="tabulatorDDItem noMinHeight noMaxHeight sc_tabulatorDDItem {{opened}}" dataitem="{{dataitem}}">'+
+                            '<div class="childObjectWrapper printStack-tab" data-item="{{dataitem}}">' +
+
+                                '<div class="printStack-tickets-list-wrapper">'+
+                                    '<div class="printStack-tickets-header">'+
+                                        '<h4>Билеты в печати:</h4>'+
+                                    '</div>'+
+
+                                    '<div class="printStack-tickets-list-header-wrapper">'+
+                                        '<ul class="printStack-tickets-list-header">'+
+                                            '<li>'+
+                                                '<div class="printStack-ticket-insert">-</div>'+
+                                                '<div class="printStack-ticket-place">Место</div>'+
+                                                '<div class="printStack-ticket-status">Статус печати</div>'+
+                                                '<div class="flRight">БСО Серия</div>'+
+                                            '</li>'+
+                                        '</ul>'+
+                                    '</div>'+
+                                    '<div class="printStack-tickets-pages-vis">' +
+                                        '<div class="printStack-tickets-pages-train" style="width: {{trainWidth}}%">' +
+
+                                            '{{#pages}}'+
+                                                '<ul class="printStack-tickets-list" style="width: {{pageWidth}}%">'+
+                                                    '{{#tickets}}'+
+                                                        '<li data-id="{{ticketId}}">'+
+                                                            '<div class="printStack-ticket-insert"><i class="fa fa-mail-forward"></i></div>'+
+                                                            '<div class="printStack-ticket-place">{{place}}</div>'+
+                                                            '<div class="printStack-ticket-status"><i class="statusIcon fa fa-spin fa-spinner"></i>  {{print_status_ru}}</div>'+
+                                                            '<div class="printStack-ticket-bso">{{bso}}</div>'+
+                                                        '</li>'+
+                                                    '{{/tickets}}'+
+                                                '</ul>'+
+                                            '{{/pages}}'+
+                                        '</div>'+
+                                    '</div>'+
+
+                                    '<div class="printStack-pagination-wrapper">' +
+                                        '<ul class="printStack-pagination">' +
+                                        '{{#pages}}'+
+                                            '<li data-no="{{page_no}}" class="{{active}}">{{vis_no}}</li>'+
+                                        '{{/pages}}'+
+                                        '</ul>' +
+                                    '</div>'+
+                                '</div>'+
+
+                            '</div>'+
+                            '</div>'+
+                        '{{/tabContents}}' +
+                        '</div>'+
+                    '</div>';
+
+            var mO = {
+                tabs: [],
+                tabContents: []
+            };
+            var iter = 0;
+
+            function getTrainWidth(obj){
+                var width = 0;
+                var iidx = 0;
+                for(var i in obj){
+                    var st = obj[i];
+                    if(iidx == 0){
+                        width+=100;
+                    }else if(iidx%tickets.portion == 0){
+                        width+=100;
+                    }
+                    iidx++;
+                }
+                return width;
+            }
+
+            function getPagesObject(obj){
+                var pages = [];
+
+                var iidx = 0;
+                for(var i in obj){
+                    var st = obj[i];
+                    if(iidx == 0){
+                        pages.push({
+                            pageWidth: 100 / (getTrainWidth(obj) / 100),
+                            page_no: iidx / tickets.portion,
+                            vis_no: iidx / tickets.portion+1,
+                            active: 'active',
+                            tickets: []
+                        });
+                    }else if(iidx%tickets.portion == 0){
+                        pages.push({
+                            pageWidth: 100 / (getTrainWidth(obj) / 100),
+                            page_no: iidx / tickets.portion,
+                            vis_no: iidx / tickets.portion+1,
+                            active: '',
+                            tickets: []
+                        });
+                    }
+                    iidx++;
+                }
+
+                var idx = 0;
+
+                for(var j in obj){
+                    var t = obj[j];
+                    var pIdx = Math.floor(idx / tickets.portion);
+
+//                    console.log(pIdx, obj);
+
+                    pages[pIdx].tickets.push({
+                        ticketId: t.order_ticket_id,
+                        place: t.place,
+                        print_status_ru: t.print_status_ru,
+                        bso: t.sca
+                    });
+
+                    idx++;
+                }
+
+                return pages;
+            }
+
+            for(var i in tickets.blank_types){
+                var bt = tickets.blank_types[i];
+                mO.tabs.push({
+                    opened: (iter == 0)? 'opened':'',
+                    dataitem: i,
+                    name: i,
+                    tab_title: i
+                });
+                mO.tabContents.push({
+                    opened: (iter == 0)? 'opened':'',
+                    dataitem: i,
+                    trainWidth: getTrainWidth(bt),
+                    pages: getPagesObject(bt)
+                });
+                iter++;
+            }
+
+            container.html(Mustache.to_html(tpl, mO));
+
+            uiTabs();
+
+            if(typeof cb == 'function'){
+                cb();
+            }
+            tickets.setHandlers();
+        },
+        renderTicket: function(id){
+            var tpl = '<li data-id="{{order_ticket_id}}">' +
+                        '<div class="printStack-ticket-insert">' +
+                            '<i class="fa fa-mail-forward"></i>' +
+                        '</div>' +
+                        '<div class="printStack-ticket-place">{{place}}</div>' +
+                        '<div class="printStack-ticket-status">' +
+                            '<i class="statusIcon fa fa-spin fa-spinner"></i>  {{print_status_ru}}' +
+                        '</div>' +
+                        '<div class="printStack-ticket-bso">{{sca}}</div>' +
+                       '</li>';
+            var o = tickets.getItem({order_ticket_id: id});
+            var toReplaceTicket = contentWrapper.find('.printStack-tickets-list li[data-id="'+id+'"]');
+
+            toReplaceTicket.replaceWith(Mustache.to_html(tpl, o));
+            console.log(o, toReplaceTicket);
+            tickets.setHandlers();
+
+        },
+        setHandlers: function(){
+            var pis = contentWrapper.find('.printStack-pagination li');
+            var tis = contentWrapper.find('.printStack-tickets-list li');
+
+            pis.off('click').on('click', function(){
+                var self = $(this);
+                if($(this).hasClass('active')){
+                    return;
+                }
+                var tab = $(this).parents('.printStack-tab');
+                var train = tab.find('.printStack-tickets-pages-train');
+                var no = parseInt($(this).data('no'));
+
+                train.animate({
+                    marginLeft: '-'+ (no*100) + '%'
+                }, 350, function(){
+                    tab.find('.printStack-pagination li').removeClass('active');
+                    self.addClass('active');
+                });
+            });
+            tis.off('click').on('click', function(){
+                var self = $(this);
+                var tab = $(this).parents('.printStack-tab');
+                var train = tab.find('.printStack-tickets-pages-train');
+                var ticketId = $(this).data('id');
+                console.log('click on row № ' + ticketId);
+            });
+
+            $('.printStack-ticket-bso').off('click').on('click', function(){
+                tickets.renderTicket($(this).parents('li').data('id'));
+            });
+        }
     };
 
-    function load_tickets(arr){
-        if (typeof arr!=="object"){
-            console.log('В load_tickets не приходит arr.');
-            return;
-        }
-        var ids = arr.join(',');
-        var o  = {command:"get",object:"order_ticket",params:{where:"order_ticket_id in ("+ids+")"}};
-        socketQuery(o,function(res){
-            res = JSON.parse(res).results[0];
-            var data = jsonToObj(res);
-            console.log(data);
-            for (var i in data) {
-                tickets.newItem(data[i]);
-
-            }
-            console.log(tickets.items);
-        });
-    }
-    //load_tickets([14657,14655]);
-   /* var o = {
-        "0": {
-            "ORDER_ID": "3819",
-            "ORDER_TICKET_ID": "14657",
-            "ACTION_SCHEME_ID": "445058",
-            "ACTION": "Приключения Петра Мамонова (09-07-2015 10:40:00)",
-            "ACTION_DATE_TIME": "09-07-2015 10:40:00",
-            "ACTION_DATE": "09-07-2015 00:00:00",
-            "LINE_WITH_TITLE": "Ряд 6",
-            "PLACE_WITH_TITLE": "Место 13",
-            "AREA_GROUP": "Амфитеатр",
-            "STATUS": "CANCELED",
-            "STATUS_RU": "Отменен",
-            "TICKET_TYPE": "TICKET",
-            "TICKET_TYPE_RU": "Билет",
-            "PRICE": "356",
-            "TICKET_DATE": "16-01-2015 17:33:08",
-            "BARCODE": "369887",
-            "SCA_SERIES": "",
-            "SCA_NUMBER": "",
-            "CREATED_USER_ID": "74",
-            "USER_FULLNAME": "Гоптарев Александр ",
-            "PRINT_STATUS": "NOT_PRINTED",
-            "PRINT_STATUS_RU": "Не напечатан",
-            "TICKET_ACTION_MARGIN": "",
-            "TICKET_SERVICE_FEE": ""
-        }
-    };*/
     console.log('executed');
 
     contentInstance.addItems = tickets.addItems;
+    contentInstance.renderTickets = tickets.renderTickets;
+    contentInstance.renderTicket = tickets.renderTicket;
     contentInstance.getItem = tickets.getItem;
+    contentInstance.updateItem = tickets.updateItem;
     contentInstance.removeItem = tickets.removeItem;
+    contentInstance.setPortion = tickets.setPortion;
 }());
 
 

@@ -138,13 +138,13 @@ function sendToAll(obj,callback){
     socket.emit('sendToAll',obj);
 }
 socket.on('sendToAll', function (obj) {
-    try {
+    /*try {
         var msg = JSON.parse(obj.message);
         obj.message = 'Получен валидный JSON. См. консоль';
         console.log(msg);
 
     } catch (e) {
-    }
+    }*/
     MB.Core.lockScreen.init({
         title: obj.title || 'Сообщение от администратора',
         content: obj.message || '',

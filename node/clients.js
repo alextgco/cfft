@@ -101,6 +101,9 @@ var clients = {
             case "PRINT_ORDER":
                 this.printOrder(client, {order_id: 2800});
                 break;
+            case "PRINT_NEXT_PORTION":
+                this.printNext(client, {ticket_pack_type:obj.type});
+                break;
             case "SET_CURRENT_NUM":
                 this.setCurrentNum(client, data);
                 break;
@@ -116,7 +119,6 @@ var clients = {
                 }, client);
                 break;
         }
-
     },
     sendToClient: function (client, obj) {
 
@@ -319,7 +321,8 @@ var clients = {
                 status: obj.status || 'NEW',
                 pRes: obj.pRes || 0,
                 printers: obj.printers || [],
-                ticket_stack: {}
+                ticket_stack: {},
+                print_response_stack: []
             };
 
 
@@ -628,7 +631,6 @@ var clients = {
 
     },
     addTickets: function (client, tickets) {
-        debugger;
         if (typeof client !== "object" || typeof tickets !== "object") {
             return false;
         }
@@ -751,6 +753,16 @@ var clients = {
             }
 
             if (printer && +printer.SCA_CURRENT_NO <= +printer.FINISH_NO) {
+                if (client.ticket_stack[i].numInPortion == client.ticket_stack[i].portion){
+                    // Приостанавливаем мечать и отправляем на клиент запрос на продолжение
+                    var o2 = {
+                        type: "PRINT_WAIT_NEXT",
+                        blank_type:i
+                    };
+                    clients.sendToClient(client, o2);
+                    return;
+                }
+
                 flag = false;
                 client.ticket_stack[i].status = "IN_PRINT";
                 client.ticket_stack[i].printing_ticket = client.ticket_stack[i].shift();
@@ -762,15 +774,12 @@ var clients = {
             }
             if (typeof flag === "object") {
                 /// Не один принтер не установлен (не совпадают типы бланков), надо менять или закончились бланки
-
-
                 clients.setPacksToPrinters(client, {
                     message: 'Нет пачки для билета на ' + flag[0].ACTION_NAME + ' или в пачке этого типа недостаточно бланков',
                     type: "NEED_CHANGE_PACK",
                     back: i
                 });
                 return;
-
             }
         }
 
@@ -902,7 +911,6 @@ var clients = {
                     clients.removePrintingOrders(orderId);
                 }
                 var client = self.items[obj.io_key];
-                client.cSocket.emit('sendToAll', {message: JSON.stringify(obj)});
 
                 self.addTickets(client, data);
                 var o2 = {
@@ -914,6 +922,10 @@ var clients = {
                 self.print_tickets(client);
             }
         });
+    },
+    printNext: function(client,obj){
+        client.ticket_stack[obj.ticket_pack_type].numInPortion = 0;
+        this.print_tickets(client);
     },
     checkPrintingTickets: function (client) {
         if (typeof client !== "object") {
@@ -955,6 +967,7 @@ var clients = {
         }
 
         var ticket = client.ticket_stack[ticketpacktype].printing_ticket;
+        client.print_response_stack.push(ticket.ORDER_TICKET_ID);
         delete client.ticket_stack[ticketpacktype].printing_ticket;
         client.ticket_stack[ticketpacktype].status = "ACTIVE";
         if (client.ticket_stack[ticketpacktype].length == 0) {
@@ -969,9 +982,6 @@ var clients = {
             in_out_key: client.id
         };
 
-        console.log(makeQueryTMP(o));
-
-
         oracle.execute({
             o: o, callback: function (obj) {
                 var client = self.items[obj.io_key];
@@ -979,14 +989,49 @@ var clients = {
                     if (!self.checkPrintingTickets(client)) {
                         client.printing = false;
                     }
-
                 }
                 var o2 = {
                     type: "PACK_INFO",
                     data: client.printers || {}
                 };
                 clients.sendToClient(client, o2);
-                console.log('________________printSuccess__________________');
+                var order_ticket_id = client.print_response_stack.shift();
+                var o = {
+                    command: "get",
+                    object: "order_ticket",
+                    sid: client.sid,
+                    /*columns:'ORDER_TICKET_ID,ACTION,ACTION_DATE_TIME,LINE_WITH_TITLE' +
+                    'PLACE_WITH_TITLE,AREA_GROUP,PRICE,SCA_SERIES,SCA_NUMBER,' +
+                    'PRINT_STATUS,PRINT_STATUS_RU,BARCODE',*/
+                    params:{
+                        where:'ORDER_TICKET_ID = '+order_ticket_id
+                    },
+                    in_out_key: client.id
+                };
+                oracle.execute({o:o,callback:function(obj){
+                    var client = self.items[obj.io_key];
+                    if (typeof client !== "object") {
+                        return;
+                    }
+                    var data = funcs.jsonToObj(obj.resultJSON)[0];
+                    var ticket = {
+                        order_ticket_id:data.ORDER_TICKET_ID,
+                        action:data.ACTION,
+                        place:data.AREA_GROUP+' '+ (data.LINE_WITH_TITLE)+' '+ (data.PLACE_WITH_TITLE),
+                        price:data.PRICE,
+                        sca:(data.SCA_SERIES) ? data.SCA_SERIES +'-'+data.SCA_NUMBER : '',
+                        print_status:data.PRINT_STATUS,
+                        print_status_ru:data.PRINT_STATUS_RU,
+                        barcode:data.BARCODE
+                    };
+                    var o2 = {
+                        type: "PRINT_TICKET_RESPONSE",
+                        where:{order_ticket_id:ticket.order_ticket_id},
+                        ticket: ticket
+                    };
+                    clients.sendToClient(client, o2);
+                    console.log('________________printSuccess__________________');
+                }});
             }
         });
         this.print_tickets(client);

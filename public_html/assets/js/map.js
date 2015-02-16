@@ -3211,7 +3211,7 @@ Map1.prototype.showStatus = function (status) {
         this.hint.children("#status_fund").text("Фонд: " + status.status_fund);
     else
         this.hint.children("#status_fund").text("");
-    if (status.status_price != undefined && status.status_price != "")
+    if (status.status_price != undefined && status.status_price != "" && this.mode!='iFrame')
         this.hint.children("#status_price").text("Пояс: " + status.status_price);
     else
         this.hint.children("#status_price").text("");
@@ -3219,7 +3219,7 @@ Map1.prototype.showStatus = function (status) {
         this.hint.children("#status_status").html(status.status_status);
     else
         this.hint.children("#status_status").text("");
-    if (status.status_id != undefined && status.status_id != "")
+    if (status.status_id != undefined && status.status_id != "" && this.mode!='iFrame')
         this.hint.children("#status_id").text(status.status_id);
     else
         this.hint.children("#status_id").text("");
@@ -3508,7 +3508,6 @@ Map1.prototype.setEvents = function () {
             self.mouseWheelFlag = false;
         }, 50);
     };
-    var tmpArray = [];
     Map1.prototype.getNextScale = function (delta) {
         //var cCoef = self.scaleCoeff.toFixed(3);
         var cCoef = self.roundPlus(self.scaleCoeff, 3);
@@ -3569,16 +3568,6 @@ Map1.prototype.setEvents = function () {
         var dy = 0;
 
         if (delta != 0) {
-            /*
-             var Ximg = (x - boxWidth/2)*W/boxWidth;
-             var Yimg = (y - boxHeight/2)*H/boxHeight;
-             dx =  (W*step*delta/2) + Ximg*step*delta;
-             dy =  (H*step*delta/2)+ Yimg*step*delta;*/
-            /*var mouseX = (x - boxWidth/2)*(self.scaleCoeff-oldscaleCoeff);
-             var mouseY = (y - boxHeight/2)*(self.scaleCoeff-oldscaleCoeff);*/
-            /* var mouseX = (x - boxWidth/2)*step;
-             var mouseY = (y - boxHeight/2)*step;*/
-
             var mouseX = 0;
             var mouseY = 0;
 
@@ -3588,7 +3577,8 @@ Map1.prototype.setEvents = function () {
              var Ximg = (x - boxWidth/2)*W/boxWidth;
              var Yimg = (y - boxHeight/2)*H/boxHeight;
              dx = (W*step*delta/2) + Ximg*step*delta;
-             dy = (H*step*delta/2)+ Yimg*step*delta;*/
+             dy = (H*step*delta/2)+ Yimg*step*delta;
+            */
         } else {
             console.log('delta==0');
             var counter = (self.mouseWheelCounter > 0) ? self.mouseWheelCounter : 1;
@@ -3605,10 +3595,6 @@ Map1.prototype.setEvents = function () {
         self.scaleCoeff = self.roundPlus(self.scaleCoeff, 3);
         self.XCoeff -= dx;
         self.YCoeff -= dy;
-        //console.log(self.scaleCoeff);
-        if (tmpArray.indexOf(self.scaleCoeff) == -1) {
-            tmpArray.push(self.scaleCoeff);
-        }
         self.render();
 
     });
@@ -4578,6 +4564,25 @@ Map1.prototype.setEvents = function () {
                                 break;
                             case "client_screen":
                                 break;
+
+                        }
+
+                        break;
+                    case 17:
+                        switch (self.mode) {
+                            case "casher":
+                                self.container.trigger("sendSelection");
+                                break;
+                            case "admin":
+                                self.container.trigger("sendSelection");
+                                break;
+                            case "editor":
+                                self.container.trigger("mouseup_1_17");
+                                break;
+                            case "iFrame":
+                                break;
+                            case "client_screen":
+                                break;
                         }
 
                         break;
@@ -4608,17 +4613,36 @@ Map1.prototype.setEvents = function () {
                         }
 
                         break;
+                    case 17:
+                        switch (self.mode) {
+                            case "casher":
+                                self.container.trigger("sendSelection");
+                                break;
+                            case "admin":
+                                self.container.trigger("sendSelection");
+                                break;
+                            case "editor":
+                                self.container.trigger("mouseup_1_17");
+                                break;
+                            case "iFrame":
+                                break;
+                            case "client_screen":
+                                break;
+                        }
+
+                        break;
+
                 }
                 break;
         }
 
         self.container.trigger("leave_container");
     };
-    this.container.on("mouseout", function (e) {
+    this.container.children('#canvas1').on("mouseout", function (e) {
         leaveCanvas(e);
         return false;
     });
-    this.container.on("mouseleave", function (e) {
+    this.container.children('#canvas1').on("mouseleave", function (e) {
         leaveCanvas(e);
         return false;
     });
@@ -4646,12 +4670,16 @@ Map1.prototype.setEvents = function () {
         self.container.trigger("leave_container");
         return false;
     });
-    this.container.on("mouseenter", function (e) {
+    this.container.find('#canvas1').on("mouseenter", function (e) {
         self.container.attr("tabindex", "1").focus();
         self.container.trigger("leave_container");
         return false;
     });
-
+    this.container.find('#canvas1').on("mouseleave", function (e) {
+        self.container.attr("tabindex", "0");//.focus();
+        self.container.trigger("leave_container");
+        return false;
+    });
     this.container.on("keydown", function (e) {
         if (e.which >= 37 && e.which <= 40) {
             return;

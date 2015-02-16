@@ -479,23 +479,7 @@
                     callback:function(){
                         send('print_order',{guid:MB.Core.getUserGuid(),order_id:instance.activeId},function(result){
                             instance.reload('data');
-                            /*if (typeof result!=="object"){
-                                return;
-                            }
-                            if (+result.code!==0){
-                                toastr.error(result.message, "");
-                            }*/
-                            //console.log(JSON.stringify(result));
-
                         });
-
-                        /*var o = {
-                            command: "operation",
-                            object: "print_order",
-                            sid: MB.User.sid
-                        };
-                        o["ORDER_ID"] = instance.activeId;
-                        sendQueryForObj(o);*/
                     },
                     disabled: function (key, options) {
                         if (countPaidTickets > 0 || countToPaytickets > 0 || countOnRealizationNotPrinted > 0 || countClosedRealizationNotPrinted > 0) {
@@ -508,12 +492,6 @@
                 "printorderEMUL":{
                     html: "<button type='button' id='btn_printorder' class='btn green-stripe custombutton printorder'><i class='fa fa-credit-card'></i> Эмуляция печати </button>",
                     callback:function(){
-                        /*send('print_order',{guid:MB.Core.getUserGuid(),order_id:instance.activeId},function(result){
-                            instance.reload('data');
-
-
-                        });*/
-
                         var o = {
                          command: "operation",
                          object: "print_order_without_printing",

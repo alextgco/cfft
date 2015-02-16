@@ -2,6 +2,23 @@ $(document).on('print',function(e,data){
     if (typeof data!=="object"){
         return false;
     }
+
+    var getPrintInstance = function(callback){
+        if (!MB.User.printInstance){
+            MB.Core.switchModal({
+                type:"content",
+                filename:"printStack",
+                isNew: true,
+                params:{}
+            },function(instanceContent){
+                MB.User.printInstance = instanceContent;
+                callback(MB.User.printInstance);
+            });
+        }else{
+            callback(MB.User.printInstance);
+        }
+    };
+
     var type = data.type;
     switch (type){
         case 'PACK_INFO':
@@ -109,28 +126,29 @@ $(document).on('print',function(e,data){
             });
             break;
         case 'PRINT_START':
-            if (!MB.User.printInstance){
-                MB.Core.switchModal({
-                    type:"content",
-                    filename:"printStack",
-                    isNew: true,
-                    params:{}
-                },function(instanceContent){
-                    MB.User.printInstance = instanceContent;
-                    var tickets = MB.User.printInstance.addItems(data.ticket_stack, true);
-                    console.log('addedItems:', tickets);
-                    /*var item = MB.User.printInstance.removeItem({print_status:'IN_PRINT'},2);
-                    console.log('item',item);*/
-                });
-            }else{
-                MB.User.printInstance.addItems(data.tickets, true, function(tickets){
-                    var tickets = MB.User.printInstance.addItems(data.ticket_stack, true);
-                    console.log('addedItems:', tickets);
-                });
-            }
-
-
-
+            getPrintInstance(function(printInstance){
+                printInstance.addItems(data.ticket_stack, true);
+                printInstance.setPortion(data.portion,true);
+            });
+            break;
+        case 'PRINT_TICKET_RESPONSE':
+            getPrintInstance(function(printInstance){
+                printInstance.updateItem(data.ticket,data.where);
+                printInstance.renderTicket(data.where.order_ticket_id);
+            });
+            break;
+        case 'PRINT_WAIT_NEXT':
+            getPrintInstance(function(printInstance){
+                /*printInstance.updateItem(data.ticket,data.where);
+                printInstance.renderTicket(data.where.order_ticket_id);*/
+            });
+            /*console.log('PRINT_WAIT_NEXT');
+            setTimeout(function(){
+                param = {
+                    command:"PRINT_NEXT_PORTION"
+                };
+                printQuery(param);
+            },2000);*/
             break;
         case 'OK':
             var type = 'success';

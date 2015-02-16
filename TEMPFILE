@@ -1,30 +1,56 @@
-
-   debug - websocket writing 5:::{"name":"log","args":["S: Iqov8qGG6dNlb4Go_Rmh"]}
-execute start <query><where>HALL_ID like decode(NULL,null,&apos;%&apos;,NULL</where><column_name>HALL_SCHEME_ID</column_name><view_name></view_name><command>get</command><object>hall_scheme</object><sid>UeAUAVyZanqgtxlOnJcwLPqpWlZzXGsEsrXyyJCklyjxfRAfDw</sid><in_out_key>Iqov8qGG6dNlb4Go_Rmh</in_out_key></query>
---- oracleDisconnect Всего: 0  Очередь: 0
-20105: Ошибка при попытке получения данных, проверьте параметры запроса ! 19202: Error occurred in XML processing00907: missing right parenthesis
-   debug - websocket writing 5:::{"name":"logBody","args":["20105: Ошибка при попытке получения данных, проверьте параметры запроса ! 19202: Error occurred in XML processing00907: missing right parenthesis"]}
-   debug - websocket writing 5:::{"name":"socketQueryCallback","args":["05A93377-F4AC-43FB-BDAC-A0A099AB4E9C3","{\"results\":[{\"code\":\"20105\",\"object\":\"sys_json\",\"toastr\":{\"type\":\"error\",\"title\":\"ОШИБКА\",\"message\":\"20105: Ошибка при попытке получения данных, проверьте параметры запроса ! 19202: Error occurred in XML processing00907: missing right parenthesis\"}}],\"connection_id\":\"\",\"in_out_key\":\"Iqov8qGG6dNlb4Go_Rmh\"}"]}
-time
-
---- oracleDisconnect Р’СЃРµРіРѕ: 0  РћС‡РµСЂРµРґСЊ: 0
-РќРµР»СЊР·СЏ РёР·РјРµРЅСЏС‚СЊ РЅРѕРјРµСЂ СЂСЏРґР° РґР»СЏ РјРµСЃС‚ РІ СЃС‚Р°С‚СѓСЃРµ RESERVED
-debug: websocket writing 5:::{"name":"action_scheme_for_editor_action_id_766_edit_callbackundefined","args":[{"code":"20105","object":"Main_Int","toastr":{"type":"error","title":"РћРЁР�Р‘РљРђ","message":"РќРµР»СЊР·СЏ РёР·РјРµРЅСЏС‚СЊ РЅРѕРјРµСЂ СЂСЏРґР° РґР»СЏ РјРµСЃС‚ РІ СЃС‚Р°С‚СѓСЃРµ RESERVED"}}]}
-debug: websocket writing 5:::{"name":"action_scheme_for_editor_action_id_766_edit_callbackFullundefined","args":[null]}
-time
-303
-Request from pClient
-pConnect
-debug: websocket writing 5:::{"name":"print","args":[{"type":"PACK_INFO","data":{"Datamax ST-3306":{"TICKET_PACK_ID":"352","TICKET_PACK_NAME":"РђРђ | 46540-46700 (РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ Р‘Р»Р°РЅРєРё)","USER_ID":"310","TICKET_BLANK_ID":"","SCA_SERIES":"РђРђ","START_NO":"46401","FINISH_NO":"46700","SCA_CURRENT_NO":"46540","TICKET_PACK_TYPE":"STANDART"}}}]}
-debug: emitting heartbeat for client vjek_JcQgSZ5PUmdRKYI
-debug: websocket writing 2::
-debug: set heartbeat timeout for client vjek_JcQgSZ5PUmdRKYI
-
-
-
-   debug - websocket writing 5:::{"name":"log","args":["S: Go91sd-iM8fxVqLN6nIb"]}
-execute start <query><where>ACTION_ID in ()</where><client_object>table_action</client_object><command>get</command><object>action</object><sid>NMtDKuiRNqYbnwAGlycrtIMoLrGbUevTwkCSHQLYfjGHPDPXPU</sid><in_out_key>Go91sd-iM8fxVqLN6nIb</in_out_key></query>
---- oracleDisconnect Всего: 0  Очередь: 0
-00936: missing expression
-   debug - websocket writing 5:::{"name":"socketQueryCallback","args":["54B93FF4-1C4A-4D2D-852D-DD7968A041F9B","{\"results\":[{\"code\":\"936\",\"object\":\"sys_json\",\"toastr\":{\"type\":\"error\",\"title\":\"ОШИБКА\",\"message\":\"00936: missing expression\"}}],\"connection_id\":\"\",\"in_out_key\":\"Go91sd-iM8fxVqLN6nIb\"}"]}
-time
+ resultJSON:
+   { data_columns:
+      [ 'CONTRACT_ID',
+        'ORDER_ID',
+        'ORDER_TICKET_ID',
+        'ORDER_DATE_TIME',
+        'ORDER_DATE',
+        'ORDER_STATUS',
+        'ORDER_STATUS_RU',
+        'AGENT_ID',
+        'AGENT_NAME',
+        'AGENT_REALIZATION_ACCESS',
+        'COMMENTS',
+        'CRM_USER_ID',
+        'CRM_USER_NAME',
+        'CRM_USER_PHONE',
+        'CRM_USER_EMAIL',
+        'ACTION_ID',
+        'ACTION_SCHEME_ID',
+        'OKUN',
+        'ACTION',
+        'ACTION_DATE_TIME',
+        'ACTION_DATE',
+        'HALL',
+        'LINE',
+        'LINE_TITLE',
+        'LINE_WITH_TITLE',
+        'PLACE',
+        'PLACE_TITLE',
+        'PLACE_WITH_TITLE',
+        'AREA_GROUP',
+        'STATUS',
+        'STATUS_RU',
+        'TICKET_TYPE',
+        'TICKET_TYPE_RU',
+        'PAYMENT_TYPE',
+        'PAYMENT_TYPE_RU',
+        'PAYMENT_CARD_TYPE_ID',
+        'PAYMENT_CARD_TYPE',
+        'NOMINAL_PRICE',
+        'DISCOUNT',
+        'PRICE',
+        'TICKET_DATE',
+        'RESERVED_TO_DATE',
+        'BARCODE',
+        'SCA_SERIES',
+        'SCA_NUMBER',
+        'CREATED_USER_ID',
+        'USER_FULLNAME',
+        'ORDER_TYPE',
+        'ORDER_TYPE_RU',
+        'PRINT_STATUS',
+        'PRINT_STATUS_RU',
+        'TICKET_ACTION_MARGIN',
+        'TICKET_SERVICE_FEE' ],
+     data: [ [Object] ] },

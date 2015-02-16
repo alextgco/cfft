@@ -37,3 +37,4 @@ node_modules
 log
 oradiag_multibooker
 node/log
+node/node_modules
