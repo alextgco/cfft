@@ -39,7 +39,7 @@
             callback: function () {
                 var sel = tableInstance.ct_instance.selectedRowIndex;
                 var id = tableInstance.data.DATA[sel][tableInstance.data.NAMES.indexOf('HALL_SCHEME_ID')];
-                var titlePrice = tableInstance.data.DATA[sel][tableInstance.data.NAMES.indexOf('PRICE_ZONE')] + ' для ' + tableInstance.data.DATA[sel][tableInstance.data.NAMES.indexOf('NAME')];
+                var titlePrice = tableInstance.data.DATA[sel][tableInstance.data.NAMES.indexOf('FUND_ZONE')] + ' для ' + tableInstance.data.DATA[sel][tableInstance.data.NAMES.indexOf('NAME')];
 
                 socketQuery({
                     command: "get",

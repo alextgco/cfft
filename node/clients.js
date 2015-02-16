@@ -762,7 +762,6 @@ var clients = {
                     clients.sendToClient(client, o2);
                     return;
                 }
-
                 flag = false;
                 client.ticket_stack[i].status = "IN_PRINT";
                 client.ticket_stack[i].printing_ticket = client.ticket_stack[i].shift();

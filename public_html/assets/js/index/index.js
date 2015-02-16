@@ -77,14 +77,20 @@ $(document).ready(function () {
 				title: 'Процесс печати'
 			}
 		});
-		content.create();
+		content.create(function(){
+            content.renderTickets();
+        });
+
 	});
 
     $('.incQuotaCtrl').off('click').on('click', function(){
         MB.Core.switchModal({
-            type: "content",
-            filename: "get_quota",
-            isNew: 'true',
+            type: "form",
+            filename: "form_get_quota",
+            name: "form_get_quota",
+            isNewModal: true,
+            ids: ['new'],
+            master: true,
             params: {
                 title: 'Полчение квоты',
                 label: 'Полчение квоты'

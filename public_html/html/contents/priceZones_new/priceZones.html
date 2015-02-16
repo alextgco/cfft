@@ -55,12 +55,10 @@
             </div>
 
             <div class="content-sidebar-wrapper borTop noPadTop borBotddd excludeHeight posRel">
-                <h5>
                     <span class="fz-title pricing_select">Схема расценки</span>
-                    <span class="change-price-zone-pricing">Изменить</span>
-                    <span class="change-price-zone-pricing"><i class="fa fa-save"></i></span>
-                    <span class="change-price-zone-pricing"><i class="fa fa-refresh"></i></span>
-                </h5>
+                    <span id="pricing_reset_btn" class="change-price-zone-pricing"><i class="fa fa-eraser"></i></span>
+                    <span id="pricing_save_button" class="change-price-zone-pricing"><i class="fa fa-save"></i></span>
+                    <span id="pricing_change_btn" class="change-price-zone-pricing">Изменить</span>
             </div>
 
             <div class="flLeft wid100pr padTopBg">
@@ -75,48 +73,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="pricing_row" id="">
-                                <td>
-                                    asdsad
-                                </td>
-                                <td>
-                                    12
-                                </td>
-                                <td>
-                                    <input type="text" />
-                                </td>
-                                <td>
-                                    1200
-                                </td>
-                            </tr>
-                            <tr class="pricing_row" id="">
-                                <td>
-                                    asdsad df;ds;f ;djsf;
-                                </td>
-                                <td>
-                                    12
-                                </td>
-                                <td>
-                                    <input type="text" />
-                                </td>
-                                <td>
-                                    1200
-                                </td>
-                            </tr>
-                            <tr class="pricing_row" id="">
-                                <td>
-                                    asdsad
-                                </td>
-                                <td>
-                                    12
-                                </td>
-                                <td>
-                                    <input type="text" />
-                                </td>
-                                <td>
-                                    1200
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
 
@@ -126,7 +82,7 @@
             <div class="flLeft wid100pr excludeHeight">
                 <div class="fundZones-switch-content-links wid100pr flLeft">
                     <div class="go-to-fund-zones pr50"><i class="fa fa-th"></i>&nbsp;&nbsp;К схеме распределения</div>
-                    <div class="go-to-price-groups pr50"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;К ценовм группам</div>
+                    <div class="go-to-price-groups pr50"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;К ценовым группам</div>
                 </div>
             </div>
 
@@ -134,136 +90,136 @@
     </div>
 </div>
 
-<div class="rightColumnInner flLeft" style="display: none">
-    <div class="newPortlet flLeft">
-        <div class="newPortletTitle">
-            <div class="newPortletTitleInner">
-                <div class="newPortletTitleHeadline flLeft" id="hall_scheme_pricezone"></div>
+<!--<div class="rightColumnInner flLeft" style="display: none">-->
+    <!--<div class="newPortlet flLeft">-->
+        <!--<div class="newPortletTitle">-->
+            <!--<div class="newPortletTitleInner">-->
+                <!--<div class="newPortletTitleHeadline flLeft" id="hall_scheme_pricezone"></div>-->
 
-                <button type="button" class="btn btn-default linkBtn marTopUn3" id="hall_scheme_pricezone_btn">
-                    <i class="fa fa-edit"></i>&nbsp;&nbsp;Изменить
-                </button>
-            </div>
-        </div>
-        <div class="newPortletContent">
+                <!--<button type="button" class="btn btn-default linkBtn marTopUn3" id="hall_scheme_pricezone_btn">-->
+                    <!--<i class="fa fa-edit"></i>&nbsp;&nbsp;Изменить-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="newPortletContent">-->
 
-            <div class="padder5">
-                <label class="smallGery">
-                    <input type="checkbox" class="showOnlyUsed"> Показать только использованные
-                </label>
-            </div>
+            <!--<div class="padder5">-->
+                <!--<label class="smallGery">-->
+                    <!--<input type="checkbox" class="showOnlyUsed"> Показать только использованные-->
+                <!--</label>-->
+            <!--</div>-->
 
-            <div class="padder5">
-                <div class="btn-group">
-                    <div id="clear_btn" class="btn btn-default newStyle"><i class="fa fa-refresh"></i> Очистить</div>
-                </div>
-            </div>
+            <!--<div class="padder5">-->
+                <!--<div class="btn-group">-->
+                    <!--<div id="clear_btn" class="btn btn-default newStyle"><i class="fa fa-refresh"></i> Очистить</div>-->
+                <!--</div>-->
+            <!--</div>-->
 
-            <div class="newPortletContentInner scrollable">
-                <ul id="for_price_groups" class="newUl selectable hoverable">
+            <!--<div class="newPortletContentInner scrollable">-->
+                <!--<ul id="for_price_groups" class="newUl selectable hoverable">-->
 
-                </ul>
-            </div>
-            <div class="padder5">
-                <table class="table infoTable smallTable">
-                    <thead>
-                    <tr>
-                        <th>Всего мест</th>
-                        <th>Выбрано</th>
-                        <th>Свободно</th>
-                        <!--<th>Исключено</th>-->
-                    </tr>
-                    </thead>
-                    <tbody id="for_fundZoneInfo">
-                    <tr>
-                        <td class="highlight TOTAL_PLACE_COUNT" id="TOTAL_PLACE_COUNT"></td>
-                        <td class="highlight TOTAL_SELECTED_PLACE_COUNT" id="TOTAL_SELECTED_PLACE_COUNT"></td>
-                        <td class="highlight TOTAL_NOT_SELECTED_PLACE_COUNT" id="TOTAL_NOT_SELECTED_PLACE_COUNT"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="padder5">-->
+                <!--<table class="table infoTable smallTable">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th>Всего мест</th>-->
+                        <!--<th>Выбрано</th>-->
+                        <!--<th>Свободно</th>-->
+                        <!--&lt;!&ndash;<th>Исключено</th>&ndash;&gt;-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody id="for_fundZoneInfo">-->
+                    <!--<tr>-->
+                        <!--<td class="highlight TOTAL_PLACE_COUNT" id="TOTAL_PLACE_COUNT"></td>-->
+                        <!--<td class="highlight TOTAL_SELECTED_PLACE_COUNT" id="TOTAL_SELECTED_PLACE_COUNT"></td>-->
+                        <!--<td class="highlight TOTAL_NOT_SELECTED_PLACE_COUNT" id="TOTAL_NOT_SELECTED_PLACE_COUNT"></td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
 
-        </div>
-    </div>
+        <!--</div>-->
+    <!--</div>-->
 
 
-    <div class="newPortlet flLeft marTop10">
-        <div class="newPortletTitle">
-            <div class="newPortletTitleInner">
-                <div class="newPortletTitleHeadline flLeft inlineEditing" id="pricing_select"></div>
+    <!--<div class="newPortlet flLeft marTop10">-->
+        <!--<div class="newPortletTitle">-->
+            <!--<div class="newPortletTitleInner">-->
+                <!--<div class="newPortletTitleHeadline flLeft inlineEditing" id="pricing_select"></div>-->
 
-                <button type="button" class="btn btn-default linkBtn marTopUn3" id="pricing_select_btn">
-                    <i class="fa fa-edit"></i>&nbsp;&nbsp;Изменить
-                </button>
-            </div>
-        </div>
-        <div class="newPortletContent">
-            фывфвфывфыв
-            <div class="newPortletContentInner scrollable">
-                <div class="padder5">
-                    <table class="table sidebar-content-table">
-                        <thead>
-                        <tr>
-                            <th>
-                                Пояс2343
-                            </th>
-                            <th>
-                                Кол-во
-                            </th>
-                            <th>
-                                Стоимость
-                            </th>
-                            <th>
-                                Сумма
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody id="for_pricing_row">
-                        <tr class="pricing_row" id="pricing_row183">
+                <!--<button type="button" class="btn btn-default linkBtn marTopUn3" id="pricing_select_btn">-->
+                    <!--<i class="fa fa-edit"></i>&nbsp;&nbsp;Изменить-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="newPortletContent">-->
+            <!--фывфвфывфыв-->
+            <!--<div class="newPortletContentInner scrollable">-->
+                <!--<div class="padder5">-->
+                    <!--<table class="table sidebar-content-table">-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th>-->
+                                <!--Пояс2343-->
+                            <!--</th>-->
+                            <!--<th>-->
+                                <!--Кол-во-->
+                            <!--</th>-->
+                            <!--<th>-->
+                                <!--Стоимость-->
+                            <!--</th>-->
+                            <!--<th>-->
+                                <!--Сумма-->
+                            <!--</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody id="for_pricing_row">-->
+                        <!--<tr class="pricing_row" id="pricing_row183">-->
 
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!--<ul id="for_price_groups" class="newUl selectable hoverable">
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;<ul id="for_price_groups" class="newUl selectable hoverable">-->
 
-                </ul>-->
-            </div>
+                <!--</ul>&ndash;&gt;-->
+            <!--</div>-->
 
-            <div class="padder5">
-                <div id="pricing_global_amount" class="global_amount"></div>
-            </div>
+            <!--<div class="padder5">-->
+                <!--<div id="pricing_global_amount" class="global_amount"></div>-->
+            <!--</div>-->
 
-            <div class="padder5">
+            <!--<div class="padder5">-->
 
-                <div class="btn-group btn-group-justified newStyle marBot10 flLeft">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default newStyle" id="pricing_save_btn"><i class="fa fa-save"></i>&nbsp;&nbsp;Сохранить</button>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default newStyle" id="pricing_reset_btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Сбросить</button>
-                    </div>
-                </div>
-                <!--<button type="button" class="btn btn-default pricing_btn" id="pricing_save_btn"><i class="fa fa-cogs"></i> Сохранить</button>
-                <button type="button" class="btn btn-default pricing_btn" id="pricing_reset_btn"><i class="fa fa-cogs"></i> Сбросить</button>-->
-            </div>
+                <!--<div class="btn-group btn-group-justified newStyle marBot10 flLeft">-->
+                    <!--<div class="btn-group">-->
+                        <!--<button type="button" class="btn btn-default newStyle" id="pricing_save_btn"><i class="fa fa-save"></i>&nbsp;&nbsp;Сохранить</button>-->
+                    <!--</div>-->
+                    <!--<div class="btn-group">-->
+                        <!--<button type="button" class="btn btn-default newStyle" id="pricing_reset_btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Сбросить</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;<button type="button" class="btn btn-default pricing_btn" id="pricing_save_btn"><i class="fa fa-cogs"></i> Сохранить</button>-->
+                <!--<button type="button" class="btn btn-default pricing_btn" id="pricing_reset_btn"><i class="fa fa-cogs"></i> Сбросить</button>&ndash;&gt;-->
+            <!--</div>-->
 
-        </div>
-    </div>
+        <!--</div>-->
+    <!--</div>-->
 
-    <!--BUTTONS-->
+    <!--&lt;!&ndash;BUTTONS&ndash;&gt;-->
 
-    <div class="btn-group btn-group-justified newStyle marTop10 marBot10 flLeft">
-        <div class="btn-group">
-            <button type="button" class="btn btn-default newStyle" id="toFundsZones"><i class="fa fa-tasks"></i>&nbsp;&nbsp;К&nbsp;схеме&nbsp;распределения</button>
-        </div>
-        <div class="btn-group">
-            <button type="button" class="btn btn-default newStyle" id="toPriceGroups"><i class="fa fa-briefcase"></i>&nbsp;&nbsp;К&nbsp;ценовым&nbsp;группам</button>
-        </div>
-    </div>
+    <!--<div class="btn-group btn-group-justified newStyle marTop10 marBot10 flLeft">-->
+        <!--<div class="btn-group">-->
+            <!--<button type="button" class="btn btn-default newStyle" id="toFundsZones"><i class="fa fa-tasks"></i>&nbsp;&nbsp;К&nbsp;схеме&nbsp;распределения</button>-->
+        <!--</div>-->
+        <!--<div class="btn-group">-->
+            <!--<button type="button" class="btn btn-default newStyle" id="toPriceGroups"><i class="fa fa-briefcase"></i>&nbsp;&nbsp;К&nbsp;ценовым&nbsp;группам</button>-->
+        <!--</div>-->
+    <!--</div>-->
 
-</div>
+<!--</div>-->
 
 
 <!--<!DOCTYPE html>-->
@@ -462,7 +418,6 @@
                 <!--</div>-->
 
             <!--</div>-->
-            <!--<div id="pricing_save_btn">Сохранить</div>-->
             <!--<div id="pricing_reset_btn">Сбросить</div>-->
             <!--<div id="pricing_global_amount"></div>-->
 

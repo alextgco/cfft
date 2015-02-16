@@ -258,70 +258,12 @@
 						filename: objectname.substr(objectname.indexOf("_") + 1, objectname.length - 1)
 					});
 				} else if (pagetype === "table") {
-                    if(1==1){
-//                        liId == 'menu_action_new_table' ||
-//                        liId == 'menu_order_new_table' ||
-//                        liId == 'menu_order_ticket_new_table' ||
-//                        liId == 'menu_order_realization' ||
-//                        liId == 'menu_fund_group' ||
-//                        liId == 'menu_crm_user' ||
-//                        liId == 'menu_order_ticket_casher' ||
-//                        liId == 'menu_active_action' ||
-//                        liId == 'menu_active_subscription' ||
-//                        liId == 'menu_order_for_casher' ||
-//                        liId == 'menu_order_web_overview' ||
-//                        liId == 'menu_order_ticket_web_overview' ||
-//                        liId == 'menu_price_group' ||
-//                        liId == 'menu_hall_addresses' ||
-//                        liId == 'menu_hall' ||
-//                        liId == 'menu_age_category' ||
-//                        liId == 'menu_action_scheme_place_color' ||
-//                        liId == 'menu_ticket_pack_type' ||
-//                        liId == 'menu_show_type' ||
-//                        liId == 'menu_show_genre' ||
-//                        liId == 'menu_agent_class' ||
-//                        liId == 'menu_payment_card_type' ||
-//                        liId == 'menu_ticket_defect_type' ||
-//                        liId == 'menu_ticket_pack' ||
-//                        liId == 'menu_ticket_pack_hist' ||
-//                        liId == 'menu_hall_scheme' ||
-//                        liId == 'menu_agent' ||
-//                        liId == 'menu_show_ogranizer' ||
-//                        liId == 'menu_show_ticket_supplier' ||
-//                        liId == 'menu_ticket_defective' ||
-//                        liId == 'menu_ticket' ||
-//                        liId == 'menu_sale_site' ||
-//                        liId == 'menu_sale_frame' ||
-//                        liId == 'menu_sale_frame_action' ||
-//                        liId == 'menu_intergation_gateways' ||
-//                        liId == 'menu_intergation_log' ||
-//                        liId == 'menu_user' ||
-//                        liId == 'menu_role_section' ||
-//                        liId == 'menu_edit_menu' ||
-//                        liId == 'menu_sys_parameter' ||
-//                        liId == 'menu_company' ||
-//                        liId == 'menu_contract' ||
-//                        liId == 'menu_cash_desk' ||
-//                        liId == 'menu_current_actions' ||
-//                        liId == 'menu_role' ||
-//                        liId == 'menu_report_archive' ||
-//                        liId == 'menu_object_profile' ||
-//                        liId == 'menu_intergation_actions'
-
-                            //<query><command>get</command><object>user_profile</object><client_object>form_object_profile</client_object><sid>kTvHxVPLJWuEBetwpAkAznABrwjBweUBEYUhyLMHvNxwLRfwXS</sid><in_out_key>VU6zNjkV3J0Z9Wlumpes</in_out_key></query>
-
                         MB.Core.spinner.start($('.page-content-wrapper'));
                         return MB.Core.switchPage({
                             type: "table",
                             name: objectname,
                             isNewTable: true
                         });
-                    }else{
-                        return MB.Core.switchPage({
-                            type: "table",
-                            name: objectname
-                        });
-                    }
 				} else if (pagetype === "modalmini") {
                     if(liId == 'menu_generate_repertuar'){
                         return MB.Core.switchPage({

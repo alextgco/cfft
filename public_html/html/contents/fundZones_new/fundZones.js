@@ -353,6 +353,7 @@
             var ul = contentWrapper.find('.fundZones-funds-list');
 
             ul.find('li').off('click').on('click', function(){
+                console.log(this);
 
                 var id = $(this).data('id');
                 var fz_id = $(this).data('fz-id');
@@ -379,6 +380,7 @@
 
     fundZones.load(function(){
         fundZones.render();
+        console.log('lol');
     });
 
 
@@ -408,21 +410,24 @@
 	//Очистить
 	contentWrapper.find(".clear_tickets_stack").off('click').on('click', function () {
 		bootbox.dialog({
-			message: "Вы уверены что хотите отменить выбор мест?",
+			message: "Вы уверены что хотите очистить все места?",
 			title: "",
 			buttons: {
 				yes_btn: {
 					label: "Да, уверен",
 					className: "green",
 					callback: function () {
-//						tickets_stack.clear_blocked_place();
-					}
-				},
-				yes_to_all: {
-					label: "Да, для всех залов",
-					className: "red",
-					callback: function () {
-//						tickets_stack.clear_blocked_placeAll();
+                        MB.Core.sendQuery({command:"operation",object:"fill_fund_zone_by_fund_group",sid:sid,params:{
+                            fund_zone_id:environment.fund_zone_id,
+                            fund_group_id:"",
+                            all:1
+                        }},function(){
+                            one_action_map.reLoad(function () {
+                                fundZones.load(function(){
+                                    fundZones.render();
+                                });
+                            });
+                        });
 					}
 				},
 				cancel: {
@@ -443,16 +448,79 @@
 	});
 	//Выбрать все
 	contentWrapper.find(".block_all_places").off('click').on('click', function () {
-//		tickets_stack.block_all_places();
+        var selected = contentWrapper.find('.fundZones-funds-list li.selected');
+        if (selected.length) {
+            bootbox.dialog({
+                message: "Раскрасить все этим поясом?",
+                title: "",
+                buttons: {
+                    all_place: {
+                        label: "Да, все места",
+                        className: "green",
+                        callback: function() {
+                            socketQuery({command:"operation",object:"fill_fund_zone_by_fund_group",params:{
+                                fund_zone_id: environment.fund_zone_id,
+                                fund_group_id: selected.attr('data-id'),
+                                all:1
+                            }},function(r){
+                                console.log(r);
+                                one_action_map.reLoad(function () {
+                                    fundZones.load(function(){
+                                        fundZones.render();
+                                    });
+                                });
+                            });
+                        }
+                    },
+                    free_only: {
+                        label: "Только свободные",
+                        className: "yellow",
+                        callback: function() {
+                            socketQuery({command:"operation",object:"fill_fund_zone_by_fund_group",params:{
+                                fund_zone_id:environment.fund_zone_id,
+                                fund_group_id:selected.attr('data-id'),
+                                all:0
+                            }},function(r){
+                                console.log(r);
+                                one_action_map.reLoad(function () {
+                                    fundZones.load(function(){
+                                        fundZones.render();
+                                    });
+                                });
+                            });
+                        }
+                    },
+                    cancel: {
+                        label: "Отмена",
+                        className: "blue",
+                        callback: function() {}
+                    }
+                }
+            });
+        } else {
+            bootbox.dialog({
+                message: "Выберите хотя бы один пояс",
+                title: "",
+                buttons: {
+                    cancel: {
+                        label: "ОК",
+                        className: "blue",
+                        callback: function () {
+
+                        }
+                    }
+                }
+            });
+        }
 	});
     //Скрыть / показать неиспользуемые фонды
     contentWrapper.find('.toggleUnusedFunds').off('click').on('click', function(){
         if($(this).hasClass('active')){
             showUnused = false;
-            $(this).removeClass('active').html('<i class="fa fa-eye"></i>&nbsp;&nbsp;Показать неиспользуемые фонды');
+            $(this).removeClass('active').html('<i class="fa fa-eye-slash"></i>&nbsp;&nbsp;Показать неиспользуемые пояса');
         }else{
             showUnused = true;
-            $(this).addClass('active').html('<i class="fa fa-eye-slash"></i>&nbsp;&nbsp;Cкрть неиспользуемые фонды');
+            $(this).addClass('active').html('<i class="fa fa-eye"></i>&nbsp;&nbsp;Cкрть неиспользуемые пояса');
         }
         fundZones.load(function(){
             fundZones.render();

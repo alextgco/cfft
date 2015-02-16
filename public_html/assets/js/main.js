@@ -747,7 +747,7 @@
       return MB.Modal.$modalslist.find("[data-object='" + name + "']").addClass("activeitem");
     };
     MB.Core.switchModal = function(options, cb) {
-      var content, created, form;
+      var content, created, form, master;
       if (options.isNewModal) {
         form = new MB.FormN(options);
         form.create(function(instance) {
@@ -758,6 +758,15 @@
         });
       }
       if (options.type) {
+        if (options.type === "master" && options.filename) {
+          master = new MB.Master(options);
+          created = master.create(function(createdInstance) {
+            if (typeof cb === 'function') {
+              return cb(createdInstance);
+            }
+          });
+          return created;
+        }
         if (options.type === "content" && options.filename) {
           if (options.isNew) {
             content = new MB.ContentNew(options);

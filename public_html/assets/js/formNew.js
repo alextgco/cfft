@@ -19,6 +19,7 @@
         this.changes = [];
         this.tblInstances = [];
         this.params = params.params || {};
+        this.isMaster = params.master || false;
     };
 
     MB.FormsConstructor.prototype.addForm = function(form){
@@ -1000,13 +1001,12 @@
             if(_t.tblInstances.length > 0){
 
                 if(_t.changes.length > 0){
-                    _t.save(function(){
-                        _t.reload();
+                    _t.save(function(success){
+                        if(success){
+                            _t.reload();
+                        }
                     });
                 }
-
-                //console.log('saveMe', _t.tblInstances);
-
                 for(var ins in _t.tblInstances){
                     if(_t.tblInstances[ins].ct_instance.changes.length > 0){
                         _t.tblInstances[ins].save(function(){
@@ -1018,8 +1018,10 @@
             }else{
                 if(_t.changes.length > 0){
                     if(_t.changes.length > 0){
-                        _t.save(function(){
-                            _t.reload();
+                        _t.save(function(success){
+                            if(success){
+                                _t.reload();
+                            }
                         });
                     }
                 }
@@ -1178,6 +1180,162 @@
             MB.Forms.removeForm(_t.id);
         });
 
+
+        //master
+        if(_t.isMaster){
+
+            var m_wrap = wrapper.find('.master-wrapper');
+            var m_vis = wrapper.find('.master-vis');
+            var m_train = wrapper.find('.master-train');
+            var m_steps = wrapper.find('.master-step');
+            var m_fwd = wrapper.find('.master-step-fwd');
+            var m_back = wrapper.find('.master-step-back');
+            var m_finish = wrapper.find('.master-finish');
+            var stepsCount = m_steps.length;
+
+            m_train.css('width', stepsCount * 100 + '%');
+            m_steps.css('width', 100 / stepsCount + '%');
+            m_wrap.animate({opacity: 1},100);
+
+            function updateVariables(){
+                m_wrap = wrapper.find('.master-wrapper');
+                m_vis = wrapper.find('.master-vis');
+                m_train = wrapper.find('.master-train');
+                m_steps = wrapper.find('.master-step');
+                m_fwd = wrapper.find('.master-step-fwd');
+                m_back = wrapper.find('.master-step-back');
+                m_finish = wrapper.find('.master-finish');
+                stepsCount = m_steps.length;
+            }
+
+            function disableButtons(){
+                var activeStep = wrapper.find('.master-step.active');
+                var activeIdx = parseInt(activeStep.data('step'));
+
+                m_back.removeClass('disabled');
+                m_fwd.removeClass('disabled');
+                m_finish.removeClass('disabled');
+
+                console.log(activeIdx, stepsCount);
+
+                if(activeIdx == 0){
+                    m_back.addClass('disabled');
+                    m_finish.addClass('disabled');
+                }else if(activeIdx == stepsCount-1){
+
+                    m_fwd.addClass('disabled');
+                }else{
+                    m_finish.addClass('disabled');
+                }
+            }
+
+            disableButtons();
+
+            m_fwd.off('click').on('click', function(){
+
+                if($(this).hasClass('disabled')){ return; }
+                if(_t.activeId == 'new' && _t.changes.length == 0){
+                    toastr['warning']('Заполните обязательные поля');
+                    return;
+                }
+
+                var activeStep = wrapper.find('.master-step.active');
+                var activeIdx = parseInt(activeStep.data('step'));
+
+                function saveStep(cb){
+
+                    console.log('CHANGES LENGTH', _t.changes.length);
+
+                    if(_t.tblInstances.length > 0){
+                        if(_t.changes.length > 0){
+                            _t.save(function(success){
+                                if(success){
+                                    if(typeof cb == 'function'){
+                                        cb();
+                                    }
+                                }
+                            });
+                        }else{
+                            if(typeof cb == 'function'){
+                                cb();
+                            }
+                        }
+                        for(var ins in _t.tblInstances){
+                            if(_t.tblInstances[ins].ct_instance.changes.length > 0){
+                                _t.tblInstances[ins].save(function(){
+                                    _t.tblInstances[ins].reload();
+                                    _t.reload(function(){
+//                                        updateVariables();
+//
+//                                        console.log(m_train);
+//
+//                                        m_train.animate({
+//                                            marginLeft: '-' + (activeIdx+1) * 100 + '%'
+//                                        }, 350, function(){
+//
+//                                        });
+//                                        activeStep.removeClass('active');
+//                                        activeStep.next().addClass('active');
+//                                        disableButtons();
+//                                        if(typeof cb == 'function'){
+//                                            cb();
+//                                        }
+                                    });
+                                });
+                            }
+                        }
+                    }else{
+                        if(_t.changes.length > 0){
+                            _t.save(function(success){
+                                if(success){
+                                    if(typeof cb == 'function'){
+                                        cb();
+                                    }
+                                }
+                            });
+                        }else{
+                            if(typeof cb == 'function'){
+                                cb();
+                            }
+                        }
+                    }
+                }
+
+
+                saveStep(function(){
+                    m_train.animate({
+                        marginLeft: '-' + (activeIdx+1) * 100 + '%'
+                    }, 350, function(){
+
+                    });
+                    activeStep.removeClass('active');
+                    activeStep.next().addClass('active');
+                    disableButtons();
+                    _t.getData();
+                });
+            });
+
+            m_back.off('click').on('click', function(){
+
+                if($(this).hasClass('disabled')){ return; }
+
+                var activeStep = wrapper.find('.master-step.active');
+                var activeIdx = parseInt(activeStep.data('step'));
+
+                m_train.animate({
+                    marginLeft: '-' + (activeIdx-1) * 100 + '%'
+                }, 350, function(){
+
+                });
+                activeStep.removeClass('active');
+                activeStep.prev().addClass('active');
+                disableButtons();
+            });
+        }
+
+
+
+
         if(typeof callback == 'function'){
             callback();
         }
@@ -1200,7 +1358,7 @@
             var modalInstance = MB.Core.modalWindows.windows.getWindow(_t.modalId);
             $(_t).trigger('update');
             if(typeof callback == 'function'){
-                callback();
+                callback(totalError == 0);
             }
         }
 

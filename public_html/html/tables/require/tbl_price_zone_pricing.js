@@ -1,54 +1,98 @@
 (function () {
-    var instance = MB.O.tables["tbl_price_zone_pricing"];
-    instance.custom = function (callback) {
-        var form =  MB.O.forms["form_price_zone_pricing"];
 
-        var handsontableInstance = instance.$container.find(".handsontable").handsontable("getInstance");
-        handsontableInstance.updateSettings({contextMenu: false});
+    var tableInstance = MB.Tables.getTable(MB.Tables.justLoadedId);
+    tableInstance.ct_instance.ctxMenuData = [
+        {
+            name: 'option1',
+            title: 'Выбрать',
+            disabled: function(){
+                return false;
+            },
+            callback: function(){
+                var id = tableInstance.data.DATA[tableInstance.ct_instance.selectedRowIndex][tableInstance.data.NAMES.indexOf(tableInstance.profile['OBJECT_PROFILE']['PRIMARY_KEY'])];
+                var title = tableInstance.data.DATA[tableInstance.ct_instance.selectedRowIndex][tableInstance.data.NAMES.indexOf('NAME')];
 
-        handsontableInstance.updateSettings({
-            contextMenu: {
-                callback: function(key, options) {
-                    var arr, data, handsontableInstance, i, value, _i, _len;
-                    var handsontableInstance = instance.$container.find(".handsontable").handsontable("getInstance");
-                    var selectedRows = MB.Table.getSelectedRowsInterval(handsontableInstance);
-                    var i = selectedRows[0];
-                    var id = instance.data.data[i][instance.data.names.indexOf(instance.profile.general.primarykey)];
-                    switch(key){
-                        case "select":
-
-                            form.tblcallbacks.select.callback(id);
-
-                            break;
-                        case "setAsDefault":
-                            var  o = {
-                                command: "operation",
-                                object: "set_price_zone_pricing_default",
-                                sid: MB.User.sid
-                            };
-                            o[instance.profile.general.primarykey] = id;
-                            MB.Core.sendQuery(o, function (res) {
-                                toastr.success("Схема распределения #" + id + " установлена по умолчанию для схемы зала #" + instance.parentkeyvalue + " успешно!", "custom func");
-                                instance.reload("data");
-                            });
-
-                            break;
-                    }
-
-                },
-                items: {
-                    select: {
-                        name: "Выбрать"
-                    },
-                    setAsDefault: {
-                        name: "Установить по умолчанию"
-                    }
-                }
+                tableInstance.parentObject.params.setPricingZoneSchemeCb(id, title);
             }
-        });
-        callback();
-    };
+        },
+        {
+            name: 'option2',
+            title: 'Сделать схемой по умолчанию',
+            disabled: function(){
+                return false;
+            },
+            callback: function(){
+                var row = tableInstance.ct_instance.selectedRowIndex;
+                var  o = {
+                    command: "operation",
+                    object: "set_price_zone_pricing_default"
+                };
+                var id = tableInstance.data.data[row][tableInstance.data.names.indexOf(tableInstance.profile.general.primarykey)];
+                o[tableInstance.profile.general.primarykey] = id;
+                socketQuery(o, function (res) {
+                    res = JSON.parse(res)['results'][0];
+                    var to = res['toastr'];
+                    toastr[to['type']](to['message']);
+                    tableInstance.reload();
+                });
+            }
+        }
+    ];
+
 }());
+
+
+//(function () {
+//    var instance = MB.O.tables["tbl_price_zone_pricing"];
+//    instance.custom = function (callback) {
+//        var form =  MB.O.forms["form_price_zone_pricing"];
+//
+//        var handsontableInstance = instance.$container.find(".handsontable").handsontable("getInstance");
+//        handsontableInstance.updateSettings({contextMenu: false});
+//
+//        handsontableInstance.updateSettings({
+//            contextMenu: {
+//                callback: function(key, options) {
+//                    var arr, data, handsontableInstance, i, value, _i, _len;
+//                    var handsontableInstance = instance.$container.find(".handsontable").handsontable("getInstance");
+//                    var selectedRows = MB.Table.getSelectedRowsInterval(handsontableInstance);
+//                    var i = selectedRows[0];
+//                    var id = instance.data.data[i][instance.data.names.indexOf(instance.profile.general.primarykey)];
+//                    switch(key){
+//                        case "select":
+//
+//                            form.tblcallbacks.select.callback(id);
+//
+//                            break;
+//                        case "setAsDefault":
+//                            var  o = {
+//                                command: "operation",
+//                                object: "set_price_zone_pricing_default",
+//                                sid: MB.User.sid
+//                            };
+//                            o[instance.profile.general.primarykey] = id;
+//                            MB.Core.sendQuery(o, function (res) {
+//                                toastr.success("Схема распределения #" + id + " установлена по умолчанию для схемы зала #" + instance.parentkeyvalue + " успешно!", "custom func");
+//                                instance.reload("data");
+//                            });
+//
+//                            break;
+//                    }
+//
+//                },
+//                items: {
+//                    select: {
+//                        name: "Выбрать"
+//                    },
+//                    setAsDefault: {
+//                        name: "Установить по умолчанию"
+//                    }
+//                }
+//            }
+//        });
+//        callback();
+//    };
+//}());
 
 
 /*(function () {

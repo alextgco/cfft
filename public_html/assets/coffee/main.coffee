@@ -624,6 +624,12 @@ $(".synchronize").on "click", ->
 				if typeof cb is 'function'
 					cb(instance)
 		if options.type
+			if options.type is "master" and options.filename
+				master = new MB.Master(options)
+				created = master.create (createdInstance) ->
+					if typeof cb is 'function'
+						cb(createdInstance)
+				return created
 			if options.type is "content" and options.filename
 				if options.isNew
 					content = new MB.ContentNew(options)

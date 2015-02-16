@@ -3905,7 +3905,19 @@ table.table.content-sidebar-table {
 .printStack-tickets-list {
 	margin: 0;
 	padding: 0;
+    float: left;
 }
+
+.printStack-tickets-pages-vis{
+    float: left;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.printStack-tickets-pages-train{
+    float: left;
+}
+
 
 .printStack-tickets-list li {
 	list-style: none;
@@ -3946,7 +3958,7 @@ table.table.content-sidebar-table {
 }
 
 .printStack-ticket-place {
-	width: 70px;
+	width: 250px;
 }
 
 .printStack-ticket-status {
@@ -4271,15 +4283,25 @@ table.table.content-sidebar-table {
 }
 
 .change-price-zone-pricing{
-    position: absolute;
+    float: right;
     height: 100%;
-    top: 0;
-    right: 0;
     padding: 10px 15px 10px 15px;
     cursor: pointer;
 }
+.change-price-zone-pricing.active {
+	background: rgba(119, 232, 151, 1)
+}
 .change-price-zone-pricing:hover{
     background-color: #ededed;
+}
+.change-price-zone-pricing.active:hover {
+	background: rgb(168, 232, 189)
+}
+
+.pricing_select {
+	float: left;
+	height: 100%;
+	padding: 10px 15px 10px 15px;
 }
 
 .hideUnused-wrapper{
@@ -4437,4 +4459,124 @@ table.table.content-sidebar-table {
     background-color: #fff;
     width: 100%;
     outline: 0;
+}
+
+.price-zone-pricing-wrapper {
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.price-zone-pricing-wrapper::-webkit-scrollbar {
+	width: 7px;
+}
+
+.price-zone-pricing-wrapper::-webkit-scrollbar-track {
+	background-color: #eee;
+}
+
+.price-zone-pricing-wrapper::-webkit-scrollbar-thumb {
+	background-color: #cacaca;
+}
+
+.price-zone-pricing-wrapper td:nth-child(1) {
+	white-space: nowrap;
+	width: 45%;
+	max-width: 45%;
+}
+.price-zone-pricing-wrapper td:nth-child(2) {
+	width: 12%;
+	max-width: 12%;
+	min-width: 50;
+}
+.price-zone-pricing-wrapper td:nth-child(4) {
+	width: 15%;
+	max-width: 15%;
+}
+
+.printStack-tickets-list-wrapper{
+	padding: 10px;
+}
+.printStack-pagination-wrapper{
+	float: left;
+	margin-top: 20px;
+}
+.printStack-pagination{
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+.printStack-pagination li{
+	list-style: none;
+	float: left;
+	padding: 7px 14px;
+	background-color: #FBFBFB;
+	border: 1px solid #EBEBEB;
+	color: #333;
+	text-align: center;
+	cursor: pointer;
+}
+.printStack-pagination li:hover{
+	background-color: #ededed;
+}
+.printStack-pagination li.active{
+	color: #fff;
+	background-color: rgb(36, 125, 203);
+}
+.printStack-pagination li.active:hover{
+	background-color: rgb(36, 125, 203);
+}
+
+.pad35lr{
+	padding-left: 35px;
+	padding-right: 35px;
+}
+.uploadHere-header{
+	background-color: #fff;
+	position: relative;
+	z-index: 10;
+	padding-bottom: 7px;
+	border-bottom: 1px solid #e8e8e8;
+}
+.uploadHere{
+	background-color: rgb(247, 247, 247);
+	color: #696969;
+	font-family: opensanssemibold,arial, sans-serif;
+	font-size: 28px;
+	position: relative;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	z-index: 9;
+	float: left;
+}
+.uploadHere-label{
+	padding-top: 110px;
+	float: left;
+	width: 100%;
+	font-family: OpenSansLight, arial, sans-serif;
+}
+
+
+
+.uploadHere.hover {
+	background: #ddd;
+	border-color: #aaa;
+}
+
+.uploadHere.error {
+	background: #faa;
+	border-color: #f00;
+}
+
+.uploadHere.drop {
+	background: #afa;
+	border-color: #0f0;
+}
+.uploadedQuota-wrapper{
+	width: 0;
+	position: relative;
+	float: left;
+	height: 100%;
+	background-color: #e4fffa;
 }
