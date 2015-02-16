@@ -1,0 +1,3 @@
+[Mon Jun 09 14:25:10 2014] [error] [client 192.168.1.139] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Mon Jun 09 14:25:10 2014] [error] [client 192.168.1.139] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Tue Jun 10 18:00:42 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico

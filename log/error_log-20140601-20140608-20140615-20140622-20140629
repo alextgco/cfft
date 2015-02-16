@@ -1,0 +1,234 @@
+[Wed May 28 11:36:52 2014] [error] [client 192.168.1.37] attempt to invoke directory as script: /var/www/multibooker/cgi-bin/
+[Wed May 28 11:36:53 2014] [error] [client 192.168.1.37] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed May 28 11:36:53 2014] [error] [client 192.168.1.37] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed May 28 11:37:16 2014] [error] [client 192.168.1.37] File does not exist: /var/www/multibooker/public_html/cgi-bin-skd
+[Wed May 28 11:38:00 2014] [error] [client 192.168.1.37] attempt to invoke directory as script: /var/www/multibooker/cgi-bin-skd/
+[Wed May 28 11:38:00 2014] [error] [client 192.168.1.37] attempt to invoke directory as script: /var/www/multibooker/cgi-bin-skd/
+[Wed May 28 11:38:01 2014] [error] [client 192.168.1.37] attempt to invoke directory as script: /var/www/multibooker/cgi-bin-skd/
+[Wed May 28 11:38:01 2014] [error] [client 192.168.1.37] attempt to invoke directory as script: /var/www/multibooker/cgi-bin-skd/
+[Wed May 28 11:38:01 2014] [error] [client 192.168.1.37] attempt to invoke directory as script: /var/www/multibooker/cgi-bin-skd/
+[Wed May 28 11:38:37 2014] [error] [client 192.168.1.37] Directory index forbidden by Options directive: /var/www/multibooker/public_html/
+[Wed May 28 13:10:16 2014] [error] [client 192.168.1.159] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 13:10:16 2014] [error] [client 192.168.1.159]  at (eval 4) line 3
+[Wed May 28 13:10:16 2014] [error] [client 192.168.1.159] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 13:10:16 2014] [error] [client 192.168.1.159] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 13:10:16 2014] [error] [client 192.168.1.159]  at b2e line 22
+[Wed May 28 13:10:16 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed May 28 13:10:16 2014] [error] [client 192.168.1.159] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed May 28 13:11:11 2014] [error] [client 192.168.1.159] suexec failure: could not open log file
+[Wed May 28 13:11:11 2014] [error] [client 192.168.1.159] fopen: Permission denied
+[Wed May 28 13:11:11 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed May 28 13:11:13 2014] [error] [client 192.168.1.159] suexec failure: could not open log file
+[Wed May 28 13:11:13 2014] [error] [client 192.168.1.159] fopen: Permission denied
+[Wed May 28 13:11:13 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed May 28 13:12:06 2014] [error] [client 192.168.1.159] suexec failure: could not open log file
+[Wed May 28 13:12:06 2014] [error] [client 192.168.1.159] fopen: Permission denied
+[Wed May 28 13:12:06 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed May 28 13:13:20 2014] [error] [client 192.168.1.159] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 13:13:20 2014] [error] [client 192.168.1.159]  at (eval 4) line 3
+[Wed May 28 13:13:20 2014] [error] [client 192.168.1.159] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 13:13:20 2014] [error] [client 192.168.1.159] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 13:13:20 2014] [error] [client 192.168.1.159]  at b2e line 22
+[Wed May 28 13:13:20 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed May 28 13:18:40 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 13:18:40 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 13:18:40 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 13:18:40 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 13:18:40 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 13:18:40 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 13:42:00 2014] [error] [client 192.168.1.159] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 13:42:00 2014] [error] [client 192.168.1.159]  at (eval 4) line 3
+[Wed May 28 13:42:00 2014] [error] [client 192.168.1.159] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 13:42:00 2014] [error] [client 192.168.1.159] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 13:42:00 2014] [error] [client 192.168.1.159]  at b2e line 22
+[Wed May 28 13:42:00 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed May 28 13:42:39 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed May 28 13:56:27 2014] [error] [client 192.168.1.37] suexec policy violation: see suexec log for more details
+[Wed May 28 13:56:27 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed May 28 13:57:10 2014] [error] [client 192.168.1.37] suexec policy violation: see suexec log for more details
+[Wed May 28 13:57:10 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed May 28 13:58:10 2014] [error] [client 192.168.1.37] syntax error at test line 4, near "%ENV{"
+[Wed May 28 13:58:10 2014] [error] [client 192.168.1.37] Execution of test aborted due to compilation errors.
+[Wed May 28 13:58:10 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed May 28 13:59:31 2014] [error] [client 192.168.1.37] Can't modify constant item in scalar assignment at test line 4, near "%ENV{"
+[Wed May 28 13:59:31 2014] [error] [client 192.168.1.37] syntax error at test line 4, near "%ENV{"
+[Wed May 28 13:59:31 2014] [error] [client 192.168.1.37] Execution of test aborted due to compilation errors.
+[Wed May 28 13:59:31 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed May 28 14:00:44 2014] [error] [client 192.168.1.37] Can't modify constant item in scalar assignment at test line 4, near "};"
+[Wed May 28 14:00:44 2014] [error] [client 192.168.1.37] Execution of test aborted due to compilation errors.
+[Wed May 28 14:00:44 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed May 28 14:00:46 2014] [error] [client 192.168.1.37] Can't modify constant item in scalar assignment at test line 4, near "};"
+[Wed May 28 14:00:46 2014] [error] [client 192.168.1.37] Execution of test aborted due to compilation errors.
+[Wed May 28 14:00:46 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed May 28 14:00:47 2014] [error] [client 192.168.1.37] Can't modify constant item in scalar assignment at test line 4, near "};"
+[Wed May 28 14:00:47 2014] [error] [client 192.168.1.37] Execution of test aborted due to compilation errors.
+[Wed May 28 14:00:47 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed May 28 14:00:47 2014] [error] [client 192.168.1.37] Can't modify constant item in scalar assignment at test line 4, near "};"
+[Wed May 28 14:00:47 2014] [error] [client 192.168.1.37] Execution of test aborted due to compilation errors.
+[Wed May 28 14:00:47 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed May 28 14:05:48 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:05:48 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:05:48 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:05:48 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:05:48 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:05:48 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:14:16 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:14:16 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:14:16 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:14:16 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:14:16 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:14:16 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:14:17 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:17:28 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:17:28 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:17:28 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:17:28 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:17:28 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:17:28 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:17:29 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:21:42 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:21:42 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:21:42 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:21:42 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:21:42 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:21:42 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37]  at b2e line 22
+[Wed May 28 14:21:43 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37]  at b2e line 23
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37]  at b2e line 23
+[Wed May 28 14:24:49 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:34:52 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:34:52 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:34:52 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:34:52 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:34:52 2014] [error] [client 192.168.1.37]  at b2e line 23
+[Wed May 28 14:34:52 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37]  at b2e line 23
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37]  at b2e line 23
+[Wed May 28 14:34:53 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37]  at b2e line 23
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37]  at b2e line 23
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37]  at b2e line 23
+[Wed May 28 14:35:37 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:37:57 2014] [error] [client 192.168.1.37] install_driver(Oracle) failed: Can't load '/usr/local/lib64/perl5/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libclntsh.so.12.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+[Wed May 28 14:37:57 2014] [error] [client 192.168.1.37]  at (eval 4) line 3
+[Wed May 28 14:37:57 2014] [error] [client 192.168.1.37] Compilation failed in require at (eval 4) line 3.
+[Wed May 28 14:37:57 2014] [error] [client 192.168.1.37] Perhaps a required shared library or dll isn't installed where expected
+[Wed May 28 14:37:57 2014] [error] [client 192.168.1.37]  at b2e line 23
+[Wed May 28 14:37:57 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:41:58 2014] [error] [client 192.168.1.37] DBI connect('host=localhost;service_name=orcl;port=','ticket_b2c',...) failed: ORA-12514: TNS:listener does not currently know of service requested in connect descriptor (DBD ERROR: OCIServerAttach) at b2e line 23
+[Wed May 28 14:41:58 2014] [error] [client 192.168.1.37] DBI connect('host=localhost;service_name=orcl;port=','ticket_b2c',...) failed: ORA-12514: TNS:listener does not currently know of service requested in connect descriptor (DBD ERROR: OCIServerAttach) at b2e line 23
+[Wed May 28 14:41:58 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:41:58 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:42:57 2014] [error] [client 192.168.1.37] DBI connect('host=localhost;service_name=orcl;port=','ticket_b2c',...) failed: ORA-12514: TNS:listener does not currently know of service requested in connect descriptor (DBD ERROR: OCIServerAttach) at b2e line 23
+[Wed May 28 14:42:57 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:42:57 2014] [error] [client 192.168.1.37] DBI connect('host=localhost;service_name=orcl;port=','ticket_b2c',...) failed: ORA-12514: TNS:listener does not currently know of service requested in connect descriptor (DBD ERROR: OCIServerAttach) at b2e line 23
+[Wed May 28 14:42:57 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:42:57 2014] [error] [client 192.168.1.37] DBI connect('host=localhost;service_name=orcl;port=','ticket_b2c',...) failed: ORA-12514: TNS:listener does not currently know of service requested in connect descriptor (DBD ERROR: OCIServerAttach) at b2e line 23
+[Wed May 28 14:42:57 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:42:57 2014] [error] [client 192.168.1.37] DBI connect('host=localhost;service_name=orcl;port=','ticket_b2c',...) failed: ORA-12514: TNS:listener does not currently know of service requested in connect descriptor (DBD ERROR: OCIServerAttach) at b2e line 23
+[Wed May 28 14:42:57 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:43:26 2014] [error] [client 192.168.1.37] DBI connect('host=localhost;service_name=orcl;port=','ticket_b2c',...) failed: ORA-12514: TNS:listener does not currently know of service requested in connect descriptor (DBD ERROR: OCIServerAttach) at b2e line 23
+[Wed May 28 14:43:26 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 14:43:37 2014] [error] [client 192.168.1.37] DBI connect('host=localhost;service_name=orcl;port=','ticket_b2c',...) failed: ORA-12514: TNS:listener does not currently know of service requested in connect descriptor (DBD ERROR: OCIServerAttach) at b2e line 23
+[Wed May 28 14:43:37 2014] [error] [client 192.168.1.37] Premature end of script headers: b2e
+[Wed May 28 15:00:42 2014] [error] [client 192.168.1.159] DBI connect('host=localhost;service_name=orcl;port=','ticket_b2c',...) failed: ORA-12514: TNS:listener does not currently know of service requested in connect descriptor (DBD ERROR: OCIServerAttach) at b2e line 22
+[Wed May 28 15:00:42 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed May 28 16:31:27 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed May 28 17:38:09 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed May 28 17:40:00 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/multibooker, referer: http://192.168.2.70/html/report/print_report.html?sid=gZkKTQBIfCZtlVusSpvCxXYgKCTKpyCUNxUqjoBrUkiPHaJgQk&from_date=28.05.2014&to_date=28.05.2014&payment_type=CASH&user_id=2&subcommand=casher_report2
+[Wed May 28 17:40:00 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/multibooker, referer: http://192.168.2.70/html/report/print_report.html?sid=gZkKTQBIfCZtlVusSpvCxXYgKCTKpyCUNxUqjoBrUkiPHaJgQk&from_date=28.05.2014&to_date=28.05.2014&payment_type=CASH&user_id=2&subcommand=casher_report2
+[Wed May 28 17:40:00 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/multibooker, referer: http://192.168.2.70/html/report/print_report.html?sid=gZkKTQBIfCZtlVusSpvCxXYgKCTKpyCUNxUqjoBrUkiPHaJgQk&from_date=28.05.2014&to_date=28.05.2014&payment_type=CASH&user_id=2&subcommand=casher_report2
+[Wed May 28 17:40:00 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/multibooker, referer: http://192.168.2.70/html/report/print_report.html?sid=gZkKTQBIfCZtlVusSpvCxXYgKCTKpyCUNxUqjoBrUkiPHaJgQk&from_date=28.05.2014&to_date=28.05.2014&payment_type=CASH&user_id=2&subcommand=casher_report2
+[Wed May 28 17:40:00 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/multibooker, referer: http://192.168.2.70/html/report/print_report.html?sid=gZkKTQBIfCZtlVusSpvCxXYgKCTKpyCUNxUqjoBrUkiPHaJgQk&from_date=28.05.2014&to_date=28.05.2014&payment_type=CASH&user_id=2&subcommand=casher_report2
+[Wed May 28 17:44:56 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/multibooker
+[Wed May 28 17:45:25 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/multibooker, referer: http://192.168.2.70/html/report/print_report.html?sid=gZkKTQBIfCZtlVusSpvCxXYgKCTKpyCUNxUqjoBrUkiPHaJgQk&from_date=28.05.2014&to_date=28.05.2014&payment_type=CASH&user_id=2&subcommand=casher_report2
+[Wed May 28 17:45:25 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/multibooker, referer: http://192.168.2.70/html/report/print_report.html?sid=gZkKTQBIfCZtlVusSpvCxXYgKCTKpyCUNxUqjoBrUkiPHaJgQk&from_date=28.05.2014&to_date=28.05.2014&payment_type=CASH&user_id=2&subcommand=casher_report2
+[Wed May 28 17:45:25 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/multibooker, referer: http://192.168.2.70/html/report/print_report.html?sid=gZkKTQBIfCZtlVusSpvCxXYgKCTKpyCUNxUqjoBrUkiPHaJgQk&from_date=28.05.2014&to_date=28.05.2014&payment_type=CASH&user_id=2&subcommand=casher_report2
+[Wed May 28 17:45:25 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/multibooker, referer: http://192.168.2.70/html/report/print_report.html?sid=gZkKTQBIfCZtlVusSpvCxXYgKCTKpyCUNxUqjoBrUkiPHaJgQk&from_date=28.05.2014&to_date=28.05.2014&payment_type=CASH&user_id=2&subcommand=casher_report2
+[Wed May 28 17:45:25 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/multibooker, referer: http://192.168.2.70/html/report/print_report.html?sid=gZkKTQBIfCZtlVusSpvCxXYgKCTKpyCUNxUqjoBrUkiPHaJgQk&from_date=28.05.2014&to_date=28.05.2014&payment_type=CASH&user_id=2&subcommand=casher_report2
+[Wed May 28 17:51:21 2014] [error] [client 192.168.1.152] Wide character in print at b2e line 59.
+[Wed May 28 17:51:22 2014] [error] [client 192.168.1.152] Wide character in print at b2e line 59.
+[Thu May 29 10:43:17 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico

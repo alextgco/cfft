@@ -1,0 +1,25 @@
+
+[input-def]
+0=*
+
+[input2]
+0=/var/www/
+1=/var/www/cgi-bin/
+2=b2e
+3=/var/www/multibooker/cgi-bin/
+4=b2test
+5=/var/www/multibooker/
+6=b2t
+
+[Dir Hist New Right Panel]
+0=/var/www/multibooker
+
+[cmdline]
+0=
+
+[Dir Hist New Left Panel]
+0=/var/www/multibooker
+1=/var/www/multibooker/public_html
+2=/var/www/multibooker/public_html/html
+3=/var/www/multibooker/public_html/html/tables
+4=/var/www/multibooker/public_html/html/tables/require

@@ -1,0 +1,10 @@
+[Mon Jun 16 12:53:16 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Mon Jun 16 13:18:47 2014] [error] [client 192.168.1.152] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Tue Jun 17 15:48:54 2014] [error] [client 192.168.1.152] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Tue Jun 17 15:48:54 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Tue Jun 17 20:30:48 2014] [error] [client 192.168.1.159] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Thu Jun 19 20:05:06 2014] [error] [client 192.168.1.150] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Thu Jun 19 20:05:06 2014] [error] [client 192.168.1.150] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Thu Jun 19 20:21:05 2014] [error] [client 192.168.1.150] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Fri Jun 20 11:45:53 2014] [error] [client 192.168.1.159] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Fri Jun 20 13:50:03 2014] [error] [client 192.168.1.150] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.

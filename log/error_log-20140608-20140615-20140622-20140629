@@ -1,0 +1,193 @@
+[Mon Jun 02 11:19:30 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Mon Jun 02 11:19:49 2014] [error] [client 192.168.1.159] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Mon Jun 02 16:08:02 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Mon Jun 02 16:12:49 2014] [error] [client 192.168.1.159] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Mon Jun 02 18:34:56 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Tue Jun 03 10:38:24 2014] [error] [client 192.168.1.37] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Tue Jun 03 13:22:18 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Tue Jun 03 13:57:29 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Tue Jun 03 18:33:27 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Tue Jun 03 18:41:21 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 18:41:21 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 18:43:30 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 18:43:30 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 18:43:42 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 18:43:42 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 18:43:44 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 18:43:44 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 18:45:58 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 18:45:58 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 18:46:00 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 18:46:00 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 18:46:22 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 18:46:22 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 18:46:23 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 18:46:23 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:01:50 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:01:50 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:01:51 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:01:51 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:01:51 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:01:51 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:01:55 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:01:55 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:01:55 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:01:55 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:03:01 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:03:01 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:03:02 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:03:02 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:03:02 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:03:02 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:03:02 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:03:02 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:03:03 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:03:03 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:03:03 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:03:03 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:03:03 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:03:03 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:04:46 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:04:46 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:04:46 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Tue Jun 03 19:08:17 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:08:17 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:09:11 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:09:11 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:09:12 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:09:12 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:09:14 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:09:14 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:11:55 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:11:55 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:11:55 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Tue Jun 03 19:15:30 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:15:30 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:15:32 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:15:32 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:15:32 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:15:32 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:15:33 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:15:33 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:15:33 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:15:33 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:15:33 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:15:33 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:15:33 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:15:33 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:15:34 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:15:34 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:15:34 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:15:34 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:15:34 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:15:34 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:15:34 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:15:34 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:35:56 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Tue Jun 03 19:36:56 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:36:56 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Tue Jun 03 19:37:44 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Tue Jun 03 19:37:44 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Wed Jun 04 11:23:53 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:23:53 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Wed Jun 04 11:27:39 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:27:39 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed Jun 04 11:27:39 2014] [error] [client 192.168.1.159] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed Jun 04 11:27:42 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:27:42 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed Jun 04 11:27:53 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:27:53 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Wed Jun 04 11:27:53 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:27:53 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Wed Jun 04 11:27:54 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:27:54 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Wed Jun 04 11:27:54 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:27:54 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Wed Jun 04 11:27:54 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:27:54 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Wed Jun 04 11:27:54 2014] [error] [client 192.168.1.152] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:27:54 2014] [error] [client 192.168.1.152] Premature end of script headers: b2e
+[Wed Jun 04 11:28:14 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:28:14 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed Jun 04 11:28:16 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:28:16 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed Jun 04 11:28:50 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:28:50 2014] [error] [client 192.168.1.159] Premature end of script headers: acqp_callback
+[Wed Jun 04 11:28:52 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:28:52 2014] [error] [client 192.168.1.159] Premature end of script headers: acqp_callback
+[Wed Jun 04 11:30:58 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:30:58 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed Jun 04 11:31:00 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:31:00 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed Jun 04 11:32:32 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:32:32 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed Jun 04 11:33:04 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:33:04 2014] [error] [client 192.168.1.159] Premature end of script headers: b2e
+[Wed Jun 04 11:34:33 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:34:33 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 11:35:38 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:35:38 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 11:36:28 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:36:28 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 11:36:31 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:36:31 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 11:36:52 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:36:52 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 11:38:55 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:38:55 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 11:38:57 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:38:57 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 11:40:13 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:40:13 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 11:42:59 2014] [error] [client 192.168.1.159] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:42:59 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 11:43:01 2014] [error] [client 192.168.1.37] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:43:01 2014] [error] [client 192.168.1.37] Premature end of script headers: test2
+[Wed Jun 04 11:43:01 2014] [error] [client 192.168.1.37] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed Jun 04 11:43:01 2014] [error] [client 192.168.1.37] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed Jun 04 11:43:16 2014] [error] [client 192.168.1.37] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:43:16 2014] [error] [client 192.168.1.37] Premature end of script headers: test2
+[Wed Jun 04 11:43:18 2014] [error] [client 192.168.1.37] (13)Permission denied: exec of '/usr/sbin/suexec' failed
+[Wed Jun 04 11:43:18 2014] [error] [client 192.168.1.37] Premature end of script headers: test2
+[Wed Jun 04 11:45:19 2014] [error] [client 192.168.1.37] (2)No such file or directory: exec of '/var/www/multibooker/cgi-bin/test' failed
+[Wed Jun 04 11:45:19 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed Jun 04 11:45:59 2014] [error] [client 192.168.1.37] (2)No such file or directory: exec of '/var/www/multibooker/cgi-bin/test' failed
+[Wed Jun 04 11:45:59 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed Jun 04 11:46:00 2014] [error] [client 192.168.1.37] (2)No such file or directory: exec of '/var/www/multibooker/cgi-bin/test' failed
+[Wed Jun 04 11:46:00 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed Jun 04 11:50:55 2014] [error] [client 192.168.1.37] (2)No such file or directory: exec of '/var/www/multibooker/cgi-bin/test' failed
+[Wed Jun 04 11:50:55 2014] [error] [client 192.168.1.37] Premature end of script headers: test
+[Wed Jun 04 12:26:55 2014] [error] [client 192.168.1.159] (2)No such file or directory: exec of '/var/www/multibooker/cgi-bin/test' failed
+[Wed Jun 04 12:26:55 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 12:27:13 2014] [error] [client 192.168.1.159] (2)No such file or directory: exec of '/var/www/multibooker/cgi-bin/test' failed
+[Wed Jun 04 12:27:13 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 13:05:29 2014] [error] [client 192.168.1.152] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Wed Jun 04 13:35:12 2014] [error] [client 192.168.1.152] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Wed Jun 04 13:57:24 2014] [error] [client 192.168.1.152] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55., referer: http://192.168.2.70/index.html
+[Wed Jun 04 13:58:15 2014] [error] [client 192.168.1.152] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55., referer: http://192.168.2.70/index.html
+[Wed Jun 04 16:21:45 2014] [error] [client 83.220.239.68] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed Jun 04 16:23:51 2014] [error] [client 192.168.1.190] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Wed Jun 04 16:23:51 2014] [error] [client 192.168.1.190] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed Jun 04 16:26:01 2014] [error] [client 83.220.239.68] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Wed Jun 04 16:26:27 2014] [error] [client 83.220.239.68] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Wed Jun 04 16:26:42 2014] [error] [client 192.168.1.190] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Wed Jun 04 16:26:45 2014] [error] [client 192.168.1.190] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Wed Jun 04 16:29:07 2014] [error] [client 83.220.239.68] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Wed Jun 04 16:30:32 2014] [error] [client 192.168.1.152] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Wed Jun 04 17:08:50 2014] [error] [client 192.168.1.159] (2)No such file or directory: exec of '/var/www/multibooker/cgi-bin/test' failed
+[Wed Jun 04 17:08:50 2014] [error] [client 192.168.1.159] Premature end of script headers: test
+[Wed Jun 04 17:27:57 2014] [error] [client 83.220.239.68] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Thu Jun 05 15:45:17 2014] [error] [client 192.168.1.159] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Thu Jun 05 15:45:28 2014] [error] [client 192.168.1.159] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Thu Jun 05 15:56:45 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Thu Jun 05 15:59:30 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Thu Jun 05 16:06:33 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Thu Jun 05 16:08:13 2014] [error] [client 192.168.1.152] Wide character in print at /var/www/multibooker/cgi-bin/b2e line 55.
+[Thu Jun 05 16:09:05 2014] [error] [client 192.168.1.139] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Thu Jun 05 18:39:52 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Fri Jun 06 09:53:13 2014] [error] [client 192.168.1.139] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Fri Jun 06 11:46:24 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Fri Jun 06 15:10:51 2014] [error] [client 192.168.1.159] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Fri Jun 06 15:11:02 2014] [error] [client 192.168.1.159] File does not exist: /var/www/multibooker/public_html/b2c
+[Fri Jun 06 17:49:31 2014] [error] [client 192.168.1.152] File does not exist: /var/www/multibooker/public_html/favicon.ico
+[Fri Jun 06 20:48:02 2014] [error] [client 192.168.1.159] File does not exist: /var/www/multibooker/public_html/favicon.ico

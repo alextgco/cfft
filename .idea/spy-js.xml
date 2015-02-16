@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SpyJsConfiguration">
+    <event-filters>
+      <event-filter name="No message">
+        <event-filter-conditions>
+          <event-filter-condition value="message" />
+          <event-filter-condition value="mousemove" />
+          <event-filter-condition value="timeout" />
+        </event-filter-conditions>
+      </event-filter>
+    </event-filters>
+  </component>
+</project>

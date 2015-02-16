@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.config" />
+      <excludeFolder url="file://$MODULE_DIR$/.forever" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/.mc" />
+      <excludeFolder url="file://$MODULE_DIR$/.npm" />
+      <excludeFolder url="file://$MODULE_DIR$/log" />
+      <excludeFolder url="file://$MODULE_DIR$/node/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/oradiag_multibooker" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/Clientscreen" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/clientmapview" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/databasescripts" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/dbscripts" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/metronic" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/neon" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/russian_post" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/sendmail/files" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/socket.io" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/terminal_test" />
+      <excludeFolder url="file://$MODULE_DIR$/public_html/upload" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Node.js v0.10.26 Core Modules" level="application" />
+  </component>
+</module>

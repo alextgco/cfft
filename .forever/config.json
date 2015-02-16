@@ -1,0 +1,16 @@
+{
+  "root": "/var/www/multibooker/.forever",
+  "pidPath": "/var/www/multibooker/.forever/pids",
+  "sockPath": "/var/www/multibooker/.forever/sock",
+  "loglength": 100,
+  "logstream": false,
+  "columns": [
+    "uid",
+    "command",
+    "script",
+    "forever",
+    "pid",
+    "logfile",
+    "uptime"
+  ]
+}
