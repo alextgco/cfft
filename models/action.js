@@ -1,4 +1,4 @@
-var Model = require('./Model');
+var Model = require('./MySQLModel');
 //var async = require('async');
 var MyError = require('../error').MyError;
 //var funcs = require('../libs/functions');
