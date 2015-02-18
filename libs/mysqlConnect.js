@@ -16,6 +16,15 @@ cMysql.on('error', function(err) {
     console.log(err);
 });
 
+cMysql.getConn = function(callback){
+    cMysql.getConnection(function(err,conn) {
+        if (err) {
+            callback(err)
+        } else {
+            callback(null,conn);
+        }
+    });
+};
 
 module.exports = cMysql;
 

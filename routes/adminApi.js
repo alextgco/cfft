@@ -1,6 +1,7 @@
 var async = require('async');
 var MyError = require('../error').MyError;
 var moment = require('moment');
+var funcs = require('../libs/functions');
 
 var action = require('../models/action');
 
@@ -19,7 +20,11 @@ exports.post = function(req, res, next){
         return res.send(500,'Не передан params');
     }
 
-    var model = require('../models/'+object);
+    try {
+        var model = require('../models/' + object);
+    } catch (e) {
+        return res.status(500).send('Такого объекта не существует. '+object);
+    }
 
     model[command](newParams,function(err,result){
         if(err){

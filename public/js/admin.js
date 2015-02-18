@@ -47,4 +47,24 @@ $(document).ready(function(){
         };
         sendQuery(o,function(r){console.log(r);});
     });
+    $("#btn3").on('click',function(){
+        var o = {
+            command:"remove",
+            object:"action",
+            params:{
+                id:7
+            }
+        };
+        sendQuery(o,function(r){console.log(r);});
+    });
+    $("#btn4").on('click',function(){
+        var o = {
+            command:"get",
+            object:"action",
+            params:{
+                id:'>3'
+            }
+        };
+        sendQuery(o,function(r){console.log(r);});
+    });
 });
