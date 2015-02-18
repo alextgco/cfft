@@ -10,6 +10,7 @@
     }
   },
   "mysqlConnection":{
+    "connectionLimit":10,
     "port": "3306",
     "host": "localhost",
     "user": "root",

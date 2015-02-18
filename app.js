@@ -49,11 +49,27 @@ app.use(session({
 
 app.use(require('./middleware/sendHttpError'));
 app.use(require('./middleware/loadUser'));
-//require('./modules/toMySQLFormat')(app);
+
 require('./routes')(app);
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*** БЛОК ДЛЯ ТЕСТОВ ******/
 
+/*var o = {
+    command:"add",
+    object:"action",
+    params:{
+        title:"TEST ACTION 1",
+        description:"sdfds",
+        cost:"1000",
+        payment_type_id:10
+    }
+};
+sendQuery(o,function(r){console.log(r);});*/
+
+
+
+/*** КОНЕЦ БЛОК ДЛЯ ТЕСТОВ ******/
 
 
 //app.use('/', routes);

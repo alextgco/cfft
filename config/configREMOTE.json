@@ -10,6 +10,7 @@
     }
   },
   "mysqlConnection":{
+    "connectionLimit":2,
     "port": "3306",
     "host": "173.194.241.167",
     "user": "deptezf2upj",

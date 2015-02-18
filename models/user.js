@@ -121,18 +121,6 @@ var user = {
             }
         });
     },
-    /*pool.getConnection(function(err,conn) {
-        if (err) {
-            callback(err)
-        } else {
-            conn.insert('users',obj,function(err,recordId){
-                conn.release();
-                if (err){
-                    return callback(err);
-                }
-            });
-        }
-    });*/
     remove:function(user_id,callback){
         pool.getConnection(function(err,conn) {
             if (err) {
@@ -166,10 +154,3 @@ var checkPassword = function(salt, password, hashedPassword){
 
 
 module.exports = user;
-
-
-//exports.User = mongoose.model('User',scheme);
-//var User = mongoose.model('User',scheme);
-//var user = new User({username:'Вася',password:'123'});
-//user.set('password','dfsa');
-//user.get('password');

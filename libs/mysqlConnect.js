@@ -7,7 +7,6 @@ var mysql = require("mysql"),
 
 var mysqlUtilities = require('mysql-utilities');
 cMysql.on('connection', function(connection) {
-    console.log('-------------------------');
     console.log('MySQL pool connected');
     mysqlUtilities.upgrade(connection);
     mysqlUtilities.introspection(connection);

@@ -1,21 +1,33 @@
-//var User = require('models/user').User;
+var async = require('async');
+var MyError = require('../error').MyError;
+var moment = require('moment');
 
+var action = require('../models/action');
 
 exports.post = function(req, res, next){
-    /*var login = req.body.login;
-    var password = req.body.password;
-
-    User.authorize(login, password, function(err, user){
-        if (err){
-            if (err instanceof AuthError){
-                return next(new HttpError(403, err.message));
-            }else{
-                return next(err);
-            }
+    var command = req.body.command;
+    var object = req.body.object;
+    var params = req.body.params;
+    var newParams;
+    if (params){
+        try {
+            newParams = JSON.parse(params);
+        } catch (e) {
+            return res.send(500,'Не валидный JSON в params');
         }
-        req.session.user = user._id;
-        res.send(200);
-    });*/
+    }else{
+        return res.send(500,'Не передан params');
+    }
+
+    var model = require('../models/'+object);
+
+    model[command](newParams,function(err,result){
+        if(err){
+            res.status(500).send(err);
+        }
+        res.status(200).send(result);
+    });
+
 
 
 };
