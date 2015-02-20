@@ -7,7 +7,15 @@ var action = new Model({
     table_ru: 'Мероприятие',
     ending:'о',
     required_fields:['payment_type_id','title'],
-    blob_fields:['description']
+    blob_fields:['description'],
+    join_objs:[
+        {
+            payment_type_id:{
+                table:"action_payment_types",
+                fields:["name"]
+            }
+        }
+    ]
 },function(){
     module.exports = action;
 });
