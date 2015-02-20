@@ -39,9 +39,8 @@ module.exports = function (app) {
     res.render('admin_users');
   });
 
-  app.get('/admin_events', checkAdmin, function(req, res, next){
-    res.render('admin_events');
-  });
+  app.get('/admin_events', checkAdmin, require('./admin_events').get);
+  app.get('/admin_event', checkAdmin, require('./admin_event').get);
 
 
   /*app.get('/users', function (req, res, next) {ss

@@ -1,3 +1,12 @@
+
+//api(command, object, params,function(err,result){
+//   if (err){
+//      res.status(500).send(err);
+//}else{
+//   res.status(200).send(result);
+//}
+//});
+
 extends admin_layout
 block content
    .container
@@ -21,11 +30,15 @@ block content
 
       .events-list-wrapper
          ul
-            li
-               .event-item-image
-                  img(src="img/event1.jpg")
-               .event-item-info
-                  .event-item-title
-                     a(href="#") Мероприятие 1
-                     .event-item-date 21.05.2015
-                     .event-item-desc asdasdasda
+
+            for a in items.data
+               li
+                  .event-item-image
+                     img(src="img/event1.jpg")
+                  .event-item-info
+                     .event-item-title
+                        a(href="admin_event?id=#{a.id}") #{a.title}
+                        .event-item-date 21.05.2015
+                        .event-item-desc #{a.description}
+            else
+               li sorry, no actions!
