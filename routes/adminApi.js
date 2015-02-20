@@ -1,10 +1,20 @@
-var async = require('async');
-var MyError = require('../error').MyError;
-var moment = require('moment');
-var funcs = require('../libs/functions');
-
+var api = require('../libs/api');
 var action = require('../models/action');
+exports.post = function(req, res, next){
+    var command = req.body.command;
+    var object = req.body.object;
+    var params = req.body.params;
+    api(command, object, params,function(err,result){
+        if (err){
+            res.status(500).send(err);
+        }else{
+            res.status(200).send(result);
+        }
 
+    });
+};
+
+/*
 exports.post = function(req, res, next){
     var command = req.body.command;
     var object = req.body.object;
@@ -35,4 +45,4 @@ exports.post = function(req, res, next){
 
 
 
-};
+};*/

@@ -88,6 +88,8 @@ Model.prototype.get = function (where, callback) {
     var self = this;
 
 
+
+
     var getRows = function (conn, callback) {
         var limit = where.limit || 1000;
         delete where.limit;
@@ -97,15 +99,29 @@ Model.prototype.get = function (where, callback) {
         }
         sql += ' LIMIT '+ limit;
 
+        /*SELECT cities.title, countries.title from cities
+         LEFT JOIN countries ON
+         cities.country_id = countries.id
+         limit 0,10*/
+
+       /* var columns = funcs.cloneArray(self.columns);
+        console.log(columns);
         var joinObjs = self.join_objs;
         if (joinObjs){
-            sql  = "select * from "+self.table;
+            var extColumns = [];
+            var extTablesOn = [];
+            for (var i in self.join_objs) {
+
+            }
+
+
+            sql  = "SELECT * FROM "+self.table;
             for (var i in  joinObjs) {
                 sql += ", "+joinObjs[i].table;
             }
         }
 
-
+*/
         console.log(sql);
         conn.query('select * from '+self.table+' where '+sql,[] , function (err, rows) {
             conn.release();
