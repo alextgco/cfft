@@ -2,7 +2,11 @@ $(document).ready(function(){
 
     (function(){
         $('#logo').off('click').on('click', function(){
-            document.location.href = './';
+            if($(this).hasClass('adminHome')){
+                document.location.href = './admin';
+            }else{
+                document.location.href = './';
+            }
         });
 
         $('.cf_datepicker').datepicker({

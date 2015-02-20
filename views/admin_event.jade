@@ -1,5 +1,91 @@
 extends admin_layout
 block content
-   .container
-      h2 Мероприятие
+    - var event = data.data[0];
+    - var fevent = JSON.stringify(event);
+    //p #{fevent}
+    .container
+        h2 Редактирование мероприятия
+        hr
+        div(role='tabpanel')
+            ul.nav.nav-tabs(role='tablist')
+                li.active(role='edit-event')
+                    a(href='#event-header', aria-controls='event-header', role='tab', data-toggle='tab') Общая информация
+                li(role='edit-event')
+                    a(href='#event-parts', aria-controls='event-parts', role='tab', data-toggle='tab') Этапы мероприятия
+            .tab-content
+                #event-header.tab-pane.active(role='tabpanel')
+                    form.marTop22
+                        .row
+                            .col-md-4
+                                | #{event.date_start}
+                            .col-md-4
+                                | #{event.date_end}
+                        .row
+                            .col-md-4
+                                .form-group
+                                    label Наименование:
+                                    input.form-control(type='text', value="#{event.title}")
+                            .col-md-4
+                                .form-group
+                                    label Тип оплаты: #{event.payment_type_id}
+                                    select.form-control
+                                        option Взнос за все мероприятие
+                                        option Первое видео бесплатное, далее за каждую заявку
+                                    // <input class="form-control" type="text" />
+                            .col-md-4
+                                .form-group
+                                    label Сумма оплаты:
+                                    .input-group
+                                        input.form-control(type='number', value="#{event.cost}")
+                                        .input-group-addon
+                                            i.fa.fa-ruble
+                            .col-md-10
+                                .form-group
+                                    label Описание:
+                                    textarea.form-control.cf_text_editor
+                                        | #{event.description}
+                            .col-md-2
+                                .row
+                                    .col-md-12
+                                        h5
+                                            b Призовые места
+                                        hr
+                                        .form-group
+                                            label 1-е Место:
+                                            input.form-control(type='text')
+                                        .form-group
+                                            label 2-е Место:
+                                            input.form-control(type='text')
+                                        .form-group
+                                            label 3-е Место:
+                                            input.form-control(type='text')
+                                        .form-group
+                                            label 4-е Место:
+                                            input.form-control(type='text')
+                                        .form-group
+                                            label 5-е Место:
+                                            input.form-control(type='text')
+                            .col-md-12
+                                .form-group
+                                    label Правила:
+                                    input.form-control(type='file')
+                #event-parts.tab-pane(role='tabpanel')
+                    #edit-event-parts-wrapper
+                        .row
+                            .col-md-12
+                                #add-event-part.sBtn.flRight.green.small
+                                    i.fa.fa-plus
+                                    |   Добавть этап
+                        div(role='tabpanel')
+                            ul#edit-event-part-tab-nav-wrapper.nav.nav-tabs(role='tablist')
+                                // <li role="edit-event-part" class="active">
+                                // <a href="#part1" aria-controls="part1" role="tab" data-toggle="tab">Этап 1</a>
+                                // </li>
+                            #edit-event-part-tab-content-wrapper.tab-content
+                                // <div role="tabpanel" class="tab-pane active" id="part1">
+                                // </div>
+
+
+
+
 
