@@ -1,6 +1,6 @@
 var nconf = require('nconf');
 var path = require('path');
-var filename = 'config.json';
+var filename = 'config_vaio.json';
 var NODE_ENV = process.env.NODE_ENV || "development";
 console.log('NODE_ENV',NODE_ENV);
 if (NODE_ENV=='production'){

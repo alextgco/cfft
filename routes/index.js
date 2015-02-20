@@ -35,6 +35,15 @@ module.exports = function (app) {
   app.get('/reqConfirm', require('./reqConfirm').get);
 
 
+  app.get('/admin_users', checkAdmin, function(req, res, next){
+    res.render('admin_users');
+  });
+
+  app.get('/admin_events', checkAdmin, function(req, res, next){
+    res.render('admin_events');
+  });
+
+
   /*app.get('/users', function (req, res, next) {ss
     User.find({}, function (err, users) {
       if (err) return next(err);

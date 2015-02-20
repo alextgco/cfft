@@ -39,6 +39,9 @@ $(document).ready(function(){
                 calendarWrapper.show(0);
             }
         });
+
+
+
         $('.calendar-wrapper').fullCalendar({
             lang: 'ru',
             aspectRatio: 1,
