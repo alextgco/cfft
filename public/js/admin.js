@@ -63,10 +63,10 @@ $(document).ready(function(){
             object:"action",
             params:{
                 where:{
-                    id:'3..8',
+                    id:'3..8'/*,
                     action_payment_types:{
                         type:'ANOTHER'
-                    }
+                    }*/
                 }
 
             }

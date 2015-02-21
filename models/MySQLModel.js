@@ -155,8 +155,6 @@ Model.prototype.get = function (params, callback) {
                 }
             }
             where = tmpWhere;
-            console.log('extTablesOn', extTablesOn);
-            console.log('columns', columns.join(', '));
             sql  = "SELECT "+ columns.join(', ') +" FROM "+self.table;
             sql += extTablesOn.join('');
         }else{
@@ -169,9 +167,10 @@ Model.prototype.get = function (params, callback) {
             where = tmpWhere;
         }
         // Общее для всех
+        sql += ' WHERE ';
         var whereString  = conn.where(where);
         if (whereString!==''){
-            sql += ' WHERE '+whereString;
+            sql += whereString;
         }
         if (!deleted){
             if (whereString!==''){
@@ -186,11 +185,15 @@ Model.prototype.get = function (params, callback) {
         console.log(sql);
         conn.query(sql,[] , function (err, rows) {
             conn.release();
-            console.log(rows);
             if (!err) {
                 for (var i in rows) {
                     for (var j in self.blob_fields) {
-                        rows[i][self.blob_fields[j]] = rows[i][self.blob_fields[j]].toString();
+
+                        try {
+                            rows[i][self.blob_fields[j]] = rows[i][self.blob_fields[j]].toString();
+                        } catch (e) {
+                            console.log(e);
+                        }
                     }
                 }
             }
