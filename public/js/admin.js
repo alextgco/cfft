@@ -67,6 +67,10 @@ $(document).ready(function(){
                     action_payment_types:{
                         type:'ANOTHER'
                     }*/
+                },
+                sort:{
+                    column:'id',
+                    direction:'DESC'
                 }
 
             }
