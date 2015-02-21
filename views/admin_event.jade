@@ -1,11 +1,39 @@
 extends admin_layout
 block content
+
+
+
     - var isNew = data.isNew;
     if(!isNew)
+        - var parts = data.parts.data;
         - var event = data.actions.data[0];
         - var rewards = data.rewards.data[0];
-    .container
-        h2 Редактирование мероприятия
+        - var sParts = JSON.stringify(parts);
+    .container.posRel
+        ////id
+        ////action_id
+        ////title
+        ////part_title
+        //result_type_id
+        //judgement_finish_datetime
+        //status_id
+        ////main_video_url
+        //start_date
+        //end_date
+        //created
+        //published
+        //deleted
+        ////desc_complex
+        ////note
+        ////desc_move_std
+        ////desc_scoring
+        ////desc_inventory
+        ////desc_video_std
+
+        if(isNew)
+            h2 Создание мероприятия
+        else
+            h2 Редактирование мероприятия
         hr
         div(role='tabpanel')
             ul.nav.nav-tabs(role='tablist')
@@ -28,9 +56,9 @@ block content
                                 .form-group
                                     label Наименование:
                                     if(isNew)
-                                        input.form-control(type='text', value="")
+                                        input.fc-event-field.form-control(type='text', value="", data-name="title")
                                     else
-                                        input.form-control(type='text', value="#{event.title}")
+                                        input.fc-event-field.form-control(type='text', value="#{event.title}", data-name="title")
                             .col-md-4
                                 .form-group
                                     if(isNew)
@@ -46,17 +74,22 @@ block content
                                     label Сумма оплаты:
                                     .input-group
                                         if(isNew)
-                                            input.form-control(type='number', value="")
+                                            input.fc-event-field.form-control(type='number', value="", data-name="cost")
                                         else
-                                            input.form-control(type='number', value="#{event.cost}")
+                                            input.fc-event-field.form-control(type='number', value="#{event.cost}", data-name="cost")
                                         .input-group-addon
                                             i.fa.fa-ruble
                             .col-md-10
                                 .form-group
-                                    label Описание:
-                                    textarea.form-control.cf_text_editor
+                                    label Описание 1:
+                                    textarea.fc-event-field.form-control.cf_text_editor(data-name="description1")
                                         if(!isNew)
-                                            | #{event.description}
+                                            | #{event.description1}
+                                .form-group
+                                    label Описание 2:
+                                    textarea.fc-event-field.form-control.cf_text_editor(data-name="description2")
+                                        if(!isNew)
+                                            | #{event.description2}
                             .col-md-2
                                 .row
                                     .col-md-12
@@ -81,7 +114,14 @@ block content
                             .col-md-12
                                 .form-group
                                     label Правила:
-                                    input.form-control(type='file')
+                                    if(isNew)
+                                        input.fc-event-field.form-control(type='file', data-name="rules_url")
+                                    else
+                                        input.fc-event-field.form-control(value="#{event.rules_url}", type='file', data-name="rules_url")
+                        .row.posRel
+                            .saveEventButton.sBtn.flRight.green
+                                .fa.fa-save &nbsp;&nbsp;
+                                | Сохранить
                 #event-parts.tab-pane(role='tabpanel')
                     #edit-event-parts-wrapper
                         .row
@@ -89,16 +129,227 @@ block content
                                 #add-event-part.sBtn.flRight.green.small
                                     i.fa.fa-plus
                                     |   Добавть этап
+
+
                         div(role='tabpanel')
                             ul#edit-event-part-tab-nav-wrapper.nav.nav-tabs(role='tablist')
-                                // <li role="edit-event-part" class="active">
-                                // <a href="#part1" aria-controls="part1" role="tab" data-toggle="tab">Этап 1</a>
-                                // </li>
+                                if(!isNew)
+                                    if(!parts.length)
+                                        li(role='edit-event-part', class='active')
+                                            a(href='#part_#{parts.id}', aria-controls='part_#{parts.id}', role='tab', data-toggle='tab') #{parts.title}
+                                    else
+                                        each part, idx in parts
+                                            - var activeClass = (idx == 0)? 'active': '';
+                                            li(role='edit-event-part', class='#{activeClass}')
+                                                a(href='#part_#{part.id}', aria-controls='part_#{part.id}', role='tab', data-toggle='tab') #{part.title}
                             #edit-event-part-tab-content-wrapper.tab-content
-                                // <div role="tabpanel" class="tab-pane active" id="part1">
-                                // </div>
+                                if(!isNew)
+                                    if(!parts.length)
+                                        div.active.tab-pane(role="tabpanel", id="part_#{parts.id}")
+                                            .e-event-part-wrapper.marTop22
+                                                form
+                                                    .fn-train-overflow
+                                                        .fn-train
+                                                            .fn-vagon
+                                                                .row
+                                                                    .col-md-12
+                                                                        .sBtn.small.red.flRight.remove-event-part.marRight3
+                                                                            i.fa.fa-trash-o
+                                                                            |   Удалить
+                                                                        .sBtn.small.green.flRight.save-edit-event-part.marRight3
+                                                                            i.fa.fa-save
+                                                                            |   Сохранить
+                                                                        .sBtn.small.blue.flRight.marRight3
+                                                                            a(href='requests.html?event_id=2&part_id=3')
+                                                                                i.fa.fa-video-camera
+                                                                                |   К заявкам
+                                                                                span.badge 73
+                                                                        .sBtn.small.blue.flRight.marRight3.to_results
+                                                                            i.fa.fa-list-ul
+                                                                            |   К результатам
+                                                                hr
+                                                                .row
+                                                                    .form-group.col-md-4
+                                                                        label Наименование:
+                                                                        input.form-control.fc_control(data-editor='text', data-column='title', type='text', value='#{parts.title}')
+                                                                    .form-group.col-md-4
+                                                                        label Формат подачи результата:
+                                                                        select.form-control.fc_control(data-value='{{order_format}}', data-editor='select', data-column='order_format')
+                                                                            option(value='-1') Выбрать
+                                                                            option(value='1') Время "55:55"
+                                                                            option(value='2') Повторы "55"
+                                                                            option(value='3') Tie break "5 (5 (55:55))"
+                                                                    .form-group.col-md-4
+                                                                        label Дата начала:
+                                                                        input.form-control.fc_datepicker.fc_control(type='text', value='#{parts.date_start}', data-editor='text', data-column='start_date')
+                                                                    .form-group.col-md-4
+                                                                        label Дата окончания:
+                                                                        input.form-control.fc_datepicker.fc_control(type='text', value='#{parts.date_end}', data-editor='text', data-column='end_date')
+                                                                    .form-group.col-md-4
+                                                                        label Статус:
+                                                                        select.form-control.fc_control(data-value='{{status}}', data-editor='select', data-column='status')
+                                                                            option(value='-1') Черновик
+                                                                            option(value='1') Идет подготовка
+                                                                            option(value='2') Регистрация открыта
+                                                                            option(value='3') Регистрация закрыта
+                                                                            option(value='3') Опубликованы утвержденные резульаты
+                                                                .row
+                                                                    .form-group.col-md-6
+                                                                        label Комплекс:
+                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_complex}', data-editor='html', data-column='desc')
+                                                                    .form-group.col-md-6
+                                                                        label Примечание:
+                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.note}', data-editor='html', data-column='desc')
+                                                                .row
+                                                                    .form-group.col-md-6
+                                                                        label Стандарты движений:
+                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_move_std}', data-editor='html', data-column='desc')
+                                                                    .form-group.col-md-6
+                                                                        label Подсчет очков:
+                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_scoring}', data-editor='html', data-column='desc')
+                                                                .row
+                                                                    .form-group.col-md-6
+                                                                        label Оборудование:
+                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_inventory}', data-editor='html', data-column='desc')
+                                                                    .form-group.col-md-6
+                                                                        label Стандарты видеосъемки:
+                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_video_std}', data-editor='html', data-column='desc')
 
 
+                                                            .fn-vagon
+                                                                h3 Проверенные заявки
+                                                                table.table
+                                                                    thead
+                                                                        tr
+                                                                            th Атлет
+                                                                            th Реультат
+                                                                            th Судья
+                                                                    tbody
+                                                                        tr
+                                                                            td
+                                                                                a(href='user.html') Атлет 1
+                                                                            td 5 (4 (11:27))
+                                                                            td
+                                                                                a(href='judge.html') Судья 1
+                                                                        tr
+                                                                            td
+                                                                                a(href='user.html') Атлет 1
+                                                                            td 5 (4 (11:27))
+                                                                            td
+                                                                                a(href='judge.html') Судья 1
+                                                                        tr
+                                                                            td
+                                                                                a(href='user.html') Атлет 1
+                                                                            td 5 (4 (11:27))
+                                                                            td
+                                                                                a(href='judge.html') Судья 1
+                                                                .sBtn.small.blue.flRight.marRight3.back_results
+                                                                    i.fa.fa-reply
+                                                                    |   Назад
+                                    else
+                                        each part, idx in parts
+                                            - var activeClass = (idx == 0)? 'active': '';
+                                            div(role="tabpanel", id="part_#{part.id}", class="tab-pane #{activeClass}")
+                                                h3 #{part.id}
+                                                .e-event-part-wrapper.marTop22
+                                                    form
+                                                        .fn-train-overflow
+                                                            .fn-train
+                                                                .fn-vagon
+                                                                    .row
+                                                                        .col-md-12
+                                                                            .sBtn.small.red.flRight.remove-event-part.marRight3
+                                                                                i.fa.fa-trash-o
+                                                                                |   Удалить
+                                                                            .sBtn.small.green.flRight.save-edit-event-part.marRight3
+                                                                                i.fa.fa-save
+                                                                                |   Сохранить
+                                                                            .sBtn.small.blue.flRight.marRight3
+                                                                                a(href='requests.html?event_id=2&part_id=3')
+                                                                                    i.fa.fa-video-camera
+                                                                                    |   К заявкам
+                                                                                    span.badge 73
+                                                                            .sBtn.small.blue.flRight.marRight3.to_results
+                                                                                i.fa.fa-list-ul
+                                                                                |   К результатам
+                                                                    hr
+                                                                    .row
+                                                                        .form-group.col-md-4
+                                                                            label Наименование:
+                                                                            input.form-control.fc_control(data-editor='text', data-column='title', type='text', value='#{part.title}')
+                                                                        .form-group.col-md-4
+                                                                            label Формат подачи результата:
+                                                                            select.form-control.fc_control(data-value='{{order_format}}', data-editor='select', data-column='order_format')
+                                                                                option(value='-1') Выбрать
+                                                                                option(value='1') Время "55:55"
+                                                                                option(value='2') Повторы "55"
+                                                                                option(value='3') Tie break "5 (5 (55:55))"
+                                                                        .form-group.col-md-4
+                                                                            label Дата начала:
+                                                                            input.form-control.fc_datepicker.fc_control(type='text', value='#{part.date_start}', data-editor='text', data-column='start_date')
+                                                                        .form-group.col-md-4
+                                                                            label Дата окончания:
+                                                                            input.form-control.fc_datepicker.fc_control(type='text', value='#{part.date_end}', data-editor='text', data-column='end_date')
+                                                                        .form-group.col-md-4
+                                                                            label Статус:
+                                                                            select.form-control.fc_control(data-value='{{status}}', data-editor='select', data-column='status')
+                                                                                option(value='-1') Черновик
+                                                                                option(value='1') Идет подготовка
+                                                                                option(value='2') Регистрация открыта
+                                                                                option(value='3') Регистрация закрыта
+                                                                                option(value='3') Опубликованы утвержденные резульаты
+                                                                    .row
+                                                                        .form-group.col-md-6
+                                                                            label Комплекс:
+                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_complex}', data-editor='html', data-column='desc')
+                                                                        .form-group.col-md-6
+                                                                            label Примечание:
+                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.note}', data-editor='html', data-column='desc')
+                                                                    .row
+                                                                        .form-group.col-md-6
+                                                                            label Стандарты движений:
+                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_move_std}', data-editor='html', data-column='desc')
+                                                                        .form-group.col-md-6
+                                                                            label Подсчет очков:
+                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_scoring}', data-editor='html', data-column='desc')
+                                                                    .row
+                                                                        .form-group.col-md-6
+                                                                            label Оборудование:
+                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_inventory}', data-editor='html', data-column='desc')
+                                                                        .form-group.col-md-6
+                                                                            label Стандарты видеосъемки:
+                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_video_std}', data-editor='html', data-column='desc')
 
+
+                                                                .fn-vagon
+                                                                    h3 Проверенные заявки
+                                                                    table.table
+                                                                        thead
+                                                                            tr
+                                                                                th Атлет
+                                                                                th Реультат
+                                                                                th Судья
+                                                                        tbody
+                                                                            tr
+                                                                                td
+                                                                                    a(href='user.html') Атлет 1
+                                                                                td 5 (4 (11:27))
+                                                                                td
+                                                                                    a(href='judge.html') Судья 1
+                                                                            tr
+                                                                                td
+                                                                                    a(href='user.html') Атлет 1
+                                                                                td 5 (4 (11:27))
+                                                                                td
+                                                                                    a(href='judge.html') Судья 1
+                                                                            tr
+                                                                                td
+                                                                                    a(href='user.html') Атлет 1
+                                                                                td 5 (4 (11:27))
+                                                                                td
+                                                                                    a(href='judge.html') Судья 1
+                                                                    .sBtn.small.blue.flRight.marRight3.back_results
+                                                                        i.fa.fa-reply
+                                                                        |   Назад
 
 

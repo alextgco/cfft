@@ -4,7 +4,30 @@
         <div class="fn-train-overflow">
             <div class="fn-train">
                 <div class="fn-vagon">
+                    <div class="row">
+                        <div class="col-md-12">
 
+                            <div class="sBtn small red flRight remove-event-part marRight3">
+                                <i class="fa fa-trash-o"></i>&nbsp;&nbsp;Удалить
+                            </div>
+
+                            <div class="sBtn small green flRight save-edit-event-part marRight3">
+                                <i class="fa fa-save"></i>&nbsp;&nbsp;Сохранить
+                            </div>
+
+                            <div class="sBtn small blue flRight marRight3">
+                                <a href="requests.html?event_id=2&part_id=3">
+                                    <i class="fa fa-video-camera"></i>&nbsp;&nbsp;К заявкам <span class="badge">73</span>
+                                </a>
+                            </div>
+
+                            <div class="sBtn small blue flRight marRight3 to_results">
+                                <i class="fa fa-list-ul"></i>&nbsp;&nbsp;К результатам
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label>Наименование:</label>
@@ -43,35 +66,37 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-12">
-                            <label>Описание этапа, правила:</label>
-                            <textarea class="form-control cf_text_editor fc_control" value="{{desc}}" data-editor="html" data-column="desc" ></textarea>
+                        <div class="form-group col-md-6">
+                            <label>Комплекс:</label>
+                            <textarea class="form-control cf_text_editor fc_control" value="{{desc_complex}}" data-editor="html" data-column="desc_complex" ></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Примечание:</label>
+                            <textarea class="form-control cf_text_editor fc_control" value="{{note}}" data-editor="html" data-column="note" ></textarea>
                         </div>
                     </div>
-
                     <div class="row">
-                        <div class="col-md-12">
-
-                            <div class="sBtn small red flRight remove-event-part marRight3">
-                                <i class="fa fa-trash-o"></i>&nbsp;&nbsp;Удалить
-                            </div>
-
-                            <div class="sBtn small green flRight save-edit-event-part marRight3">
-                                <i class="fa fa-save"></i>&nbsp;&nbsp;Сохранить
-                            </div>
-
-                            <div class="sBtn small blue flRight marRight3">
-                                <a href="requests.html?event_id=2&part_id=3">
-                                    <i class="fa fa-video-camera"></i>&nbsp;&nbsp;К заявкам <span class="badge">73</span>
-                                </a>
-                            </div>
-
-                            <div class="sBtn small blue flRight marRight3 to_results">
-                                <i class="fa fa-list-ul"></i>&nbsp;&nbsp;К результатам
-                            </div>
-
+                        <div class="form-group col-md-6">
+                            <label>Стандарты движений:</label>
+                            <textarea class="form-control cf_text_editor fc_control" value="{{desc_move_std}}" data-editor="html" data-column="desc_move_std" ></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Подсчет очков:</label>
+                            <textarea class="form-control cf_text_editor fc_control" value="{{desc_scoring}}" data-editor="html" data-column="desc_scoring" ></textarea>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>Оборудование:</label>
+                            <textarea class="form-control cf_text_editor fc_control" value="{{desc_inventory}}" data-editor="html" data-column="desc_inventory" ></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Стандарты видеосъемки:</label>
+                            <textarea class="form-control cf_text_editor fc_control" value="{{desc_video_std}}" data-editor="html" data-column="desc_video_std" ></textarea>
+                        </div>
+                    </div>
+
+
 
                 </div>
 

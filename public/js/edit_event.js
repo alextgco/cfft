@@ -147,12 +147,52 @@ $(document).ready(function(){
         tabHeaderWrapper.find('li:last-child a').click();
     });
 
+    var isNew = location.search;
+    isNew = isNew.substr(1);
+    var from = isNew.indexOf('id=');
+    var to = from + 3;
+    isNew = isNew.substr(to);
+    var nextParStart = isNew.indexOf('&');
+    isNew = (nextParStart > 0)? isNew.substr(0, nextParStart): isNew;
+    if(isNew == 'new'){
+        eventPartEditor.getData(function(){
+            eventPartEditor.getTemplate(function(){
+                eventPartEditor.render();
+            });
+        });
+    }
 
-    eventPartEditor.getData(function(){
-        eventPartEditor.getTemplate(function(){
-            eventPartEditor.render();
+
+    //-------------------------------------------------------
+
+    var saveBtn = $('.saveEventButton');
+
+    function getEditorByElem(elem){
+        return elem[0].type;
+
+    }
+
+    saveBtn.off('click').on('click', function(){
+        var o = {
+            command: 'add',
+            object: 'action',
+            params: {}
+        };
+
+        $('.fc-event-field').each(function(idx, elem){
+            var $elem = $(elem);
+            var column = $elem.data('name');
+            var val = $elem.val();
+            debugger;
+            o.params[column] = val;
+        });
+
+        console.log(o);
+        sendQuery(o, function(res){
+            console.log(res);
         });
     });
+
 
 
 });

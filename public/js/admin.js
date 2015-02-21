@@ -24,12 +24,11 @@ $(document).ready(function(){
     $("#btn1").on('click',function(){
         var o = {
             command:"add",
-            object:"action",
+            object:"action_part",
             params:{
-                title:"TEST ACTION 2",
-                description:"sdfds",
-                cost:"1000",
-                payment_type_id:1
+                action_id: 3,
+                title:"action PART title",
+                description:"sdfds"
             }
         };
         sendQuery(o,function(r){console.log(r);});
@@ -61,7 +60,11 @@ $(document).ready(function(){
         var o = {
             command:"get",
             object:"action_part",
-            params:{}
+            params:{
+                where: {
+                    action_id: 3
+                }
+            }
         };
         sendQuery(o,function(r){console.log(r);});
     });
