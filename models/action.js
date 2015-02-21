@@ -1,7 +1,4 @@
 var Model = require('./MySQLModel');
-//var async = require('async');
-var MyError = require('../error').MyError;
-//var funcs = require('../libs/functions');
 var action = new Model({
     table: 'actions',
     table_ru: 'Мероприятие',
@@ -12,7 +9,12 @@ var action = new Model({
         {
             payment_type_id:{
                 table:"action_payment_types",
-                fields:["payment_type"]
+                fields:[
+                    {
+                        column:"name",
+                        alias:"payment_type"
+                    }
+                ]
             }
         }
     ]

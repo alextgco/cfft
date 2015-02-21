@@ -114,7 +114,12 @@ Model.prototype.get = function (params, callback) {
                     extTablesOn.push(' LEFT JOIN ' + oneJoinObj[i].table + ' ON ' +
                     self.table + '.' + i + ' = ' + oneJoinObj[i].table + '.id');
                     for (var j in oneJoinObj[i].fields) {
-                        oneJoinObj[i].fields[j] = oneJoinObj[i].table + '.' + oneJoinObj[i].fields[j];
+                        var oneField = oneJoinObj[i].fields[j];
+                        if (typeof  oneField == 'object'){
+                            oneJoinObj[i].fields[j] = oneJoinObj[i].table + '.' + oneField.column + ' as '+oneField.alias;
+                        }else{
+                            oneJoinObj[i].fields[j] = oneJoinObj[i].table + '.' + oneField;
+                        }
                     }
                 }
             }

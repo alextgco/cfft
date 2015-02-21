@@ -65,7 +65,7 @@ $(document).ready(function(){
                 where:{
                     id:'3..8',
                     action_payment_types:{
-                        payment_type_EN:'ANOTHER'
+                        type:'ANOTHER'
                     }
                 }
 
