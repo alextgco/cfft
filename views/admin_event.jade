@@ -63,12 +63,10 @@ block content
                                 .form-group
                                     if(isNew)
                                         label Тип оплаты:
+                                        input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id")
                                     else
                                         label Тип оплаты: #{event.payment_type_id}
-                                    select.form-control
-                                        option Взнос за все мероприятие
-                                        option Первое видео бесплатное, далее за каждую заявку
-                                    // <input class="form-control" type="text" />
+                                        input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id", data-value="#{event.payment_type_id}")
                             .col-md-4
                                 .form-group
                                     label Сумма оплаты:

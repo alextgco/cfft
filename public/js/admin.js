@@ -12,10 +12,11 @@ var sendQuery = function (obj, cb) {
         statusCode: {
             200: function (result) {
                 console.log('200', result);
-
+                cb(result);
             },
             403: function (result) {
                 console.log('200', result);
+                cb(result);
             }
         }
     });

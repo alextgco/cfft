@@ -183,7 +183,6 @@ $(document).ready(function(){
             var $elem = $(elem);
             var column = $elem.data('name');
             var val = $elem.val();
-            debugger;
             o.params[column] = val;
         });
 
