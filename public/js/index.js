@@ -21,6 +21,38 @@ $(document).ready(function(){
 
         $('select').select2();
 
+        $('input.select2.fc-event-field').select2({
+            query: function(query){
+                var data = {results: []};
+                sendQuery({
+                    command: 'get',
+                    object: 'action_payment_types',
+                    params: {
+                        payment_type_id:1
+                    }
+                }, function(res){
+                    for(var i in res.data){
+                        var item = res.data[i];
+                        data.results.push({
+                            id: item.id,
+                            text: item.name
+                        });
+                    }
+                    query.callback(data);
+                });
+            }
+            //query: function(query){
+            //    var data = {results: []}, i, j, s;
+            //    for (i = 1; i < 5; i++) {
+            //        s = "";
+            //        for (j = 0; j < i; j++) {s = s + query.term;}
+            //        data.results.push({id: query.term + i, text: 'asdasd'});
+            //    }
+            //    query.callback(data);
+            //}
+        });
+
+
         var cf_text_editors = $('.cf_text_editor');
         for(var i=0; i<cf_text_editors.length; i++){
             var te = cf_text_editors.eq(i)[0];
