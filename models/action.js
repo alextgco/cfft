@@ -12,7 +12,7 @@ var action = new Model({
         {
             payment_type_id:{
                 table:"action_payment_types",
-                fields:["name"]
+                fields:["payment_type"]
             }
         }
     ]

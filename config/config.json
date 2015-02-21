@@ -15,7 +15,8 @@
     "host": "localhost",
     "user": "root",
     "password": "aambfi5y",
-    "database": "cfft"
+    "database": "cfft",
+    "dateStrings":"TIMESTAMP"
   },
   "mail":{
     "mailTransport":{

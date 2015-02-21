@@ -22,19 +22,13 @@ module.exports = {
             return obj;
         }
         var temp = {};
+        if (obj.length){
+            temp = [];
+        }
         for (var key in obj) {
             temp[key] = this.cloneObj(obj[key]);
         }
         return temp;
-    },
-    cloneArray: function(arr){
-        if (arr == null || typeof(arr) != 'object') {
-            return arr;
-        }
-        var tmp = [];
-        for (var i in arr) {
-            tmp.push(arr[i]);
-        }
-        return tmp;
     }
+
 };

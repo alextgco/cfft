@@ -84,47 +84,104 @@ Model.prototype.getById = function (id, callback) {
         callback(null, funcs.formatResponse(0, 'success', 'ОК', results));
     });
 };
-Model.prototype.get = function (where, callback) {
+Model.prototype.get = function (params, callback) {
     var self = this;
 
 
 
 
     var getRows = function (conn, callback) {
-        var limit = where.limit || 1000;
-        delete where.limit;
-        var sql = conn.where(where);
-        if (!where.deleted){
-            sql += " AND (deleted IS NULL OR deleted >'"+funcs.getDataTimeMySQL()+"')";
-        }
-        sql += ' LIMIT '+ limit;
+        var where = params.where || {};
+        var limit = params.limit || 1000;
+        var deleted = !!params.deleted;
 
-        /*SELECT cities.title, countries.title from cities
-         LEFT JOIN countries ON
-         cities.country_id = countries.id
-         limit 0,10*/
+        var columns = params.columns || funcs.cloneObj(self.columns);
+        var sql = "SELECT "+columns.join(', ')+" FROM "+self.table;
 
-       /* var columns = funcs.cloneArray(self.columns);
-        console.log(columns);
-        var joinObjs = self.join_objs;
+
+        var joinObjs = funcs.cloneObj(self.join_objs);
+        var tmpWhere = {};
+
+        /// Только в случае если нужно джоинить таблицы
         if (joinObjs){
-            var extColumns = [];
             var extTablesOn = [];
-            for (var i in self.join_objs) {
-
+            for (var c in joinObjs) {
+                var oneJoinObj = joinObjs[c];
+                for (var i in oneJoinObj) {
+                    if (columns.indexOf(i)==-1){
+                        continue;
+                    }
+                    extTablesOn.push(' LEFT JOIN ' + oneJoinObj[i].table + ' ON ' +
+                    self.table + '.' + i + ' = ' + oneJoinObj[i].table + '.id');
+                    for (var j in oneJoinObj[i].fields) {
+                        oneJoinObj[i].fields[j] = oneJoinObj[i].table + '.' + oneJoinObj[i].fields[j];
+                    }
+                }
             }
 
-
-            sql  = "SELECT * FROM "+self.table;
-            for (var i in  joinObjs) {
-                sql += ", "+joinObjs[i].table;
+            for (var i2 in columns) {
+                var brk = false;
+                for (var j2 in joinObjs) {
+                    if (brk){
+                        break;
+                    }
+                    var oneJoinObj2 = joinObjs[j2];
+                    for (var k in oneJoinObj2) {
+                        if (columns[i2] == k){
+                            columns.splice(i2, 1, oneJoinObj2[k].fields.join(','));
+                            brk = true;
+                            break;
+                        }
+                    }
+                }
+                if (!brk){
+                    columns[i2] = self.table+'.'+columns[i2];
+                }
             }
+
+            for (var i in where) {
+                if (typeof where[i]=='object'){
+                    var fields = where[i];
+                    for (var j in fields) {
+                        tmpWhere[i+'.'+j] = fields[j];
+                    }
+                }else{
+                    tmpWhere[self.table+'.'+i] = where[i];
+                }
+            }
+            where = tmpWhere;
+            console.log('extTablesOn', extTablesOn);
+            console.log('columns', columns.join(', '));
+            sql  = "SELECT "+ columns.join(', ') +" FROM "+self.table;
+            sql += extTablesOn.join('');
+        }else{
+
+            for (var i in where) {
+                if (typeof where[i]!=='object'){
+                    tmpWhere[i] = where[i];
+                }
+            }
+            where = tmpWhere;
+        }
+        // Общее для всех
+        var whereString  = conn.where(where);
+        if (whereString!==''){
+            sql += ' WHERE '+whereString;
+        }
+        if (!deleted){
+            if (whereString!==''){
+                sql += ' AND';
+            }
+            sql += " ("+self.table+".deleted IS NULL OR "+self.table+".deleted >'"+funcs.getDataTimeMySQL()+"')"
+        }
+        if (limit){
+            sql += ' LIMIT '+limit;
         }
 
-*/
         console.log(sql);
-        conn.query('select * from '+self.table+' where '+sql,[] , function (err, rows) {
+        conn.query(sql,[] , function (err, rows) {
             conn.release();
+            console.log(rows);
             if (!err) {
                 for (var i in rows) {
                     for (var j in self.blob_fields) {

@@ -62,7 +62,13 @@ $(document).ready(function(){
             command:"get",
             object:"action",
             params:{
-                id:'>3'
+                where:{
+                    id:'3..8',
+                    action_payment_types:{
+                        payment_type_EN:'ANOTHER'
+                    }
+                }
+
             }
         };
         sendQuery(o,function(r){console.log(r);});
