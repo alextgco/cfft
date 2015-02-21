@@ -179,7 +179,7 @@ Model.prototype.get = function (params, callback) {
             var sortColumns = [];
 
             function prepareSort(obj) {
-                sortColumns.push((obj.table || self.table) + '.' + obj.column + ' ' + (obj.direction || 'ASC'));
+                sortColumns.push((obj.table || self.table) + '.' + obj.column + ' ' + (obj.direction || 'DESC'));
             }
 
             if (typeof sort == 'object') {
