@@ -17,26 +17,26 @@ block content
                         .col-md-6
                             .form-group
                                 label.control-label &#1055;&#1086;&#1083;:
-                                select.form-control.fc-field(data-server_name="gender", data-title="Пол", data-editor="select", data-value="#{user.gender}")
+                                select.form-control.fc-field(data-server_name="gender", data-title="Пол", data-editor="select", data-value="#{user.gender}", disabled)
                                     option &#1052;&#1091;&#1078;&#1089;&#1082;&#1086;&#1081;
                                     option &#1046;&#1077;&#1085;&#1089;&#1082;&#1080;&#1081;
                             .form-group
                                 label.control-label &#1044;&#1072;&#1090;&#1072; &#1088;&#1086;&#1078;&#1076;&#1077;&#1085;&#1080;&#1103;:
                                 .input-group
-                                    input.form-control.cf_datepicker.fc-field(type="text", data-server_name="birthday", data-title="Дата рождения", data-editor="date", placeholder="Дата рождения", value="#{user.birthday}")
+                                    input.form-control.cf_datepicker.fc-field(type="text", data-server_name="birthday", data-title="Дата рождения", data-editor="date", placeholder="Дата рождения", value="#{user.birthday}", disabled)
                                     .input-group-addon
                                         i.fa.fa-calendar
                             .form-group
                                 label.control-label &#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;:
                                 .input-group
                                     .input-group-addon +7
-                                    input.form-control.maskedPhone.fc-field(type="text", data-server_name="phone", data-title="Телефон", data-editor="phone", placeholder="Телефон", value="#{user.phone}")
+                                    input.form-control.maskedPhone.fc-field(type="text", data-server_name="phone", data-title="Телефон", data-editor="phone", placeholder="Телефон", value="#{user.phone}", disabled)
                             .form-group
                                 label.control-label
                                     | &#1043;&#1086;&#1088;&#1086;&#1076;:
-                                    span.red-star *
+                                    span.red-star
 
-                                select.form-control.fc-field(data-server_name="city", data-title="Город", data-required="true", data-editor="select", data-value="#{user.city}")
+                                select.form-control.fc-field(data-server_name="city", data-title="Город", data-required="true", data-editor="select", data-value="#{user.city}", disabled)
                                     option &#1052;&#1086;&#1089;&#1082;&#1074;&#1072;
                                     option &#1057;&#1072;&#1085;&#1082;&#1090;-&#1055;&#1077;&#1090;&#1077;&#1088;&#1073;&#1091;&#1088;&#1075;
                                     option &#1045;&#1082;&#1072;&#1090;&#1077;&#1088;&#1080;&#1085;&#1073;&#1091;&#1088;&#1075;
@@ -45,9 +45,9 @@ block content
                             .form-group
                                 label.control-label
                                     | &#1050;&#1083;&#1091;&#1073;:
-                                    span.red-star *
+                                    span.red-star
 
-                                select.form-control.fc-field(data-server_name="club", data-title="Клуб", data-required="true", data-editor="select", data-value="#{user.club}")
+                                select.form-control.fc-field(data-server_name="club", data-title="Клуб", data-required="true", data-editor="select", data-value="#{user.club}", disabled)
                                     option &#1053;&#1077; &#1089;&#1086;&#1089;&#1090;&#1086;&#1102; &#1074; &#1082;&#1083;&#1091;&#1073;&#1077;
                                     option &#1050;&#1083;&#1091;&#1073; 1
                                     option &#1050;&#1083;&#1091;&#1073; 2
@@ -56,7 +56,49 @@ block content
                             .form-group
                                 label.control-label &#1042;&#1077;&#1089;:
                                 .input-group
-                                    input.form-control.fc-field(type="number", data-server_name="weight", data-title="Вес", data-editor="number", placeholder="Вес", value="#{user.weight}")
+                                    input.form-control.fc-field(type="number", data-server_name="weight", data-title="Вес", data-editor="number", placeholder="Вес", value="#{user.weight}", disabled)
                                     .input-group-addon &#1082;&#1075;.
 
             hr
+        .container.partners.marBot30.noPad
+            h3.fullDarkHeader
+                span.fullDarkHeader-inner
+                    | Единомышленники
+            .row
+                .col-md-12
+                    .col-md-2
+                        img(src="img/part1.png")
+                    .col-md-2
+                        img(src="img/part2.png")
+                    .col-md-2
+                        img(src="img/part3.png")
+                    .col-md-2
+                        img(src="img/part4.png")
+                    .col-md-2
+                        img(src="img/part1.png")
+                    .col-md-2
+                        img(src="img/part2.png")
+                    .col-md-2
+                        img(src="img/part1.png")
+                    .col-md-2
+                        img(src="img/part2.png")
+                    .col-md-2
+                        img(src="img/part3.png")
+                    .col-md-2
+                        img(src="img/part4.png")
+                    .col-md-2
+                        img(src="img/part1.png")
+                    .col-md-2
+                        img(src="img/part2.png")
+                    .col-md-2
+                        img(src="img/part1.png")
+                    .col-md-2
+                        img(src="img/part2.png")
+                    .col-md-2
+                        img(src="img/part3.png")
+                    .col-md-2
+                        img(src="img/part4.png")
+                    .col-md-2
+                        img(src="img/part1.png")
+                    .col-md-2
+                        img(src="img/part2.png")

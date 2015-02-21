@@ -26,6 +26,9 @@ module.exports = function (app) {
   app.get('/event', function(req, res, next){
     res.render('event');
   });
+  app.get('/for_athlets', function(req, res, next){
+    res.render('for_athlets');
+  });
   app.get('/registration_error', function(req, res, next){
     res.render('registration_error');
   });

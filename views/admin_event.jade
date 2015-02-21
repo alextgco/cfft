@@ -1,5 +1,6 @@
 extends admin_layout
 block content
+    - var isNew = data.isNew;
     - var event = data.data[0];
     - var fevent = JSON.stringify(event);
     //p #{fevent}
@@ -24,10 +25,16 @@ block content
                             .col-md-4
                                 .form-group
                                     label Наименование:
-                                    input.form-control(type='text', value="#{event.title}")
+                                    if(isNew)
+                                        input.form-control(type='text', value="")
+                                    else
+                                        input.form-control(type='text', value="#{event.title}")
                             .col-md-4
                                 .form-group
-                                    label Тип оплаты: #{event.payment_type_id}
+                                    if(isNew)
+                                        label Тип оплаты:
+                                    else
+                                        label Тип оплаты: #{event.payment_type_id}
                                     select.form-control
                                         option Взнос за все мероприятие
                                         option Первое видео бесплатное, далее за каждую заявку
@@ -36,14 +43,18 @@ block content
                                 .form-group
                                     label Сумма оплаты:
                                     .input-group
-                                        input.form-control(type='number', value="#{event.cost}")
+                                        if(isNew)
+                                            input.form-control(type='number', value="")
+                                        else
+                                            input.form-control(type='number', value="#{event.cost}")
                                         .input-group-addon
                                             i.fa.fa-ruble
                             .col-md-10
                                 .form-group
                                     label Описание:
                                     textarea.form-control.cf_text_editor
-                                        | #{event.description}
+                                        if(!isNew)
+                                            | #{event.description}
                             .col-md-2
                                 .row
                                     .col-md-12
