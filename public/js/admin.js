@@ -26,9 +26,9 @@ $(document).ready(function(){
             command:"add",
             object:"action_part",
             params:{
-                action_id: 3,
-                title:"action PART title",
-                description:"sdfds"
+                title:"action part title",
+                description:"sdfds",
+                action_id: 3
             }
         };
         sendQuery(o,function(r){console.log(r);});
@@ -60,11 +60,7 @@ $(document).ready(function(){
         var o = {
             command:"get",
             object:"action_part",
-            params:{
-                where: {
-                    action_id: 3
-                }
-            }
+            params:{}
         };
         sendQuery(o,function(r){console.log(r);});
     });
