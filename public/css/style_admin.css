@@ -97,3 +97,8 @@
     top: 18px;
     right: 20px;
 }
+.addEventButton{
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
