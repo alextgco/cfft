@@ -89,7 +89,7 @@ Model.prototype.get = function (params, callback) {
     var getRows = function (conn, callback) {
         var where = params.where || {};
         var limit = params.limit || 1000;
-        var sort = params.sort || (self.sort) ? funcs.cloneObj(self.sort) : false;
+        var sort = params.sort || (self.sort) ? funcs.cloneObj(self.sort) : {column:'id',direction:'DESC'};
         var deleted = !!params.deleted;
 
         var columns = params.columns || funcs.cloneObj(self.columns);
