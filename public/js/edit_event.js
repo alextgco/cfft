@@ -180,15 +180,32 @@ $(document).ready(function(){
         };
 
         $('.fc-event-field').each(function(idx, elem){
+            if($(this).hasClass('select2-container')){
+                return;
+            }
             var $elem = $(elem);
             var column = $elem.data('name');
             var val = $elem.val();
+            console.log($elem, column);
             o.params[column] = val;
         });
 
         console.log(o);
         sendQuery(o, function(res){
             console.log(res);
+            if(res.code == 0){
+                var id = res.data.id;
+                sendQuery({
+                    command:'add',
+                    object: 'action_part',
+                    params: {
+                        action_id: id,
+                        title: 'Первый этап'
+                    }
+                }, function (res) {
+
+                });
+            }
         });
     });
 

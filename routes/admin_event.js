@@ -36,6 +36,10 @@ exports.get = function(req, res, next){
                     console.log(err, 'admin_event');
                     return callback(err);
                 }
+                console.log('PARTS', result);
+                if(result.data.length == 0){
+
+                }
                 callback(null,result);
             });
         };
