@@ -6,9 +6,11 @@ var mysql = require("mysql"),
     cMysql = mysql.createPool(config.get('mysqlConnection'));
 
 var mysqlUtilities = require('mysql-utilities');
+var mysqlUtilitiesExtendedWhere = require('./mysqlUtiltiesExtendedWhere');
 cMysql.on('connection', function(connection) {
     console.log('MySQL pool connected');
     mysqlUtilities.upgrade(connection);
+    //mysqlUtilitiesExtendedWhere.upgradeWhere(connection);
     mysqlUtilities.introspection(connection);
 });
 cMysql.on('error', function(err) {

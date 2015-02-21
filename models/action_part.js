@@ -7,9 +7,9 @@ var action = new Model({
     blob_fields:['description'],
     join_objs:[
         {
-            payment_type_id:{
-                table:"action_payment_types",
-                fields:["payment_type"]
+            action_id:{
+                table:"actions",
+                fields:[]
             }
         }
     ]
