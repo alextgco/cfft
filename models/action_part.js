@@ -1,19 +1,41 @@
 var Model = require('./MySQLModel');
 module.exports = function(callback){
     var action = new Model({
-        table: 'action_part',
+        table: 'action_parts',
         table_ru: 'Этап мероприятия',
         ending:'',
-        required_fields:['payment_type_id','title'],
-        blob_fields:['description1','description2'],
+        required_fields:['action_id','title'],
+        blob_fields:['description'],
         join_objs:[
             {
-                payment_type_id:{
-                    table:"action_payment_types",
+                action_id:{
+                    table:"actions",
+                    fields:[
+                        {
+                            column:"title",
+                            alias:"action"
+                        }
+                    ]
+                },
+                result_type_id:{
+                    table:"result_types",
                     fields:[
                         {
                             column:"name",
-                            alias:"payment_type"
+                            alias:"result_type"
+                        },
+                        {
+                            column:"num_of_fields",
+                            alias:"num_of_fields"
+                        }
+                    ]
+                },
+                status_id:{
+                    table:"statuses_of_action_parts",
+                    fields:[
+                        {
+                            column:"name",
+                            alias:"status"
                         }
                     ]
                 }
