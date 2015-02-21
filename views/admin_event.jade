@@ -1,9 +1,9 @@
 extends admin_layout
 block content
     - var isNew = data.isNew;
-    - var event = data.data[0];
-    - var fevent = JSON.stringify(event);
-    //p #{fevent}
+    if(!isNew)
+        - var event = data.actions.data[0];
+        - var rewards = data.rewards.data[0];
     .container
         h2 Редактирование мероприятия
         hr
@@ -18,9 +18,11 @@ block content
                     form.marTop22
                         .row
                             .col-md-4
-                                | #{event.date_start}
+                                if(!isNew)
+                                    | #{event.date_start}
                             .col-md-4
-                                | #{event.date_end}
+                                if(!isNew)
+                                    | #{event.date_end}
                         .row
                             .col-md-4
                                 .form-group

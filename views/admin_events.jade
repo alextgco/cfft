@@ -1,35 +1,39 @@
 extends admin_layout
 block content
-   .container
-      h2 Мероприятия
-      hr
-      .row
-         .col-md-12
-            .row
-               .col-md-3
-                  .form-group
-                     label Название
-                     input(type="text").form-control
-               .col-md-3
-                  .form-group
-                     label Дата с
-                     input(type="text").form-control.cf_datepicker
-               .col-md-3
-                  .form-group
-                     label Дата по
-                     input(type="text").form-control.cf_datepicker
+    .container.posRel
+        h2 Мероприятия
+        .addEventButton.sBtn.flRight.green
+            a(href="admin_event?id=new")
+                .fa.fa-plus &nbsp;&nbsp;
+                | Создать мероприятие
+        hr
+        .row
+            .col-md-12
+                .row
+                    .col-md-3
+                        .form-group
+                            label Название
+                            input(type="text").form-control
+                    .col-md-3
+                        .form-group
+                            label Дата с
+                            input(type="text").form-control.cf_datepicker
+                    .col-md-3
+                        .form-group
+                            label Дата по
+                            input(type="text").form-control.cf_datepicker
 
-      .events-list-wrapper
-         ul
+        .events-list-wrapper
+            ul
 
-            for a in items.data
-               li
-                  .event-item-image
-                     img(src="img/event1.jpg")
-                  .event-item-info
-                     .event-item-title
-                        a(href="admin_event?id=#{a.id}") #{a.title}
-                        .event-item-date 21.05.2015
-                        .event-item-desc #{a.description}
-            else
-               li sorry, no actions!
+                for a in items.data
+                    li
+                        .event-item-image
+                            img(src="img/event1.jpg")
+                        .event-item-info
+                            .event-item-title
+                                a(href="admin_event?id=#{a.id}") #{a.title}
+                                .event-item-date 21.05.2015
+                                .event-item-desc #{a.description}
+                else
+                    li sorry, no events!
