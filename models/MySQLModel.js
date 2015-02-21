@@ -86,10 +86,6 @@ Model.prototype.getById = function (id, callback) {
 };
 Model.prototype.get = function (params, callback) {
     var self = this;
-
-
-
-
     var getRows = function (conn, callback) {
         var where = params.where || {};
         var limit = params.limit || 1000;
