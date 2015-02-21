@@ -60,20 +60,8 @@ $(document).ready(function(){
     $("#btn4").on('click',function(){
         var o = {
             command:"get",
-            object:"action",
-            params:{
-                where:{
-                    id:'3..8'/*,
-                    action_payment_types:{
-                        type:'ANOTHER'
-                    }*/
-                },
-                sort:{
-                    column:'id',
-                    direction:'DESC'
-                }
-
-            }
+            object:"action_part",
+            params:{}
         };
         sendQuery(o,function(r){console.log(r);});
     });
