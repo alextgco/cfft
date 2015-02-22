@@ -16,6 +16,15 @@ $(document).ready(function(){
             autoclose: true
         });
 
+        $('.fc_datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            language: "ru",
+            autoclose: true
+        });
+
+
+
         $('.maskedPhone').mask('(999) 999-99-99');
         $('.maskTime').mask('99:99');
 

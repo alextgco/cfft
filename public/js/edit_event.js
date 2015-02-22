@@ -222,7 +222,7 @@ $(document).ready(function(){
             }
             var $elem = $(elem);
             var column = $elem.data('name');
-            var val = $elem.val();
+            var val = ($elem.val())? $elem.val(): "";
             o.params[column] = val;
             console.log(column);
         });

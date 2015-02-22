@@ -8,6 +8,7 @@ var sendQuery = function (obj, cb) {
         data: obj,
         complete: function (res) {
             console.log('complete', res);
+
         },
         statusCode: {
             200: function (result) {
