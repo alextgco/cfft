@@ -120,3 +120,4 @@ module.exports = app;
 //dcapp cfft1/default deploy
 
 //mysql -u deptezf2upj -p deptezf2upj --host=173.194.241.167
+// http://104.236.248.75:<app-port>
