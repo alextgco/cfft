@@ -52,3 +52,5 @@ module.exports = cMysql;
 
     }
 });*/
+
+// GRANT ALL PRIVILEGES ON cfft.* TO root@'%' IDENTIFIED BY 'aambfi5y' WITH GRANT OPTION;

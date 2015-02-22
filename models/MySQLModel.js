@@ -211,7 +211,7 @@ Model.prototype.get = function (params, callback) {
             if (!err) {
                 for (var i in rows) {
                     for (var j in self.blob_fields) {
-                        if (!rows[i][self.blob_fields[j]]) {
+                        if (!rows[i][self.blob_fields[j]] || rows[i][self.blob_fields[j]]=='null') {
                             rows[i][self.blob_fields[j]] = '';
                         }else{
                             try {
