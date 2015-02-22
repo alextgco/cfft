@@ -16,7 +16,7 @@ process.on('exit', function(code) {
     });
 });
 setTimeout(function(){
-    process.exit();
+//    process.exit();
 },5000);
 
 

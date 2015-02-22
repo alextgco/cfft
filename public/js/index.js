@@ -9,15 +9,15 @@ $(document).ready(function(){
             }
         });
 
-        $('.cf_datepicker').datepicker({
-            format: "dd/mm/yyyy",
-            todayBtn: "linked",
-            language: "ru",
-            autoclose: true
-        });
+        //$('.cf_datepicker').datepicker({
+        //    format: "yyyy-mm-dd",
+        //    todayBtn: "linked",
+        //    language: "ru",
+        //    autoclose: true
+        //});
 
         $('.fc_datepicker').datepicker({
-            format: "dd/mm/yyyy",
+            format: "yyyy-mm-dd",
             todayBtn: "linked",
             language: "ru",
             autoclose: true
@@ -42,13 +42,10 @@ $(document).ready(function(){
             $elem.select2({
                 query: function(query){
                     var data = {results: []};
-                    console.log('send', directories[name]);
                     sendQuery({
                         command: 'get',
                         object: directories[name],
-                        params: {
-                            payment_type_id:1
-                        }
+                        params: {}
                     }, function(res){
                         for(var i in res.data){
                             var item = res.data[i];
@@ -57,11 +54,12 @@ $(document).ready(function(){
                                 text: item.name
                             });
                         }
-
-                        console.log('back', directories[name]);
-
                         query.callback(data);
                     });
+                },
+                initSelection: function(element, callback){
+                    var data = {id: element.val(), text: element.val()};
+                    callback(data);
                 }
             });
         });

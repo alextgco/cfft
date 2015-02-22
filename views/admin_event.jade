@@ -63,7 +63,7 @@ block content
                                 .form-group
                                     if(isNew)
                                         label Тип оплаты:
-                                        input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id")
+                                        input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id", value="#{event.payment_type_id}")
                                     else
                                         label Тип оплаты: #{event.payment_type_id}
                                         input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id", data-value="#{event.payment_type_id}")
@@ -171,16 +171,16 @@ block content
                                                                         label Наименование:
                                                                         input.fc-event-part-field.form-control.fc_control(data-name='title', type='text', value='#{parts.title}')
                                                                     .form-group.col-md-4
-                                                                        label Формат подачи результата:
+                                                                        label Формат подачи результата: #{parts.result_type_id}
                                                                         input.fc-event-part-field.select2.form-control.fc_control(value='#{parts.result_type_id}', data-name='result_type_id', type="hidden")
                                                                     .form-group.col-md-4
                                                                         label Дата начала:
-                                                                        input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{parts.date_start}', data-name='start_date')
+                                                                        input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{parts.start_date}', data-name='start_date')
                                                                     .form-group.col-md-4
                                                                         label Дата окончания:
-                                                                        input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{parts.date_end}', data-name='end_date')
+                                                                        input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{parts.end_date}', data-name='end_date')
                                                                     .form-group.col-md-4
-                                                                        label Статус:
+                                                                        label Статус: #{parts.status_id}
                                                                         input.fc-event-part-field.select2.form-control.fc_control(data-value='#{parts.status_id}', data-name='status_id', type="hidden")
                                                                 .row
                                                                     .form-group.col-md-6
@@ -266,16 +266,16 @@ block content
                                                                             label Наименование:
                                                                             input.fc-event-part-field.form-control.fc_control(data-name='title', type='text', value='#{part.title}')
                                                                         .form-group.col-md-4
-                                                                            label Формат подачи результата:
+                                                                            label Формат подачи результата: #{part.result_type_id}
                                                                             input.fc-event-part-field.select2.form-control.fc_control(value='#{part.result_type_id}', data-name='result_type_id', type="hidden")
                                                                         .form-group.col-md-4
                                                                             label Дата начала:
-                                                                            input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{part.date_start}', data-name='start_date')
+                                                                            input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{part.start_date}', data-name='start_date')
                                                                         .form-group.col-md-4
                                                                             label Дата окончания:
-                                                                            input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{part.date_end}', data-name='end_date')
+                                                                            input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{part.end_date}', data-name='end_date')
                                                                         .form-group.col-md-4
-                                                                            label Статус:
+                                                                            label Статус: #{part.status_id}
                                                                             input.fc-event-part-field.select2.form-control.fc_control(data-value='#{part.status_id}', data-name='status_id', type="hidden")
                                                                     .row
                                                                         .form-group.col-md-6
