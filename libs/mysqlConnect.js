@@ -17,6 +17,10 @@ cMysql.on('error', function(err) {
     console.log('MySQL ERROR --------');
     console.log(err);
 });
+cMysql.on('release', function(err) {
+    console.log('MySQL release --------');
+    //console.log(err);
+});
 
 cMysql.getConn = function(callback){
     console.log('cMysql.getConn');
