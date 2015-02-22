@@ -115,3 +115,28 @@
 .event-item-title{
     margin-bottom: 0;
 }
+.e-event-part-wrapper .sBtn{
+    margin: 0;
+    border-radius: 0;
+    height: 57px;
+    padding-top: 19px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow: 0 0 0 transparent!important;
+    margin-right: 1px;
+    background-color: transparent;
+    color: #000;
+}
+.e-event-part-wrapper .sBtn:hover{
+    color: #fff;
+}
+.bigTitle{
+    margin-top: 16px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+}
+.bigTitleRow{
+    border-bottom: 1px solid #ccc;
+    background-color: #eee;
+    margin-bottom: 15px;
+}

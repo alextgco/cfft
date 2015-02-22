@@ -174,7 +174,6 @@ block content
                                                                             //.sBtn.small.blue.flRight.marRight3.to_results
                                                                             //    i.fa.fa-list-ul
                                                                             //    |   К результатам
-                                                                    hr
                                                                     .row
                                                                         .form-group.col-md-4
                                                                             label Наименование:
@@ -248,13 +247,14 @@ block content
                                             each part, idx in parts
                                                 - var activeClass = (idx == 0)? 'active': '';
                                                 div(role="tabpanel", id="part_#{part.id}", class="tab-pane #{activeClass}")
-                                                    .e-event-part-wrapper.marTop22
+                                                    .e-event-part-wrapper
                                                         form
                                                             .fn-train-overflow
                                                                 .fn-train
                                                                     .fn-vagon
-                                                                        .row
+                                                                        .row.bigTitleRow
                                                                             .col-md-12
+                                                                                .bigTitle.flLeft.h3 #{part.title}
                                                                                 .sBtn.small.red.flRight.remove-event-part.marRight3
                                                                                     i.fa.fa-trash-o
                                                                                     |   Удалить
@@ -269,7 +269,6 @@ block content
                                                                                 //.sBtn.small.blue.flRight.marRight3.to_results
                                                                                 //    i.fa.fa-list-ul
                                                                                 //    |   К результатам
-                                                                        hr
                                                                         .row
                                                                             .form-group.col-md-4
                                                                                 label Наименование:
