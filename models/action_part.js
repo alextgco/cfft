@@ -21,6 +21,10 @@ module.exports = function(callback){
                     table:"result_types",
                     fields:[
                         {
+                            column:"id",
+                            alias:"result_type_id"
+                        },
+                        {
                             column:"name",
                             alias:"result_type"
                         },
@@ -33,6 +37,10 @@ module.exports = function(callback){
                 status_id:{
                     table:"statuses_of_action_parts",
                     fields:[
+                        {
+                            column:"id",
+                            alias:"status_id"
+                        },
                         {
                             column:"name",
                             alias:"status"
