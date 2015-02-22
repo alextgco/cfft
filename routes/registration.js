@@ -32,7 +32,9 @@ exports.post = function(req, res, next){
     };
     user.registration(obj,function(err, user_id){
         if (err){
+            console.log(err);
             if (err instanceof AuthError){
+
                 return res.json(403, err);
             }else{
                 return next(err);
