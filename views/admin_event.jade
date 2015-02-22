@@ -63,7 +63,7 @@ block content
                                 .form-group
                                     if(isNew)
                                         label Тип оплаты:
-                                        input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id", value="#{event.payment_type_id}")
+                                        input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id", value="")
                                     else
                                         label Тип оплаты: #{event.payment_type_id}
                                         input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id", data-value="#{event.payment_type_id}")
