@@ -53,4 +53,6 @@ module.exports = cMysql;
     }
 });*/
 
+//sudo service mysql restart
 // GRANT ALL PRIVILEGES ON cfft.* TO root@'%' IDENTIFIED BY 'aambfi5y' WITH GRANT OPTION;
+//FLUSH PRIVILEGES;
