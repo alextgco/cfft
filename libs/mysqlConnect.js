@@ -17,13 +17,13 @@ cMysql.on('error', function(err) {
     console.log('MySQL ERROR --------');
     console.log(err);
 });
-cMysql.on('release', function(err) {
-    console.log('MySQL release --------');
-    //console.log(err);
+cMysql.on('enqueue', function () {
+    console.log('Waiting for available connection slot');
 });
 
 cMysql.getConn = function(callback){
     console.log('cMysql.getConn');
+    //onsole.log(cMysql._acquiringConnections);
     cMysql.getConnection(function(err,conn) {
         console.log('cMysql.getConn GETTED');
         if (err) {

@@ -52,6 +52,7 @@ var Model = function (params, callback) {
          WHERE TABLE_NAME='Laptop' AND
          COLUMN_NAME NOT IN ('code');*/
         conn.query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME=?", [self.table], function (err, rows) {
+            conn.release();
             if (err) {
                 callback(err);
             } else {
@@ -206,6 +207,7 @@ Model.prototype.get = function (params, callback) {
 
         console.log(sql);
         conn.query(sql, [], function (err, rows) {
+            console.log('------------- conn.release');
             conn.release();
             if (!err) {
                 for (var i in rows) {
@@ -276,6 +278,7 @@ Model.prototype.modify = function (obj, callback) {
         if (!obj.id) {
             return callback(new MyError('Не передано ключевое поле. id,'+self.required_fields.join(',')));
         }
+        console.log(obj);
         conn.update(self.table, obj, function (err, affected) {
             conn.release();
             callback(err, affected);

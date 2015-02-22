@@ -12,12 +12,13 @@ global.pool = require('./libs/mysqlConnect');
 process.on('exit', function(code) {
     console.log('process exit');
     pool.end(function(err){
+        console.log('poolEnd');
         console.log(err);
     });
 });
-setTimeout(function(){
-//    process.exit();
-},5000);
+/*setTimeout(function(){
+    process.exit();
+},5000);*/
 
 
 // view engine setup
