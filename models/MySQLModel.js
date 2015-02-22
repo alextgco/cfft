@@ -274,7 +274,7 @@ Model.prototype.modify = function (obj, callback) {
     }
     var modifyModel = function (conn, callback) {
         if (!obj.id) {
-            return callback(new MyError('Не передано ключевое поле'));
+            return callback(new MyError('Не передано ключевое поле '+self.required_fields.join(', ')));
         }
         conn.update(self.table, obj, function (err, affected) {
             conn.release();

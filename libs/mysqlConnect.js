@@ -19,8 +19,11 @@ cMysql.on('error', function(err) {
 });
 
 cMysql.getConn = function(callback){
+    console.log('cMysql.getConn');
     cMysql.getConnection(function(err,conn) {
+        console.log('cMysql.getConn GETTED');
         if (err) {
+            console.log(err);
             callback(err)
         } else {
             callback(null,conn);
