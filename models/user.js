@@ -83,11 +83,14 @@ var user = {
                 if (err) {
                     callback(err)
                 } else {
+                    console.log('registration','Перед вставкой пользователя');
                     conn.insert('users',obj,function(err,recordId){
                         conn.release();
                         if (err){
+                            console.log(err);
                             return callback(err);
                         }
+                        console.log('registration','Пользователь успешно добавлен');
                         callback(null);
                     });
                 }
