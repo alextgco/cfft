@@ -210,7 +210,13 @@ Model.prototype.get = function (params, callback) {
             conn.release();
             if (!err) {
                 for (var i in rows) {
+                    for (var k in rows[i]) {
+                        if (rows[i][k] === null) {
+                            rows[i][k] = '';
+                        }
+                    }
                     for (var j in self.blob_fields) {
+
                         if (!rows[i][self.blob_fields[j]] || rows[i][self.blob_fields[j]]=='null') {
                             rows[i][self.blob_fields[j]] = '';
                         }else{
@@ -222,6 +228,7 @@ Model.prototype.get = function (params, callback) {
                         }
 
                     }
+
                 }
             }
             callback(err, rows);
@@ -254,6 +261,7 @@ Model.prototype.add = function (obj, callback) {
     }
     var addToModel = function (conn, callback) {
         obj.created = funcs.getDataTimeMySQL();
+        console.log(obj);
         conn.insert(self.table, obj, function (err, recordId) {
             conn.release();
             callback(err, recordId);
