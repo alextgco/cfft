@@ -51,6 +51,7 @@ exports.post = function(req, res, next){
             guid:guid
         }, function(err){
             if (err){
+                console.log(err);
                 user.remove(user_id,function(err){
                     if (err){
                         return res.json(403, err);
