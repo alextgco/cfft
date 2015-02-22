@@ -64,7 +64,7 @@ block content
                                 .form-group
                                     if(isNew)
                                         label Тип оплаты:
-                                        input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id", value="")
+                                        input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id", value=""б , data-text="")
                                     else
                                         label Тип оплаты: #{event.payment_type_id}
                                         input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id", value="#{event.payment_type_id}", data-text="#{event.payment_type}")
@@ -73,7 +73,7 @@ block content
                                     label Сумма оплаты:
                                     .input-group
                                         if(isNew)
-                                            input.fc-event-field.form-control(type='number', value="", data-name="cost")
+                                            input.fc-event-field.form-control(type='number', value="", data-name="cost", value="0")
                                         else
                                             input.fc-event-field.form-control(type='number', value="#{event.cost}", data-name="cost")
                                         .input-group-addon
