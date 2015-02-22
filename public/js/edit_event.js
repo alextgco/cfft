@@ -211,7 +211,8 @@ $(document).ready(function(){
             command: 'modify',
             object: 'action_part',
             params: {
-                action_id: $(this).data('action_id')
+                action_id: $(this).data('action_id'),
+                id: $(this).data('id')
             }
         };
 
