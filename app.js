@@ -16,9 +16,7 @@ process.on('exit', function(code) {
         console.log(err);
     });
 });
-/*setTimeout(function(){
-    process.exit();
-},5000);*/
+
 
 
 // view engine setup
