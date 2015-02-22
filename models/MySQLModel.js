@@ -207,19 +207,20 @@ Model.prototype.get = function (params, callback) {
 
         console.log(sql);
         conn.query(sql, [], function (err, rows) {
-            console.log('------------- conn.release');
             conn.release();
             if (!err) {
                 for (var i in rows) {
                     for (var j in self.blob_fields) {
-                        if (rows[i][self.blob_fields[j]] === null) {
+                        if (!rows[i][self.blob_fields[j]]) {
                             rows[i][self.blob_fields[j]] = '';
+                        }else{
+                            try {
+                                rows[i][self.blob_fields[j]] = rows[i][self.blob_fields[j]].toString();
+                            } catch (e) {
+                                console.log(e);
+                            }
                         }
-                        try {
-                            rows[i][self.blob_fields[j]] = rows[i][self.blob_fields[j]].toString();
-                        } catch (e) {
-                            console.log(e);
-                        }
+
                     }
                 }
             }
@@ -292,7 +293,7 @@ Model.prototype.modify = function (obj, callback) {
             return callback(err);
         }
         if (results == 0) {
-            callback(null, funcs.formatResponse(1, 'error', 'Запись не найдена.'))
+            callback(null, funcs.formatResponse(1, 'error', 'Запись не найдена или не было изменений.'))
         } else {
             callback(null, funcs.formatResponse(0, 'success', self.table_ru + ' успешно изменен' + self.ending + ''))
         }

@@ -22,10 +22,7 @@ cMysql.on('enqueue', function () {
 });
 
 cMysql.getConn = function(callback){
-    console.log('cMysql.getConn');
-    //onsole.log(cMysql._acquiringConnections);
     cMysql.getConnection(function(err,conn) {
-        console.log('cMysql.getConn GETTED');
         if (err) {
             console.log(err);
             callback(err)
