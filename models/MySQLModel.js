@@ -274,7 +274,7 @@ Model.prototype.modify = function (obj, callback) {
     }
     var modifyModel = function (conn, callback) {
         if (!obj.id) {
-            return callback(new MyError('Не передано ключевое поле '+self.required_fields.join(',')));
+            return callback(new MyError('Не передано ключевое поле. id,'+self.required_fields.join(',')));
         }
         conn.update(self.table, obj, function (err, affected) {
             conn.release();
@@ -289,7 +289,7 @@ Model.prototype.modify = function (obj, callback) {
             return callback(err);
         }
         if (results == 0) {
-            callback(null, funcs.formatResponse(1, 'success', 'Запись не найдена.'))
+            callback(null, funcs.formatResponse(1, 'error', 'Запись не найдена.'))
         } else {
             callback(null, funcs.formatResponse(0, 'success', self.table_ru + ' успешно изменен' + self.ending + ''))
         }

@@ -10,9 +10,14 @@ var config = require('./config');
 var app = express();
 global.pool = require('./libs/mysqlConnect');
 process.on('exit', function(code) {
-    pool.end();
+    console.log('process exit');
+    pool.end(function(err){
+        console.log(err);
+    });
 });
-
+setTimeout(function(){
+    process.exit();
+},5000);
 
 
 // view engine setup
