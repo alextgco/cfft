@@ -21,37 +21,41 @@ $(document).ready(function(){
 
         $('select').select2();
 
-        $('input.select2.fc-event-field').select2({
-            query: function(query){
-                var data = {results: []};
-                sendQuery({
-                    command: 'get',
-                    object: 'action_payment_types',
-                    params: {
-                        payment_type_id:1
-                    }
-                }, function(res){
-                    for(var i in res.data){
-                        var item = res.data[i];
-                        data.results.push({
-                            id: item.id,
-                            text: item.name
-                        });
-                    }
-                    query.callback(data);
-                });
-            }
-            //query: function(query){
-            //    var data = {results: []}, i, j, s;
-            //    for (i = 1; i < 5; i++) {
-            //        s = "";
-            //        for (j = 0; j < i; j++) {s = s + query.term;}
-            //        data.results.push({id: query.term + i, text: 'asdasd'});
-            //    }
-            //    query.callback(data);
-            //}
-        });
+        var directories = {
+            payment_type_id: 'action_payment_types',
+            result_type_id: 'result_types',
+            status_id: 'statuses_of_action_parts'
+        };
 
+        $('input.select2.fc-event-field, input.select2.fc-event-part-field').each(function(idx, elem){
+            var $elem = $(elem);
+            var name = $elem.data('name');
+            $elem.select2({
+                query: function(query){
+                    var data = {results: []};
+                    console.log('send', directories[name]);
+                    sendQuery({
+                        command: 'get',
+                        object: directories[name],
+                        params: {
+                            payment_type_id:1
+                        }
+                    }, function(res){
+                        for(var i in res.data){
+                            var item = res.data[i];
+                            data.results.push({
+                                id: item.id,
+                                text: item.name
+                            });
+                        }
+
+                        console.log('back', directories[name]);
+
+                        query.callback(data);
+                    });
+                }
+            });
+        });
 
         var cf_text_editors = $('.cf_text_editor');
         for(var i=0; i<cf_text_editors.length; i++){
