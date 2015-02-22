@@ -12,6 +12,10 @@ module.exports = function(callback){
                     table:"action_payment_types",
                     fields:[
                         {
+                            column:"id",
+                            alias:"payment_type_id"
+                        },
+                        {
                             column:"name",
                             alias:"payment_type"
                         }
