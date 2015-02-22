@@ -67,7 +67,9 @@ $(document).ready(function(){
         var cf_text_editors = $('.cf_text_editor');
         for(var i=0; i<cf_text_editors.length; i++){
             var te = cf_text_editors.eq(i)[0];
+            var val = $(te).attr('value');
             CKEDITOR.replace(te);
+            CKEDITOR.instances[$(te).attr('id')].setData(val);
         }
 
         var cf_text_editors_simple = $('.cf_text_editor_simple');
