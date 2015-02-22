@@ -43,6 +43,7 @@ exports.get = function(req, res, next){
                 callback(null,result);
             });
         };
+
         async.series([
             loadActionRewards,
             getAction,
