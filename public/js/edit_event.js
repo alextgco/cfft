@@ -210,7 +210,9 @@ $(document).ready(function(){
         var o = {
             command: 'modify',
             object: 'action_part',
-            params: {}
+            params: {
+                action_id: $(this).data('action_id')
+            }
         };
 
         $('.fc-event-part-field').each(function(idx, elem){
