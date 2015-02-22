@@ -167,11 +167,6 @@ $(document).ready(function(){
 
     var saveBtn = $('.saveEventButton');
 
-    function getEditorByElem(elem){
-        return elem[0].type;
-
-    }
-
     saveBtn.off('click').on('click', function(){
         var o = {
             command: 'add',
@@ -186,7 +181,6 @@ $(document).ready(function(){
             var $elem = $(elem);
             var column = $elem.data('name');
             var val = $elem.val();
-            console.log($elem, column);
             o.params[column] = val;
         });
 
@@ -194,6 +188,7 @@ $(document).ready(function(){
         sendQuery(o, function(res){
             console.log(res);
             if(res.code == 0){
+                toastr['success']('Мероприятие создано');
                 var id = res.data.id;
                 sendQuery({
                     command:'add',
@@ -208,6 +203,40 @@ $(document).ready(function(){
             }
         });
     });
+
+    var savePart = $('.save-edit-event-part');
+
+    savePart.off('click').on('click', function(){
+        var o = {
+            command: 'modify',
+            object: 'action_part',
+            params: {}
+        };
+
+        $('.fc-event-part-field').each(function(idx, elem){
+            if($(this).hasClass('select2-container')){
+                return;
+            }
+            var $elem = $(elem);
+            var column = $elem.data('name');
+            var val = $elem.val();
+            o.params[column] = val;
+            console.log(column);
+        });
+
+        console.log(o);
+        sendQuery(o, function(res){
+            console.log(res);
+            if(res.code == 0){
+                toastr['success']('Этап сохранен');
+            }
+        });
+
+    });
+
+
+
+
 
 
 

@@ -169,49 +169,40 @@ block content
                                                                 .row
                                                                     .form-group.col-md-4
                                                                         label Наименование:
-                                                                        input.form-control.fc_control(data-editor='text', data-column='title', type='text', value='#{parts.title}')
+                                                                        input.fc-event-part-field.form-control.fc_control(data-name='title', type='text', value='#{parts.title}')
                                                                     .form-group.col-md-4
                                                                         label Формат подачи результата:
-                                                                        select.form-control.fc_control(data-value='{{order_format}}', data-editor='select', data-column='order_format')
-                                                                            option(value='-1') Выбрать
-                                                                            option(value='1') Время "55:55"
-                                                                            option(value='2') Повторы "55"
-                                                                            option(value='3') Tie break "5 (5 (55:55))"
+                                                                        input.fc-event-part-field.select2.form-control.fc_control(value='#{parts.result_type_id}', data-name='result_type_id', type="hidden")
                                                                     .form-group.col-md-4
                                                                         label Дата начала:
-                                                                        input.form-control.fc_datepicker.fc_control(type='text', value='#{parts.date_start}', data-editor='text', data-column='start_date')
+                                                                        input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{parts.date_start}', data-name='start_date')
                                                                     .form-group.col-md-4
                                                                         label Дата окончания:
-                                                                        input.form-control.fc_datepicker.fc_control(type='text', value='#{parts.date_end}', data-editor='text', data-column='end_date')
+                                                                        input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{parts.date_end}', data-name='end_date')
                                                                     .form-group.col-md-4
                                                                         label Статус:
-                                                                        select.form-control.fc_control(data-value='{{status}}', data-editor='select', data-column='status')
-                                                                            option(value='-1') Черновик
-                                                                            option(value='1') Идет подготовка
-                                                                            option(value='2') Регистрация открыта
-                                                                            option(value='3') Регистрация закрыта
-                                                                            option(value='3') Опубликованы утвержденные резульаты
+                                                                        input.fc-event-part-field.select2.form-control.fc_control(data-value='#{parts.status}', data-name='status', type="hidden")
                                                                 .row
                                                                     .form-group.col-md-6
                                                                         label Комплекс:
-                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_complex}', data-editor='html', data-column='desc')
+                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_complex}', data-editor='html', data-name='desc_complex')
                                                                     .form-group.col-md-6
                                                                         label Примечание:
-                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.note}', data-editor='html', data-column='desc')
+                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.note}', data-editor='html', data-name='note')
                                                                 .row
                                                                     .form-group.col-md-6
                                                                         label Стандарты движений:
-                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_move_std}', data-editor='html', data-column='desc')
+                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_move_std}', data-editor='html', data-name='desc_move_std')
                                                                     .form-group.col-md-6
                                                                         label Подсчет очков:
-                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_scoring}', data-editor='html', data-column='desc')
+                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_scoring}', data-editor='html', data-name='desc_scoring')
                                                                 .row
                                                                     .form-group.col-md-6
                                                                         label Оборудование:
-                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_inventory}', data-editor='html', data-column='desc')
+                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_inventory}', data-editor='html', data-name='desc_inventory')
                                                                     .form-group.col-md-6
                                                                         label Стандарты видеосъемки:
-                                                                        textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_video_std}', data-editor='html', data-column='desc')
+                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_video_std}', data-editor='html', data-name='desc_video_std')
 
 
                                                             .fn-vagon
@@ -248,7 +239,6 @@ block content
                                         each part, idx in parts
                                             - var activeClass = (idx == 0)? 'active': '';
                                             div(role="tabpanel", id="part_#{part.id}", class="tab-pane #{activeClass}")
-                                                h3 #{part.id}
                                                 .e-event-part-wrapper.marTop22
                                                     form
                                                         .fn-train-overflow
@@ -274,49 +264,40 @@ block content
                                                                     .row
                                                                         .form-group.col-md-4
                                                                             label Наименование:
-                                                                            input.form-control.fc_control(data-editor='text', data-column='title', type='text', value='#{part.title}')
+                                                                            input.fc-event-part-field.form-control.fc_control(data-name='title', type='text', value='#{part.title}')
                                                                         .form-group.col-md-4
                                                                             label Формат подачи результата:
-                                                                            select.form-control.fc_control(data-value='{{order_format}}', data-editor='select', data-column='order_format')
-                                                                                option(value='-1') Выбрать
-                                                                                option(value='1') Время "55:55"
-                                                                                option(value='2') Повторы "55"
-                                                                                option(value='3') Tie break "5 (5 (55:55))"
+                                                                            input.fc-event-part-field.select2.form-control.fc_control(value='#{part.result_type_id}', data-name='result_type_id', type="hidden")
                                                                         .form-group.col-md-4
                                                                             label Дата начала:
-                                                                            input.form-control.fc_datepicker.fc_control(type='text', value='#{part.date_start}', data-editor='text', data-column='start_date')
+                                                                            input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{part.date_start}', data-name='start_date')
                                                                         .form-group.col-md-4
                                                                             label Дата окончания:
-                                                                            input.form-control.fc_datepicker.fc_control(type='text', value='#{part.date_end}', data-editor='text', data-column='end_date')
+                                                                            input.fc-event-part-field.form-control.fc_datepicker.fc_control(type='text', value='#{part.date_end}', data-name='end_date')
                                                                         .form-group.col-md-4
                                                                             label Статус:
-                                                                            select.form-control.fc_control(data-value='{{status}}', data-editor='select', data-column='status')
-                                                                                option(value='-1') Черновик
-                                                                                option(value='1') Идет подготовка
-                                                                                option(value='2') Регистрация открыта
-                                                                                option(value='3') Регистрация закрыта
-                                                                                option(value='3') Опубликованы утвержденные резульаты
+                                                                            input.fc-event-part-field.select2.form-control.fc_control(data-value='#{part.status}', data-name='status', type="hidden")
                                                                     .row
                                                                         .form-group.col-md-6
                                                                             label Комплекс:
-                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_complex}', data-editor='html', data-column='desc')
+                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_complex}', data-editor='html', data-name='desc_complex')
                                                                         .form-group.col-md-6
                                                                             label Примечание:
-                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.note}', data-editor='html', data-column='desc')
+                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.note}', data-editor='html', data-name='note')
                                                                     .row
                                                                         .form-group.col-md-6
                                                                             label Стандарты движений:
-                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_move_std}', data-editor='html', data-column='desc')
+                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_move_std}', data-editor='html', data-name='desc_move_std')
                                                                         .form-group.col-md-6
                                                                             label Подсчет очков:
-                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_scoring}', data-editor='html', data-column='desc')
+                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_scoring}', data-editor='html', data-name='desc_scoring')
                                                                     .row
                                                                         .form-group.col-md-6
                                                                             label Оборудование:
-                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_inventory}', data-editor='html', data-column='desc')
+                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_inventory}', data-editor='html', data-name='desc_inventory')
                                                                         .form-group.col-md-6
                                                                             label Стандарты видеосъемки:
-                                                                            textarea.form-control.cf_text_editor.fc_control(value='#{part.desc_video_std}', data-editor='html', data-column='desc')
+                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_video_std}', data-editor='html', data-name='desc_video_std')
 
 
                                                                 .fn-vagon
