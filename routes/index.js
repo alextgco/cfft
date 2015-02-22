@@ -17,15 +17,15 @@ module.exports = function (app) {
   app.get('/registration', require('./registration').get);
   app.post('/registration', require('./registration').post);
   app.get('/reqConfirm', require('./reqConfirm').get);
-  app.get('/events', function(req, res, next){
-    res.render('events');
-  });
+
+  app.get('/events', require('./events').get);
+
+  app.get('/event', require('./event').get);
+
   app.get('/profile', function(req, res, next){
     res.render('profile');
   });
-  app.get('/event', function(req, res, next){
-    res.render('event');
-  });
+
   app.get('/for_athlets', function(req, res, next){
     res.render('for_athlets');
   });

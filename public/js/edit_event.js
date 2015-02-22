@@ -234,7 +234,7 @@ $(document).ready(function(){
     savePart.off('click').on('click', function(){
         var action_id = $(this).data('action_id');
         var part_id = $(this).data('id');
-
+        var tab = $(this).parents('.e-event-part-wrapper');
         var o = {
             command: 'modify',
             object: 'action_part',
@@ -244,7 +244,7 @@ $(document).ready(function(){
             }
         };
 
-        $('.fc-event-part-field').each(function(idx, elem){
+        tab.find('.fc-event-part-field').each(function(idx, elem){
             if($(this).hasClass('select2-container')){
                 return;
             }
