@@ -58,7 +58,7 @@ $(document).ready(function(){
                     });
                 },
                 initSelection: function(element, callback){
-                    var data = {id: element.val(), text: element.val()};
+                    var data = {id: element.val(), text: $(element).data('text')};
                     callback(data);
                 }
             });
