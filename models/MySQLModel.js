@@ -209,30 +209,30 @@ Model.prototype.get = function (params, callback) {
         console.log(sql);
         conn.query(sql, [], function (err, rows) {
             conn.release();
-            if (!err) {
-                for (var i in rows) {
-                    for (var k in rows[i]) {
-                        if (rows[i][k] === null) {
-                            rows[i][k] = '';
+            if (err){
+                console.log(err);
+                return callback(err);
+            }
+            for (var i in rows) {
+                for (var k in rows[i]) {
+                    if (rows[i][k] === null) {
+                        rows[i][k] = '';
+                    }
+                }
+                for (var j in self.blob_fields) {
+
+                    if (!rows[i][self.blob_fields[j]] || rows[i][self.blob_fields[j]]=='null') {
+                        rows[i][self.blob_fields[j]] = '';
+                    }else{
+                        try {
+                            rows[i][self.blob_fields[j]] = rows[i][self.blob_fields[j]].toString();
+                        } catch (e) {
+                            console.log(e);
                         }
                     }
-                    for (var j in self.blob_fields) {
-
-                        if (!rows[i][self.blob_fields[j]] || rows[i][self.blob_fields[j]]=='null') {
-                            rows[i][self.blob_fields[j]] = '';
-                        }else{
-                            try {
-                                rows[i][self.blob_fields[j]] = rows[i][self.blob_fields[j]].toString();
-                            } catch (e) {
-                                console.log(e);
-                            }
-                        }
-
-                    }
-
                 }
             }
-            callback(err, rows);
+            callback(null, rows);
         });
     };
 
@@ -264,6 +264,9 @@ Model.prototype.add = function (obj, callback) {
         obj.created = funcs.getDataTimeMySQL();
         console.log(obj);
         conn.insert(self.table, obj, function (err, recordId) {
+            if (err){
+                console.log(err);
+            }
             conn.release();
             callback(err, recordId);
         });
@@ -290,6 +293,9 @@ Model.prototype.modify = function (obj, callback) {
         }
         console.log(obj);
         conn.update(self.table, obj, function (err, affected) {
+            if (err){
+                console.log(err);
+            }
             conn.release();
             callback(err, affected);
         })
@@ -312,6 +318,9 @@ Model.prototype.remove = function (obj, callback) {
     var self = this;
     var removeModel = function (conn, callback) {
         conn.delete(self.table, {id: obj.id}, function (err, affected) {
+            if (err){
+                console.log(err);
+            }
             conn.release();
             callback(err, affected);
         })
