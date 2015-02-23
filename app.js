@@ -5,10 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var SessionStore = require('express-mysql-session');
 var config = require('./config');
 var app = express();
 global.pool = require('./libs/mysqlConnect');
+global.models = [];
 process.on('exit', function(code) {
     console.log('process exit');
     pool.end(function(err){
@@ -46,7 +46,7 @@ require('dns').lookup(require('os').hostname(), function (err, add, fam) {
     createDatabaseTable:true
 };*/
 
-var sessionStore = new SessionStore(config.get('mysqlConnection'));
+var sessionStore = require('./libs/sessionStore');
 app.use(session({
     secret: config.get('session:secret'),
     key: config.get('session:key'),
@@ -61,6 +61,7 @@ app.use(require('./middleware/loadUser'));
 app.use(require('./middleware/globalFuncs'));
 
 require('./routes')(app);
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 /*** БЛОК ДЛЯ ТЕСТОВ ******/

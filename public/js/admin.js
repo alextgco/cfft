@@ -23,7 +23,14 @@ var sendQuery = function (obj, cb) {
     });
 };
 $(document).ready(function(){
-    $("#btn1").on('click',function(){
+    var fileLoader;
+    $(document).on('delivery.connect', function(e, delivery){
+        console.log('triggered delivery.connect');
+        fileLoader = new FileLoader({delivery:delivery});
+    });
+
+    console.log('document READY');
+    $("#btn1").off('click').on('click',function(){
         var o = {
             command:"add",
             object:"action_part",
@@ -35,7 +42,7 @@ $(document).ready(function(){
         };
         sendQuery(o,function(r){console.log(r);});
     });
-    $("#btn2").on('click',function(){
+    $("#btn2").off('click').on('click',function(){
         var o = {
             command:"modify",
             object:"action",
@@ -48,7 +55,7 @@ $(document).ready(function(){
         };
         sendQuery(o,function(r){console.log(r);});
     });
-    $("#btn3").on('click',function(){
+    $("#btn3").off('click').on('click',function(){
         var o = {
             command:"remove",
             object:"action",
@@ -58,12 +65,38 @@ $(document).ready(function(){
         };
         sendQuery(o,function(r){console.log(r);});
     });
-    $("#btn4").on('click',function(){
+    $("#btn4").off('click').on('click',function(){
+        console.log('btn4 clicked');
         var o = {
             command:"get",
-            object:"action_part",
+            object:"action",
             params:{}
         };
         sendQuery(o,function(r){console.log(r);});
+        var o = {
+            command:"get",
+            object:"action",
+            params:{
+                where:{
+                    id:'3'
+                }
+            }
+        };
+        sendQuery(o,function(r){console.log(r);});
     });
+
+    $("#btn5").off('click').on('click',function(){
+        if (!fileLoader){
+            console.log('fileLoader еще не готов');
+            return;
+        }
+        fileLoader.start({
+            success:function(fileUID){
+                //console.log(fileUID);
+            }
+        });
+    });
+
+
+
 });
