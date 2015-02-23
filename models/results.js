@@ -6,9 +6,9 @@ module.exports = function(callback){
         table_ru: 'Результат',
         ending:'',
         required_fields:['action_part_id','video_url','result_type_id','user_id'],
-        concatFields:[{
+        /*concatFields:[{
             result:['result_min',':','result_sec']
-        }],
+        }],*/
         /*getFormating:{
             description1:"parseBlob"
         },*/
@@ -70,8 +70,28 @@ module.exports = function(callback){
             if(!obj.user_id){
                 return callback(new MyError('Не авторизированный доступ'));
             }
+
+            switch (obj.result_type){
+                case "TIME":
+                    obj.concat_result = obj.result_min+':'+obj.result_sec;
+                    break;
+                case "REPEAT":
+                    obj.concat_result = obj.result_repeat;
+                    break;
+                case "TIE_BREAK":
+                    obj.concat_result = obj.result_approach + '(' + obj.result_repeat + '(' + obj.result_min + ':' + obj.result_sec + '))';
+                    break;
+                case "TIE_BREAK_SHORT":
+                    obj.concat_result = obj.result_repeat + '(' + obj.result_min + ':' + obj.result_sec + ')';
+                    break;
+                default :
+                    break;
+            }
+
+
+
             var required_fields = [].concat(results.required_fields);
-            var avaliable_fields = [].concat(required_fields);
+            var avaliable_fields = ['concat_result','result_min','result_sec','result_repeat','result_approach','isAff'].concat(required_fields);
             for (var i0 in obj) {
                 if (avaliable_fields.indexOf(i0)==-1) {
                     delete obj[i0];
@@ -91,6 +111,10 @@ module.exports = function(callback){
             if (!finded) {
                 return callback(new MyError('Не переданы (или переданы не корректно) обязательные поля. ' + notFinded.join(', ')));
             }
+
+
+
+
             results.add(obj, function(err,result){
                 callback(err,result);
             });

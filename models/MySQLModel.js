@@ -100,6 +100,7 @@ Model.prototype.get = function (params, callback) {
 
 
         var joinObjs = funcs.cloneObj(self.join_objs);
+        var concatFields = self.concatFields.concat((params.concatFields || []));
 
         var tmpWhere = {};
 
@@ -230,9 +231,9 @@ Model.prototype.get = function (params, callback) {
                         rows[i][j] = val;
                     }
                 }
-                if (typeof self.concatFields=='object'){
-                    for (var c in self.concatFields) {
-                        var item = self.concatFields[c];
+                if (typeof concatFields=='object'){
+                    for (var c in concatFields) {
+                        var item = concatFields[c];
                         var val = '';
                         for (var j in item) {
                             var fields = item[j];
