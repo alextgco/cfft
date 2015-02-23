@@ -4,6 +4,9 @@ exports.get = function(req, res, next){
         {
             action_types:{
                 sys_name:'GAMES'
+            },
+            action_statuses: {
+                sys_name: '<>DRAFT'
             }
         }
     }, function(err,result){
