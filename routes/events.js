@@ -3,7 +3,7 @@ exports.get = function(req, res, next){
     api('get', 'action', {where:
         {
             action_types:{
-                sys_name:'GAME'
+                sys_name:'GAMES'
             }
         }
     }, function(err,result){

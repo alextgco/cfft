@@ -22,6 +22,8 @@ module.exports = function (app) {
 
   app.get('/event', require('./event').get);
 
+  app.get('/wow', require('./wow').get);
+
   app.get('/profile', function(req, res, next){
     res.render('profile');
   });
