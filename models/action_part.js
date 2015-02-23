@@ -29,6 +29,10 @@ module.exports = function(callback){
                             alias:"result_type"
                         },
                         {
+                            column:"sys_name",
+                            alias:"result_type_sys"
+                        },
+                        {
                             column:"num_of_fields",
                             alias:"num_of_fields"
                         }
