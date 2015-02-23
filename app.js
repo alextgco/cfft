@@ -9,6 +9,7 @@ var SessionStore = require('express-mysql-session');
 var config = require('./config');
 var app = express();
 global.pool = require('./libs/mysqlConnect');
+global.models = [];
 process.on('exit', function(code) {
     console.log('process exit');
     pool.end(function(err){

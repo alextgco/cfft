@@ -8,6 +8,19 @@ module.exports = function(callback){
         blob_fields:['description1','description2'],
         join_objs:[
             {
+                type_id:{
+                    table:"action_types",
+                    fields:[
+                        {
+                            column:"id",
+                            alias:"type_id"
+                        },
+                        {
+                            column:"name",
+                            alias:"action_type"
+                        }
+                    ]
+                },
                 payment_type_id:{
                     table:"action_payment_types",
                     fields:[
