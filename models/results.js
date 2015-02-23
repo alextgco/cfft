@@ -6,6 +6,9 @@ module.exports = function(callback){
         table_ru: 'Результат',
         ending:'',
         required_fields:['action_part_id','video_url','result_type_id','user_id'],
+        concatFields:[{
+            result:['result_min',':','result_sec']
+        }],
         /*getFormating:{
             description1:"parseBlob"
         },*/
@@ -25,7 +28,7 @@ module.exports = function(callback){
                     ]
                 },
                 result_type_id:{
-                    table:"result_type",
+                    table:"result_types",
                     fields:[
                         {
                             column:"id",
@@ -34,6 +37,23 @@ module.exports = function(callback){
                         {
                             column:"name",
                             alias:"result_type"
+                        }
+                    ]
+                },
+                user_id:{
+                    table:"users",
+                    fields:[
+                        {
+                            column:"id",
+                            alias:"user_id"
+                        },
+                        {
+                            column:"firstname",
+                            alias:"user_firstname"
+                        },
+                        {
+                            column:"surname",
+                            alias:"user_surname"
                         }
                     ]
                 }
