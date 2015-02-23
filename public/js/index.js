@@ -499,6 +499,7 @@ $(document).ready(function(){
                                     action_part_id: event_part_id,
                                     video_url: video,
                                     result_type_id: resTypeId,
+                                    result_type: resType,
                                     isAff: (isAff)? 1:0
                                 }
                             };
