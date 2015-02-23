@@ -22,8 +22,8 @@ block content
                         ul.events-list
                             for a in items.data
                                 li
-                                    .event-item-img
-                                            img(src='upload/#{a.thumb}')
+                                    a.event-item-img(href="event?id=#{a.id}")
+                                        img(src='upload/#{a.thumb}')
                                     .event-item-info
                                         .event-item-title
                                             .titleInner
