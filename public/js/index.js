@@ -499,8 +499,7 @@ $(document).ready(function(){
                                     action_part_id: event_part_id,
                                     video_url: video,
                                     result_type_id: resTypeId,
-                                    result_min: 0,
-                                    result_sec: 10
+                                    isAff: (isAff)? 1:0
                                 }
                             };
 
@@ -515,6 +514,7 @@ $(document).ready(function(){
                                 case 'REPEAT':
                                     var rep = resultsWrapper.find('[data-id="repeat"]').val();
                                     concatRes = rep;
+                                    o.params['result_repeat'] = rep;
                                     break;
                                 case 'TIE_BREAK':
                                     var tb1 = resultsWrapper.find('[data-id="tb1"]').val();
@@ -522,12 +522,23 @@ $(document).ready(function(){
                                     var tb3 = resultsWrapper.find('[data-id="tb3"]').val();
                                     var tb4 = resultsWrapper.find('[data-id="tb4"]').val();
                                     concatRes = tb1+'('+tb2+'('+tb3+':'+tb4+'))';
+
+                                    o.params['result_approach'] = tb1;
+                                    o.params['result_repeat'] = tb2;
+                                    o.params['result_min'] = tb3;
+                                    o.params['result_sec'] = tb4;
+
                                     break;
                                 case 'TIE_BREAK_SHORT':
                                     var tbs1 = resultsWrapper.find('[data-id="tbs1"]').val();
                                     var tbs2 = resultsWrapper.find('[data-id="tbs2"]').val();
                                     var tbs3 = resultsWrapper.find('[data-id="tbs3"]').val();
                                     concatRes = tbs1+'('+tbs2+':'+tbs3+')';
+
+                                    o.params['result_repeat'] = tbs1;
+                                    o.params['result_min'] = tbs2;
+                                    o.params['result_sec'] = tbs3;
+
                                     break;
                                 default:
                                     break;
