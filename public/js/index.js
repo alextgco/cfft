@@ -484,7 +484,7 @@ $(document).ready(function(){
                     success: {
                         label: 'Отправить',
                         callback: function(){
-                            var wrapper = $('.order-event-part-result-row');
+                            var wrapper = $('.order-event-part-result-row[data-part="'+event_part_id+'"]');
                             var resultsWrapper = wrapper.find('.results');
                             var resType = resultsWrapper.find('input[type="text"]').eq(0).data('res_type');
                             var resTypeId = resultsWrapper.data("res_type_id");
