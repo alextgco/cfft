@@ -1,8 +1,9 @@
 var Model = require('./MySQLModel');
+var MyError = require('../error').MyError;
 module.exports = function(callback){
     var results = new Model({
         table: 'results',
-        table_ru: 'Результаты',
+        table_ru: 'Результат',
         ending:'',
         required_fields:['action_part_id','video_url','result_type_id','user_id'],
         /*getFormating:{

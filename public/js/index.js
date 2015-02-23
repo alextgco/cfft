@@ -519,17 +519,19 @@ $(document).ready(function(){
                                     break;
                             }
 
-                            sendQuery({
+                            var o = {
                                 command: 'addOrder',
                                 object: 'results',
                                 params: {
                                     action_part_id: event_part_id,
-                                    video_url:video,
-                                    result_type_id:resTypeId,
-                                    result_min:0,
-                                    result_sec:10
+                                    video_url: video,
+                                    result_type_id: resTypeId,
+                                    result_min: 0,
+                                    result_sec: 10
                                 }
-                            }, function(res){
+                            };
+                            console.log(o);
+                            sendQuery(o, function(res){
                                 toastr[res.toastr.type](res.toastr.message);
                             });
                         }
