@@ -834,3 +834,29 @@ h4.darkHd{
 .isAffiliate{
     margin-right: 4px!important;
 }
+
+.action-status{
+    display: inline-block;
+    font-size: 12px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    margin-left: 15px;
+    vertical-align: middle;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #ccc;
+    color: #000;
+    border-radius: 3px;
+}
+.action-status.OPENED{
+    background-color: #128e18;
+    color: #fff;
+}
+.action-status.CLOSED{
+    background-color: #3f5ccc;
+    color: #fff;
+}
+.action-status.FINISHED{
+    background-color: #ccc;
+    color: #000;
+}

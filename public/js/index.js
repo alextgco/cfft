@@ -452,41 +452,65 @@ $(document).ready(function(){
             var event_part = $(this).data('event_part');
             var event_part_id = $(this).data('event_part_id');
             var _t = this;
-            var event_html = '<p class="form-control-static">'+event+'</p>';
-            var event_part_html = '<p class="form-control-static">'+event_part+'</p>';
 
+            bootbox.dialog({
+                title: 'Подать заявку',
+                message: $(_t).find('.modal-order-content').html(),
+                buttons:{
+                    success: {
+                        label: 'Отправить',
+                        callback: function(){
+                            var wrapper = $('.order-event-part-result-row');
+                            var resultsWrapper = wrapper.find('.results');
+                            var resType = resultsWrapper.find('input[type="text"]').eq(0).data('res_type');
+                            var video = wrapper.find('[data-id="video"]').val();
+                            var isAff = wrapper.find('[data-id="isAff"]')[0].checked;
+                            var concatRes = '';
 
-            CF.getTemplate('order_event_part', function(res){
-                bootbox.dialog({
-                    title: 'Подать заявку',
-                    message: $(_t).find('.modal-order-content').html(),
-                    buttons:{
-                        success: {
-                            label: 'Отправить',
-                            callback: function(){
-                                CF.sendQuery({
-                                    command: 'operation',
-                                    object: 'order_event_part',
-                                    params: {
-                                        flds: 'flds'
-                                    }
-                                }, function(res){
-                                    toastr[res.toastr.type](res.toastr.message);
-                                });
+                            switch(resType){
+                                case 'TIME':
+                                    var mm = resultsWrapper.find('[data-id="min"]').val();
+                                    var ss = resultsWrapper.find('[data-id="sec"]').val();
+                                    concatRes = mm+':'+ss;
+                                    break;
+                                case 'REPEAT':
+                                    var rep = resultsWrapper.find('[data-id="repeat"]').val();
+                                    break;
+                                case 'TIE_BREAK':
+                                    var tb1 = resultsWrapper.find('[data-id="tb1"]').val();
+                                    var tb2 = resultsWrapper.find('[data-id="tb2"]').val();
+                                    var tb3 = resultsWrapper.find('[data-id="tb3"]').val();
+                                    var tb4 = resultsWrapper.find('[data-id="tb4"]').val();
+                                    break;
+                                case 'TIE_BREAK_SHORT':
+                                    var tbs1 = resultsWrapper.find('[data-id="tbs1"]').val();
+                                    var tbs2 = resultsWrapper.find('[data-id="tbs2"]').val();
+                                    var tbs3 = resultsWrapper.find('[data-id="tbs3"]').val();
+                                    break;
+                                default:
+                                    break;
                             }
-                        },
-                        error: {
-                            label: 'Отмена',
-                            callback: function(){
 
-                            }
+
+                            sendQuery({
+                                command: 'add_order',
+                                object: 'results',
+                                params: {
+                                    flds: 'flds'
+                                }
+                            }, function(res){
+                                toastr[res.toastr.type](res.toastr.message);
+                            });
+                        }
+                    },
+                    error: {
+                        label: 'Отмена',
+                        callback: function(){
+
                         }
                     }
-                });
+                }
             });
-
-
-
         });
     }
     CF.initOrderEventPart = initOrderEventPart;

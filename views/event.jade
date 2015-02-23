@@ -58,42 +58,40 @@ block content
                                                             input.form-control(type="text", data-id="video")
                                                     .form-group.col-md-12
                                                         label
-                                                            input.isAffiliate(type="checkbox")
+                                                            input.isAffiliate(type="checkbox", data-id="isAff")
                                                             | Сдавал(а) в аффиляте
-                                                    .form-group.col-md-12
+                                                    .form-group.col-md-12.results
                                                         label Результат
                                                         if(part.result_type_sys == 'TIME')
-
-                                                            //input.form-control.time-mm.maskTime(type="text", placeholder="мм:cc")
                                                             .input-group
-                                                                input.form-control.mm(type='text', placeholder="мм")
+                                                                input.form-control.mm(data-id="min", type='text', placeholder="мм", data-res_type="#{part.result_type_sys}")
                                                                 .input-group-addon :
-                                                                input.form-control.ss(type='text', placeholder="cc")
+                                                                input.form-control.ss(data-id="sec", type='text', placeholder="cc", data-res_type="#{part.result_type_sys}")
 
                                                         else if(part.result_type_sys == 'REPEAT')
 
-                                                            input.form-control(type="number", data-editor_id="")
+                                                            input.form-control(data-id="repeat", type="number", data-editor_id="", data-res_type="#{part.result_type_sys}")
 
                                                         else if(part.result_type_sys == 'TIE_BREAK')
 
                                                             .input-group
-                                                                input.form-control.tieBreak1(type='text')
+                                                                input.form-control.tieBreak1(data-id="tb1", type='text', data-res_type="#{part.result_type_sys}")
                                                                 .input-group-addon (
-                                                                input.form-control.tieBreak2(type='text')
+                                                                input.form-control.tieBreak2(data-id="tb2", type='text', data-res_type="#{part.result_type_sys}")
                                                                 .input-group-addon (
-                                                                input.form-control.tieBreak3(type='text')
+                                                                input.form-control.tieBreak3(data-id="tb3", type='text', data-res_type="#{part.result_type_sys}")
                                                                 .input-group-addon :
-                                                                input.form-control.tieBreak4(type='text')
+                                                                input.form-control.tieBreak4(data-id="tb4", type='text', data-res_type="#{part.result_type_sys}")
                                                                 .input-group-addon ))
 
                                                         else if(part.result_type_sys == 'TIE_BREAK_SHORT')
 
                                                             .input-group
-                                                                input.form-control.tieBreak1(type='text')
+                                                                input.form-control.tieBreak1(data-id="tbs1", type='text', data-res_type="#{part.result_type_sys}")
                                                                 .input-group-addon (
-                                                                input.form-control.tieBreak3(type='text')
+                                                                input.form-control.tieBreak3(data-id="tbs2", type='text', data-res_type="#{part.result_type_sys}")
                                                                 .input-group-addon :
-                                                                input.form-control.tieBreak4(type='text')
+                                                                input.form-control.tieBreak4(data-id="tbs3", type='text', data-res_type="#{part.result_type_sys}")
                                                                 .input-group-addon )
 
                         .innerTabParent(role='tabpanel')

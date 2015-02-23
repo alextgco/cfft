@@ -28,7 +28,8 @@ block content
                                         .event-item-title
                                             .titleInner
                                                 a(href='event?id=#{a.id}') #{a.title}
-                                                .action-staus.action-status-#{a.status_sys_name} #{a.status}
+                                                .action-status(class="#{a.status_sys_name}")
+                                                    | #{a.status}
                                             .dateInner #{a.date_start_text}
                                         .event-item-desc
                                             !{a.description2}

@@ -224,7 +224,7 @@ h1,h2,h3,h4,h5,h6, label{
     padding: 0!important;
 }
 
-@media (max-width: 600px){
+@media (max-width: 640px){
     #top-main-menu{
         width: 100%;
         float: left;
