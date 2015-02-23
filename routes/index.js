@@ -1,4 +1,5 @@
 var checkAuth = require('../middleware/checkAuth');
+var checkAuthApi = require('../middleware/checkAuthApi');
 var checkAdmin = require('../middleware/checkAdmin');
 module.exports = function (app) {
 
@@ -9,6 +10,7 @@ module.exports = function (app) {
   });
   app.get('/admin', checkAdmin, require('./admin').get);
   app.post('/admin/api', checkAdmin, require('./adminApi').post);
+  app.post('/api', checkAuthApi, require('./userApi').post);
 
   //app.get('/login', require('./login').get);
   app.post('/login', require('./login').post);

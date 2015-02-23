@@ -47,7 +47,7 @@ var funcs = {
                 funcs.clearEmpty();
             }
         }
-        return arr;
+
     }
 
 
