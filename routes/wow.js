@@ -19,7 +19,7 @@ exports.get = function(req, res, next){
                 action_types: {
                     sys_name: "WOD_OF_WEEK"
                 },
-                statuses_of_action_parts:{
+                action_statuses:{
                     sys_name: 'OPENED'
                 }
 
