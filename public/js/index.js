@@ -508,8 +508,10 @@ $(document).ready(function(){
                                     var mm = resultsWrapper.find('[data-id="min"]').val();
                                     var ss = resultsWrapper.find('[data-id="sec"]').val();
                                     concatRes = mm+':'+ss;
+
                                     o.params['result_min'] = mm;
                                     o.params['result_sec'] = ss;
+                                    alert(JSON.stringify(o.params), mm, ss);
                                     break;
                                 case 'REPEAT':
                                     var rep = resultsWrapper.find('[data-id="repeat"]').val();

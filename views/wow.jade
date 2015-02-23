@@ -66,34 +66,34 @@ block content
 
                                                             //input.form-control.time-mm.maskTime(type="text", placeholder="мм:cc")
                                                             .input-group
-                                                                input.form-control.mm(type='text', placeholder="мм", data-res_type="#{part.result_type_sys}", data-part="#{part.id}")
+                                                                input.form-control.mm(type='text', placeholder="мм", data-res_type="#{part.result_type_sys}", data-part="#{part.id}", data-id="mm")
                                                                 .input-group-addon :
-                                                                input.form-control.ss(type='text', placeholder="cc", data-res_type="#{part.result_type_sys}", data-part="#{part.id}")
+                                                                input.form-control.ss(type='text', placeholder="cc", data-res_type="#{part.result_type_sys}", data-part="#{part.id}", data-id="ss")
 
                                                         else if(part.result_type_sys == 'REPEAT')
 
-                                                            input.form-control(type="number", data-editor_id="", data-res_type="#{part.result_type_sys}", data-part="#{part.id}")
+                                                            input.form-control(type="number", data-editor_id="", data-res_type="#{part.result_type_sys}", data-part="#{part.id}", data-id="repeat")
 
                                                         else if(part.result_type_sys == 'TIE_BREAK')
 
                                                             .input-group
-                                                                input.form-control.tieBreak1(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}")
+                                                                input.form-control.tieBreak1(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}", data-id="tb1")
                                                                 .input-group-addon (
-                                                                input.form-control.tieBreak2(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}")
+                                                                input.form-control.tieBreak2(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}", data-id="tb2")
                                                                 .input-group-addon (
-                                                                input.form-control.tieBreak3(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}")
+                                                                input.form-control.tieBreak3(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}", data-id="tb3")
                                                                 .input-group-addon :
-                                                                input.form-control.tieBreak4(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}")
+                                                                input.form-control.tieBreak4(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}", data-id="tb4")
                                                                 .input-group-addon ))
 
                                                         else if(part.result_type_sys == 'TIE_BREAK_SHORT')
 
                                                             .input-group
-                                                                input.form-control.tieBreak1(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}")
+                                                                input.form-control.tieBreak1(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}", data-id="tbs1")
                                                                 .input-group-addon (
-                                                                input.form-control.tieBreak3(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}")
+                                                                input.form-control.tieBreak3(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}", data-id="tbs1")
                                                                 .input-group-addon :
-                                                                input.form-control.tieBreak4(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}")
+                                                                input.form-control.tieBreak4(type='text', data-res_type="#{part.result_type_sys}", data-part="#{part.id}", data-id="tbs1")
                                                                 .input-group-addon )
 
                         .innerTabParent(role='tabpanel')
