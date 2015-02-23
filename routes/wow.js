@@ -32,7 +32,7 @@ exports.get = function(req, res, next){
                 return callback(err);
             }
             if(result.data.length == 0){
-                return callback(new MyError('Нет открытых водовиков.'));
+                return res.render('no_wow', {});
             }
             var mths = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
             for(var i in result.data){

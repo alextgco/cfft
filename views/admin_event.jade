@@ -112,9 +112,9 @@ block content
                                 .form-group
                                     label Статус:
                                     if(isNew)
-                                        input.select2.fc-event-field.form-control(type="hidden", data-name="status_id", value="", data-text="", data-table="action_stauses")
+                                        input.select2.fc-event-field.form-control(type="hidden", data-name="status_id", value="", data-text="", data-table="action_statuses")
                                     else
-                                        input.select2.fc-event-field.form-control(type="hidden", data-name="status_id", value="#{event.status_id}", data-text="#{event.status}", data-table="action_stauses")
+                                        input.select2.fc-event-field.form-control(type="hidden", data-name="status_id", value="#{event.status_id}", data-text="#{event.status}", data-table="action_statuses")
                             .col-md-10
                                 .form-group
                                     label Описание полное:
