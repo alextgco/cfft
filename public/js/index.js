@@ -1,3 +1,27 @@
+var sendQuery = function (obj, cb) {
+    if (typeof obj.params=="object"){
+        obj.params = JSON.stringify(obj.params);
+    }
+    $.ajax({
+        url: "/api",
+        method: "POST",
+        data: obj,
+        complete: function (res) {
+            console.log('complete', res);
+
+        },
+        statusCode: {
+            200: function (result) {
+                console.log('200', result);
+                cb(result);
+            },
+            403: function (result) {
+                console.log('200', result);
+                cb(result);
+            }
+        }
+    });
+};
 $(document).ready(function(){
 
     (function(){
@@ -463,6 +487,7 @@ $(document).ready(function(){
                             var wrapper = $('.order-event-part-result-row');
                             var resultsWrapper = wrapper.find('.results');
                             var resType = resultsWrapper.find('input[type="text"]').eq(0).data('res_type');
+                            var resTypeId = resultsWrapper.data("res_type_id");
                             var video = wrapper.find('[data-id="video"]').val();
                             var isAff = wrapper.find('[data-id="isAff"]')[0].checked;
                             var concatRes = '';
@@ -494,14 +519,15 @@ $(document).ready(function(){
                                     break;
                             }
 
-//['action_part_id','video_url','result_type_id','user_id']
                             sendQuery({
                                 command: 'addOrder',
                                 object: 'results',
                                 params: {
                                     action_part_id: event_part_id,
                                     video_url:video,
-                                    result_type_id:1
+                                    result_type_id:resTypeId,
+                                    result_min:0,
+                                    result_sec:10
                                 }
                             }, function(res){
                                 toastr[res.toastr.type](res.toastr.message);
