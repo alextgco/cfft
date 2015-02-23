@@ -33,6 +33,19 @@ module.exports = function(callback){
                             alias:"payment_type"
                         }
                     ]
+                },
+                status_id:{
+                    table:"action_statuses",
+                    fields:[
+                        {
+                            column:"id",
+                            alias:"status_id"
+                        },
+                        {
+                            column:"name",
+                            alias:"status"
+                        }
+                    ]
                 }
             }
         ]

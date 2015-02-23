@@ -4,7 +4,6 @@ module.exports = function(command,object,params,callback){
         return callback('Команда '+command+' запрещена.');
     }
     var useModel = function(model){
-
         model[command](params,function(err,result){
             if(err){
                 callback(err);
