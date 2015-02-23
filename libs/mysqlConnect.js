@@ -52,7 +52,9 @@ module.exports = cMysql;
 
     }
 });*/
-
+//bind-address=0.0.0.0
 //sudo service mysql restart
+// mysql -u root -p
+// create database cfft
 // GRANT ALL PRIVILEGES ON cfft.* TO root@'%' IDENTIFIED BY 'aambfi5y' WITH GRANT OPTION;
 //FLUSH PRIVILEGES;

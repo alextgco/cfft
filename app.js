@@ -31,6 +31,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+require('dns').lookup(require('os').hostname(), function (err, add, fam) {
+    console.log('addr: '+add);
+});
+
+
 //var options = config.get('mysqlConnection');
 /*var options = {
     host: 'localhost',
