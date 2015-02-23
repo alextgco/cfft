@@ -44,6 +44,7 @@ var Model = function (params, callback) {
     this.blob_fields = (typeof params.blob_fields === 'object') ? params.blob_fields : [];
     this.defaults = (typeof params.defaults === 'object') ? params.blob_fields : [];
     this.join_objs = (typeof params.join_objs === 'object') ? params.join_objs : false;
+    this.concatFields = params.concatFields;
     this.sort = params.sort;
     pool.getConn(function (err, conn) {
         if (err) {
@@ -99,6 +100,7 @@ Model.prototype.get = function (params, callback) {
 
 
         var joinObjs = funcs.cloneObj(self.join_objs);
+
         var tmpWhere = {};
 
         /// Только в случае если нужно джоинить таблицы
@@ -226,6 +228,20 @@ Model.prototype.get = function (params, callback) {
                     } catch (e) {
                         console.log(e);
                         rows[i][j] = val;
+                    }
+                }
+                if (typeof self.concatFields=='object'){
+                    for (var c in self.concatFields) {
+                        var item = self.concatFields[c];
+                        var val = '';
+                        for (var j in item) {
+                            var fields = item[j];
+                            for (var k in fields) {
+                                val += (rows[i][fields[k]]!=undefined)? rows[i][fields[k]]:fields[k];
+                            }
+                            rows[i][j] = val;
+                        }
+
                     }
                 }
             }
