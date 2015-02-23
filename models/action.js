@@ -5,7 +5,10 @@ module.exports = function(callback){
         table_ru: 'Мероприятие',
         ending:'о',
         required_fields:['payment_type_id','title'],
-        blob_fields:['description1','description2'],
+        getFormating:{
+            description1:"parseBlob",
+            description2:"parseBlob"
+        },
         join_objs:[
             {
                 type_id:{
@@ -44,6 +47,10 @@ module.exports = function(callback){
                         {
                             column:"name",
                             alias:"status"
+                        },
+                        {
+                            column:"sys_name",
+                            alias:"status_sys_name"
                         }
                     ]
                 }

@@ -219,28 +219,15 @@ Model.prototype.get = function (params, callback) {
                         rows[i][k] = '';
                     }
                 }
-                for (var j in self.blob_fields) {
-                    if (!rows[i][self.blob_fields[j]] || rows[i][self.blob_fields[j]]=='null') {
-                        rows[i][self.blob_fields[j]] = '';
-                    }else{
-                        try {
-                            rows[i][self.blob_fields[j]] = rows[i][self.blob_fields[j]].toString();
-                        } catch (e) {
-                            console.log(e);
-                        }
+                for (var j in self.getFormating) {
+                    var val = rows[i][j];
+                    try {
+                        rows[i][j] = funcs[self.getFormating[j]](rows[i][j]);
+                    } catch (e) {
+                        console.log(e);
+                        rows[i][j] = val;
                     }
                 }
-                /*for (var j in self.blob_fields) {
-                    if (!rows[i][self.blob_fields[j]] || rows[i][self.blob_fields[j]]=='null') {
-                        rows[i][self.blob_fields[j]] = '';
-                    }else{
-                        try {
-                            rows[i][self.blob_fields[j]] = rows[i][self.blob_fields[j]].toString();
-                        } catch (e) {
-                            console.log(e);
-                        }
-                    }
-                }*/
             }
             callback(null, rows);
         });

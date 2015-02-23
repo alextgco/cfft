@@ -5,7 +5,6 @@ module.exports = function(callback){
         table_ru: 'Призовые места',
         ending:'ы',
         required_fields:['position','action_id','reward'],
-        /*blob_fields:['description1','description2'],*/
         join_objs:[
             {
                 action_id:{

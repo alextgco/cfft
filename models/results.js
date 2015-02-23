@@ -10,38 +10,21 @@ module.exports = function(callback){
         },
         join_objs:[
             {
-                action_id:{
-                    table:"actions",
+                status_id:{
+                    table:"result_statuses",
                     fields:[
                         {
-                            column:"title",
-                            alias:"action"
+                            column:"id",
+                            alias:"status_id"
+                        },
+                        {
+                            column:"name",
+                            alias:"status"
                         }
                     ]
                 },
                 result_type_id:{
-                    table:"result_types",
-                    fields:[
-                        {
-                            column:"id",
-                            alias:"result_type_id"
-                        },
-                        {
-                            column:"name",
-                            alias:"result_type"
-                        },
-                        {
-                            column:"sys_name",
-                            alias:"result_type_sys"
-                        },
-                        {
-                            column:"num_of_fields",
-                            alias:"num_of_fields"
-                        }
-                    ]
-                },
-                status_id:{
-                    table:"statuses_of_action_parts",
+                    table:"result_statuses",
                     fields:[
                         {
                             column:"id",
