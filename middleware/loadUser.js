@@ -7,10 +7,10 @@ module.exports = function(req, res, next){
             return next(err);
         } else {
             conn.queryRow("select * from users where id = ?", [req.session.user], function (err, row) {
+                conn.release();
                 if (err) {
                     return next(err);
                 }
-                conn.release();
                 req.user = res.locals.user = row;
                 next();
             });

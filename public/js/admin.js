@@ -23,6 +23,12 @@ var sendQuery = function (obj, cb) {
     });
 };
 $(document).ready(function(){
+    var fileLoader;
+    $(document).on('delivery.connect', function(e, delivery){
+        console.log('triggered delivery.connect');
+        fileLoader = new FileLoader({delivery:delivery});
+    });
+
     console.log('document READY');
     $("#btn1").off('click').on('click',function(){
         var o = {
@@ -78,4 +84,19 @@ $(document).ready(function(){
         };
         sendQuery(o,function(r){console.log(r);});
     });
+
+    $("#btn5").off('click').on('click',function(){
+        if (!fileLoader){
+            console.log('fileLoader еще не готов');
+            return;
+        }
+        fileLoader.start({
+            success:function(fileUID){
+                //console.log(fileUID);
+            }
+        });
+    });
+
+
+
 });
