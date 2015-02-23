@@ -1,12 +1,11 @@
 var api = require('../libs/userApi');
 exports.get = function(req, res, next){
     api('get', 'action', {where:
-        [
-            {
-                table:"action_types",
-                field:"type_id"
+        {
+            action_types:{
+                sys_name:'GAME'
             }
-        ]
+        }
     }, function(err,result){
         if (err){
             console.log(err, 'events');
