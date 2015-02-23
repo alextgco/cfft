@@ -1,0 +1,37 @@
+extends admin_layout
+block content
+    .container.posRel
+        h2 Заявки
+        hr
+        //.row
+        //    .col-md-12
+        //        .row
+        //            .col-md-3
+        //                .form-group
+        //                    label Название
+        //                    input(type="text").form-control
+        //            .col-md-3
+        //                .form-group
+        //                    label Дата с
+        //                    input(type="text").form-control.cf_datepicker
+        //            .col-md-3
+        //                .form-group
+        //                    label Дата по
+        //                    input(type="text").form-control.cf_datepicker
+
+        .events-list-wrapper
+            ul
+
+                for a in items.data
+                    li.result(data-id="#{a.id}")
+                        .event-item-info
+                            .event-item-title
+                                a(href="judje_result?id=#{a.id}") #{a.concat_result}
+                                .event-item-desc
+                                    | #{a.user_firstname} #{a.user_lastname}
+                                    br
+                                    | #{a.action} #{a.part}
+                        .remove-event(data-id="#{a.id}")
+                            .fa.fa-video-camera
+                else
+                    li sorry, no results!

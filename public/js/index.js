@@ -486,7 +486,7 @@ $(document).ready(function(){
                         callback: function(){
                             var wrapper = $('.modal-body .order-event-part-result-row[data-part="'+event_part_id+'"]');
                             var resultsWrapper = wrapper.find('.results');
-                            var resType = resultsWrapper.find('input[type="text"]').eq(0).data('res_type');
+                            var resType = resultsWrapper.data('res_type');
                             var resTypeId = resultsWrapper.data("res_type_id");
                             var video = wrapper.find('[data-id="video"]').val();
                             var isAff = wrapper.find('[data-id="isAff"]')[0].checked;
@@ -505,8 +505,8 @@ $(document).ready(function(){
 
                             switch(resType){
                                 case 'TIME':
-                                    var mm = resultsWrapper.find('[data-id="min"]').val();
-                                    var ss = resultsWrapper.find('[data-id="sec"]').val();
+                                    var mm = resultsWrapper.find('[data-id="mm"]').val();
+                                    var ss = resultsWrapper.find('[data-id="ss"]').val();
                                     concatRes = mm+':'+ss;
                                     o.params['result_min'] = mm;
                                     o.params['result_sec'] = ss;
