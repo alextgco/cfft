@@ -55,6 +55,7 @@ module.exports = function (app) {
   app.get('/admin_event', checkAdmin, require('./admin_event').get);
 
   app.get('/admin_results', checkAdmin, require('./admin_results').get);
+  app.get('/admin_judge_result', checkAdmin, require('./admin_judge_result').get);
 
   /*app.get('/users', function (req, res, next) {ss
     User.find({}, function (err, users) {
