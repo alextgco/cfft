@@ -45,30 +45,38 @@ block content
             .tab-content
                 #event-header.tab-pane.active(role='tabpanel')
                     form.marTop22
+                        //.row
+                        //    .col-md-4
+                        //        if(!isNew)
+                        //            | #{event.date_start}
+                        //    .col-md-4
+                        //        if(!isNew)
+                        //            | #{event.date_end}
                         .row
-                            .col-md-4
-                                if(!isNew)
-                                    | #{event.date_start}
-                            .col-md-4
-                                if(!isNew)
-                                    | #{event.date_end}
-                        .row
-                            .col-md-4
+                            .col-md-3
                                 .form-group
                                     label Наименование:
                                     if(isNew)
                                         input.fc-event-field.form-control(type='text', value="", data-name="title")
                                     else
                                         input.fc-event-field.form-control(type='text', value="#{event.title}", data-name="title")
-                            .col-md-4
+                            .col-md-3
+                                .form-group
+                                    if(isNew)
+                                        label Тип мероприятия:
+                                        input.select2.fc-event-field.form-control(type="hidden", data-name="type_id", value="", data-text="")
+                                    else
+                                        label Тип мероприятия:
+                                        input.select2.fc-event-field.form-control(type="hidden", data-name="type_id", value="#{event.type_id}", data-text="#{event.type}")
+                            .col-md-3
                                 .form-group
                                     if(isNew)
                                         label Тип оплаты:
                                         input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id", value="", data-text="")
                                     else
-                                        label Тип оплаты: #{event.payment_type_id}
+                                        label Тип оплаты:
                                         input.select2.fc-event-field.form-control(type="hidden", data-name="payment_type_id", value="#{event.payment_type_id}", data-text="#{event.payment_type}")
-                            .col-md-4
+                            .col-md-3
                                 .form-group
                                     label Сумма оплаты:
                                     .input-group
@@ -78,15 +86,30 @@ block content
                                             input.fc-event-field.form-control(type='number', value="#{event.cost}", data-name="cost")
                                         .input-group-addon
                                             i.fa.fa-ruble
+                        .row
+                            .col-md-3
+                                .form-group
+                                    label Изображение:
+                                    if(isNew)
+                                        input.fc-event-field.form-control(type='file', value="", data-name="image")
+                                    else
+                                        input.fc-event-field.form-control(type='file', value="#{event.image}", data-name="image")
+                            .col-md-3
+                                .form-group
+                                    label Правила:
+                                    if(isNew)
+                                        input.fc-event-field.form-control(type='file', data-name="rules_url")
+                                    else
+                                        input.fc-event-field.form-control(value="#{event.rules_url}", type='file', data-name="rules_url")
                             .col-md-10
                                 .form-group
-                                    label Описание 1:
+                                    label Описание полное:
                                     if(isNew)
                                         textarea.fc-event-field.form-control.cf_text_editor(data-name="description1", id="new-description1", value="")
                                     else
                                         textarea.fc-event-field.form-control.cf_text_editor(data-name="description1", id="#{event.id}-description1", value="#{event.description1}")
                                 .form-group
-                                    label Описание 2:
+                                    label Описание кратокое:
                                     if(isNew)
                                         textarea.fc-event-field.form-control.cf_text_editor(data-name="description2", id="new-description2", value="")
                                     else
@@ -112,13 +135,6 @@ block content
                                         .form-group
                                             label 5-е Место:
                                             input.form-control(type='text')
-                            .col-md-12
-                                .form-group
-                                    label Правила:
-                                    if(isNew)
-                                        input.fc-event-field.form-control(type='file', data-name="rules_url")
-                                    else
-                                        input.fc-event-field.form-control(value="#{event.rules_url}", type='file', data-name="rules_url")
                         .row.posRel
                             if(isNew)
                                 .saveEventButton.sBtn.flRight.green(data-id="new")

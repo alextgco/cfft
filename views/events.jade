@@ -3,19 +3,19 @@ block content
     .container
         h2 Мероприятия
             hr
-            .row
-                .col-md-4
-                    .form-group
-                        label Название мероприятия
-                        input.form-control.search-event(type='text', placeholder='Введите название')
-                .col-md-6
-                    .form-group
-                        label Диапазон дат
-                        .input-group
-                            .input-group-addon С
-                            input.cf_datepicker.event-from-date.form-control(type='text', placeholder='')
-                            .input-group-addon По
-                            input.cf_datepicker.event-to-date.form-control(type='text', placeholder='')
+            //.row
+            //    .col-md-4
+            //        .form-group
+            //            label Название мероприятия
+            //            input.form-control.search-event(type='text', placeholder='Введите название')
+            //    .col-md-6
+            //        .form-group
+            //            label Диапазон дат
+            //            .input-group
+            //                .input-group-addon С
+            //                input.cf_datepicker.event-from-date.form-control(type='text', placeholder='')
+            //                .input-group-addon По
+            //                input.cf_datepicker.event-to-date.form-control(type='text', placeholder='')
             .row
                 .col-md-12
                     .events-list-wrapper
@@ -23,7 +23,7 @@ block content
                             for a in items.data
                                 li
                                     .event-item-img
-                                            img(src='img/event1.jpg')
+                                            img(src='#{a.image}')
                                     .event-item-info
                                         .event-item-title
                                             .titleInner

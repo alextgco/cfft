@@ -133,8 +133,7 @@ a.open-calendar.opened{
     text-transform: uppercase;
 }
 .big-content-wrapper{
-    opacity: 0.5;
-
+    padding: 0;
 }
 .fc-button-group button:hover{
     color: #111;
@@ -297,8 +296,7 @@ a.open-calendar.opened{
 }
 body{
     background-image: url("../img/bg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-color: #171717;
     font-size: 14px;
 }
@@ -754,6 +752,19 @@ a.athlet_step{
     display: inline-block;
     margin-bottom: 20px;
 }
+
+.rulesView a.athlet_step{
+    background-color: #F0F0F0;
+    padding: 10px 15px;
+    border-radius: 0px;
+    text-align: left;
+    color: #000;
+    text-decoration: none;
+    white-space: nowrap;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 0px;
+}
 a.athlet_step:hover{
     text-decoration: none;
     background-color: #ff8a06;
@@ -776,3 +787,38 @@ h4.darkHd{
     padding-left: 14px;
     border-radius: 3px;
 }
+.modal-body label {
+    color: #fff;
+
+}
+.modal-order-content{
+    display: none;
+
+}
+
+.countdown-section{
+
+}
+.countdown-amount{
+    color: #fff;
+    display: block;
+    float: left;
+    width: 25%;
+    font-size: 18px;
+    text-align: center;
+}
+.countdown-period{
+    /*color: #ccc;*/
+    /*position: absolute;*/
+    /*margin-top: 20px;*/
+    /*width: 25%;*/
+    /*text-align: center;*/
+    /*float: left;*/
+    /*font-size: 11px;*/
+    /*display: block;*/
+    display: none;
+}
+.countdown-section:last-child .countdown-amount{
+    color: #ff8a06;
+}
+

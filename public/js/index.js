@@ -105,6 +105,7 @@ $(document).ready(function(){
     CF.initRegistration();
     CF.initEditProfile();
     CF.initOrderEventPart();
+    CF.initBackTimer();
 });
 
 (function(){
@@ -455,20 +456,15 @@ $(document).ready(function(){
             var event = $(this).data('event');
             var event_part = $(this).data('event_part');
             var event_part_id = $(this).data('event_part_id');
-
+            var _t = this;
             var event_html = '<p class="form-control-static">'+event+'</p>';
             var event_part_html = '<p class="form-control-static">'+event_part+'</p>';
 
-            var obj = {
-                event: event_html,
-                event_part: event_part_html,
-                results: CF.getResultsByEventPart(event_part_id)
-            };
 
             CF.getTemplate('order_event_part', function(res){
                 bootbox.dialog({
                     title: 'Подать заявку',
-                    message: ' '+Mustache.to_html(res, obj),
+                    message: $(_t).find('.modal-order-content').html(),
                     buttons:{
                         success: {
                             label: 'Отправить',
@@ -499,6 +495,26 @@ $(document).ready(function(){
         });
     }
     CF.initOrderEventPart = initOrderEventPart;
+
+    function initBackTimer(){
+        var dd = $('.tblc.days');
+        var hh = $('.tblc.hours');
+        var mm = $('.tblc.mins');
+        var ss = $('.tblc.secs');
+        var toDate = $('.nearrest-wow-event-wrapper').data('to_date'); //2015-03-08 19:30
+
+        var y = parseInt(toDate.substr(0,4));
+        var m = parseInt(toDate.substr(5,2));
+        var d = parseInt(toDate.substr(8,2));
+        var h = parseInt(toDate.substr(11,2));
+        var min = parseInt(toDate.substr(14,2));
+
+        //console.log(y, m-1, d, h, min, new Date(y, m-1, d, h, min));
+
+        $('.nearresr-wow-timer-init').countdown({until: new Date(y,m-1,d)});//h, min
+
+    }
+    CF.initBackTimer = initBackTimer;
 }());
 
 
