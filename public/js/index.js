@@ -484,7 +484,7 @@ $(document).ready(function(){
                     success: {
                         label: 'Отправить',
                         callback: function(){
-                            var wrapper = $('.order-event-part-result-row[data-part="'+event_part_id+'"]');
+                            var wrapper = $('.modal-body .order-event-part-result-row[data-part="'+event_part_id+'"]');
                             var resultsWrapper = wrapper.find('.results');
                             var resType = resultsWrapper.find('input[type="text"]').eq(0).data('res_type');
                             var resTypeId = resultsWrapper.data("res_type_id");
@@ -492,11 +492,25 @@ $(document).ready(function(){
                             var isAff = wrapper.find('[data-id="isAff"]')[0].checked;
                             var concatRes = '';
 
+                            var o = {
+                                command: 'addOrder',
+                                object: 'results',
+                                params: {
+                                    action_part_id: event_part_id,
+                                    video_url: video,
+                                    result_type_id: resTypeId,
+                                    result_min: 0,
+                                    result_sec: 10
+                                }
+                            };
+
                             switch(resType){
                                 case 'TIME':
                                     var mm = resultsWrapper.find('[data-id="min"]').val();
                                     var ss = resultsWrapper.find('[data-id="sec"]').val();
                                     concatRes = mm+':'+ss;
+                                    o.params['result_min'] = mm;
+                                    o.params['result_sec'] = ss;
                                     break;
                                 case 'REPEAT':
                                     var rep = resultsWrapper.find('[data-id="repeat"]').val();
@@ -519,17 +533,7 @@ $(document).ready(function(){
                                     break;
                             }
 
-                            var o = {
-                                command: 'addOrder',
-                                object: 'results',
-                                params: {
-                                    action_part_id: event_part_id,
-                                    video_url: video,
-                                    result_type_id: resTypeId,
-                                    result_min: 0,
-                                    result_sec: 10
-                                }
-                            };
+
                             console.log(o);
                             sendQuery(o, function(res){
                                 toastr[res.toastr.type](res.toastr.message);
