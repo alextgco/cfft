@@ -190,7 +190,7 @@ block content
                                                                 .fn-vagon
                                                                     .row
                                                                         .col-md-12
-                                                                            .sBtn.small.red.flRight.remove-event-part.marRight3
+                                                                            .sBtn.small.red.flRight.remove-event-part.marRight3(data-action_id="#{event.id}", data-id="#{parts.id}")
                                                                                 i.fa.fa-trash-o
                                                                                 |   Удалить
                                                                             .sBtn.small.green.flRight.save-edit-event-part.marRight3(data-action_id="#{event.id}", data-id="#{parts.id}")
@@ -285,7 +285,7 @@ block content
                                                                         .row.bigTitleRow
                                                                             .col-md-12
                                                                                 .bigTitle.flLeft.h3 #{part.title}
-                                                                                .sBtn.small.red.flRight.remove-event-part.marRight3
+                                                                                .sBtn.small.red.flRight.remove-event-part.marRight3(data-action_id="#{event.id}", data-id="#{part.id}")
                                                                                     i.fa.fa-trash-o
                                                                                     |   Удалить
                                                                                 .sBtn.small.green.flRight.save-edit-event-part.marRight3(data-action_id="#{event.id}", data-id="#{part.id}")

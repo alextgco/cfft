@@ -329,5 +329,30 @@ $(document).ready(function(){
         });
     });
 
+    var removePart = $('.remove-event-part');
+
+    removePart.off('click').on('click', function(){
+        var action_id = $(this).data('action_id');
+        var id = $(this).data('id');
+        var _t = this;
+        bootbox.confirm('Вы уверены?', function(){
+            var o = {
+                command: 'remove',
+                object: 'action_part',
+                params: {
+                    action_id: action_id,
+                    id: id
+                }
+            };
+
+            sendQuery(o, function(res){
+                if(res.code == 0){
+                    document.location.reload();
+                }
+                toastr[res.toastr.type](res.toastr.message);
+            });
+        });
+    });
+
 
 });
