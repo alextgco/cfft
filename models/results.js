@@ -57,17 +57,19 @@ module.exports = function(callback){
                     delete obj[i0];
                 }
             }
+            var notFinded = [];
             for (var i in required_fields) {
                 var finded = false;
                 for (var j in obj) {
-                    if (j == required_fields[i]) {
+                    if (j == required_fields[i] || obj[j]=='') {
                         finded = true;
                         break;
                     }
                 }
-                if (!finded) {
-                    return callback(new MyError('Не переданы обязательные поля. ' + required_fields.join(', ')));
-                }
+                notFinded.push(required_fields[i]);
+            }
+            if (!finded) {
+                return callback(new MyError('Не переданы (или переданы не корректно) обязательные поля. ' + notFinded.join(', ')));
             }
             results.add(obj, function(err,result){
                 callback(err,result);
