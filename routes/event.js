@@ -3,7 +3,7 @@ var api = require('../libs/userApi');
 exports.get = function(req, res, next){
     var id = req.query.id;
     var loadActionRewards = function(callback){
-        api('get', 'action_rewards', {where: {action_id: id}},function(err,result){
+        api('get', 'action_rewards', {where: {action_id: id}, user_id:req.user},function(err,result){
             if (err){
                 console.log(err, 'action_rewards');
                 return callback(err);
@@ -12,7 +12,7 @@ exports.get = function(req, res, next){
         });
     };
     var getAction = function(callback){
-        api('get', 'action', {where: {id: id}},function(err,result){
+        api('get', 'action', {where: {id: id}, user_id:req.user},function(err,result){
             if (err){
                 console.log(err, 'admin_event');
                 return callback(err);
@@ -32,7 +32,7 @@ exports.get = function(req, res, next){
         });
     };
     var getActionParts = function(callback){
-        api('get', 'action_part', {where: {action_id: id}, sort: {direction: 'ASC'}},function(err,result){
+        api('get', 'action_part', {where: {action_id: id}, sort: {direction: 'ASC'}, user_id:req.user},function(err,result){
             if (err){
                 console.log(err, 'admin_event');
                 return callback(err);

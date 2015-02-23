@@ -4,7 +4,7 @@ module.exports = function(callback){
         table: 'results',
         table_ru: 'Результаты',
         ending:'',
-        required_fields:['action_part_id','video_url','result_type_id'],
+        required_fields:['action_part_id','video_url','result_type_id','user_id'],
         /*getFormating:{
             description1:"parseBlob"
         },*/
@@ -46,8 +46,11 @@ module.exports = function(callback){
             if (typeof obj!=='object'){
                 return callback(new MyError('Не корректный объект'));
             }
+            if(!obj.user_id){
+                return callback(new MyError('Не авторизированный доступ'));
+            }
             var required_fields = [].concat(results.required_fields);
-            var avaliable_fields = [];
+            var avaliable_fields = [].concat(required_fields);
             for (var i0 in obj) {
                 if (avaliable_fields.indexOf(i0)==-1) {
                     delete obj[i0];
