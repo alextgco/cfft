@@ -1,4 +1,5 @@
 var Model = require('./MySQLModel');
+var MyError = require('../error').MyError;
 module.exports = function(callback){
     var action = new Model({
         table: 'actions',
@@ -60,6 +61,7 @@ module.exports = function(callback){
         if (err){
             console.log(err);
         }
+
         callback(action);
     });
 };

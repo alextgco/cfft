@@ -6,7 +6,7 @@ module.exports = function(command,object,params,callback){
     var useModel = function(model){
         model[command](params,function(err,result){
             if(err){
-                callback(err);
+                return callback(err);
             }
             callback(null,result);
         });

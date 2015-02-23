@@ -1,5 +1,6 @@
 var moment = require('moment');
-module.exports = {
+
+var funcs = {
     formatResponse: function (code, type, message, data) {
         code = code || 0;
         return {
@@ -35,6 +36,21 @@ module.exports = {
             return obj;
         }
         return obj.toString();
+    },
+    clearEmpty: function(arr) {
+        if (typeof arr!=='object'){
+            return arr;
+        }
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] === undefined) {
+                arr.splice(i, 1);
+                funcs.clearEmpty();
+            }
+        }
+        return arr;
     }
 
+
+
 };
+module.exports = funcs;
