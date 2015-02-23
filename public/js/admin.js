@@ -1,3 +1,4 @@
+var fileLoader;
 var sendQuery = function (obj, cb) {
     if (typeof obj.params=="object"){
         obj.params = JSON.stringify(obj.params);
@@ -23,7 +24,6 @@ var sendQuery = function (obj, cb) {
     });
 };
 $(document).ready(function(){
-    var fileLoader;
     $(document).on('delivery.connect', function(e, delivery){
         console.log('triggered delivery.connect');
         fileLoader = new FileLoader({delivery:delivery});
