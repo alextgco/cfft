@@ -84,20 +84,11 @@ $(document).ready(function(){
         console.log('btn4 clicked');
         var o = {
             command:"get",
-            object:"action",
+            object:"results",
             params:{}
         };
         sendQuery(o,function(r){console.log(r);});
-        var o = {
-            command:"get",
-            object:"action",
-            params:{
-                where:{
-                    id:'3'
-                }
-            }
-        };
-        sendQuery(o,function(r){console.log(r);});
+
     });
 
     $("#btn5").off('click').on('click',function(){
