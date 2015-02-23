@@ -29,6 +29,12 @@ module.exports = {
             temp[key] = this.cloneObj(obj[key]);
         }
         return temp;
+    },
+    parseBlob: function(arr){
+        if (typeof arr!=='object'){
+            return obj;
+        }
+        return obj.toString();
     }
 
 };
