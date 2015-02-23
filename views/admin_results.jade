@@ -32,7 +32,7 @@ block content
                                     br
                                     |  #{a.action_part}
                                     //| #{a.action}
-                        .remove-event(data-id="#{a.id}")
+                        a.watch-result(target="_blank", href="#{a.video_url}")
                             .fa.fa-video-camera
                 else
                     li sorry, no results!

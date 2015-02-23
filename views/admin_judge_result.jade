@@ -1,12 +1,19 @@
 extends admin_layout
 block content
+   - var res = items.data[0];
    .container.posRel
       h2 Заявка
       hr
-      | #{a.video_url}
-      br
-      | #{a.concat_result}
-      br
-      | #{a.user_firstname} #{a.user_lastname}
-      br
-      | #{a.action} #{a.part}
+      h4
+         a(href="#{res.video_url}", target="_blank") Ссылка на видео
+         br
+         | #{res.concat_result}
+         br
+         | #{res.user_firstname} #{res.user_surname}
+         br
+         | #{res.action} #{res.action_part}
+      .row
+         .sBtn.green
+            | Принять
+         .sBtn.red
+            | Отклонить

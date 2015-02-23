@@ -158,3 +158,20 @@
     background-color: rgb(215, 47, 46);
 }
 
+.watch-result{
+    position: absolute;
+    background-color: rgb(93, 113, 215);
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    padding-top: 7px;
+    top: 7px;
+    right: 9px;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.watch-result:hover{
+    background-color: rgb(79, 93, 215);
+}
