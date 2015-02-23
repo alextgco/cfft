@@ -30,7 +30,8 @@ block content
                                 .event-item-desc
                                     | #{a.user_firstname} #{a.user_surname}
                                     br
-                                    | #{a.action} #{a.part}
+                                    |  #{a.action_part}
+                                    //| #{a.action}
                         .remove-event(data-id="#{a.id}")
                             .fa.fa-video-camera
                 else
