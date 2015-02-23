@@ -505,8 +505,8 @@ $(document).ready(function(){
 
                             switch(resType){
                                 case 'TIME':
-                                    var mm = resultsWrapper.find('[data-id="min"]').val();
-                                    var ss = resultsWrapper.find('[data-id="sec"]').val();
+                                    var mm = resultsWrapper.find('[data-id="mm"]').val();
+                                    var ss = resultsWrapper.find('[data-id="ss"]').val();
                                     concatRes = mm+':'+ss;
 
                                     o.params['result_min'] = mm;
