@@ -42,24 +42,33 @@ block content
                                         form.form-horizontal
                                             .row
                                                 .col-md-12
-                                                    .col-md-6
+                                                    .pr50.flLeft
                                                         .form-group.col-md-12
                                                             | #{event.title}
-                                                    .col-md-6
+                                                    .pr50.flLeft
                                                         .form-group.col-md-12
                                                             | #{part.title}
                                             .row.order-event-part-result-row
                                                 .col-md-12
                                                     .form-group.col-md-12
-                                                        label Видео:
+                                                        label Ссылка на видео:
                                                         .input-group
                                                             .input-group-addon
                                                                 i.fa.fa-video-camera
                                                             input.form-control(type="text", data-id="video")
                                                     .form-group.col-md-12
+                                                        label
+                                                            input.isAffiliate(type="checkbox")
+                                                            | Сдавал(а) в аффиляте
+                                                    .form-group.col-md-12
+                                                        label Результат
                                                         if(part.result_type_sys == 'TIME')
 
-                                                            input.form-control.time-mm.maskTime(type="text", placeholder="мм:cc")
+                                                            //input.form-control.time-mm.maskTime(type="text", placeholder="мм:cc")
+                                                            .input-group
+                                                                input.form-control.mm(type='text', placeholder="мм")
+                                                                .input-group-addon :
+                                                                input.form-control.ss(type='text', placeholder="cc")
 
                                                         else if(part.result_type_sys == 'REPEAT')
 
@@ -77,7 +86,7 @@ block content
                                                                 input.form-control.tieBreak4(type='text')
                                                                 .input-group-addon ))
 
-                                                        else if(part.result_type_sys == 'SHORT_TIE_BREAK')
+                                                        else if(part.result_type_sys == 'TIE_BREAK_SHORT')
 
                                                             .input-group
                                                                 input.form-control.tieBreak1(type='text')
