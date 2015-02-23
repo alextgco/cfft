@@ -1,5 +1,5 @@
 var async = require('async');
-var api = require('../libs/api');
+var api = require('../libs/userApi');
 exports.get = function(req, res, next){
     var id = req.query.id;
     var loadActionRewards = function(callback){

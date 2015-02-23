@@ -822,3 +822,6 @@ h4.darkHd{
     color: #ff8a06;
 }
 
+.event-main-image-wrapper img{
+    width: 100%;
+}

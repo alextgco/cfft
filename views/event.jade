@@ -5,7 +5,9 @@ block content
     - var rewards = data.rewards.data[0];
 
     .adv-block-wrapper.big-content-wrapper
-        .event_bg.h350(style="background-image: url(upload/#{event.image})")
+        .event-main-image-wrapper
+            img(src="upload/#{event.image}")
+        //.event_bg.h350(style="background-image: url(upload/#{event.image})")
     h2.event-main-header
         .container.posRel
             | #{event.title}

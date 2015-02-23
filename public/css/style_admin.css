@@ -100,7 +100,7 @@
 .admin_layout .event-item-date{
     position: absolute;
     top: 18px;
-    right: 20px;
+    right: 70px;
 }
 .addEventButton{
     position: absolute;
@@ -139,4 +139,21 @@
     border-bottom: 1px solid #ccc;
     background-color: #eee;
     margin-bottom: 15px;
+}
+.remove-event{
+    position: absolute;
+    background-color: rgb(215, 103, 103);
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    padding-top: 7px;
+    top: 7px;
+    right: 9px;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.remove-event:hover{
+    background-color: rgb(215, 47, 46);
 }

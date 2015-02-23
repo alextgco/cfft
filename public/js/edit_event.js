@@ -303,16 +303,31 @@ $(document).ready(function(){
                     callback: function(){}
                 }
             }
-
         });
-
-
-
-
     });
 
+    var removeEvent = $('.remove-event');
 
+    removeEvent.off('click').on('click', function(){
+        var id = $(this).data('action_id');
+        var _t = this;
+        bootbox.confirm('Вы уверены?', function(){
+            var o = {
+                command: 'remove',
+                object: 'action',
+                params: {
+                    id: id
+                }
+            };
 
+            sendQuery(o, function(res){
+                if(res.code == 0){
+                    $(_t).parents('li.action').remove();
+                }
+                toastr[res.toastr.type](res.toastr.message);
+            });
+        });
+    });
 
 
 });

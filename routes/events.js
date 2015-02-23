@@ -1,4 +1,4 @@
-var api = require('../libs/api');
+var api = require('../libs/userApi');
 exports.get = function(req, res, next){
     api('get', 'action', {}, function(err,result){
         if (err){
