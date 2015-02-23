@@ -220,7 +220,6 @@ Model.prototype.get = function (params, callback) {
                     }
                 }
                 for (var j in self.blob_fields) {
-
                     if (!rows[i][self.blob_fields[j]] || rows[i][self.blob_fields[j]]=='null') {
                         rows[i][self.blob_fields[j]] = '';
                     }else{
@@ -231,6 +230,17 @@ Model.prototype.get = function (params, callback) {
                         }
                     }
                 }
+                /*for (var j in self.blob_fields) {
+                    if (!rows[i][self.blob_fields[j]] || rows[i][self.blob_fields[j]]=='null') {
+                        rows[i][self.blob_fields[j]] = '';
+                    }else{
+                        try {
+                            rows[i][self.blob_fields[j]] = rows[i][self.blob_fields[j]].toString();
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }
+                }*/
             }
             callback(null, rows);
         });
