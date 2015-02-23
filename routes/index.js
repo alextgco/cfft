@@ -29,6 +29,11 @@ module.exports = function (app) {
   app.get('/for_athlets', function(req, res, next){
     res.render('for_athlets');
   });
+
+  app.get('/rules', function(req, res, next){
+    res.render('rules');
+  });
+
   app.get('/registration_error', function(req, res, next){
     res.render('registration_error');
   });

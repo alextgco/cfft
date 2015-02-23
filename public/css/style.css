@@ -595,7 +595,7 @@ input[type="number"].invalid{
     background-color: #fab430;
 }
 .event_bg{
-    background-image: url('../img/event_bunner.jpg');
+    /*background-image: url('../img/event_bunner.jpg');*/
     background-size: cover;
 }
 .watch_bg{
