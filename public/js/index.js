@@ -475,17 +475,20 @@ $(document).ready(function(){
                                     break;
                                 case 'REPEAT':
                                     var rep = resultsWrapper.find('[data-id="repeat"]').val();
+                                    concatRes = rep;
                                     break;
                                 case 'TIE_BREAK':
                                     var tb1 = resultsWrapper.find('[data-id="tb1"]').val();
                                     var tb2 = resultsWrapper.find('[data-id="tb2"]').val();
                                     var tb3 = resultsWrapper.find('[data-id="tb3"]').val();
                                     var tb4 = resultsWrapper.find('[data-id="tb4"]').val();
+                                    concatRes = tb1+'('+tb2+'('+tb3+':'+tb4+'))';
                                     break;
                                 case 'TIE_BREAK_SHORT':
                                     var tbs1 = resultsWrapper.find('[data-id="tbs1"]').val();
                                     var tbs2 = resultsWrapper.find('[data-id="tbs2"]').val();
                                     var tbs3 = resultsWrapper.find('[data-id="tbs3"]').val();
+                                    concatRes = tbs1+'('+tbs2+':'+tbs3+')';
                                     break;
                                 default:
                                     break;
