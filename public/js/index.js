@@ -30,12 +30,6 @@ $(document).ready(function(){
 
         $('select').select2();
 
-        var directories = {
-            payment_type_id: 'action_payment_types',
-            result_type_id: 'result_types',
-            status_id: 'statuses_of_action_parts',
-            type_id: 'action_types'
-        };
 
         $('input.select2.fc-event-field, input.select2.fc-event-part-field').each(function(idx, elem){
             var $elem = $(elem);
@@ -45,7 +39,7 @@ $(document).ready(function(){
                     var data = {results: []};
                     sendQuery({
                         command: 'get',
-                        object: directories[name],
+                        object: $elem.data('table'),
                         params: {}
                     }, function(res){
                         for(var i in res.data){
