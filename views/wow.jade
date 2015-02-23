@@ -60,7 +60,7 @@ block content
                                                         label
                                                             input.isAffiliate(type="checkbox")
                                                             | Сдавал(а) в аффиляте
-                                                    .form-group.col-md-12.results
+                                                    .form-group.col-md-12.results(data-res_type_id="#{part.result_type_id}")
                                                         label Результат
                                                         if(part.result_type_sys == 'TIME')
 
