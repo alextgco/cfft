@@ -13,7 +13,7 @@ exports.post = function(req, res, next){
     }else{
         return res.status(500).send('Не передан params');
     }
-
+    params.user_id = req.user;
     api(command, object, newParams,function(err,result){
         if (err){
             res.status(500).send(err);

@@ -494,12 +494,14 @@ $(document).ready(function(){
                                     break;
                             }
 
-
+//['action_part_id','video_url','result_type_id','user_id']
                             sendQuery({
-                                command: 'add_order',
+                                command: 'addOrder',
                                 object: 'results',
                                 params: {
-                                    flds: 'flds'
+                                    action_part_id: event_part_id,
+                                    video_url:video,
+                                    result_type_id:1
                                 }
                             }, function(res){
                                 toastr[res.toastr.type](res.toastr.message);
