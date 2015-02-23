@@ -5,7 +5,7 @@ block content
     - var rewards = data.rewards.data[0];
 
     .adv-block-wrapper.big-content-wrapper
-        .event_bg.h350(style="background-image: url(#{event.image})")
+        .event_bg.h350(style="background-image: url(public/upload/#{event.image})")
     h2.event-main-header
         .container.posRel
             | #{event.title}
@@ -74,6 +74,16 @@ block content
                                                                 .input-group-addon :
                                                                 input.form-control.tieBreak4(type='text')
                                                                 .input-group-addon ))
+
+                                                        else if(part.result_type_id == 4)
+
+                                                            .input-group
+                                                                input.form-control.tieBreak1(type='text')
+                                                                .input-group-addon (
+                                                                input.form-control.tieBreak3(type='text')
+                                                                .input-group-addon :
+                                                                input.form-control.tieBreak4(type='text')
+                                                                .input-group-addon )
 
                         .innerTabParent(role='tabpanel')
                             ul.nav.nav-tabs(role='tablist')

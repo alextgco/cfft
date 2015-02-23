@@ -33,7 +33,8 @@ $(document).ready(function(){
         var directories = {
             payment_type_id: 'action_payment_types',
             result_type_id: 'result_types',
-            status_id: 'statuses_of_action_parts'
+            status_id: 'statuses_of_action_parts',
+            type_id: 'action_types'
         };
 
         $('input.select2.fc-event-field, input.select2.fc-event-part-field').each(function(idx, elem){

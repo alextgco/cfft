@@ -67,7 +67,7 @@ block content
                                         input.select2.fc-event-field.form-control(type="hidden", data-name="type_id", value="", data-text="")
                                     else
                                         label Тип мероприятия:
-                                        input.select2.fc-event-field.form-control(type="hidden", data-name="type_id", value="#{event.type_id}", data-text="#{event.type}")
+                                        input.select2.fc-event-field.form-control(type="hidden", data-name="type_id", value="#{event.type_id}", data-text="#{event.action_type}")
                             .col-md-3
                                 .form-group
                                     if(isNew)
@@ -89,7 +89,14 @@ block content
                         .row
                             .col-md-3
                                 .form-group
-                                    label Изображение:
+                                    label Картинка:
+                                    if(isNew)
+                                        input.autoUpload.fc-event-field.form-control(type='text', value="", data-name="thumb")
+                                    else
+                                        input.autoUpload.fc-event-field.form-control(type='text', value="#{event.thumb}", data-name="thumb")
+                            .col-md-3
+                                .form-group
+                                    label Фон:
                                     if(isNew)
                                         input.autoUpload.fc-event-field.form-control(type='text', value="", data-name="image")
                                     else
