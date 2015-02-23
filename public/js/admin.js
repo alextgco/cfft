@@ -27,7 +27,22 @@ $(document).ready(function(){
     $(document).on('delivery.connect', function(e, delivery){
         console.log('triggered delivery.connect');
         fileLoader = new FileLoader({delivery:delivery});
+
+        $('.autoUpload').off('click').on('click', function(){
+            var inp = $(this);
+            if (!fileLoader){
+                toastr['error']('fileLoader еще не готов');
+                return;
+            }
+            fileLoader.start({
+                success:function(fileUID){
+                    inp.val(fileUID.name);
+                }
+            });
+        });
     });
+
+
 
     console.log('document READY');
     $("#btn1").off('click').on('click',function(){
@@ -96,6 +111,8 @@ $(document).ready(function(){
             }
         });
     });
+
+
 
 
 

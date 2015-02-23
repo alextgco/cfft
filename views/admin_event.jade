@@ -91,16 +91,16 @@ block content
                                 .form-group
                                     label Изображение:
                                     if(isNew)
-                                        input.fc-event-field.form-control(type='file', value="", data-name="image")
+                                        input.autoUpload.fc-event-field.form-control(type='text', value="", data-name="image")
                                     else
-                                        input.fc-event-field.form-control(type='file', value="#{event.image}", data-name="image")
+                                        input.autoUpload.fc-event-field.form-control(type='text', value="#{event.image}", data-name="image")
                             .col-md-3
                                 .form-group
                                     label Правила:
                                     if(isNew)
-                                        input.fc-event-field.form-control(type='file', data-name="rules_url")
+                                        input.autoUpload.fc-event-field.form-control(type='text', data-name="rules_url", value="")
                                     else
-                                        input.fc-event-field.form-control(value="#{event.rules_url}", type='file', data-name="rules_url")
+                                        input.autoUpload.fc-event-field.form-control(value="#{event.rules_url}", type='text', data-name="rules_url")
                             .col-md-10
                                 .form-group
                                     label Описание полное:

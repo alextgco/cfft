@@ -187,8 +187,6 @@ $(document).ready(function(){
             };
         }
 
-
-
         $('.fc-event-field').each(function(idx, elem){
             if($(this).hasClass('select2-container')){
                 return;
@@ -204,6 +202,7 @@ $(document).ready(function(){
         });
 
         console.log(o);
+
         sendQuery(o, function(res){
             console.log(res);
             if(res.code == 0){

@@ -497,12 +497,10 @@ $(document).ready(function(){
     CF.initOrderEventPart = initOrderEventPart;
 
     function initBackTimer(){
-        var dd = $('.tblc.days');
-        var hh = $('.tblc.hours');
-        var mm = $('.tblc.mins');
-        var ss = $('.tblc.secs');
+        if($('.nearrest-wow-event-wrapper').length == 0){
+            return;
+        }
         var toDate = $('.nearrest-wow-event-wrapper').data('to_date'); //2015-03-08 19:30
-
         var y = parseInt(toDate.substr(0,4));
         var m = parseInt(toDate.substr(5,2));
         var d = parseInt(toDate.substr(8,2));
