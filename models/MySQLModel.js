@@ -44,6 +44,7 @@ var Model = function (params, callback) {
     this.blob_fields = (typeof params.blob_fields === 'object') ? params.blob_fields : [];
     this.defaults = (typeof params.defaults === 'object') ? params.blob_fields : [];
     this.join_objs = (typeof params.join_objs === 'object') ? params.join_objs : false;
+    this.sort = params.sort;
     pool.getConn(function (err, conn) {
         if (err) {
             return callback(err);
