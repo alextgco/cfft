@@ -14,7 +14,9 @@ $(document).ready(function(){
                 label: 'Мероприятие',
                 column: 'action_title',
                 type: 'select',
-                tableName: 'action'
+                tableName: 'action',
+                returnId: 'id',
+                returnName: 'action_title'
             },
             {
                 label: 'Этап',
@@ -35,7 +37,9 @@ $(document).ready(function(){
                 label: 'Статус',
                 column: 'status_name',
                 type: 'select',
-                tableName: 'result_statuses'
+                tableName: 'result_statuses',
+                returnId: 'id',
+                returnName: 'status_name'
             }
         ]
     });

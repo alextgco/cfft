@@ -204,13 +204,15 @@
             if(filter.type == 'like'){
                 html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="text" class="tableFilter form-control" data-filter_type="like" data-column="'+filter.column+'"/></div>';
             }else if(filter.type == 'select'){
-                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="hidden" class="tableFilter form-control select2" data-text="" data-filter_type="select" data-name="'+filter.column+'" data-table="'+filter.tableName+'" data-column="'+filter.column+'"/></div>';
+                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="hidden" data-return_id="'+filter.returnId+'" data-return_name="'+filter.returnName+'" class="tableFilter form-control select2" data-text="" data-filter_type="select" data-name="'+filter.column+'" data-table="'+filter.tableName+'" data-column="'+filter.column+'"/></div>';
             }
             filterWrapper.append(html);
         }
         filterWrapper.find('input.select2[type="hidden"]').each(function(idx, elem){
             var $elem = $(elem);
             var name = $elem.data('name');
+            var returnId = $elem.data('return_id');
+            var returnName = $elem.data('return_name');
             $elem.select2({
                 query: function(query){
                     var data = {results: []};
@@ -222,8 +224,8 @@
                         for(var i in res.data){
                             var item = res.data[i];
                             data.results.push({
-                                id: item.id,
-                                text: item.name
+                                id: item[returnId],
+                                text: item[returnName]
                             });
                         }
                         query.callback(data);
