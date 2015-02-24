@@ -4,7 +4,7 @@ var sendQuery = function (obj, cb) {
         obj.params = JSON.stringify(obj.params);
     }
     $.ajax({
-        url: "/admin/api",
+        url: "/api",
         method: "POST",
         data: obj,
         complete: function (res) {

@@ -43,7 +43,20 @@ var Model = function (params, callback) {
             example:'http://example.ru'
         }
     };
-
+    this.beforeFunction = {
+        get:function(obj,callback){
+            callback(null,null);
+        },
+        add:function(obj,callback){
+            callback(null,null);
+        },
+        modify:function(obj,callback){
+            callback(null,null);
+        },
+        remove:function(obj,callback){
+            callback(null,null);
+        }
+    };
     this.table = params.table;
     this.table_ru = params.table_ru || 'Объект';
     this.ending = params.ending || ''; // 'о' 'а'
@@ -101,7 +114,9 @@ Model.prototype.getById = function (id, callback) {
     });
 };
 Model.prototype.get = function (params, callback) {
+
     var self = this;
+
     var getRows = function (conn, callback) {
         var where = params.where || {};
         var limit = params.limit || 1000;
@@ -283,6 +298,14 @@ Model.prototype.get = function (params, callback) {
     };
 
     async.waterfall([
+        function(callback){
+            self.beforeFunction['get'](params,function(err){
+                if (err){
+                    return callback(new MyError('Ошибка выполнения beforeFunction'));
+                }
+                return callback(null);
+            });
+        },
         pool.getConn,
         getRows
     ], function (err, results) {
@@ -322,6 +345,14 @@ Model.prototype.add = function (obj, callback) {
         });
     };
     async.waterfall([
+        function(callback){
+            self.beforeFunction['add'](params,function(err){
+                if (err){
+                    return callback(new MyError('Ошибка выполнения beforeFunction'));
+                }
+                return callback(null);
+            });
+        },
         pool.getConn,
         addToModel
     ], function (err, results) {
@@ -355,6 +386,14 @@ Model.prototype.modify = function (obj, callback) {
         })
     };
     async.waterfall([
+        function(callback){
+            self.beforeFunction['modify'](params,function(err){
+                if (err){
+                    return callback(new MyError('Ошибка выполнения beforeFunction'));
+                }
+                return callback(null);
+            });
+        },
         pool.getConn,
         modifyModel
     ], function (err, results) {
@@ -380,6 +419,14 @@ Model.prototype.remove = function (obj, callback) {
         })
     };
     async.waterfall([
+        function(callback){
+            self.beforeFunction['remove'](params,function(err){
+                if (err){
+                    return callback(new MyError('Ошибка выполнения beforeFunction'));
+                }
+                return callback(null);
+            });
+        },
         pool.getConn,
         removeModel
     ], function (err, results) {

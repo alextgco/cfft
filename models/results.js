@@ -106,19 +106,25 @@ module.exports = function(callback){
             }
         ]
     },function(err){
+        var self = this;
         if (err){
             console.log(err);
         }
-        results.get = function(obj,callback){
-            var exludedColumns = ['published','created','deleted'];
+        //var protoGet = results.get;
+
+        results.beforeFunction.get = function (obj, callback) {
+            if (!obj.user_id) {
+                return callback(null,null);
+            }
+            var exludedColumns = ['published', 'created', 'deleted'];
             var columns = funcs.cloneObj(results.columns);
             for (var i in exludedColumns) {
-                delete columns[exludedColumns[i]];
+                columns.splice(columns.indexOf(exludedColumns[i]),1);
+                //delete columns[columns.indexOf(exludedColumns[i])];
             }
+            //columns = funcs.clearEmpty(columns);
             obj.columns = columns;
-            results.prototype.get(obj,function(err, results){
-                callback(err, results);
-            })
+            return callback(null,obj);
         };
         results.addOrder = function(obj,callback){
             if (typeof obj!=='object'){
