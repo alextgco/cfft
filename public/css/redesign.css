@@ -861,7 +861,12 @@ h4.darkHd{
     color: #000;
 }
 .statusColor{
-
+    float: left;
+    margin-left: 10px;
+    padding: 1px 7px;
+    font-size: 11px;
+    margin-top: 2px;
+    border-radius: 2px;
 }
 .statusColor.IN_QUEUE{
     background-color: #ccc;
@@ -878,4 +883,7 @@ h4.darkHd{
 .statusColor.REJECTED{
     background-color: #d72f2e;
     color: #fff;
+}
+.result-output{
+    float: left;
 }

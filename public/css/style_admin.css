@@ -175,3 +175,31 @@
 .watch-result:hover{
     background-color: rgb(79, 93, 215);
 }
+
+table.table.simpleView{
+
+}
+table.table.simpleView th{
+    white-space: nowrap;
+}
+table.table.simpleView td{
+    white-space: nowrap;
+    cursor: pointer;
+    max-width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+table.table.simpleView tr:hover td{
+    background-color: #d9eff7;
+}
+table.table.simpleView tr:nth-child(2n):hover td{
+    background-color: #d9eff7;
+}
+
+table.table.simpleView tr:nth-child(2n) td{
+    background-color: #f7f7f7;
+}
+.filters-wrapper>.col-md-3{
+    margin-bottom: 10px;
+}
