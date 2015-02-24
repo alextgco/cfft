@@ -351,7 +351,7 @@ Model.prototype.add = function (obj, callback) {
     };
     async.waterfall([
         function(callback){
-            self.beforeFunction['add'](params,function(err){
+            self.beforeFunction['add'](obj,function(err){
                 if (err){
                     return callback(new MyError('Ошибка выполнения beforeFunction'));
                 }
