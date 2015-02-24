@@ -392,7 +392,7 @@ Model.prototype.modify = function (obj, callback) {
     };
     async.waterfall([
         function(callback){
-            self.beforeFunction['modify'](params,function(err){
+            self.beforeFunction['modify'](obj,function(err){
                 if (err){
                     return callback(new MyError('Ошибка выполнения beforeFunction'));
                 }
@@ -425,7 +425,7 @@ Model.prototype.remove = function (obj, callback) {
     };
     async.waterfall([
         function(callback){
-            self.beforeFunction['remove'](params,function(err){
+            self.beforeFunction['remove'](obj,function(err){
                 if (err){
                     return callback(new MyError('Ошибка выполнения beforeFunction'));
                 }
