@@ -8,13 +8,16 @@ var funcs = {
             toastr: {
                 type: type,
                 message: message
-            },
-            data: data
+            }
         };
-        if (!isNaN(data.count)){
-            o.totalCount = data.count;
-            delete data.count;
+        if (data){
+            o.data = data;
+            if (!isNaN(data.count)){
+                o.totalCount = data.count;
+                delete data.count;
+            }
         }
+
         return o;
     },
     getDataTimeMySQL: function () {
