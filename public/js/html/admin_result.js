@@ -12,11 +12,11 @@ $(document).ready(function(){
         filters: [
             {
                 label: 'Мероприятие',
-                column: 'action_title',
+                column: 'action_id',
                 type: 'select',
                 tableName: 'action',
                 returnId: 'id',
-                returnName: 'action_title'
+                returnName: 'title'
             },
             {
                 label: 'Этап',
@@ -35,11 +35,11 @@ $(document).ready(function(){
             //},
             {
                 label: 'Статус',
-                column: 'status_name',
+                column: 'status_id',
                 type: 'select',
                 tableName: 'result_statuses',
                 returnId: 'id',
-                returnName: 'status_name'
+                returnName: 'name'
             }
         ]
     });

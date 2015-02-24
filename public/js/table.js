@@ -65,7 +65,7 @@
     CF.Table = function(p){
         this.id =               p.id || CF.guid();
         this.wrapper =          p.wrapper || undefined;
-        this.where =            p.where || '';
+        this.where =            p.where || {};
         this.getObject =        p.getObject || undefined;
         this.limit =            p.limit || '';
         this.sort =             p.sort || '';
@@ -82,6 +82,7 @@
         _t.getData(function(){
             _t.render(function(){
                 _t.setHandlers();
+                _t.renderFilters();
                 _t.initFilters();
             });
 
@@ -132,10 +133,15 @@
         }
     };
 
+    CF.Table.prototype.renderFilters = function(){
+        var _t = this;
+        var html = '<div class="filters-wrapper col-md-11"></div><div class="col-md-1"><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div>';
+        _t.wrapper.prepend(html);
+    };
+
     CF.Table.prototype.render = function(cb){
         var _t = this;
-        var tpl =   '<div class="filters-wrapper row"></div>'+
-                    '<table class="table simpleView">' +
+        var tpl = '<table class="table simpleView">' +
                     '<thead>' +
                     '<tr>{{#columns}}' +
                     '<th data-column="{{column}}">{{column_ru}}</th>{{/columns}}' +
@@ -235,6 +241,21 @@
                     var data = {id: element.val(), text: $(element).data('text')};
                     callback(data);
                 }
+            });
+            $elem.off('change').on('change', function(){
+                _t.where[$elem.data('column')] = $elem.select2('data').id;
+            });
+        });
+
+        filterWrapper.find('input.tableFilter[type="text"][data-filter_type="like"]').off('input').on('input', function(){
+            _t.where[$(this).data('column')] = '%'+$(this).val()+'%';
+        });
+
+        _t.wrapper.find('.confirm-filter').off('click').on('click', function(){
+            _t.getData(function(){
+                _t.render(function(){
+                    _t.setHandlers();
+                });
             });
         });
     };
