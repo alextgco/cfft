@@ -24,7 +24,7 @@ var server = http.createServer(app);
 //var io = require('socket.io').listen(server);
 var io = require('../socket')(server);
 app.set('io', io);
-io.set('origins', 'http://104.131.178.191:80');
+io.set('origins', 'http://104.131.178.191:80,http://localhost:3000');
 require('../libs/delivery')(io);
 /**
  * Listen on provided port, on all network interfaces.
