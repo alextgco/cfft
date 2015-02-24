@@ -36,6 +36,8 @@
 						col_values: ['RESERVED']
 					},
 					revert: true
+				}, function(){
+					tableInstance.parentObject.reload();
 				});
 			}
 		},
@@ -76,6 +78,8 @@
 						}
 					],
 					revert: true
+				}, function(){
+					tableInstance.parentObject.reload();
 				});
 			}
 		},
@@ -122,6 +126,8 @@
 						col_values: ['CLOSED_REALIZATION']
 					}],
 					revert: true
+				}, function(){
+					tableInstance.parentObject.reload();
 				});
 			}
 		},
@@ -158,6 +164,7 @@
 						ticket_id: item[tableInstance.data.NAMES.indexOf('ORDER_TICKET_ID')]
 					}, function (res) {
 						console.log('print_ticket', res);
+						tableInstance.parentObject.reload();
 						tableInstance.reload();
 					});
 				}
@@ -197,6 +204,8 @@
 						col_values: ['CLOSED_REALIZATION', 'PRINTED']
 					}],
 					revert: true
+				}, function(){
+					tableInstance.parentObject.reload();
 				});
 			}
 		},
@@ -235,6 +244,8 @@
 						col_values: ['PAID']
 					}],
 					revert: true
+				}, function(){
+					tableInstance.parentObject.reload();
 				});
 			}
 		}

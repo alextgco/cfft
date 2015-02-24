@@ -248,7 +248,7 @@ $html.='
         </tr>
     </table>
 
-    <!--<table class="ticketInfo2">
+    <table class="ticketInfo2">
         <tr>
             <td class="first">
                 Подъезд:<br />
@@ -276,7 +276,7 @@ $html.='
 
             <td>'.$array['PLACE'].'</td>
         </tr>
-    </table>-->
+    </table>
 
     <table class="ticketInfo">
         <tr>

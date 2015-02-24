@@ -652,9 +652,9 @@ Map1.prototype.loadSquares = function (params, callback) {
             self.squares[index].w = (DATA[k].W != "" && DATA[k].W != undefined) ? +DATA[k].W : 40;
             self.squares[index].h = (DATA[k].H != "" && DATA[k].H != undefined) ? +DATA[k].H : 40;
             self.squares[index].line = String(DATA[k].LINE) || '';
-            self.squares[index].line_title = (String(DATA[k].LINE_TITLE) !== undefined) ? String(DATA[k].LINE_TITLE) : "Ряд";
+            self.squares[index].line_title = (String(DATA[k].LINE_TITLE) !== 'undefined') ? String(DATA[k].LINE_TITLE) : "Ряд";
             self.squares[index].place = String(DATA[k].PLACE) || '';
-            self.squares[index].place_title = (String(DATA[k].PLACE_TITLE) !== undefined) ? String(DATA[k].PLACE_TITLE) : "Место";
+            self.squares[index].place_title = (String(DATA[k].PLACE_TITLE) !== 'undefined') ? String(DATA[k].PLACE_TITLE) : "Место";
             self.squares[index].salePrice = (DATA[k].PRICE != undefined) ? DATA[k].PRICE : "";
             self.squares[index].status = (DATA[k].STATUS != undefined && DATA[k].STATUS != "") ? +DATA[k].STATUS : 1;
             self.squares[index].order_id = (DATA[k].ORDER_ID != undefined && DATA[k].ORDER_ID != "") ? DATA[k].ORDER_ID : -1;
@@ -664,6 +664,7 @@ Map1.prototype.loadSquares = function (params, callback) {
             self.squares[index].fundGroup = DATA[k].FUND_GROUP_NAME || '';
             /*self.squares[index].fundGroupId = DATA[k].FUND_GROUP_ID;*/
             self.squares[index].priceGroup = DATA[k].PRICE_GROUP_NAME || '';
+            self.squares[index].priceGroupID = DATA[k].PRICE_GROUP_ID || '';
             self.squares[index].blocked = DATA[k].BLOCK_COLOR || "#c1c1c1";
             self.squares[index].layer_id = DATA[k].HALL_SCHEME_LAYER_ID || "";
             self.squares[index].object_id = DATA[k].HALL_SCHEME_OBJECT_ID || DATA[k].ACTION_SCHEME_OBJECT_ID || "";
@@ -4611,7 +4612,6 @@ Map1.prototype.setEvents = function () {
                             case "client_screen":
                                 break;
                         }
-
                         break;
                     case 17:
                         switch (self.mode) {

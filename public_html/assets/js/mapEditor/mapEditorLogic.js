@@ -1814,7 +1814,6 @@ var mapEditorLogicInit = function(mapEditor_map){
         //storage.clear();
         il.start({
             success:function(fileUID){
-
                 var tmpObj = {
                     data: fileUID.base64Data,
                     name: fileUID.name,

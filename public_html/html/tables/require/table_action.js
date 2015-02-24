@@ -318,6 +318,30 @@
 			}
 		},
 		{
+			name: 'option11',
+			title: 'Перейти к переоценке2',//в,б
+			disabled: function () {
+				var row = tableInstance.data.DATA[tableInstance.ct_instance.selectedRowIndex];
+				return row[tableInstance.data.NAMES.indexOf('ACTION_SCHEME_CREATED')] == 'FALSE' || row[tableInstance.data.NAMES.indexOf('ACTION_TYPE')] == 'ACTION_WO_PLACES';
+			},
+			callback: function () {
+				var row = tableInstance.data.DATA[tableInstance.ct_instance.selectedRowIndex];
+				var id = row[tableInstance.data.NAMES.indexOf('ACTION_ID')];
+				var title = row[tableInstance.data.NAMES.indexOf('NAME')] + ' | ' + row[tableInstance.data.NAMES.indexOf('HALL')];
+
+				MB.Core.switchModal({
+					type: "content",
+					filename: "action_priceZones",
+					isNew: true,
+					params: {
+						action_id: id,
+						title: title,
+						label: 'Схема переоценки'
+					}
+				});
+			}
+		},
+		{
 			name: 'option7',
 			title: 'Перейти к редактору',//в,б
 			disabled: function () {

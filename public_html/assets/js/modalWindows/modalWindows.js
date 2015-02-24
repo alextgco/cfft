@@ -370,7 +370,8 @@ var modalWindow = function(){
             collapse:       _t.wrapper.find('.mw-collapse'),
             fullscreen:     _t.wrapper.find('.mw-fullscreen'),
             close:          _t.wrapper.find('.mw-close'),
-            footerBtn:      $('.mw-try-wrap[data-id="mw-'+_t.wrapId+'"]')
+            footerBtn:      $('.mw-try-wrap[data-id="mw-'+_t.wrapId+'"]'),
+            saveBtn:        _t.wrapper.find('.mw-save-form')
         };
         _t.footerButton = blocks.footerBtn;
         _t.setActive();
@@ -462,6 +463,10 @@ var modalWindow = function(){
             windows.removeItem(_t);
             $('#modalSelectionPrevent').css('zIndex', '-10');
             $(_t).trigger('close');
+        });
+
+        blocks.saveBtn.on('click',function(){
+            $(_t).trigger('save');
         });
 
         $(document).on('click', function(){
@@ -836,6 +841,11 @@ var modalWindow = function(){
             windows.removeItem(_this);
             $(_this).trigger('close');
         });
+
+        blocks.saveBtn.on('click',function(){
+            $(_this).trigger('save');
+        });
+
         blocks.fullscreen.on('click', function(){
             _this.startPosition = 'center';
             _this.waitForPosition = 'fullscreen';

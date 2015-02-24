@@ -1,4 +1,5 @@
-/*var STANDART = {
+/*
+var STANDART = {
  ACTION_NAME:{
  object_type:'label',
  value:'',
@@ -40,19 +41,6 @@ var templates = {
                 w:560,
                 h:125
             },
-            ACTION_NAME_AND_AGE:{
-                items:['ACTION_NAME','  (','AGE_CAT',')'],
-                object_type:'label',
-                value:'',
-                font_family:'Arial',
-                font_size:'18',
-                font_style:'normal',
-                rotation:270,
-                x:403,
-                y:1984,
-                w:20,
-                h:15
-            },
             ACTION_DATE_TIME:{
                 items:['Дата: ','ACTION_DATE', '   ', 'Время: ', 'ACTION_TIME'],
                 object_type:'label',
@@ -66,12 +54,38 @@ var templates = {
                 w:20,
                 h:15
             },
+            ACTION_NAME_AND_AGE:{
+                items:['ACTION_NAME','  (','AGE_CAT',')'],
+                object_type:'label',
+                value:'',
+                font_family:'Arial',
+                font_size:'14',
+                font_style:'normal',
+                rotation:270,
+                x:395,
+                y:1984,
+                w:20,
+                h:15
+            },
+            ACTION_NAME2:{
+                items:['Наименование вторая строка ','ACTION_NAME2'],
+                object_type:'label',
+                value:'',
+                font_family:'Arial',
+                font_size:'7',
+                font_style:'normal',
+                rotation:270,
+                x:460,
+                y:1984,
+                w:20,
+                h:15
+            },
             AREA_NAME:{
 
                 object_type:'label',
                 value:'',
                 font_family:'Arial',
-                font_size:'10',
+                font_size:'8',
                 font_style:'normal',
                 rotation:270,
                 x:500,
@@ -84,10 +98,10 @@ var templates = {
                 object_type:'label',
                 value:'',
                 font_family:'Arial',
-                font_size:'10',
+                font_size:'8',
                 font_style:'normal',
                 rotation:270,
-                x:550,
+                x:540,
                 y:1984,
                 w:0,
                 h:0
@@ -100,7 +114,7 @@ var templates = {
                 font_size:'12',
                 font_style:'normal',
                 rotation:270,
-                x:600,
+                x:580,
                 y:1984,
                 w:0,
                 h:0
@@ -112,7 +126,7 @@ var templates = {
                 font_size:'7',
                 font_style:'normal',
                 rotation:270,
-                x:660,
+                x:630,
                 y:1984,
                 w:0,
                 h:0
@@ -124,7 +138,7 @@ var templates = {
                 font_size:'7',
                 font_style:'normal',
                 rotation:270,
-                x:660,
+                x:630,
                 y:1684,
                 w:20,
                 h:15
@@ -137,8 +151,48 @@ var templates = {
                 font_size:'7',
                 font_style:'normal',
                 rotation:270,
-                x:660,
+                x:630,
                 y:1534,
+                w:20,
+                h:15
+            },
+            Organizatir:{
+                items:['Организатор: ООО "Упс`с"'],
+                object_type:'label',
+                value:'',
+                font_family:'Arial',
+                font_size:'7',
+                font_style:'bold',
+                rotation:270,
+                x:660,
+                y:1984,
+                w:20,
+                h:15
+            },
+
+            AddressOrg:{
+                items:['Адрес:"'],
+                object_type:'label',
+                value:'',
+                font_family:'Arial',
+                font_size:'7',
+                font_style:'normal',
+                rotation:270,
+                x:690,
+                y:1984,
+                w:20,
+                h:15
+            },
+            INN_KPP:{
+                items:['ИНН 5032194157 КПП 503201001"'],
+                object_type:'label',
+                value:'',
+                font_family:'Arial',
+                font_size:'7',
+                font_style:'normal',
+                rotation:270,
+                x:720,
+                y:1984,
                 w:20,
                 h:15
             },

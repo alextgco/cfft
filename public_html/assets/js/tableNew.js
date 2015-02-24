@@ -647,8 +647,8 @@
 		});
 
 		bs.save.off('click').on('click', function () {
-
 			_t.save(function () {
+				_t.ct_instance.clearAllSelection();
 				_t.reload(function () {
 					console.log('Saved!');
 				});
@@ -775,7 +775,7 @@
 
 			var firstRow = _t.ct_instance.wrapper.find('table tbody tr').eq(0);
 			var newRowId = MB.Core.guid();
-			var html = '<tr class="new_row" data-id="' + newRowId + '"><td class="frst"><div class="markRow" data-checked="false"><div class="rIdx">-</div><i class="fa fa-check"></i></div></td>';
+			var html = '<tr class="new_row edited" data-id="' + newRowId + '"><td class="frst"><div class="markRow" data-checked="false"><div class="rIdx">-</div><i class="fa fa-check"></i></div></td>';
 
 
 			var toAddChangeObj = [];
@@ -849,6 +849,11 @@
 			for (var chs in toAddChangeObj) {
 				_t.ct_instance.addChange(toAddChangeObj[chs]);
 			}
+			_t.ct_instance.clearAllSelection();
+			$(_t.wrapper).find('tr.selectedRow').each(function(){
+				$(this).removeClass('selectedRow').find('td.frst .markRow').attr('data-checked', 'false');
+			});
+
 
 //            console.log(_t.ct_instance.changes);
 //            console.log('duplicate');
@@ -894,6 +899,7 @@
 									toastr[res['TOAST_TYPE']](res['MESSAGE']);
 									sended++;
 									if (sended == selection.length) {
+										_t.ct_instance.clearAllSelection();
 										_t.reload();
 									}
 								});
@@ -944,6 +950,9 @@
 					break;
 				case 'like_text':
 					res = '<input class="ct-filter-like-text-wrapper" data-name="' + name + '" type="text" value="' + value + '" />';
+					break;
+				case 'phone':
+					res = '<input type="text" class="phoneNumber" value="' + value + '" />';
 					break;
 				case 'checkbox':
 

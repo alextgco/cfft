@@ -129,6 +129,7 @@ $(document).on('print',function(e,data){
             getPrintInstance(function(printInstance){
                 printInstance.addItems(data.ticket_stack, true);
                 printInstance.setPortion(data.portion,true);
+                printInstance.renderTickets();
             });
             break;
         case 'PRINT_TICKET_RESPONSE':
@@ -139,6 +140,8 @@ $(document).on('print',function(e,data){
             break;
         case 'PRINT_WAIT_NEXT':
             getPrintInstance(function(printInstance){
+                printInstance.updateStatus(data.blank_type,'PRINT_WAIT_NEXT');
+
                 /*printInstance.updateItem(data.ticket,data.where);
                 printInstance.renderTicket(data.where.order_ticket_id);*/
             });

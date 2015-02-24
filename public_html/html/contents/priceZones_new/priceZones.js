@@ -10,6 +10,7 @@
     var sid = MB.User.sid;
     var priceZones_map;
     var environment = contentInstance;
+    var showUnused = true;
 
 
     var priceZones = {
@@ -44,7 +45,6 @@
         },
 
         loadPriceZoneGroups: function(){
-            var isUsedOnly = (contentWrapper.find('.toggleUnusedPrices').hasClass('active'))? "FALSE": "TRUE";
 
             if (typeof environment.price_zone_id=="undefined"){return;}
 
@@ -53,7 +53,7 @@
                 object:"hall_scheme_price_group",
                 params:{
                     price_zone_id:environment.price_zone_id,
-                    show_all: isUsedOnly
+                    show_all: showUnused
                 }
             },function(data){
                 var primalData = JSON.parse(data)['results'][0];
@@ -259,10 +259,9 @@
     function loadPriceZoneGroups(){
         /// загрузка ценовых групп
 
-        var isUsedOnly = (contentWrapper.find('input.showOnlyUsed').attr('checked') == 'checked')? "FALSE": "TRUE";
 
         if (typeof environment.price_zone_id=="undefined") return;
-        MB.Core.sendQuery({command:"get",object:"hall_scheme_price_group",sid:sid,params:{price_zone_id:environment.price_zone_id, show_all: isUsedOnly}},function(data){
+        MB.Core.sendQuery({command:"get",object:"hall_scheme_price_group",sid:sid,params:{price_zone_id:environment.price_zone_id, show_all: showUnused}},function(data){
             var obj = MB.Core.jsonToObj(data);
             var html = '';
             var PRICE_GROUP_ID,NAME,PRICE,COLOR,PLACE_COUNT,OBJVERSION;

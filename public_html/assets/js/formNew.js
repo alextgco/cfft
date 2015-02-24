@@ -306,6 +306,9 @@
                     case 'checkbox':
                         checkboxWrapper.checkboxIt();
                         break;
+                    case 'phone':
+                        checkboxWrapper.checkboxIt();
+                        break;
                     default:
                         break;
                 }
@@ -375,6 +378,9 @@
                     break;
                 case 'number':
                     html = '<div data-type="'+typeOfEditor+'" class="fn-field '+required+'" data-column="'+field.name+'"><label>'+nameRu+': <span class="required-star">*</span></label><input type="number" class="fn-control" data-column="'+field.name+'" value="'+field.value+'" /></div>';
+                    break;
+                case 'phone':
+                    html = '<div data-type="'+typeOfEditor+'" class="fn-field '+required+'" data-column="'+field.name+'"><label>'+nameRu+': <span class="required-star">*</span></label><input type="text" class="fn-control" data-column="'+field.name+'" value="'+field.value+'" /></div>';
                     break;
                 default:
                     html = '<div data-type="'+typeOfEditor+'" class="fn-field '+required+'" data-column="'+field.name+'"><label>'+nameRu+': <span class="required-star">*</span></label><input type="text" class="fn-control" data-column="'+field.name+'" value="'+field.value+'" /></div>';
@@ -1003,7 +1009,9 @@
                 if(_t.changes.length > 0){
                     _t.save(function(success){
                         if(success){
-                            _t.reload();
+                            _t.reload(function(){
+                                $(modalWindow).trigger('save');
+                            });
                         }
                     });
                 }
@@ -1011,7 +1019,9 @@
                     if(_t.tblInstances[ins].ct_instance.changes.length > 0){
                         _t.tblInstances[ins].save(function(){
                             _t.tblInstances[ins].reload();
-                            _t.reload();
+                            _t.reload(function(){
+                                $(modalWindow).trigger('save');
+                            });
                         });
                     }
                 }
@@ -1020,7 +1030,9 @@
                     if(_t.changes.length > 0){
                         _t.save(function(success){
                             if(success){
-                                _t.reload();
+                                _t.reload(function(){
+                                    $(modalWindow).trigger('save');
+                                });
                             }
                         });
                     }

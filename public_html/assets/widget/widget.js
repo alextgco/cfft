@@ -1794,73 +1794,89 @@
                         }
                     }else if(res['results'][0]['code'] == 20111){
 
-                        var errPlaces = [];
-                        var errActions = [];
+                        if(initData['ticketpass']){
+                            var lang = (wrapper.find('.mbw-lang.active').data('lang') == 'rus')? 'rus':'eng';
+                            var title = (lang == 'rus')? 'Ошибка': 'Error';
+                            var text = (lang == 'rus')? 'Что-то пошло не так...': 'Something goes wrong...';
+                            widget.alerter(title, text, function(){});
+                            
+                        }else{
+                            var errPlaces = [];
+                            var errActions = [];
 
-                        if (!res['results'][0]['invalid_id']) {
-                            widget.alerter('Ошибка', 'Некоторые места уже заняты, схема будет обновлена.', function () {
-                                localStorage.removeItem('mbw-basket');
-                                if (typeof widget.map.clearSelection == 'function') {
-                                    widget.map.clearSelection();
-                                }
-                                if (typeof widget.map.reLoad == 'function') {
-                                    widget.map.reLoad();
-                                }
-                                widget.populateBasket();
-                            });
-                            return;
-                        }
-
-                        for(var e in res['results'][0]['invalid_id'].split(',')){
-                            var errPlc = res['results'][0]['invalid_id'].split(',')[e];
-                            var errAct = res['results'][0]['invalid_action_id'].split(',')[e];
-                            if(errPlaces.indexOf(errPlc) == -1){
-                                errPlaces.push(errPlc);
-                                errActions.push(errAct);
+                            if (!res['results'][0]['invalid_id']) {
+                                widget.alerter('Ошибка', 'Некоторые места уже заняты, схема будет обновлена.', function () {
+                                    localStorage.removeItem('mbw-basket');
+                                    if (typeof widget.map.clearSelection == 'function') {
+                                        widget.map.clearSelection();
+                                    }
+                                    if (typeof widget.map.reLoad == 'function') {
+                                        widget.map.reLoad();
+                                    }
+                                    widget.populateBasket();
+                                });
+                                return;
                             }
-                        }
 
-                        var errTitle = 'Ошибка';
-                        var errHtml = '';
-                        for(var h in errPlaces){
-                            var eP = errPlaces[h];
-                            var eA = errActions[h];
-                            errHtml += eA +': '+eP+ '<br/>';
-                        }
-                        var errOk = function(){
-                            for(var i in storedTickets.actions){
-                                var act = storedTickets.actions[i];
-                                var inArIdx = errActions.indexOf(act);
-                                if(inArIdx > -1){
-                                    for(var k in act.places){
-                                        var plc = act.places[k];
-                                        var inArPlcIdx = errPlaces.indexOf(plc);
-                                        if(inArPlcIdx > -1){
-                                            act.places.splice(k,1);
+                            for(var e in res['results'][0]['invalid_id'].split(',')){
+                                var errPlc = res['results'][0]['invalid_id'].split(',')[e];
+                                var errAct = res['results'][0]['invalid_action_id'].split(',')[e];
+                                if(errPlaces.indexOf(errPlc) == -1){
+                                    errPlaces.push(errPlc);
+                                    errActions.push(errAct);
+                                }
+                            }
+
+                            var errTitle = 'Ошибка';
+                            var errHtml = '';
+                            for(var h in errPlaces){
+                                var eP = errPlaces[h];
+                                var eA = errActions[h];
+                                errHtml += eA +': '+eP+ '<br/>';
+                            }
+                            var errOk = function(){
+                                for(var i in storedTickets.actions){
+                                    var act = storedTickets.actions[i];
+                                    var inArIdx = errActions.indexOf(act);
+                                    if(inArIdx > -1){
+                                        for(var k in act.places){
+                                            var plc = act.places[k];
+                                            var inArPlcIdx = errPlaces.indexOf(plc);
+                                            if(inArPlcIdx > -1){
+                                                act.places.splice(k,1);
+                                            }
                                         }
                                     }
                                 }
-                            }
 
-                            localStorage.setItem('mbw-basket', JSON.stringify(storedTickets));
-                            widget.map.clearSelection();
-                            widget.map.reLoad();
-                            widget.populateBasket();
-                        };
-                        widget.alerter(errTitle, errHtml, errOk);
+                                localStorage.setItem('mbw-basket', JSON.stringify(storedTickets));
+                                widget.map.clearSelection();
+                                widget.map.reLoad();
+                                widget.populateBasket();
+                            };
+                            widget.alerter(errTitle, errHtml, errOk);
+                        }
+
+
                     }else{
                         var lang = (wrapper.find('.mbw-lang.active').data('lang') == 'rus')? 'rus':'eng';
                         var title = (lang == 'rus')? 'Ошибка': 'Error';
                         var text = (lang == 'rus')? 'Что-то пошло не так...': 'Something goes wrong...';
                         widget.alerter(title, text, function(){
-                            localStorage.removeItem('mbw-basket');
-                            if(typeof widget.map.clearSelection == 'function'){
-                                widget.map.clearSelection();
+
+                            if(initData['ticketpass']){
+
+                            }else{
+                                localStorage.removeItem('mbw-basket');
+                                if(typeof widget.map.clearSelection == 'function'){
+                                    widget.map.clearSelection();
+                                }
+                                if(typeof widget.map.reLoad == 'function'){
+                                    widget.map.reLoad();
+                                }
+                                widget.populateBasket();
                             }
-                            if(typeof widget.map.reLoad == 'function'){
-                                widget.map.reLoad();
-                            }
-                            widget.populateBasket();
+
                         });
                         console.log('ERROR', res);
                     }

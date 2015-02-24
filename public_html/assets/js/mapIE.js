@@ -212,9 +212,7 @@ Map1.prototype.openSocket = function(params,callback){
         window.setTimeout(function(){
             self.openSocket(params);
         },500);
-
     });
-
     Map1.prototype.closeSocket = function(){
         //self.disconnect = true;
         socket.emit(room,"leave");

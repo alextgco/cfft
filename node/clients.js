@@ -630,7 +630,7 @@ var clients = {
 
 
     },
-    addTickets: function (client, tickets) {
+    addTickets: function (client, tickets,portion) {
         if (typeof client !== "object" || typeof tickets !== "object") {
             return false;
         }
@@ -655,9 +655,17 @@ var clients = {
             var ticketpacktype = tickets[t].TICKET_PACK_TYPE;
             if (client.ticket_stack[ticketpacktype] === undefined) {
                 client.ticket_stack[ticketpacktype] = [];
+                client.ticket_stack[ticketpacktype].test = 15;
+                console.log(client.ticket_stack[ticketpacktype]);
+                debugger;
             }
-            client.ticket_stack[ticketpacktype].portion = 2;
-            client.ticket_stack[ticketpacktype].numInPortion = 0;
+            if (client.ticket_stack[ticketpacktype].numInPortion===undefined){
+                client.ticket_stack[ticketpacktype].numInPortion = 0;
+            }
+            if (!client.ticket_stack[ticketpacktype].portion) {
+                client.ticket_stack[ticketpacktype].portion = portion || 10;
+            }
+
             client.ticket_stack[ticketpacktype].status = "ACTIVE";
 
             if (checkTicketInStack(tickets[t].ORDER_TICKET_ID)) {
@@ -753,7 +761,7 @@ var clients = {
             }
 
             if (printer && +printer.SCA_CURRENT_NO <= +printer.FINISH_NO) {
-                if (client.ticket_stack[i].numInPortion == client.ticket_stack[i].portion){
+                if (client.ticket_stack[i].numInPortion >= client.ticket_stack[i].portion){
                     // Приостанавливаем мечать и отправляем на клиент запрос на продолжение
                     var o2 = {
                         type: "PRINT_WAIT_NEXT",
@@ -910,11 +918,15 @@ var clients = {
                     clients.removePrintingOrders(orderId);
                 }
                 var client = self.items[obj.io_key];
-
-                self.addTickets(client, data);
+                var portion = obj.portion || 2;
+                self.addTickets(client, data, portion);
+                var portions = {};
+                for (var i in client.ticket_stack) {
+                    portions[i] = client.ticket_stack.portion;
+                }
                 var o2 = {
                     type: "PRINT_START",
-                    portion:2,
+                    portions:portions,
                     ticket_stack: client.ticket_stack || {}
                 };
                 clients.sendToClient(client, o2);

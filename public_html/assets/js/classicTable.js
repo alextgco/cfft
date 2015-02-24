@@ -92,8 +92,6 @@ var classicTable = function(){
         this.infoBlockOptionsTab = undefined;
         this.options = params.options || undefined;
         this.selection = [];
-        this.selection2 = [];
-        //this.selectionObj = [];
         this.parent_id = params.parent_id || undefined;
         this.changes = [];
         this.filterWhere = [];
@@ -155,13 +153,10 @@ var classicTable = function(){
             }else{
                 switch (type){
                     case 'text':
-                        res = '<input type="text" value='+quoteSign+value+quoteSign+'>';
+                        res = '<input type="text" value='+quoteSign+value+quoteSign+' />';
                         break;
                     case 'like_text':
-                        res = '<input class="ct-filter-like-text-wrapper" data-name="'+name+'" type="text" value="">';
-                        break;
-                    case 'phone':
-                        res = '<input type="text" class="phoneNumber" value="' + value + '">';
+                        res = '<input class="ct-filter-like-text-wrapper" data-name="'+name+'" type="text" value="" />';
                         break;
                     case 'checkbox':
                         if(isTd){
@@ -172,26 +167,26 @@ var classicTable = function(){
                         }
                         break;
                     case 'number':
-                        res = '<input type="number" value='+quoteSign+value+quoteSign+'>';
+                        res = '<input type="number" value='+quoteSign+value+quoteSign+' />';
                         break;
                     case 'datetime':
-                        res = '<div class="absoluteWhiteText">'+value+'</div><input type="text" class="datetimepicker" value="'+value+'">';
+                        res = '<div class="absoluteWhiteText">'+value+'</div><input type="text" class="datetimepicker" value="'+value+'" />';
                         break;
                     case 'daysweek':
-                        res = '<input type="text" data-name="'+name+'" data-id="'+MB.Core.guid()+'" class="ct-daysweek-select3-wrapper daysweekpicker">';
+                        res = '<input type="text" data-name="'+name+'" data-id="'+MB.Core.guid()+'" class="ct-daysweek-select3-wrapper daysweekpicker" />';
                         break;
                     case 'daterange':
                         res = '<div data-name="'+name+'" class="input-daterange input-group ct-daterange-wrapper">'+
-                                    '<input type="text" class="" name="start">'+
+                                    '<input type="text" class="" name="start" />'+
                                     '<span class="input-group-addon">-</span>'+
-                                    '<input type="text" class="" name="end">'+
-                                '</div>';
+                                    '<input type="text" class="" name="end" />'+
+                                '</div>';1
                         break;
                     case 'timerange':
                         res = '<div data-name="'+name+'" class="input-daterange input-group ct-timerange-wrapper">'+
-                                '<input type="text" class="" name="start">'+
+                                '<input type="text" class="" name="start" />'+
                                     '<span class="input-group-addon">-</span>'+
-                                '<input type="text" class="" name="end">'+
+                                '<input type="text" class="" name="end" />'+
                             '</div>';
                         break;
                     case 'select2withEmptyValue':
@@ -201,7 +196,7 @@ var classicTable = function(){
                     res = '<div data-with_empty="false" data-val="'+selId+'" data-title="'+value+'" data-name="'+name+'" class="ct-select3-wrapper preInit">'+value+'<i class="fa fa-angle-down"></i></div>';
                     break;
                 case 'colorpicker':
-                    res = '<input type="text" class="ct-colorpicker-wrapper" value="'+value+'"><div  class="ct-colorpicker-state" style="background-color: '+value+'"></div>';
+                    res = '<input type="text" class="ct-colorpicker-wrapper" value="'+value+'" /><div  class="ct-colorpicker-state" style="background-color: '+value+'"></div>';
                     break;
                 default :
                     res = '<div>type: '+type+' - '+value+'</div>';
@@ -332,75 +327,15 @@ var classicTable = function(){
                 result.fromServerIdString =     removeSpaces(item[_t.profile.NAMES.indexOf('LOV_COLUMNS')].split(',')[0]);
                 result.fromServerNameString =   removeSpaces(item[_t.profile.NAMES.indexOf('LOV_COLUMNS')].split(',')[1]);
                 result.searchKeyword =          removeSpaces(item[_t.profile.NAMES.indexOf('LOV_COLUMNS')].split(',')[1]);
-                result.lov_where =              item[_t.profile.NAMES.indexOf('LOV_WHERE')];
             }
         }
         return result;
     };
 
-    CTable.prototype.updateSelection = function(cb){
-        var _t = this;
-        var idsArr = [];
-        for(var i in _t.selection2){
-            var p = _t.selection2[i];
-            for(var k in p.data){
-                if(p.pageNo == _t.tempPage){
-                    _t.selection2[i].data[k] = _t.data.DATA[p.selection[k]];
-                }else{
-                    idsArr.push(_t.selection2[i].data[k][_t.data.NAMES.indexOf(_t.profile['OBJECT_PROFILE']['PRIMARY_KEY'])]);
-                }
-            }
-        }
-
-        if(idsArr.length == 0){
-            if(typeof cb == 'function'){
-                cb();
-            }
-        }else{
-            var o = {
-                command: 'get',
-                object: _t.profile['OBJECT_PROFILE']['GET_OBJECT_COMMAND'],
-                params: {
-                    where: _t.profile['OBJECT_PROFILE']['PRIMARY_KEY'] + ' in (' + idsArr.join() + ')',
-                    client_object: _t.profile['OBJECT_PROFILE']['CLIENT_OBJECT']
-                }
-            };
-
-            socketQuery(o, function(res){
-                var res = JSON.parse(res)['results'][0];
-                function getRowByPk(pkv){
-                    for(var i in res.data){
-                        if(res.data[i][res.data_columns.indexOf(_t.profile['OBJECT_PROFILE']['PRIMARY_KEY'])] == pkv){
-                            return res.data[i];
-                        }
-                    }
-                }
-
-                for(var i in _t.selection2){
-                    var p = _t.selection2[i];
-                    for(var k in p.data){
-                        var pkv = _t.selection2[i].data[k][_t.data.NAMES.indexOf(_t.profile['OBJECT_PROFILE']['PRIMARY_KEY'])];
-                        if(p.pageNo != _t.tempPage){
-                            _t.selection2[i].data[k] = getRowByPk(pkv);
-                            console.log('page № ', p.pageNo, 'row № ', p.selection[k], ' UPDATED!');
-                        }
-                    }
-                }
-
-                if(typeof cb == 'function'){
-                    cb();
-                }
-            });
-        }
-
-
-    };
-
     CTable.prototype.update = function(callback){
         var _t = this;
 
-        _t.selection = (_t.selection2.length > 0)? (_t.selection2[parseInt(_t.tempPage)-1])? _t.selection2[parseInt(_t.tempPage)-1].selection : [] : [];
-
+        _t.selection = [];
         var paginationBlock = (+_t.data['INFO']['ROWS_COUNT'] <=  +_t.profile['OBJECT_PROFILE']['ROWS_MAX_NUM'])? 'invisible': '';
         var pagesCount = Math.ceil(+_t.data['INFO']['ROWS_COUNT'] / +_t.profile['OBJECT_PROFILE']['ROWS_MAX_NUM']);
         var result = '';
@@ -413,7 +348,7 @@ var classicTable = function(){
                 var cell = row[k2];
                 var type =          _t.profile.DATA[k2][_t.profile.NAMES.indexOf('TYPE_OF_EDITOR')];
                 var isEditable =    _t.profile.DATA[k2][_t.profile.NAMES.indexOf('EDITABLE')];
-                var selId =         (row[_t.data.NAMES.indexOf(_t.profile.DATA[k2][_t.profile.NAMES.indexOf('LOV_RETURN_TO_COLUMN')])] != "")? row[_t.data.NAMES.indexOf(_t.profile.DATA[k2][_t.profile.NAMES.indexOf('LOV_RETURN_TO_COLUMN')])]: row[_t.data.NAMES.indexOf(_t.profile.DATA[k2][_t.profile.NAMES.indexOf('COLUMN_NAME')])];
+                var selId =         row[_t.data.NAMES.indexOf(_t.profile.DATA[k2][_t.profile.NAMES.indexOf('LOV_RETURN_TO_COLUMN')])];
                 var isTd =          true;
                 if(_t.visibleArray[k2]){
                     result += '<td><div class="tdW">'+_t.getTypeHtml(type, cell, isEditable, cellName, selId, isTd)+'</div></td>';
@@ -428,22 +363,16 @@ var classicTable = function(){
             _t.wrapper.find('.ct-pagination-wrapper').addClass(paginationBlock);
         }else{
             _t.wrapper.find('.ct-pagination-wrapper').removeClass('invisible');
-            _t.wrapper.find('.ct-pagination-current-input').val(parseInt(_t.tempPage));
+            _t.wrapper.find('.ct-pagination-current-input').val(_t.tempPage);
             _t.wrapper.find('.ct-pagination-pagesCount').html('страниц: '+pagesCount);
         }
 
-
+        _t.setHandlers();
         _t.populateTotalSumms();
-        _t.updateSelection(function(){
-            _t.renderSelection();
-            _t.setHandlers();
-            if(typeof callback == 'function'){
-                callback();
-            }
-        });
-//        _t.selection = [];
-//        _t.selection2 = [];
 
+        if(typeof callback == 'function'){
+            callback();
+        }
     };
 
     CTable.prototype.addWhere = function(where){
@@ -579,7 +508,6 @@ var classicTable = function(){
                 buttons: Mustache.to_html(btnTpl, btnsMusObj)
             };
             _t.wrapper.prepend(Mustache.to_html(tpl, data));
-            console.log('environment rendered');
         }
 
         if(typeof callback == 'function'){
@@ -590,9 +518,9 @@ var classicTable = function(){
     CTable.prototype.render = function(callback){
         var _t = this;
 
-        _t.tempPage = parseInt(_t.tempPage) || 1;
+        _t.tempPage = _t.tempPage || 1;
         _t.visibleArray = [];
-        _t.selection = (_t.selection2.length > 0)? (_t.selection2[parseInt(_t.tempPage)-1])? _t.selection2[parseInt(_t.tempPage)-1].selection : [] : [];
+        _t.selection = [];
         var isFastSearch = false;
         for(var v in _t.profile.DATA){
             var vItem = _t.profile.DATA[v];
@@ -642,7 +570,6 @@ var classicTable = function(){
                         '<div class="ct-options-wrapper">' +
                             inlineSaveBtn +
                             '<div class="ct-options-item ct-options-filter '+filterInvisible+'"><i class="fa fa-filter"></i>&nbsp;Фильтры</div>' +
-                            '<div class="ct-options-item ct-options-drop-filters"><i class="fa fa-ban"></i></div>' +
                             '<div class="ct-options-item ct-options-excel"><i class="fa fa-cogs"></i></div>' +
                             '<div class="ct-options-item ct-options-reload"><i class="fa fa-refresh"></i></div>' +
                         '</div>' +
@@ -708,7 +635,7 @@ var classicTable = function(){
                 var cell = row[k2];
                 var type =          _t.profile.DATA[k2][_t.profile.NAMES.indexOf('TYPE_OF_EDITOR')];
                 var isEditable =    _t.profile.DATA[k2][_t.profile.NAMES.indexOf('EDITABLE')];
-                var selId =         (row[_t.data.NAMES.indexOf(_t.profile.DATA[k2][_t.profile.NAMES.indexOf('LOV_RETURN_TO_COLUMN')])] != "")? row[_t.data.NAMES.indexOf(_t.profile.DATA[k2][_t.profile.NAMES.indexOf('LOV_RETURN_TO_COLUMN')])] : row[_t.data.NAMES.indexOf(_t.profile.DATA[k2][_t.profile.NAMES.indexOf('COLUMN_NAME')])];
+                var selId =         row[_t.data.NAMES.indexOf(_t.profile.DATA[k2][_t.profile.NAMES.indexOf('LOV_RETURN_TO_COLUMN')])];
                 var isTd  =         true;
                 if(_t.visibleArray[k2]){
                     result += '<td><div class="tdW">'+_t.getTypeHtml(type, cell, isEditable, cellName, selId, isTd)+'</div></td>';
@@ -765,9 +692,7 @@ var classicTable = function(){
                 absolutePosition: false,
                 isFilter: true,
                 filterColumnName: $(elem).attr('data-name'),
-                filterClientObject: _t.profile['OBJECT_PROFILE']['CLIENT_OBJECT'],
-                parentObject: _t,
-                profile_column_name: $(elem).attr('data-name')
+                filterClientObject: _t.profile['OBJECT_PROFILE']['CLIENT_OBJECT']
             });
 
             $(selInstance).on('changeVal', function(e, was, now){
@@ -917,6 +842,7 @@ var classicTable = function(){
             _t.addWhere(wObj);
         });
 
+
         console.log('filters inserted and inited', new Date(), new Date().getMilliseconds());
 
         result = '';
@@ -930,7 +856,6 @@ var classicTable = function(){
         _t.renderEnvironment();
         _t.populateTotalSumms();
         _t.setHandlers();
-        _t.renderSelection();
 
 
 
@@ -964,7 +889,6 @@ var classicTable = function(){
 
     CTable.prototype.renderSelection = function(){
         var _t = this;
-        _t.selection = _t.getPageSelection();
 
         _t.wrapper.find('tbody tr').removeClass('selectedRow');
         _t.wrapper.find('tbody tr div.markRow').attr('data-checked', 'false');
@@ -973,47 +897,6 @@ var classicTable = function(){
             _t.wrapper.find('tbody tr').eq(_t.selection[i]).addClass('selectedRow');
             _t.wrapper.find('tbody tr').eq(_t.selection[i]).find('div.markRow').attr('data-checked', 'true');
         }
-
-        //console.log(JSON.stringify(_t.selection2));
-    };
-
-    CTable.prototype.getPageSelection = function(){
-        var _t = this;
-        var pageNo = parseInt(_t.tempPage);
-        for(var i in _t.selection2){
-            var p = _t.selection2[i];
-            if(p.pageNo == pageNo){
-                return p.selection;
-            }
-        }
-    };
-
-    CTable.prototype.getIndexOfPageSelectionByRowIndex = function(){
-        var _t = this;
-        var pageNo = parseInt(_t.tempPage);
-        var rowIndex = _t.selectedRowIndex;
-        for(var i in _t.selection2){
-            var p = _t.selection2[i];
-            if(p.pageNo == pageNo){
-                for(var k in p.selection){
-                    var val = p.selection[k];
-                    if(val == rowIndex){
-                        return k;
-                    }
-                }
-            }
-        }
-    };
-
-    CTable.prototype.clearAllSelection = function(){
-        var _t = this;
-        var pageNo = parseInt(_t.tempPage);
-        for(var i in _t.selection2){
-            var p = _t.selection2[i];
-            p.selection = [];
-            p.data = [];
-        }
-        _t.selection = [];
     };
 
     CTable.prototype.setHandlers = function(){
@@ -1054,10 +937,7 @@ var classicTable = function(){
                         fromServerNameString: select3Data.fromServerNameString,
                         searchKeyword: select3Data.searchKeyword,
                         withEmptyValue: ($(elem).attr('data-with_empty') == 'true'),
-                        absolutePosition: true,
-                        dependWhere: select3Data.lov_where,
-                        parentObject: _t,
-                        profile_column_name: $(elem).attr('data-name')
+                        absolutePosition: true
                     });
 
                     $(selInstance).on('changeVal', function(e, was, now){
@@ -1089,7 +969,7 @@ var classicTable = function(){
                                 }
                             }
 
-                            return (tempArr[idx][_t.profile.NAMES.indexOf('LOV_RETURN_TO_COLUMN')] != "")? tempArr[idx][_t.profile.NAMES.indexOf('LOV_RETURN_TO_COLUMN')]: tempArr[idx][_t.profile.NAMES.indexOf('COLUMN_NAME')];
+                            return tempArr[idx][_t.profile.NAMES.indexOf('LOV_RETURN_TO_COLUMN')];
                         }
 
                         var chObj = {
@@ -1165,8 +1045,6 @@ var classicTable = function(){
                 _t.addChange(chObj);
             });
         });
-
-        _t.places.tbody.find('input.phoneNumber').phoneIt();
 
         _t.places.tbody.find('input.ct-colorpicker-wrapper').each(function(index, elem){
 
@@ -1250,7 +1128,7 @@ var classicTable = function(){
                     _t.places.theadRow.find('th').not($(this)).removeClass('asc').removeClass('desc');
                     var colIndex = $(this).index();
 
-                    var colName = (visArr[colIndex-1][_t.profile.NAMES.indexOf('TABLE_COLUMN_NAME')] && visArr[colIndex-1][_t.profile.NAMES.indexOf('TABLE_COLUMN_NAME')] != '')? visArr[colIndex-1][_t.profile.NAMES.indexOf('TABLE_COLUMN_NAME')] : visArr[colIndex-1][_t.profile.NAMES.indexOf('COLUMN_NAME')];
+                    var colName = (visArr[colIndex-1][_t.profile.NAMES.indexOf('TABLE_COLUMN_NAME')] != '')? visArr[colIndex-1][_t.profile.NAMES.indexOf('TABLE_COLUMN_NAME')] : visArr[colIndex-1][_t.profile.NAMES.indexOf('COLUMN_NAME')];
 
                     if($(this).hasClass('desc') || $(this).hasClass('asc')){
 
@@ -1325,67 +1203,33 @@ var classicTable = function(){
             _t.selectedRowIndex = $(this).parents('tr').eq(0).index();
             _t.selectedColIndex = $(this).index();
 
-            var pageNo = parseInt(_t.tempPage);
-            var page = undefined;
-            var pageSelection = undefined;
-            var pageLastSelected = undefined;
+            var inArr = _t.selection.indexOf(_t.selectedRowIndex);
+            var lastSelected = _t.selection[_t.selection.length-1];
 
-            for(var i in _t.selection2){
-                var p = _t.selection2[i];
-                if(p.pageNo == pageNo){
-                    page = p;
-                    pageSelection = p.selection;
-                    pageLastSelected = pageSelection[pageSelection.length-1];
-                }
-            }
+            if(!isChecked){
 
-            if(isChecked){
-                if(page){
-                    if(pageSelection.length > 0){
-                        var spliceIdx = _t.getIndexOfPageSelectionByRowIndex();
-                        pageSelection.splice(spliceIdx, 1);
-                        page.data.splice(spliceIdx, 1);
-                    }else{
-                        console.warn('where is an checked row which not written in model');
-                    }
-                }else{
-                    console.warn('where is an checked row which not written in model');
-                }
-            }else{
-                if(page){
-                    if(MB.keys['16'] === true){
-                        if(pageLastSelected <= _t.selectedRowIndex){
-                            for(var i = +pageLastSelected; i<= +_t.selectedRowIndex; i++){
-                                if(pageSelection.indexOf(i) != -1){
-                                    continue;
-                                }
-                                pageSelection.push(i);
-                                page.data.push(_t.data.DATA[i]);
+                if(MB.keys['16'] === true){
+                    if(lastSelected <= _t.selectedRowIndex){
+                        for(var i = +lastSelected; i<= +_t.selectedRowIndex; i++){
+                            if(_t.selection.indexOf(i) != -1){
+                                continue;
                             }
-                        }else{
-                            for(var k = +pageLastSelected; k >= +_t.selectedRowIndex; k--){
-                                if(pageSelection.indexOf(k) != -1){
-                                    continue;
-                                }
-                                pageSelection.push(k);
-                                page.data.push(_t.data.DATA[k]);
-                            }
+                            _t.selection.push(i);
                         }
                     }else{
-                        pageSelection.push(_t.selectedRowIndex);
-                        page.data.push(_t.data.DATA[_t.selectedRowIndex]);
+                        for(var k = +lastSelected; k >= +_t.selectedRowIndex; k--){
+                            if(_t.selection.indexOf(k) != -1){
+                                continue;
+                            }
+                            _t.selection.push(k);
+                        }
                     }
                 }else{
-                    var so = {
-                        pageNo: pageNo,
-                        selection: [_t.selectedRowIndex],
-                        data: [_t.data.DATA[_t.selectedRowIndex]]
-                    };
-                    _t.selection2.push(so);
+                    _t.selection.push(_t.selectedRowIndex);
                 }
+            }else{
+                _t.selection.splice(inArr,1);
             }
-
-            _t.selection = _t.getPageSelection();
             _t.renderSelection();
         });
 
@@ -1403,37 +1247,27 @@ var classicTable = function(){
 
             _t.selectedRowIndex = $(this).parents('tr').eq(0).index();
 
-
-            var pageNo = parseInt(_t.tempPage);
-            var page = undefined;
-            var pageSelection = undefined;
-            var pageLastSelected = undefined;
-            var markRow = $(this).parents('tr').eq(0).find('.markRow').eq(0);
-            var isChecked = markRow.attr('data-checked') == 'true';
-
-            for(var i in _t.selection2){
-                var p = _t.selection2[i];
-                if(p.pageNo == pageNo){
-                    page = p;
-                    pageSelection = p.selection;
-                    pageLastSelected = pageSelection[pageSelection.length-1];
+            if(_t.selection.length > 0){
+                if(_t.selection.length > 1){
+                    if(_t.selection.indexOf(_t.selectedRowIndex) == -1){
+                        $(this).click();
+                    }
+                }else{
+                    $(this).click();
                 }
-            }
-
-            if(!isChecked){
-                $(this).siblings(':not(.frst):eq(0)').click();
+            }else{
+                $(this).click();
             }
 
             var wrapperPosition = _t.wrapper[0].getBoundingClientRect();
-            var top = e.clientY;// - wrapperPosition.top +4;
-            var left = e.clientX;// - wrapperPosition.left +4;
+            var top = e.clientY - wrapperPosition.top +4;
+            var left = e.clientX - wrapperPosition.left +4;
 
 
 
             var ctxMenuTpl = '<div class="ctxMenu-wrapper"><ul class="ctxMenu-list">{{#items}}<li class="ctxMenu-item {{#disabled}}disabled{{/disabled}}" data-name="{{name}}">{{{title}}}</li>{{/items}}</ul></div>';
             var mObj = {};
             mObj.items = [];
-
             for(var i in _t.ctxMenuData){
                 var item = _t.ctxMenuData[i];
                 mObj.items.push({
@@ -1442,8 +1276,8 @@ var classicTable = function(){
                     disabled: item.disabled()
                 });
             }
-            $('body').find('.ctxMenu-wrapper').remove();
-            $('body').append(Mustache.to_html(ctxMenuTpl, mObj));
+            _t.wrapper.find('.ctxMenu-wrapper').remove();
+            _t.wrapper.append(Mustache.to_html(ctxMenuTpl, mObj));
 
 
             function runCtxCallback(name){
@@ -1454,19 +1288,17 @@ var classicTable = function(){
                 }
             }
 
-            $('body').find('.ctxMenu-item').each(function(idx, elem){
+            _t.wrapper.find('.ctxMenu-item').each(function(idx, elem){
                 $(elem).off('click').on('click', function(){
                     if($(elem).hasClass('disabled')){
                         return;
                     }
                     var name = $(elem).attr('data-name');
                     runCtxCallback(name);
-                    $('body').find('.ctxMenu-wrapper').remove();
+                    _t.wrapper.find('.ctxMenu-wrapper').remove();
                 });
             });
-            $('body').find('.ctxMenu-wrapper').css('top', top+'px').css('left', left+'px');
-
-            _t.renderSelection();
+            _t.wrapper.find('.ctxMenu-wrapper').css('top', top+'px').css('left', left+'px');
         });
 
         _t.tds.off('dblclick').on('dblclick', function(){
@@ -1482,68 +1314,49 @@ var classicTable = function(){
             }
             var isShift = (MB.keys['16'] === true);
             var isCtrl = (MB.keys['17'] === true);
+            var lastSelected = _t.selection[_t.selection.length-1];
 
-            _t.selectedRowIndex = $(this).parents('tr').eq(0).index();
+            _t.selectedRowIndex = $(this).parent('tr').index();
             _t.selectedColIndex = $(this).index();
 
-            var pageNo = parseInt(_t.tempPage);
-            var page = undefined;
-            var pageSelection = undefined;
-            var pageLastSelected = undefined;
-            var markRow = $(this).parents('tr').eq(0).find('.markRow').eq(0);
-            var isChecked = markRow.attr('data-checked') == 'true';
-
-            for(var i in _t.selection2){
-                var p = _t.selection2[i];
-                if(p.pageNo == pageNo){
-                    page = p;
-                    pageSelection = p.selection;
-                    pageLastSelected = pageSelection[pageSelection.length-1];
-                }
-            }
-            if(isShift || isCtrl){
+            if(isCtrl || isShift){
                 if(isCtrl){
-                    markRow.click();
-                    return;
-                }
-                if(isShift){
-                    if(pageLastSelected <= _t.selectedRowIndex){
-                        for(var i = +pageLastSelected; i<= +_t.selectedRowIndex; i++){
-                            if(pageSelection.indexOf(i) != -1){
+
+                    var inSel = _t.selection.indexOf(_t.selectedRowIndex);
+
+                    if(inSel == -1){
+                        _t.selection.push(_t.selectedRowIndex);
+                    }else{
+                        _t.selection.splice(inSel, 1);
+                    }
+
+                }else if(isShift){
+                    _t.wrapper.find('.tableWrapper').addClass('preventSelection');
+                    if(lastSelected <= _t.selectedRowIndex){
+                        for(var i = +lastSelected; i<= +_t.selectedRowIndex; i++){
+                            if(_t.selection.indexOf(i) != -1){
                                 continue;
                             }
-                            pageSelection.push(i);
-                            page.data.push(_t.data.DATA[i]);
+                            _t.selection.push(i);
                         }
                     }else{
-                        for(var k = +pageLastSelected; k >= +_t.selectedRowIndex; k--){
-                            if(pageSelection.indexOf(k) != -1){
+                        for(var k = +lastSelected; k >= +_t.selectedRowIndex; k--){
+                            if(_t.selection.indexOf(k) != -1){
                                 continue;
                             }
-                            pageSelection.push(k);
-                            page.data.push(_t.data.DATA[k]);
+                            _t.selection.push(k);
                         }
                     }
+
                 }
             }else{
-                _t.clearAllSelection();
-                if(page){
-                    page.selection.push(_t.selectedRowIndex);
-                    page.data.push(_t.data.DATA[_t.selectedRowIndex]);
-                }else{
-                    var so = {
-                        pageNo: pageNo,
-                        selection: [_t.selectedRowIndex],
-                        data: [_t.data.DATA[_t.selectedRowIndex]]
-                    };
-                    _t.selection2.push(so);
-                }
+                _t.selection = [_t.selectedRowIndex];
             }
-            _t.selection = _t.getPageSelection();
             _t.renderSelection();
+            //_t.wrapper.find('.tableWrapper').removeClass('preventSelection');
         });
 
-        _t.tds.find('input[type="text"]').off('input keyup').on('input keyup', function(){
+        _t.tds.find('input[type="text"]').off('input').on('input', function(){
             _t.selectedRowIndex = $(this).parents('tr').index();
             _t.selectedColIndex = $(this).parents('td').index();
 
@@ -1582,7 +1395,7 @@ var classicTable = function(){
                 PRIMARY_KEY_NAMES: _t.profile['OBJECT_PROFILE']['PRIMARY_KEY'].split(','),
                 PRIMARY_KEY_VALUES: getPKValues(),
                 CHANGED_COLUMN_NAMES: getColumnNameByIndex(colIndex-1),
-                CHANGED_COLUMN_VALUES: ($(this).hasClass('phoneNumber')) ? $(this).val().replace(/[^0-9]/gim,'') : $(this).val()
+                CHANGED_COLUMN_VALUES: $(this).val()
             };
 
             chObj['COMMAND'] = ($(this).parents('tr').hasClass('new_row'))? 'NEW': 'MODIFY';
@@ -1785,17 +1598,6 @@ var classicTable = function(){
                     _t.wrapper.find('.ct-filter').css('zIndex', '101');
                 });
             }
-        });
-
-        _t.wrapper.find('.ct-options-drop-filters').off('click').on('click', function(){
-            MB.Tables.getTable(_t.id).where = '';
-            MB.Tables.getTable(_t.id).externalWhere = '';
-            MB.Tables.getTable(_t.id).fastSearchWhere = '';
-            _t.filterWhere = [];
-            _t.places.fastSearch.val('');
-            _t.wrapper.find('.ct-clear-filter').click();
-
-            MB.Tables.getTable(_t.id).reload();
         });
 
         _t.wrapper.find('.ct-confirm-filter').off('click').on('click', function(){
@@ -2003,14 +1805,6 @@ var classicTable = function(){
             }
         });
     };
-
-//    CTable.prototype.updateSelection2 = function(){
-//        var _t = this;
-//        for(var i in _t.selection2){
-//            var p = _t.selection2[i];
-//
-//        }
-//    };
 
     CTable.prototype.highLightCross = function(cell){
 
@@ -2260,7 +2054,7 @@ var classicTable = function(){
                     columns: 'price',
                     back: ['PRICE']
                 }
-            };
+            }
 
             var o = {
                 command: 'get',
@@ -2272,29 +2066,14 @@ var classicTable = function(){
                 }
             };
 
-            function toMoneyFormat(str){
-                str = str.toString();
-                var  tsel = str, drob = '', dotPos = str.indexOf('.'), temp;
-                if(~dotPos) {
-                    tsel = str.substring(0, dotPos);
-                    temp = Math.ceil(('0.' + str.substring(dotPos + 1)) * 100);
-                    if (temp != 100) {
-                        drob = ' ' + temp + ' коп.';
-                    } else {
-                        tsel = +tsel + 1;
-                    }
-                }
-                tsel = tsel.toString();
-                for (var i = tsel.length - 3; i > 0; i -= 3) {
-                    tsel = tsel.substring(0, i) + ' ' + tsel.substring(i);
-                }
-                tsel += ' руб.'
-                return tsel + drob;
-            }
-
             socketQuery(o, function(res){
 
+                console.log('FFAAAAA', res);
+
                 res = jsonToObj(JSON.parse(res)['results'][0]);
+                //jsonToObj(
+
+                console.log('FFAAAAA2', res);
 
                 _t.totalValues = [
                     {
@@ -2303,7 +2082,7 @@ var classicTable = function(){
                     },
                     {
                         key: 'На сумму',
-                        value: toMoneyFormat(res[0][columns[clientObject].back[0]])
+                        value: res[0][columns[clientObject].back[0]] + ' руб.'
                     }
                 ];
 
@@ -2318,200 +2097,10 @@ var classicTable = function(){
                     }
                     totalValues += ')';
                 }
-console.log(_t.totalValues);
+
                 _t.wrapper.find('.ct-total-values-wrapper').html(totalValues);
             });
         }
-    };
-
-    CTable.prototype.getFlatSelectionArray = function(){
-        var _t = this;
-        var res = [];
-        for(var i in _t.selection2){
-            var p = _t.selection2[i];
-            var rows = p.data;
-            for(var k in rows){
-                res.push(rows[k]);
-            }
-        }
-        return res;
-    };
-
-    CTable.prototype.getSelectionLength = function(){
-        var _t = this;
-        var result = 0;
-        for(var i in _t.selection2){
-            var p = _t.selection2[i];
-            result += p.selection.length;
-        }
-        return result;
-    };
-
-    CTable.prototype.isDisabledCtx = function(obj){
-        var _t = this;
-        var isEqual = 0;
-        var isNotEqual = 0;
-
-        var names = _t.data.NAMES;
-
-//        var columns = [
-//            {
-//                col_names: ['COL1', 'COL2'],
-//                matching: ['equal', 'not_equal'],
-//                col_values: ['VAL1', 'VAL2']
-//            }
-//        ];
-        var totalResArr = [];
-        for(var i in _t.selection2){
-
-            var p = _t.selection2[i];
-            var rowResArr = [];
-
-            for(var k in p.data){
-                var r = p.data[k];
-                var invalid = 0;
-
-                for(var j in obj.col_names){
-
-                    var inc_col = obj.col_names[j];
-                    var inc_val = obj.col_values[j];
-                    var inc_match = obj.matching[j];
-
-                    if(inc_match == 'equal'){
-                        if(r[names.indexOf(inc_col)] != inc_val){
-                            invalid++;
-                        }
-                    }else if(inc_match == 'not_equal'){
-                        if(r[names.indexOf(inc_col)] == inc_val){
-                            invalid++;
-                        }
-                    }
-
-                }
-                console.log(invalid, p.selection[k]);
-                rowResArr.push(invalid == 0);
-            }
-            for(var r in rowResArr){
-                totalResArr.push(rowResArr[r]);
-            }
-        }
-
-        console.log(totalResArr);
-        return totalResArr;
-
-        if(obj.type == 'full'){
-            for(var i in _t.selection2){
-                var p = _t.selection2[i];
-                for(var k in p.selection){
-                    var row = p.data[k];
-                    for(var j in obj.columns){
-                        var col = obj.columns[j];
-                        var rowColVal =  row[names.indexOf(col.column_name)];
-
-                        if($.inArray(rowColVal, col.column_value) == -1){
-                            isNotEqual++;
-                        }else{
-                            isEqual++;
-                        }
-                    }
-                }
-            }
-
-        }else if(obj.type == 'choosen'){
-
-        }
-
-        return {isEqual: isEqual, isNotEqual: isNotEqual};
-    };
-
-    CTable.prototype.getProfileByColumnName = function(column_name){
-        var _t = this;
-        for(var i in _t.profile.DATA){
-            var cell = _t.profile.DATA[i];
-            if(cell[_t.profile.NAMES.indexOf('COLUMN_NAME')] == column_name){
-                return cell;
-            }
-        }
-    };
-
-    CTable.prototype.getDependsOfValueByColumnName = function(column_name, rowIndex){
-        var _t = this;
-        var value = _t.data.DATA[rowIndex][_t.data.NAMES.indexOf(column_name)];
-        if(value == undefined){
-            return 'NULL';
-        }
-
-        var response = '';
-
-        response = (value.length > 0)? "'" + value + "'": 'NULL' ;
-
-
-        console.log(response);
-
-        for(var i in _t.changes){
-            var ch = _t.changes[i];
-            var pk_equal = 0;
-            for(var k in ch.PRIMARY_KEY_NAMES){
-                var pk = ch.PRIMARY_KEY_NAMES[k];
-                var pkv = ch.PRIMARY_KEY_VALUES[k];
-                if(_t.data.DATA[rowIndex][_t.data.NAMES.indexOf(pk)] == pkv){
-                    pk_equal++;
-                }
-            }
-            if(pk_equal == ch.PRIMARY_KEY_NAMES.length){
-
-                if(typeof ch.CHANGED_COLUMN_NAMES == 'string'){
-                    if(ch.CHANGED_COLUMN_NAMES == column_name){
-                        response = "'"+ch.CHANGED_COLUMN_VALUES+"'";
-                    }
-                }else{
-                    for(var j in ch.CHANGED_COLUMN_NAMES){
-                        var ccn = ch.CHANGED_COLUMN_NAMES[j];
-                        if(ccn == column_name){
-                            response = "'"+ch.CHANGED_COLUMN_VALUES[j]+"'";
-                        }
-                    }
-                }
-            }
-        }
-
-        console.log((response == 'NULL' || response == '' || !response)? 'NULL' : response);
-        return (response == 'NULL' || response == '' || !response)? 'NULL' : response;
-    };
-
-    CTable.prototype.getDependWhereForSelect = function(column_name, rowIndex){
-        var _t = this;
-        var lov_where = _t.getProfileByColumnName(column_name)[_t.profile.NAMES.indexOf('LOV_WHERE')];
-
-        function removeSpaces(str){
-            if(typeof str == 'string'){
-                return str.replace(/\s+/g, '');
-            }else{
-                return str;
-            }
-        }
-
-        function rec(str){
-            var open = str.indexOf('[:');
-            var close = str.indexOf(':]');
-            if(open == -1 || close == -1){
-                return str;
-            }else{
-                var key = removeSpaces(str.substr(open+2, close - (open+2)));
-                var newString = str.substr(0,open) + '[|' + _t.getDependsOfValueByColumnName(key, rowIndex) + '|]' + str.substr(close+2);
-                return rec(newString);
-            }
-        }
-
-        var result = rec(lov_where);
-        result = result.replaceAll('[|', '');
-        result = result.replaceAll('|]', '');
-
-
-        console.log(result);
-
-        return result;
-
     };
 
     var tables = new CTables();

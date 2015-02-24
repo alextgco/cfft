@@ -15,25 +15,33 @@
 
 
     var tickets = {
-        portion:5,
+
         /**
          * Устанавливает по сколько билетов выводить на стр. Если передан второй параметр, перерисует форму
          * @param num
+         * @blank_type
          * @param render
          */
-        setPortion:function(num,render){
+        setPortion:function(num, blank_type ,render){
             if (isNaN(+num)){
                 console.log('В tickets.setPortion не передано число');
                 return;
             }
-            tickets.portion = +num;
+            //tickets.portion = +num;
+            var pack = tickets.blank_types[blank_type];
+            if (typeof pack=='object'){
+                pack.portion = +num;
+            }
             if (render){
                 tickets.renderTickets();
             }
         },
         blank_types: {},
         updateStatus:function(blank_types,status){
-            if (typeof tickets.blank_types[blank_types]!=='object'){}
+            if (typeof tickets.blank_types[blank_types]!=='object'){
+                return false;
+            }
+            tickets.blank_types[blank_types].status = status;
         },
         /**
          * Функция подготавливает клиентскую модель билета на основе серверной и возвращает объект
@@ -232,7 +240,9 @@
                                             '<li data-no="{{page_no}}" class="{{active}}">{{vis_no}}</li>'+
                                         '{{/pages}}'+
                                         '</ul>' +
+
                                     '</div>'+
+                                    '<button class="print_next_btn" data-type="{{dataitem}}">Печатать далее</div>'+
                                 '</div>'+
 
                             '</div>'+
@@ -254,7 +264,7 @@
                     var st = obj[i];
                     if(iidx == 0){
                         width+=100;
-                    }else if(iidx%tickets.portion == 0){
+                    }else if(iidx%obj.portion == 0){
                         width+=100;
                     }
                     iidx++;
@@ -271,16 +281,16 @@
                     if(iidx == 0){
                         pages.push({
                             pageWidth: 100 / (getTrainWidth(obj) / 100),
-                            page_no: iidx / tickets.portion,
-                            vis_no: iidx / tickets.portion+1,
+                            page_no: iidx / obj.portion,
+                            vis_no: iidx / obj.portion+1,
                             active: 'active',
                             tickets: []
                         });
-                    }else if(iidx%tickets.portion == 0){
+                    }else if(iidx%obj.portion == 0){
                         pages.push({
                             pageWidth: 100 / (getTrainWidth(obj) / 100),
-                            page_no: iidx / tickets.portion,
-                            vis_no: iidx / tickets.portion+1,
+                            page_no: iidx / obj.portion,
+                            vis_no: iidx / obj.portion+1,
                             active: '',
                             tickets: []
                         });
@@ -292,7 +302,7 @@
 
                 for(var j in obj){
                     var t = obj[j];
-                    var pIdx = Math.floor(idx / tickets.portion);
+                    var pIdx = Math.floor(idx / obj.portion);
 
 //                    console.log(pIdx, obj);
 
@@ -311,6 +321,10 @@
 
             for(var i in tickets.blank_types){
                 var bt = tickets.blank_types[i];
+                debugger;
+                if (typeof bt!=='object'){
+                    continue;
+                }
                 mO.tabs.push({
                     opened: (iter == 0)? 'opened':'',
                     dataitem: i,
@@ -357,6 +371,7 @@
         setHandlers: function(){
             var pis = contentWrapper.find('.printStack-pagination li');
             var tis = contentWrapper.find('.printStack-tickets-list li');
+            var printBtn = contentWrapper.find('.print_next_btn');
 
             pis.off('click').on('click', function(){
                 var self = $(this);
@@ -385,11 +400,21 @@
             $('.printStack-ticket-bso').off('click').on('click', function(){
                 tickets.renderTicket($(this).parents('li').data('id'));
             });
+            printBtn.off('click').on('click', function(){
+                var type = this.data('type');
+                if (tickets.blank_types[type].status == 'PRINT_WAIT_NEXT'){
+                    printQuery({command:'PRINT_NEXT_PORTION',type:type});
+                    tickets.updateStatus(type);
+                }
+
+
+            });
         }
     };
 
     console.log('executed');
 
+    contentInstance.updateStatus = tickets.updateStatus;
     contentInstance.addItems = tickets.addItems;
     contentInstance.renderTickets = tickets.renderTickets;
     contentInstance.renderTicket = tickets.renderTicket;
