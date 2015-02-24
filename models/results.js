@@ -91,7 +91,7 @@ module.exports = function(callback){
 
 
             var required_fields = [].concat(results.required_fields);
-            var avaliable_fields = ['concat_result','result_min','result_sec','result_repeat','result_approach','isAff'].concat(required_fields);
+            var avaliable_fields = ['video_url','concat_result','result_min','result_sec','result_repeat','result_approach','isAff'].concat(required_fields);
             for (var i0 in obj) {
                 if (avaliable_fields.indexOf(i0)==-1) {
                     delete obj[i0];
