@@ -29,7 +29,7 @@ $(document).ready(function(){
             },
             {
                 label: 'Фамилия атлета',
-                column: 'user_surname',
+                column: 'surname',
                 type: 'like',
                 whereType: 'external',
                 whereTable: 'users'
