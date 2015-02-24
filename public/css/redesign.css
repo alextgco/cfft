@@ -860,3 +860,18 @@ h4.darkHd{
     background-color: #ccc;
     color: #000;
 }
+.statusColor{
+
+}
+.statusColor.IN_QUEUE{
+    background-color: #ccc;
+    color: #333;
+}
+.statusColor.ACCEPTED{
+    background-color: #128e18;
+    color: #fff;
+}
+.statusColor.REJECTED{
+    background-color: #d72f2e;
+    color: #fff;
+}

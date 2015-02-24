@@ -70,6 +70,7 @@ exports.get = function(req, res, next){
                     }
 
                     item.resultsList = resultsRes.data;
+                    callback(null);
                 });
             },function(err){
                 if (err){
