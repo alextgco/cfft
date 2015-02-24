@@ -155,12 +155,14 @@ module.exports = function(callback){
             if (!finded) {
                 return callback(new MyError('Не переданы (или переданы не корректно) обязательные поля. ' + notFinded.join(', ')));
             }
-
-
-
-
-            results.add(obj, function(err,result){
-                callback(err,result);
+            results.getDirectoryId('result_statuses','IN_QUEUE',function(err,id){
+                if (err){
+                    return callback(new MyError('Нет подходящего статуса'));
+                }
+                obj.status_id = id;
+                results.add(obj, function(err,result){
+                    callback(err,result);
+                });
             });
         };
 
