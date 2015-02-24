@@ -7,17 +7,21 @@ module.exports = function(command,object,params,callback){
             callback(null,result);
         });
     };
-    if (!global.models[object]){
+    var usr = (params.user_id || 0);
+    if (typeof global.models[usr]!=='object'){
+        global.models[usr] = {};
+    }
+    if (!global.models[usr][object]){
         try {
             require('../models/' + object)(function(model){
-                global.models[object] = model;
+                global.models[usr][object] = model;
                 useModel(model);
             });
         } catch (e) {
             return callback('Такого объекта не существует. '+object);
         }
     }else{
-        useModel(global.models[object]);
+        useModel(global.models[usr][object]);
     }
 };
 

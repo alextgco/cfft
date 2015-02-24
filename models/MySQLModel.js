@@ -33,6 +33,17 @@ var Model = function (params, callback) {
         throw new MyError('Не верно вызвана функция конструктор в Model.js Не указано имя таблицы (table).');
         return false;
     }
+    this.validationFormats = {
+        number:{
+            format:'<число>',
+            example:'10'
+        },
+        url:{
+            format:'<Протокол>://<адрес>',
+            example:'http://example.ru'
+        }
+    };
+
     this.table = params.table;
     this.table_ru = params.table_ru || 'Объект';
     this.ending = params.ending || ''; // 'о' 'а'
@@ -46,6 +57,7 @@ var Model = function (params, callback) {
     this.join_objs = (typeof params.join_objs === 'object') ? params.join_objs : false;
     this.concatFields = params.concatFields || [];
     this.sort = params.sort;
+    this.validation = params.validation;
     self.columns = params.additionalColumns || [];
     pool.getConn(function (err, conn) {
         if (err) {
@@ -95,9 +107,10 @@ Model.prototype.get = function (params, callback) {
         var limit = params.limit || 1000;
         var sort = params.sort || (self.sort) ? funcs.cloneObj(self.sort) : {column:'id',direction:'DESC'};
         var deleted = !!params.deleted;
-
+        var published = params.published;
         var columns = params.columns || funcs.cloneObj(self.columns);
-        var sql = "SELECT " + columns.join(', ') + " FROM " + self.table;
+        var sqlStart = "SELECT " + columns.join(', ') + " FROM " + self.table;
+        var sql = "";
 
 
         var joinObjs = funcs.cloneObj(self.join_objs);
@@ -159,7 +172,7 @@ Model.prototype.get = function (params, callback) {
                 }
             }
             where = tmpWhere;
-            sql = "SELECT " + columns.join(', ') + " FROM " + self.table;
+            sqlStart = "SELECT " + columns.join(', ') + " FROM " + self.table;
             sql += extTablesOn.join('');
         } else {
 
@@ -181,6 +194,12 @@ Model.prototype.get = function (params, callback) {
                 sql += ' AND';
             }
             sql += " (" + self.table + ".deleted IS NULL OR " + self.table + ".deleted >'" + funcs.getDataTimeMySQL() + "')"
+        }
+        if (published) {
+            if (whereString !== '' || !deleted) {
+                sql += ' AND';
+            }
+            sql += " (" + self.table + ".published IS NOT NULL AND " + self.table + ".published <'" + funcs.getDataTimeMySQL() + "')"
         }
         if (sort) {
             var sortColumns = [];
@@ -207,49 +226,60 @@ Model.prototype.get = function (params, callback) {
 
             sql += ' ORDER BY ' + sortColumns.join(', ');
         }
-        if (limit) {
-            sql += ' LIMIT ' + limit;
-        }
-
-        console.log(sql);
-        conn.query(sql, [], function (err, rows) {
+        var countSQL = "SELECT COUNT(*) FROM "+self.table + sql;
+        conn.queryValue(countSQL,[],function(err,count){
             conn.release();
-            if (err){
-                console.log(err);
-                return callback(err);
-            }
-            for (var i in rows) {
-                for (var k in rows[i]) {
-                    if (rows[i][k] === null) {
-                        rows[i][k] = '';
-                    }
+            pool.getConn(function(err,conn){
+                if (err){
+                    return callback(err);
                 }
-                for (var j in self.getFormating) {
-                    var val = rows[i][j];
-                    try {
-                        rows[i][j] = funcs[self.getFormating[j]](rows[i][j]);
-                    } catch (e) {
-                        console.log(e);
-                        rows[i][j] = val;
-                    }
+                if (limit) {
+                    sql += ' LIMIT ' + limit;
                 }
-                if (typeof concatFields=='object'){
-                    for (var c in concatFields) {
-                        var item = concatFields[c];
-                        var val = '';
-                        for (var j in item) {
-                            var fields = item[j];
-                            for (var k in fields) {
-                                val += (rows[i][fields[k]]!=undefined)? rows[i][fields[k]]:fields[k];
+                var realSQL = sqlStart+sql;
+                console.log(realSQL);
+                conn.query(realSQL, [], function (err, rows) {
+                    conn.release();
+                    if (err){
+                        console.log(err);
+                        return callback(err);
+                    }
+                    for (var i in rows) {
+                        for (var k in rows[i]) {
+                            if (rows[i][k] === null) {
+                                rows[i][k] = '';
                             }
-                            rows[i][j] = val;
                         }
+                        for (var j in self.getFormating) {
+                            var val = rows[i][j];
+                            try {
+                                rows[i][j] = funcs[self.getFormating[j]](rows[i][j]);
+                            } catch (e) {
+                                console.log(e);
+                                rows[i][j] = val;
+                            }
+                        }
+                        if (typeof concatFields=='object'){
+                            for (var c in concatFields) {
+                                var item = concatFields[c];
+                                var val = '';
+                                for (var j in item) {
+                                    var fields = item[j];
+                                    for (var k in fields) {
+                                        val += (rows[i][fields[k]]!=undefined)? rows[i][fields[k]]:fields[k];
+                                    }
+                                    rows[i][j] = val;
+                                }
 
+                            }
+                        }
                     }
-                }
-            }
-            callback(null, rows);
+                    rows.count = count;
+                    callback(null, rows);
+                });
+            })
         });
+
     };
 
     async.waterfall([
@@ -275,6 +305,10 @@ Model.prototype.add = function (obj, callback) {
         if (!finded) {
             return callback(new MyError('Не переданы обязательные поля. ' + this.required_fields.join(', ')));
         }
+    }
+    var valid = self.validate(obj);
+    if (typeof valid=='object'){
+        return callback(null, funcs.formatResponse(-1, 'error', valid.message, valid.fields));
     }
     var addToModel = function (conn, callback) {
         obj.created = funcs.getDataTimeMySQL();
@@ -302,6 +336,10 @@ Model.prototype.modify = function (obj, callback) {
     var self = this;
     for (var i in self.not_editable) {
         delete obj[self.not_editable[i]];
+    }
+    var valid = self.validate(obj);
+    if (typeof valid=='object'){
+        return callback(null, funcs.formatResponse(-1, 'error', valid.message, valid.fields));
     }
     var modifyModel = function (conn, callback) {
         if (!obj.id) {
@@ -372,5 +410,30 @@ Model.prototype.getDirectoryId = function(table, sys_name, callback){
     });
 };
 
+Model.prototype.validate = function(obj){
+    var self = this;
+    var not_valid = [];
+    for (var field in self.validation) {
+        var valFunc = self.validation[field];
+        if (obj[field]===undefined || typeof funcs.validation[valFunc]!=='function'){
+            continue;
+        }
+        if (!funcs.validation[valFunc](obj[field])){
+            not_valid.push({
+                field:field,
+                format:self.validationFormats[valFunc] || ''
+            });
+        }
+    }
+    if (not_valid.length>0){
+        var o = {
+            message:'Одно или несколько полей имеет не верный формат',
+            fields:not_valid
+        };
+        return o;
+    }else{
+        return true;
+    }
+};
 
 module.exports = Model;
