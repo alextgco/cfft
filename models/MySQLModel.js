@@ -355,6 +355,22 @@ Model.prototype.remove = function (obj, callback) {
         }
     });
 };
+Model.prototype.getDirectoryId = function(table, sys_name, callback){
+    async.waterfall([
+        pool.getConn,
+        function(conn,callback){
+            conn.queryValue("select id from ?? where sys_name = ?",[table,sys_name],function(err, id){
+                conn.release();
+                callback(err, id);
+            });
+        }
+    ], function (err, id) {
+        if (err){
+            return callback(err);
+        }
+        callback(null, id);
+    });
+};
 
 
 module.exports = Model;
