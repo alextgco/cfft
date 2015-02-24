@@ -210,7 +210,7 @@ block content
                                     //                    option(value='1') Женский
                                     .row
                                         .col-md-12
-                                            //.initMeTable(data-get_object="results")
+                                            .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}")
                                             if(part.resultsList.length == 0)
                                                 h4.ta-center Пока нет результатов.
                                             else

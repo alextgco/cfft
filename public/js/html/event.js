@@ -1,32 +1,22 @@
 $(document).ready(function(){
 
     var tableWrapper = $('.initMeTable');
+    var action_id = tableWrapper.data('action_id');
+    var part_id = tableWrapper.data('part_id');
     var getObj = tableWrapper.data('get_object');
     var table = new CF.Table({
         getObject: getObj,
         wrapper: tableWrapper,
-        visible_columns: ['action_name', 'action_title', 'action_part', 'user_firstname', 'user_surname', 'concat_result', 'status_name'],
-        //'id','action_id','status_name_sys','video_url'
-        goToObject: 'admin_judge_result',
+        visible_columns: ['user_firstname', 'user_surname', 'concat_result', 'status_name', 'video_url'],
+        where: {
+            action_parts: {
+                action_id: action_id,
+                id: part_id
+            }
+        },
+        goToObject: '',
         primaryKey: 'id',
         filters: [
-            {
-                label: 'Мероприятие',
-                column: 'action_id',
-                type: 'select',
-                tableName: 'action',
-                returnId: 'id',
-                returnName: 'title',
-                whereType: 'external',
-                whereTable: 'action_parts'
-            },
-            {
-                label: 'Этап',
-                column: 'title',
-                type: 'like',
-                whereType: 'external',
-                whereTable: 'action_parts'
-            },
             {
                 label: 'Фамилия атлета',
                 column: 'surname',
@@ -34,11 +24,6 @@ $(document).ready(function(){
                 whereType: 'external',
                 whereTable: 'users'
             },
-            //{
-            //    label: 'Результат',
-            //    column: 'concat_result',
-            //    type: 'like'
-            //},
             {
                 label: 'Статус',
                 column: 'status_id',
@@ -51,7 +36,7 @@ $(document).ready(function(){
             }
         ]
     });
-
+alert(21);
     table.init();
 
 });

@@ -45,7 +45,7 @@ $(document).ready(function(){
                     callback: function(){
                         var o = {
                             command: 'approve',
-                            object: 'result',
+                            object: 'results',
                             params: {
                                 id: id,
                                 status: 'REJECTED',
