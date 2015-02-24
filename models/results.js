@@ -8,6 +8,17 @@ module.exports = function(callback){
         ending:'',
         required_fields:['action_part_id','video_url','result_type_id','user_id'],
         additionalColumns:['action_id'],
+        // var avaliable_fields = ['video_url','concat_result','result_min','result_sec','result_repeat','result_approach','isAff'].
+        validation: {
+            video_url:'url',
+            result_type_id:'number',
+            action_part_id:'number',
+            result_min:'number',
+            result_sec:'number',
+            result_repeat:'number',
+            result_approach:'number',
+            isAff:'number'
+        },
         /*concatFields:[{
             result:['result_min',':','result_sec']
         }],*/

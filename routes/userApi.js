@@ -1,4 +1,4 @@
-var api = require('../libs/api');
+var api = require('../libs/userApi');
 exports.post = function(req, res, next){
     var command = req.body.command;
     var object = req.body.object;

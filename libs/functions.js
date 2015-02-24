@@ -3,7 +3,7 @@ var moment = require('moment');
 var funcs = {
     formatResponse: function (code, type, message, data) {
         code = code || 0;
-        return {
+        var o = {
             code: code,
             toastr: {
                 type: type,
@@ -11,6 +11,11 @@ var funcs = {
             },
             data: data
         };
+        if (!isNaN(data.count)){
+            o.totalCount = data.count;
+            delete data.count;
+        }
+        return o;
     },
     getDataTimeMySQL: function () {
         return moment().format('YYYY-MM-DD HH:mm:ss');
@@ -48,6 +53,19 @@ var funcs = {
             }
         }
 
+    },
+    validation:{
+        number:function(val){
+            return !isNaN(+val);
+        },
+        url:function(val){
+            var regExp = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+            return regExp.test(val);
+        },
+        email:function(val){
+            var regExp = /^([\w\._]+)@\1\.([a-z]{2,6}\.?)$/;
+            return regExp.test(val);
+        }
     }
 
 
