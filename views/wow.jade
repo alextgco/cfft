@@ -127,91 +127,89 @@ block content
                                                 !{part.desc_move_std}
 
                                 .tab-pane(role='tabpanel', id="results_#{part.id}")
-                                    .row.padTop30
+                                    //.row.padTop30
+                                    //    .col-md-12
+                                            //.col-md-3
+                                            //    .form-group
+                                            //        label Страна:
+                                            //        #s2id_autogen1.select2-container.form-control
+                                            //            a.select2-choice(href='javascript:void(0)', tabindex='-1')
+                                            //                span#select2-chosen-2.select2-chosen Россия
+                                            //                abbr.select2-search-choice-close
+                                            //                span.select2-arrow(role='presentation')
+                                            //                    b(role='presentation')
+                                            //            label.select2-offscreen(for='s2id_autogen2')
+                                            //            input#s2id_autogen2.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-2')
+                                            //            .select2-drop.select2-display-none.select2-with-searchbox
+                                            //                .select2-search
+                                            //                    label.select2-offscreen(for='s2id_autogen2_search')
+                                            //                    input#s2id_autogen2_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-2', placeholder='')
+                                            //                ul#select2-results-2.select2-results(role='listbox')
+                                            //        select.form-control(tabindex='-1', title='', style='display: none;')
+                                            //            option(value='1') Россия
+                                            //            option(value='1') Украина
+                                            //            option(value='1') Белоруссия
+                                            //.col-md-3
+                                            //    .form-group
+                                            //        label Город:
+                                            //        #s2id_autogen3.select2-container.form-control
+                                            //            a.select2-choice(href='javascript:void(0)', tabindex='-1')
+                                            //                span#select2-chosen-4.select2-chosen Москва
+                                            //                abbr.select2-search-choice-close
+                                            //                span.select2-arrow(role='presentation')
+                                            //                    b(role='presentation')
+                                            //            label.select2-offscreen(for='s2id_autogen4')
+                                            //            input#s2id_autogen4.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-4')
+                                            //            .select2-drop.select2-display-none.select2-with-searchbox
+                                            //                .select2-search
+                                            //                    label.select2-offscreen(for='s2id_autogen4_search')
+                                            //                    input#s2id_autogen4_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-4', placeholder='')
+                                            //                ul#select2-results-4.select2-results(role='listbox')
+                                            //        select.form-control(tabindex='-1', title='', style='display: none;')
+                                            //            option(value='1') Москва
+                                            //            option(value='1') Санкт-Петербург
+                                            //            option(value='1') Тверь
+                                            //.col-md-3
+                                            //    .form-group
+                                            //        label Клуб:
+                                            //        #s2id_autogen5.select2-container.form-control
+                                            //            a.select2-choice(href='javascript:void(0)', tabindex='-1')
+                                            //                span#select2-chosen-6.select2-chosen Crossfit central
+                                            //                abbr.select2-search-choice-close
+                                            //                span.select2-arrow(role='presentation')
+                                            //                    b(role='presentation')
+                                            //            label.select2-offscreen(for='s2id_autogen6')
+                                            //            input#s2id_autogen6.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-6')
+                                            //            .select2-drop.select2-display-none.select2-with-searchbox
+                                            //                .select2-search
+                                            //                    label.select2-offscreen(for='s2id_autogen6_search')
+                                            //                    input#s2id_autogen6_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-6', placeholder='')
+                                            //                ul#select2-results-6.select2-results(role='listbox')
+                                            //        select.form-control(tabindex='-1', title='', style='display: none;')
+                                            //            option(value='1') Crossfit central
+                                            //            option(value='1') sport unlimited
+                                            //            option(value='1') xFit
+                                            //.col-md-3
+                                            //    .form-group
+                                            //        label Пол:
+                                            //        #s2id_autogen7.select2-container.form-control
+                                            //            a.select2-choice(href='javascript:void(0)', tabindex='-1')
+                                            //                span#select2-chosen-8.select2-chosen Мужской
+                                            //                abbr.select2-search-choice-close
+                                            //                span.select2-arrow(role='presentation')
+                                            //                    b(role='presentation')
+                                            //            label.select2-offscreen(for='s2id_autogen8')
+                                            //            input#s2id_autogen8.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-8')
+                                            //            .select2-drop.select2-display-none.select2-with-searchbox
+                                            //                .select2-search
+                                            //                    label.select2-offscreen(for='s2id_autogen8_search')
+                                            //                    input#s2id_autogen8_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-8', placeholder='')
+                                            //                ul#select2-results-8.select2-results(role='listbox')
+                                            //        select.form-control(tabindex='-1', title='', style='display: none;')
+                                            //            option(value='1') Мужской
+                                            //            option(value='1') Женский
+                                    .row
                                         .col-md-12
-                                            .col-md-3
-                                                .form-group
-                                                    label Страна:
-                                                    #s2id_autogen1.select2-container.form-control
-                                                        a.select2-choice(href='javascript:void(0)', tabindex='-1')
-                                                            span#select2-chosen-2.select2-chosen Россия
-                                                            abbr.select2-search-choice-close
-                                                            span.select2-arrow(role='presentation')
-                                                                b(role='presentation')
-                                                        label.select2-offscreen(for='s2id_autogen2')
-                                                        input#s2id_autogen2.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-2')
-                                                        .select2-drop.select2-display-none.select2-with-searchbox
-                                                            .select2-search
-                                                                label.select2-offscreen(for='s2id_autogen2_search')
-                                                                input#s2id_autogen2_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-2', placeholder='')
-                                                            ul#select2-results-2.select2-results(role='listbox')
-                                                    select.form-control(tabindex='-1', title='', style='display: none;')
-                                                        option(value='1') Россия
-                                                        option(value='1') Украина
-                                                        option(value='1') Белоруссия
-                                            .col-md-3
-                                                .form-group
-                                                    label Город:
-                                                    #s2id_autogen3.select2-container.form-control
-                                                        a.select2-choice(href='javascript:void(0)', tabindex='-1')
-                                                            span#select2-chosen-4.select2-chosen Москва
-                                                            abbr.select2-search-choice-close
-                                                            span.select2-arrow(role='presentation')
-                                                                b(role='presentation')
-                                                        label.select2-offscreen(for='s2id_autogen4')
-                                                        input#s2id_autogen4.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-4')
-                                                        .select2-drop.select2-display-none.select2-with-searchbox
-                                                            .select2-search
-                                                                label.select2-offscreen(for='s2id_autogen4_search')
-                                                                input#s2id_autogen4_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-4', placeholder='')
-                                                            ul#select2-results-4.select2-results(role='listbox')
-                                                    select.form-control(tabindex='-1', title='', style='display: none;')
-                                                        option(value='1') Москва
-                                                        option(value='1') Санкт-Петербург
-                                                        option(value='1') Тверь
-                                            .col-md-3
-                                                .form-group
-                                                    label Клуб:
-                                                    #s2id_autogen5.select2-container.form-control
-                                                        a.select2-choice(href='javascript:void(0)', tabindex='-1')
-                                                            span#select2-chosen-6.select2-chosen Crossfit central
-                                                            abbr.select2-search-choice-close
-                                                            span.select2-arrow(role='presentation')
-                                                                b(role='presentation')
-                                                        label.select2-offscreen(for='s2id_autogen6')
-                                                        input#s2id_autogen6.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-6')
-                                                        .select2-drop.select2-display-none.select2-with-searchbox
-                                                            .select2-search
-                                                                label.select2-offscreen(for='s2id_autogen6_search')
-                                                                input#s2id_autogen6_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-6', placeholder='')
-                                                            ul#select2-results-6.select2-results(role='listbox')
-                                                    select.form-control(tabindex='-1', title='', style='display: none;')
-                                                        option(value='1') Crossfit central
-                                                        option(value='1') sport unlimited
-                                                        option(value='1') xFit
-                                            .col-md-3
-                                                .form-group
-                                                    label Пол:
-                                                    #s2id_autogen7.select2-container.form-control
-                                                        a.select2-choice(href='javascript:void(0)', tabindex='-1')
-                                                            span#select2-chosen-8.select2-chosen Мужской
-                                                            abbr.select2-search-choice-close
-                                                            span.select2-arrow(role='presentation')
-                                                                b(role='presentation')
-                                                        label.select2-offscreen(for='s2id_autogen8')
-                                                        input#s2id_autogen8.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-8')
-                                                        .select2-drop.select2-display-none.select2-with-searchbox
-                                                            .select2-search
-                                                                label.select2-offscreen(for='s2id_autogen8_search')
-                                                                input#s2id_autogen8_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-8', placeholder='')
-                                                            ul#select2-results-8.select2-results(role='listbox')
-                                                    select.form-control(tabindex='-1', title='', style='display: none;')
-                                                        option(value='1') Мужской
-                                                        option(value='1') Женский
-                                    .row.padTop30
-                                        .col-md-12
-                                            - var rl = JSON.stringify(part.resultsList);
-                                            | #{rl}
                                             table.table
                                                 thead
                                                     tr
@@ -225,9 +223,9 @@ block content
                                                             td #{rIdx+1}
                                                             td #{result.user_firstname} #{result.user_surname}
                                                             td
-                                                                #{result.concat_result}
+                                                                | #{result.concat_result}
                                                                 .statusColor(class="#{result.status_name_sys}")
-                                                                    #{result.status_name}
+                                                                    | #{result.status_name}
                                                             td
                                                                 a(target="_blank", href='#{result.video_url}')
                                                                     i.fa.fa-video-camera
