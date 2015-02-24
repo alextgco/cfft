@@ -57,6 +57,24 @@ module.exports = function(callback){
                         }
                     ]
                 },
+                status_id:{
+                    table:"result_statuses",
+                    fields:[
+                        {
+                            column:"id",
+                            alias:"status_id"
+                        },
+                        {
+                            column:"name",
+                            alias:"status_name"
+                        },
+                        {
+                            column:"sys_name",
+                            alias:"status_name_sys"
+                        }
+                    ]
+                },
+
                 user_id:{
                     table:"users",
                     fields:[
@@ -84,11 +102,10 @@ module.exports = function(callback){
             var exludedColumns = [];
             var columns = funcs.cloneObj(results.columns);
             for (var i in exludedColumns) {
-                if (columns.indexOf(exludedColumns[i])){
-
-                }
+                delete columns[exludedColumns[i]];
             }
-            //obj.params
+            obj.columns = columns;
+            //obj.where;
         };
         results.addOrder = function(obj,callback){
             if (typeof obj!=='object'){
