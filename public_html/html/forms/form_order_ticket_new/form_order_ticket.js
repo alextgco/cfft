@@ -34,7 +34,7 @@
             color: 'blue',
             className: '',
             disabled: function(){
-                return ticketStatus !== 'CLOSED' && ticketStatus !== 'ON_REALIZATION' && ticketStatus !== 'CLOSED_REALIZATION';
+                return ticketStatus !== 'CLOSED' && ticketStatus !== 'ON_REALIZATION' && ticketStatus !== 'CLOSED_REALIZATION' && ticketStatus !== 'PAID';
             },
             callback: function(){
                 formInstance.makeOperation('return_ticket');
@@ -172,7 +172,7 @@
                     sendQueryForObj(o);
                 },
                 disabled: function (key, options) {
-                    if (ticketstatus === "CLOSED" || ticketstatus === "CLOSED_REALIZATION" || ticketstatus === "REALIZATION") {
+                    if (ticketstatus === "CLOSED" || ticketstatus === "CLOSED_REALIZATION" || ticketstatus === "REALIZATION" || ticketstatus === "PAID") {
                         return false;
                     } else {
                         return true;

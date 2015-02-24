@@ -317,7 +317,9 @@
 					case 'select2':
 						if (whereItem.value == 'isNull') {
 							result += whereItem.name + " is Null";
-						} else {
+                        }else if(whereItem.value == 'isNotNull'){
+                            result += whereItem.name + " is Not Null";
+                        } else {
 							strOrArr = (typeof whereItem.value == 'object') ? whereItem.value.join('\',\'') : whereItem.value;
 							result += whereItem.name + " in ('" + strOrArr + "')";
 						}

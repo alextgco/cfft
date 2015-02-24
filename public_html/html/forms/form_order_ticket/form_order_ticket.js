@@ -58,7 +58,7 @@
                     sendQueryForObj(o);
                 },
                 disabled: function (key, options) {
-                    if (ticketstatus === "CLOSED" || ticketstatus === "CLOSED_REALIZATION" || ticketstatus === "REALIZATION") {
+                    if (ticketstatus === "CLOSED" || ticketstatus === "CLOSED_REALIZATION" || ticketstatus === "REALIZATION" || ticketstatus === "PAID") {
                         return false;
                     } else {
                         return true;

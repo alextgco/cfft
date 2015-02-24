@@ -459,6 +459,7 @@ var select3init = function(){
             if(_t.isFilter){
                 data.list.push({id: '', name: ' - Любой - '});
                 data.list.push({id: 'isNull', name: ' - Пустой - '});
+                data.list.push({id: 'isNotNull', name: ' - Не пустое - '});
             }else{
                 data.list.push({id: '', name: ''});
             }
