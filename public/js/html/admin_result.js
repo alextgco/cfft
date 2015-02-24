@@ -16,7 +16,9 @@ $(document).ready(function(){
                 type: 'select',
                 tableName: 'action',
                 returnId: 'id',
-                returnName: 'title'
+                returnName: 'title',
+                whereType: 'external',
+                whereTable: 'action_types'
             },
             {
                 label: 'Этап',
@@ -39,7 +41,9 @@ $(document).ready(function(){
                 type: 'select',
                 tableName: 'result_statuses',
                 returnId: 'id',
-                returnName: 'name'
+                returnName: 'name',
+                whereType: 'internal',
+                whereTable: ''
             }
         ]
     });

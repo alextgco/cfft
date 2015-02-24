@@ -302,7 +302,12 @@
                 }
             });
             $elem.off('change').on('change', function(){
-                _t.where[$elem.data('column')] = $elem.select2('data').id;
+                if(filter.whereType == 'external'){
+                    _t.where[filter.whereTable] = {};
+                    _t.where[filter.whereTable][$elem.data('column')] = $elem.select2('data').id;
+                }else{
+                    _t.where[$elem.data('column')] = $elem.select2('data').id;
+                }
             });
         });
 

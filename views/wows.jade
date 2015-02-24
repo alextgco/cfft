@@ -1,0 +1,24 @@
+extends layout
+block content
+    .container
+        h2 Мероприятия
+            hr
+            .row
+                .col-md-12
+                    .events-list-wrapper
+                        ul.events-list
+                            for a in items.data
+                                li
+                                    a.event-item-img(href="wow?id=#{a.id}")
+                                        img(src='upload/#{a.thumb}')
+                                    .event-item-info
+                                        .event-item-title
+                                            .titleInner
+                                                a(href='wow?id=#{a.id}') #{a.title}
+                                                .action-status(class="#{a.status_sys_name}")
+                                                    | #{a.status}
+                                            .dateInner #{a.date_start_text}
+                                        .event-item-desc
+                                            !{a.description2}
+                            else
+                                li Нет водовиков.

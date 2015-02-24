@@ -26,6 +26,8 @@ module.exports = function (app) {
 
   app.get('/wow', require('./wow').get);
 
+  app.get('/wows', require('./wows').get);
+
   app.get('/profile', function(req, res, next){
     res.render('profile');
   });
