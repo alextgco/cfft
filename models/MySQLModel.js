@@ -176,6 +176,11 @@ Model.prototype.get = function (params, callback) {
                 }
             }
 
+            //var w = {
+            //    action_types:{
+            //        action_id:5
+            //    }
+            //};
             for (var i in where) {
                 if (typeof where[i] == 'object') {
                     var fields = where[i];
@@ -434,7 +439,7 @@ Model.prototype.remove = function (obj, callback) {
             return callback(err);
         }
         if (results == 0) {
-            callback(null, funcs.formatResponse(1, 'success', 'Запись не найдена.'))
+            callback(null, funcs.formatResponse(1, 'error', 'Запись не найдена.'))
         } else {
             callback(null, funcs.formatResponse(0, 'success', self.table_ru + ' успешно удален' + self.ending + ''))
         }

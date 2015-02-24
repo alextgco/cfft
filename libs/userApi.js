@@ -7,6 +7,10 @@ module.exports = function(command,object,params,callback){
         if (command == 'get'){
             params.published = true;
         }
+        var allowedForUserCommand = model.allowedForUserCommand || [];
+        if (allowedForUserCommand.indexOf(command)!==-1){
+            return callback('Команда '+command+' запрещена.');
+        }
         model[command](params,function(err,result){
             if(err){
                 return callback(err);
