@@ -1,5 +1,6 @@
 var Model = require('./MySQLModel');
 var MyError = require('../error').MyError;
+var funcs = require('../libs/functions');
 module.exports = function(callback){
     var results = new Model({
         table: 'results',
@@ -79,6 +80,16 @@ module.exports = function(callback){
         if (err){
             console.log(err);
         }
+        results.get2 = function(obj,callback){
+            var exludedColumns = [];
+            var columns = funcs.cloneObj(results.columns);
+            for (var i in exludedColumns) {
+                if (columns.indexOf(exludedColumns[i])){
+
+                }
+            }
+            //obj.params
+        };
         results.addOrder = function(obj,callback){
             if (typeof obj!=='object'){
                 return callback(new MyError('Не корректный объект'));
@@ -135,6 +146,7 @@ module.exports = function(callback){
                 callback(err,result);
             });
         };
+
         callback(results);
     });
 };
