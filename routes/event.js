@@ -48,7 +48,7 @@ exports.get = function(req, res, next){
                         console.log(err, 'admin_event');
                         return callback(err);
                     }
-                    item.resultsList = resultsRes;
+                    item.resultsList = resultsRes.data;
                     callback(null);
                 });
             },function(err){

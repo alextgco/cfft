@@ -101,6 +101,7 @@ block content
                                 li.active(role='presentation')
                                     a(href='#rules_#{part.id}', aria-controls='rules_#{part.id}', role='tab', data-toggle='tab', aria-expanded='true') Правила
                                 li(role='presentation')
+                                    //if(part.status_sys)
                                     a(href='#results_#{part.id}', aria-controls='results_#{part.id}', role='tab', data-toggle='tab', aria-expanded='false') Предварительные результаты
                             .tab-content
                                 .tab-pane.active(role='tabpanel', id="rules_#{part.id}")
@@ -210,25 +211,28 @@ block content
                                             //            option(value='1') Женский
                                     .row
                                         .col-md-12
-                                            table.table
-                                                thead
-                                                    tr
-                                                        th Место
-                                                        th Атлет
-                                                        th Результат
-                                                        th Видео
-                                                tbody
-                                                    each result, rIdx in part.resultsList
+                                            if(part.resultsList.length == 0)
+                                                h4.ta-center Пока нет результатов.
+                                            else
+                                                table.table
+                                                    thead
                                                         tr
-                                                            td #{rIdx+1}
-                                                            td #{result.user_firstname} #{result.user_surname}
-                                                            td
-                                                                | #{result.concat_result}
-                                                                .statusColor(class="#{result.status_name_sys}")
-                                                                    | #{result.status_name}
-                                                            td
-                                                                a(target="_blank", href='#{result.video_url}')
-                                                                    i.fa.fa-video-camera
+                                                            th Место
+                                                            th Атлет
+                                                            th Результат
+                                                            th Видео
+                                                    tbody
+                                                        each result, rIdx in part.resultsList
+                                                            tr
+                                                                td #{rIdx+1}
+                                                                td #{result.user_firstname} #{result.user_surname}
+                                                                td
+                                                                    | #{result.concat_result}
+                                                                    .statusColor(class="#{result.status_name_sys}")
+                                                                        | #{result.status_name}
+                                                                td
+                                                                    a(target="_blank", href='#{result.video_url}')
+                                                                        i.fa.fa-video-camera
 
 
 
