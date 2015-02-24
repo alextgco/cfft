@@ -1,5 +1,6 @@
 extends admin_layout
 block content
+
     .container.posRel
         h2 Заявки
         hr
@@ -18,7 +19,7 @@ block content
         //                .form-group
         //                    label Дата по
         //                    input(type="text").form-control.cf_datepicker
-
+        .initMeTable(data-get_object="results")
 
         if(items.data.length == 0)
             h4.ta-center Пока нет результатов.
@@ -33,11 +34,16 @@ block content
                         th Результат
                         th Статус
                         th Видео
+
+
+
                 tbody
                     each result, rIdx in items.data
                         tr(data-id="#{result.id}")
                             td #{rIdx+1}
-                            td #{result.action_title}
+                            td
+                                a(href="admin_event?id=#{result.action_id}")
+                                    | #{result.action_title}
                             td #{result.action_part}
                             td
                                 a(href="admin_judge_result?id=#{result.id}")
@@ -89,3 +95,4 @@ block content
         //                    .fa.fa-video-camera
         //        else
         //            li sorry, no results!
+    script(type="text/javascript", src="js/html/admin_result.js")

@@ -226,13 +226,33 @@ block content
                                                             tr
                                                                 td #{rIdx+1}
                                                                 td #{result.user_firstname} #{result.user_surname}
-                                                                td
-                                                                    | #{result.concat_result}
+                                                                td.posRel
+                                                                    .result-output
+                                                                        | #{result.concat_result}
                                                                     .statusColor(class="#{result.status_name_sys}")
                                                                         | #{result.status_name}
                                                                 td
                                                                     a(target="_blank", href='#{result.video_url}')
                                                                         i.fa.fa-video-camera
+                                                if(part.resultsList.length > 3)
+                                                    nav
+                                                        ul.pagination
+                                                            li
+                                                                a(href='#', aria-label='Previous')
+                                                                    span(aria-hidden='true') «
+                                                            li
+                                                                a(href='#') 1
+                                                            li
+                                                                a(href='#') 2
+                                                            li
+                                                                a(href='#') 3
+                                                            li
+                                                                a(href='#') 4
+                                                            li
+                                                                a(href='#') 5
+                                                            li
+                                                                a(href='#', aria-label='Next')
+                                                                    span(aria-hidden='true') »
 
 
 
