@@ -30,8 +30,7 @@ block content
                                 .event-item-desc
                                     | #{a.user_firstname} #{a.user_surname}
                                     br
-                                    |  #{a.action_part}
-                                    //| #{a.action}
+                                    | #{a.action_title} #{a.action_part}
                         a.watch-result(target="_blank", href="#{a.video_url}")
                             .fa.fa-video-camera
                 else

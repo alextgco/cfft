@@ -62,7 +62,23 @@ exports.get = function(req, res, next){
             if(result.data.length == 0){
 
             }
-            callback(null,result);
+
+            async.each(result.data,function(item,callback){
+                api('get', 'results', {where: {action_part_id: item.id}, user_id:req.user}, function(err, resultsRes){
+                    if (err){
+                        return callback(err);
+                    }
+
+                    item.resultsList = resultsRes.data;
+                });
+            },function(err){
+                if (err){
+                    return callback(err);
+                }
+                console.log('BBBBB',result);
+                callback(null,result);
+            });
+
         });
     };
 
