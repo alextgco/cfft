@@ -75,6 +75,7 @@
         this.primaryKey =       p.primaryKey || undefined;
         this.filters =          p.filters || [];
         this.tempPage =         1;
+        this.specialColumns =   p.specialColumns || [];
     };
 
     CF.Table.prototype.init = function(){
@@ -119,6 +120,19 @@
         return CF.directories.columnNames[column];
     };
 
+    CF.Table.prototype.checkSpecial = function(column){
+        var _t = this;
+
+        for(var i in _t.specialColumns){
+            var c = _t.specialColumns[i];
+            if(c.column == column){
+                return true;
+            }
+        }
+        return false;
+        //return _t.specialColumns.indexOf(column) >= 0;
+    };
+
     CF.Table.prototype.checkVisibility = function(column){
         var _t = this;
         return _t.visible_columns.indexOf(column) >= 0;
@@ -155,7 +169,7 @@
                     '</thead>' +
                     '<tbody>{{#rows}}' +
                     '<tr data-id="{{id}}">{{#tds}}' +
-                    '<td>{{value}}</td>{{/tds}}' +
+                    '<td>{{{value}}}</td>{{/tds}}' +
                     '</tr>{{/rows}}' +
                     '</tbody>' +
                     '</table>' +
@@ -207,10 +221,17 @@
             for(var j in item){
                 var jtem = item[j];
                 if(_t.checkVisibility(j)) {
-                    mO.rows[idx].id = _t.getPrimaryKey(item),
-                    mO.rows[idx].tds.push({
-                        value: jtem
-                    });
+                    if(_t.checkSpecial(j)){
+                        mO.rows[idx].id = _t.getPrimaryKey(item);
+                        mO.rows[idx].tds.push({
+                            value: '<a target="_blank" href="'+jtem+'"><i class="fa fa-video-camera"></i></a>'
+                        });
+                    }else{
+                        mO.rows[idx].id = _t.getPrimaryKey(item);
+                        mO.rows[idx].tds.push({
+                            value: jtem
+                        });
+                    }
                 }
             }
 

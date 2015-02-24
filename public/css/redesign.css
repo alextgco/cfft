@@ -891,3 +891,25 @@ h4.darkHd{
     margin-bottom: 15px;
     margin-top: 15px;
 }
+.filterBtn{
+    font-size: 24px;
+    width: 49%;
+    background-color: #eee;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    text-align: center;
+    margin-top: 18px;
+    margin-left: 1%;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+}
+.filterBtn:hover{
+    opacity: 0.9;
+}
+.confirm-filter{
+    background-color: #128e18;
+}
+.clear-filter{
+    background-color: #444;
+}
