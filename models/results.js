@@ -6,6 +6,7 @@ module.exports = function(callback){
         table_ru: 'Результат',
         ending:'',
         required_fields:['action_part_id','video_url','result_type_id','user_id'],
+        additionalColumns:['action_id'],
         /*concatFields:[{
             result:['result_min',':','result_sec']
         }],*/
@@ -14,6 +15,7 @@ module.exports = function(callback){
         },*/
         join_objs:[
             {
+
                 action_part_id:{
                     table:"action_parts",
                     fields:[
@@ -24,6 +26,20 @@ module.exports = function(callback){
                         {
                             column:"title",
                             alias:"action_part"
+                        }
+                    ]
+                },
+                action_id:{
+                    table:"actions",
+                    joinTable:'action_parts',
+                    fields:[
+                        {
+                            column:"id",
+                            alias:"action_id"
+                        },
+                        {
+                            column:"title",
+                            alias:"action_title"
                         }
                     ]
                 },

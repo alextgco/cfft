@@ -46,6 +46,7 @@ var Model = function (params, callback) {
     this.join_objs = (typeof params.join_objs === 'object') ? params.join_objs : false;
     this.concatFields = params.concatFields || [];
     this.sort = params.sort;
+    self.columns = params.additionalColumns || [];
     pool.getConn(function (err, conn) {
         if (err) {
             return callback(err);
@@ -58,7 +59,7 @@ var Model = function (params, callback) {
             if (err) {
                 callback(err);
             } else {
-                self.columns = [];
+
                 for (var i in rows) {
                     self.columns.push(rows[i]['COLUMN_NAME']);
                 }
@@ -108,13 +109,14 @@ Model.prototype.get = function (params, callback) {
         if (joinObjs) {
             var extTablesOn = [];
             for (var c in joinObjs) {
-                var oneJoinObj = joinObjs[c];
+                var
+                    oneJoinObj = joinObjs[c];
                 for (var i in oneJoinObj) {
                     if (columns.indexOf(i) == -1) {
                         continue;
                     }
                     extTablesOn.push(' LEFT JOIN ' + oneJoinObj[i].table + ' ON ' +
-                    self.table + '.' + i + ' = ' + oneJoinObj[i].table + '.id');
+                    (oneJoinObj[i].joinTable || self.table) + '.' + i + ' = ' + oneJoinObj[i].table + '.id');
                     for (var j in oneJoinObj[i].fields) {
                         var oneField = oneJoinObj[i].fields[j];
                         if (typeof  oneField == 'object') {
