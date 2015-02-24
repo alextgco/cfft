@@ -18,7 +18,7 @@ $(document).ready(function(){
                 returnId: 'id',
                 returnName: 'title',
                 whereType: 'external',
-                whereTable: 'action_types'
+                whereTable: 'action_parts'
             },
             {
                 label: 'Этап',
