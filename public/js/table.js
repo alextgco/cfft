@@ -144,8 +144,6 @@
     CF.Table.prototype.render = function(cb){
         var _t = this;
 
-
-
         var prev = (_t.tempPage > 1)? '<li><a href="#" aria-label="Previous" class="prev"><span aria-hidden="true">&laquo;</span></a></li>' : '';
         var next = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" aria-label="Next" class="next"><span aria-hidden="true">&raquo;</span></a></li>' : '';
 
@@ -182,7 +180,7 @@
             rows: [],
             pages: [
                 {
-                    pageNo: 1
+                    pageNo: _t.tempPage
                 }
             ]
         };
@@ -241,12 +239,20 @@
         next.off('click').on('click', function(){
             _t.limit = _t.tempPage*_t.perPage+','+_t.perPage;
 
-            console.log(_t.limit);
-
             _t.getData(function(){
+                _t.tempPage = _t.tempPage + 1;
                 _t.render(function(){
                     _t.setHandlers();
-                    _t.tempPage = _t.tempPage + 1;
+                });
+            });
+        });
+        prev.off('click').on('click', function(){
+            _t.limit = (_t.tempPage -2)*_t.perPage+','+_t.perPage;
+
+            _t.getData(function(){
+                _t.tempPage = _t.tempPage - 1;
+                _t.render(function(){
+                    _t.setHandlers();
                 });
             });
 
