@@ -64,6 +64,7 @@
         this.id =               p.id || CF.guid();
         this.wrapper =          p.wrapper || undefined;
         this.where =            p.where || {};
+        this.defaultWhere =     p.defaultWhere || {};
         this.getObject =        p.getObject || undefined;
         this.limit =            p.limit || 20;
         this.perPage =          p.perPage || 20;
@@ -120,7 +121,7 @@
 
     CF.Table.prototype.checkVisibility = function(column){
         var _t = this;
-        return _t.visible_columns.indexOf(column) > 0;
+        return _t.visible_columns.indexOf(column) >= 0;
     };
 
     CF.Table.prototype.getPrimaryKey = function(row){
@@ -228,7 +229,10 @@
         var _t = this;
         _t.wrapper.find('tbody tr').off('click').on('click', function(){
             var id = $(this).data('id');
-            document.location.href = _t.goToObject+'?'+_t.primaryKey+'='+id;
+            if(_t.goToObject != ''){
+                document.location.href = _t.goToObject+'?'+_t.primaryKey+'='+id;
+            }
+
         });
 
         var paginationWrapper = _t.wrapper.find('.pagination');
@@ -338,7 +342,7 @@
         });
 
         _t.wrapper.find('.clear-filter').off('click').on('click', function(){
-            _t.where = {};
+            _t.where = _t.defaultWhere;
             _t.getData(function(){
                 _t.render(function(){
                     _t.setHandlers();
