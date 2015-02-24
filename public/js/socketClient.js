@@ -1,4 +1,4 @@
-var socket = io.connect('');
+var socket = io.connect();
 var delivery;
 socket.on('connect', function (data) {
 //    toastr['success']('Соединение с сервером установлено.');
