@@ -150,7 +150,7 @@ module.exports = function(callback){
                 default :
                     break;
             }
-
+            obj.published = funcs.getDataTimeMySQL();
 
 
             var required_fields = [].concat(results.required_fields);
