@@ -23,12 +23,16 @@ $(document).ready(function(){
             {
                 label: 'Этап',
                 column: 'action_part',
-                type: 'like'
+                type: 'like',
+                whereType: 'external',
+                whereTable: 'action_parts'
             },
             {
-                label: 'Атлет',
+                label: 'Фамилия атлета',
                 column: 'user_surname',
-                type: 'like'
+                type: 'like',
+                whereType: 'external',
+                whereTable: 'users'
             },
             //{
             //    label: 'Результат',

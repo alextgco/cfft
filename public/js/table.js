@@ -267,7 +267,7 @@
             var filter = _t.filters[i];
             var html = '';
             if(filter.type == 'like'){
-                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="text" class="tableFilter form-control" data-filter_type="like" data-column="'+filter.column+'"/></div>';
+                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="text" data-where_type="'+filter.whereType+'" data-where_table="'+filter.whereTable+'" class="tableFilter form-control" data-filter_type="like" data-column="'+filter.column+'"/></div>';
             }else if(filter.type == 'select'){
                 html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="hidden" data-where_type="'+filter.whereType+'" data-where_table="'+filter.whereTable+'" data-return_id="'+filter.returnId+'" data-return_name="'+filter.returnName+'" class="tableFilter form-control select2" data-text="" data-filter_type="select" data-name="'+filter.column+'" data-table="'+filter.tableName+'" data-column="'+filter.column+'"/></div>';
             }
@@ -305,7 +305,9 @@
             });
             $elem.off('change').on('change', function(){
                 if(whereType == 'external'){
-                    _t.where[whereTable] = {};
+                    if(!_t.where[whereTable]){
+                        _t.where[whereTable] = {};
+                    }
                     _t.where[whereTable][$elem.data('column')] = $elem.select2('data').id;
                 }else{
                     _t.where[$elem.data('column')] = $elem.select2('data').id;
@@ -314,7 +316,18 @@
         });
 
         filterWrapper.find('input.tableFilter[type="text"][data-filter_type="like"]').off('input').on('input', function(){
-            _t.where[$(this).data('column')] = '%'+$(this).val()+'%';
+            var whereType = $(this).data('where_type');
+            var whereTable = $(this).data('where_table');
+            if(whereType == 'external'){
+                if(!_t.where[whereTable]){
+                    _t.where[whereTable] = {};
+                }
+                _t.where[whereTable][$(this).data('column')] = '%'+$(this).val()+'%';
+            }else{
+                _t.where[$(this).data('column')] = '%'+$(this).val()+'%';
+            }
+
+
         });
 
         _t.wrapper.find('.confirm-filter').off('click').on('click', function(){
