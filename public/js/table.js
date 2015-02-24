@@ -137,7 +137,8 @@
 
     CF.Table.prototype.renderFilters = function(){
         var _t = this;
-        var html = '<div class="filters-wrapper col-md-11"></div><div class="col-md-1"><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div>';
+        _t.wrapper.find('.filterContainer').remove();
+        var html = '<div class="filterContainer"><div class="filters-wrapper col-md-11"></div><div class="col-md-1"><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div></div>';
         _t.wrapper.prepend(html);
     };
 
@@ -322,9 +323,9 @@
                 if(!_t.where[whereTable]){
                     _t.where[whereTable] = {};
                 }
-                _t.where[whereTable][$(this).data('column')] = '%'+$(this).val()+'%';
+                _t.where[whereTable][$(this).data('column')] = '*'+$(this).val()+'*';
             }else{
-                _t.where[$(this).data('column')] = '%'+$(this).val()+'%';
+                _t.where[$(this).data('column')] = '*'+$(this).val()+'*';
             }
 
 

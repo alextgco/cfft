@@ -1,19 +1,21 @@
 extends admin_layout
 block content
-   - var res = items.data[0];
-   .container.posRel
-      h2 Заявка
-      hr
-      h4
-         a(href="#{res.video_url}", target="_blank") Ссылка на видео
-         br
-         | #{res.concat_result}
-         br
-         | #{res.user_firstname} #{res.user_surname}
-         br
-         | #{res.action_title} #{res.action_part}
-      .row
-         .sBtn.green
-            | Принять
-         .sBtn.red
-            | Отклонить
+    - var res = items.data[0];
+    .container.posRel
+        h2 Заявка
+        hr
+        h4
+            a(href="#{res.video_url}", target="_blank") Ссылка на видео
+            br
+            | #{res.concat_result}
+            br
+            | #{res.user_firstname} #{res.user_surname}
+            br
+            | #{res.action_title} #{res.action_part}
+        .row
+            .sBtn.green.acceptResult(data-id="#{res.id}")
+                | Принять
+            .sBtn.red.rejectResult(data-id="#{res.id}")
+                | Отклонить
+
+    script(type="text/javascript", src="js/html/admin_judge_result.js")
