@@ -22,7 +22,7 @@ $(document).ready(function(){
             },
             {
                 label: 'Этап',
-                column: 'action_part',
+                column: 'title',
                 type: 'like',
                 whereType: 'external',
                 whereTable: 'action_parts'
