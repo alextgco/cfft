@@ -192,7 +192,8 @@ module.exports = function(callback){
                 }
                 var o = {
                     id:obj.id,
-                    status_id:id
+                    status_id:id,
+                    reject_reason:obj.reject_reason || ''
                 };
                 results.modify(o,function(err,result){
                     callback(err,result);
