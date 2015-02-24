@@ -211,27 +211,27 @@ block content
                                     .row
                                         .col-md-12
                                             .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}")
-                                            if(part.resultsList.length == 0)
-                                                h4.ta-center Пока нет результатов.
-                                            else
-                                                table.table
-                                                    thead
-                                                        tr
-                                                            th Место
-                                                            th Атлет
-                                                            th Результат
-                                                            th Видео
-                                                    tbody
-                                                        each result, rIdx in part.resultsList
-                                                            tr
-                                                                td #{rIdx+1}
-                                                                td #{result.user_firstname} #{result.user_surname}
-                                                                td.posRel
-                                                                    .result-output
-                                                                        | #{result.concat_result}
-                                                                    .statusColor(class="#{result.status_name_sys}")
-                                                                        | #{result.status_name}
-                                                                td
-                                                                    a(target="_blank", href='#{result.video_url}')
-                                                                        i.fa.fa-video-camera
+                                            //if(part.resultsList.length == 0)
+                                            //    h4.ta-center Пока нет результатов.
+                                            //else
+                                            //    table.table
+                                            //        thead
+                                            //            tr
+                                            //                th Место
+                                            //                th Атлет
+                                            //                th Результат
+                                            //                th Видео
+                                            //        tbody
+                                            //            each result, rIdx in part.resultsList
+                                            //                tr
+                                            //                    td #{rIdx+1}
+                                            //                    td #{result.user_firstname} #{result.user_surname}
+                                            //                    td.posRel
+                                            //                        .result-output
+                                            //                            | #{result.concat_result}
+                                            //                        .statusColor(class="#{result.status_name_sys}")
+                                            //                            | #{result.status_name}
+                                            //                    td
+                                            //                        a(target="_blank", href='#{result.video_url}')
+                                            //                            i.fa.fa-video-camera
     script(type="text/javascript", src="js/html/event.js")
