@@ -66,13 +66,12 @@ module.exports = function(callback){
                         },
                         {
                             column:"name",
-                            alias:"result_status"
+                            alias:"status_name"
                         },
                         {
                             column:"sys_name",
-                            alias:"result_status_sys"
+                            alias:"status_name_sys"
                         }
-
                     ]
                 },
 
