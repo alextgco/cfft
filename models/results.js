@@ -109,14 +109,16 @@ module.exports = function(callback){
         if (err){
             console.log(err);
         }
-        results.get2 = function(obj,callback){
-            var exludedColumns = [];
+        results.get = function(obj,callback){
+            var exludedColumns = ['published','created','deleted'];
             var columns = funcs.cloneObj(results.columns);
             for (var i in exludedColumns) {
                 delete columns[exludedColumns[i]];
             }
             obj.columns = columns;
-            //obj.where;
+            results.prototype.get(obj,function(err, results){
+                callback(err, results);
+            })
         };
         results.addOrder = function(obj,callback){
             if (typeof obj!=='object'){
