@@ -7,9 +7,9 @@
     CF.directories = {
         columnNames: {
             action_id: 'ID Мероприятия',
-            action_part: "Этап мероприятия",
+            action_part: "Этап",
             action_part_id: "ID Этапа мероприятия",
-            action_title: "Название мероприятия",
+            action_title: "Мероприятие",
             concat_result: "Результат",
             created: "Дата создания",
             deleted: "Удален",
@@ -67,15 +67,16 @@
         this.wrapper =          p.wrapper || undefined;
         this.where =            p.where || {};
         this.getObject =        p.getObject || undefined;
-        this.limit =            p.limit || '';
+        this.limit =            p.limit || 20;
+        this.perPage =          p.perPage || 20;
         this.sort =             p.sort || '';
         this.columns =          p.columns || '';
         this.visible_columns =  p.visible_columns || [];
         this.goToObject =       p.goToObject || '';
         this.primaryKey =       p.primaryKey || undefined;
         this.filters =          p.filters || [];
+        this.tempPage =         1;
     };
-
 
     CF.Table.prototype.init = function(){
         var _t = this;
@@ -105,6 +106,7 @@
         };
 
         sendQuery(o, function(res){
+            _t.totalCount = res.totalCount;
             _t.data = res.data;
             if(typeof cb == 'function'){
                 cb();
@@ -141,6 +143,12 @@
 
     CF.Table.prototype.render = function(cb){
         var _t = this;
+
+
+
+        var prev = (_t.tempPage > 1)? '<li><a href="#" aria-label="Previous" class="prev"><span aria-hidden="true">&laquo;</span></a></li>' : '';
+        var next = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" aria-label="Next" class="next"><span aria-hidden="true">&raquo;</span></a></li>' : '';
+
         var tpl = '<table class="table simpleView">' +
                     '<thead>' +
                     '<tr>{{#columns}}' +
@@ -152,10 +160,31 @@
                     '<td>{{value}}</td>{{/tds}}' +
                     '</tr>{{/rows}}' +
                     '</tbody>' +
-                    '</table>';
+                    '</table>' +
+
+                    '<nav>'+
+                        '<ul class="pagination">'+
+                            prev+
+                            '{{#pages}}'+
+                                '<li><a href="#" data-page="{{pageNo}}" class="page">{{pageNo}}</a></li>'+
+                            '{{/pages}}'+
+                            next+
+                        '</ul>'+
+                    '</nav>';
+
         var mO = {
-            columns: [],
-            rows: []
+            columns: [
+                {
+                    column: '#',
+                    column_ru: '#'
+                }
+            ],
+            rows: [],
+            pages: [
+                {
+                    pageNo: 1
+                }
+            ]
         };
         for(var i in _t.data[0]){
             var item = _t.data[0][i];
@@ -171,7 +200,11 @@
         for(var k in _t.data){
             var item = _t.data[k];
             mO.rows.push({
-                tds: []
+                tds: [
+                    {
+                        value: idx+1
+                    }
+                ]
             });
 
             for(var j in item){
@@ -198,6 +231,25 @@
         _t.wrapper.find('tbody tr').off('click').on('click', function(){
             var id = $(this).data('id');
             document.location.href = _t.goToObject+'?'+_t.primaryKey+'='+id;
+        });
+
+        var paginationWrapper = _t.wrapper.find('.pagination');
+        var pages = paginationWrapper.find('a.page');
+        var prev = paginationWrapper.find('a.prev');
+        var next = paginationWrapper.find('a.next');
+
+        next.off('click').on('click', function(){
+            _t.limit = _t.tempPage*_t.perPage+','+_t.perPage;
+
+            console.log(_t.limit);
+
+            _t.getData(function(){
+                _t.render(function(){
+                    _t.setHandlers();
+                    _t.tempPage = _t.tempPage + 1;
+                });
+            });
+
         });
     };
 

@@ -181,6 +181,11 @@ table.table.simpleView{
 }
 table.table.simpleView th{
     white-space: nowrap;
+    background-color: #385EBE;
+    color: #fff;
+    font-weight: normal;
+    font-size: 14px;
+    border-bottom: 0;
 }
 table.table.simpleView td{
     white-space: nowrap;

@@ -5,7 +5,7 @@ $(document).ready(function(){
     var table = new CF.Table({
         getObject: getObj,
         wrapper: tableWrapper,
-        visible_columns: ['action_title', 'action_part', 'user_firstname', 'user_surname', 'concat_result', 'status_name'],
+        visible_columns: ['action_name', 'action_title', 'action_part', 'user_firstname', 'user_surname', 'concat_result', 'status_name'],
         //'id','action_id','status_name_sys','video_url'
         goToObject: 'admin_judge_result',
         primaryKey: 'id',
