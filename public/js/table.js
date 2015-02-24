@@ -65,7 +65,7 @@
     CF.Table = function(p){
         this.id =               p.id || CF.guid();
         this.wrapper =          p.wrapper || undefined;
-        this.where =            p.where || '';
+        this.where =            p.where || {};
         this.getObject =        p.getObject || undefined;
         this.limit =            p.limit || '';
         this.sort =             p.sort || '';
@@ -82,6 +82,7 @@
         _t.getData(function(){
             _t.render(function(){
                 _t.setHandlers();
+                _t.renderFilters();
                 _t.initFilters();
             });
 
@@ -132,10 +133,15 @@
         }
     };
 
+    CF.Table.prototype.renderFilters = function(){
+        var _t = this;
+        var html = '<div class="filters-wrapper col-md-11"></div><div class="col-md-1"><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div>';
+        _t.wrapper.prepend(html);
+    };
+
     CF.Table.prototype.render = function(cb){
         var _t = this;
-        var tpl =   '<div class="filters-wrapper row"></div>'+
-                    '<table class="table simpleView">' +
+        var tpl = '<table class="table simpleView">' +
                     '<thead>' +
                     '<tr>{{#columns}}' +
                     '<th data-column="{{column}}">{{column_ru}}</th>{{/columns}}' +
@@ -204,13 +210,15 @@
             if(filter.type == 'like'){
                 html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="text" class="tableFilter form-control" data-filter_type="like" data-column="'+filter.column+'"/></div>';
             }else if(filter.type == 'select'){
-                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="hidden" class="tableFilter form-control select2" data-text="" data-filter_type="select" data-name="'+filter.column+'" data-table="'+filter.tableName+'" data-column="'+filter.column+'"/></div>';
+                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="hidden" data-return_id="'+filter.returnId+'" data-return_name="'+filter.returnName+'" class="tableFilter form-control select2" data-text="" data-filter_type="select" data-name="'+filter.column+'" data-table="'+filter.tableName+'" data-column="'+filter.column+'"/></div>';
             }
             filterWrapper.append(html);
         }
         filterWrapper.find('input.select2[type="hidden"]').each(function(idx, elem){
             var $elem = $(elem);
             var name = $elem.data('name');
+            var returnId = $elem.data('return_id');
+            var returnName = $elem.data('return_name');
             $elem.select2({
                 query: function(query){
                     var data = {results: []};
@@ -222,8 +230,8 @@
                         for(var i in res.data){
                             var item = res.data[i];
                             data.results.push({
-                                id: item.id,
-                                text: item.name
+                                id: item[returnId],
+                                text: item[returnName]
                             });
                         }
                         query.callback(data);
@@ -233,6 +241,21 @@
                     var data = {id: element.val(), text: $(element).data('text')};
                     callback(data);
                 }
+            });
+            $elem.off('change').on('change', function(){
+                _t.where[$elem.data('column')] = $elem.select2('data').id;
+            });
+        });
+
+        filterWrapper.find('input.tableFilter[type="text"][data-filter_type="like"]').off('input').on('input', function(){
+            _t.where[$(this).data('column')] = '%'+$(this).val()+'%';
+        });
+
+        _t.wrapper.find('.confirm-filter').off('click').on('click', function(){
+            _t.getData(function(){
+                _t.render(function(){
+                    _t.setHandlers();
+                });
             });
         });
     };
