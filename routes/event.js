@@ -49,6 +49,7 @@ exports.get = function(req, res, next){
                         return callback(err);
                     }
                     item.resultsList = resultsRes;
+                    callback(null);
                 });
             },function(err){
                 if (err){
