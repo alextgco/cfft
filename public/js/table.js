@@ -159,7 +159,6 @@
                     '</tr>{{/rows}}' +
                     '</tbody>' +
                     '</table>' +
-
                     '<nav>'+
                         '<ul class="pagination">'+
                             prev+
@@ -217,7 +216,9 @@
 
             idx++;
         }
-        _t.wrapper.html(Mustache.to_html(tpl, mO));
+        _t.wrapper.find('table.table.simpleView').remove();
+        _t.wrapper.find('nav').remove();
+        _t.wrapper.append(Mustache.to_html(tpl, mO));
         console.log(mO);
         if(typeof cb == 'function'){
             cb();
@@ -313,6 +314,17 @@
             _t.getData(function(){
                 _t.render(function(){
                     _t.setHandlers();
+                });
+            });
+        });
+
+        _t.wrapper.find('.clear-filter').off('click').on('click', function(){
+            _t.where = {};
+            _t.getData(function(){
+                _t.render(function(){
+                    _t.setHandlers();
+                    _t.renderFilters();
+                    _t.initFilters();
                 });
             });
         });
