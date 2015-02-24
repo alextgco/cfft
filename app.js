@@ -64,6 +64,8 @@ require('./routes')(app);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 /*** БЛОК ДЛЯ ТЕСТОВ ******/
 
 /*var o = {

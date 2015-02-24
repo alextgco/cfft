@@ -181,6 +181,14 @@ module.exports = function(callback){
                 }
                 obj.status_id = id;
                 results.add(obj, function(err,result){
+                    //{"code":0,"toastr":{"type":"success","message":"Результат успешно добавлен."},"data":{"id":36}}
+                    if(err){
+                        return callback(err,result);
+                    }
+                    if (result.code!=0){
+                        return callback(err,result);
+                    }
+                    var id = result.data.id;
                     callback(err,result);
                 });
             });
