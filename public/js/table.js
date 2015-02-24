@@ -269,7 +269,7 @@
             if(filter.type == 'like'){
                 html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="text" class="tableFilter form-control" data-filter_type="like" data-column="'+filter.column+'"/></div>';
             }else if(filter.type == 'select'){
-                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="hidden" data-return_id="'+filter.returnId+'" data-return_name="'+filter.returnName+'" class="tableFilter form-control select2" data-text="" data-filter_type="select" data-name="'+filter.column+'" data-table="'+filter.tableName+'" data-column="'+filter.column+'"/></div>';
+                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="hidden" data-where_type="'+filter.whereType+'" data-where_table="'+filter.whereTable+'" data-return_id="'+filter.returnId+'" data-return_name="'+filter.returnName+'" class="tableFilter form-control select2" data-text="" data-filter_type="select" data-name="'+filter.column+'" data-table="'+filter.tableName+'" data-column="'+filter.column+'"/></div>';
             }
             filterWrapper.append(html);
         }
@@ -278,6 +278,8 @@
             var name = $elem.data('name');
             var returnId = $elem.data('return_id');
             var returnName = $elem.data('return_name');
+            var whereType = $elem.data('where_type');
+            var whereTable = $elem.data('where_table');
             $elem.select2({
                 query: function(query){
                     var data = {results: []};
@@ -302,9 +304,9 @@
                 }
             });
             $elem.off('change').on('change', function(){
-                if(filter.whereType == 'external'){
-                    _t.where[filter.whereTable] = {};
-                    _t.where[filter.whereTable][$elem.data('column')] = $elem.select2('data').id;
+                if(whereType == 'external'){
+                    _t.where[whereTable] = {};
+                    _t.where[whereTable][$elem.data('column')] = $elem.select2('data').id;
                 }else{
                     _t.where[$elem.data('column')] = $elem.select2('data').id;
                 }
