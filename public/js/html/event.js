@@ -7,7 +7,7 @@ $(document).ready(function(){
     var table = new CF.Table({
         getObject: getObj,
         wrapper: tableWrapper,
-        visible_columns: ['user_firstname', 'user_surname', 'concat_result', 'status_name', 'video_url'],
+        visible_columns: ['user_surname', 'concat_result', 'status_name', 'video_url', 'user_firstname'],
         where: {
             action_parts: {
                 action_id: action_id,
@@ -36,7 +36,6 @@ $(document).ready(function(){
             }
         ]
     });
-alert(21);
     table.init();
 
 });

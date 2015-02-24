@@ -887,3 +887,7 @@ h4.darkHd{
 .result-output{
     float: left;
 }
+.filters-wrapper{
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
