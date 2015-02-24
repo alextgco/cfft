@@ -3,6 +3,7 @@ var MyError = require('../error').MyError;
 var funcs = require('../libs/functions');
 module.exports = function(callback){
     var results = new Model({
+        allowedForUserCommand:['get','addOrder'],
         table: 'results',
         table_ru: 'Результат',
         ending:'',
@@ -183,6 +184,21 @@ module.exports = function(callback){
                     callback(err,result);
                 });
             });
+        };
+        results.approve = function(obj,callback){
+            results.getDirectoryId('result_statuses',obj.status,function(err,id){
+                if (err){
+                    return callback(null, funcs.formatResponse(1, 'error', 'Не удалось указать статус заявки. Нет такого статуса '+obj.status));
+                }
+                var o = {
+                    id:obj.id,
+                    status_id:id
+                };
+                results.modify(o,function(err,result){
+                    callback(err,result);
+                })
+            });
+
         };
 
         callback(results);
