@@ -11,18 +11,17 @@ $(document).ready(function(){
                 success: {
                     label: 'Подтвердить',
                     callback: function(){
-                        alert('approve');
                         var o = {
-                            command: 'modify',
-                            object: 'result',
+                            command: 'approve',
+                            object: 'results',
                             params: {
                                 id: id,
-                                status: 'asdsa'
+                                status: 'ACCEPTED'
                             }
                         };
-                        //sendQuery(o, function(res){
-                        //    toastr[res.toastr.type](res.toastr.message);
-                        //});
+                        sendQuery(o, function(res){
+                            toastr[res.toastr.type](res.toastr.message);
+                        });
                     }
                 },
                 error: {
@@ -44,18 +43,18 @@ $(document).ready(function(){
                 success: {
                     label: 'Отклонить',
                     callback: function(){
-                        alert('reject', $('.rejectReason').val());
                         var o = {
-                            command: 'modify',
+                            command: 'approve',
                             object: 'result',
                             params: {
                                 id: id,
-                                status: 'asdsa'
+                                status: 'REJECTED',
+                                rejectReason: $('.rejectReason').val()
                             }
                         };
-                        //sendQuery(o, function(res){
-                        //    toastr[res.toastr.type](res.toastr.message);
-                        //});
+                        sendQuery(o, function(res){
+                            toastr[res.toastr.type](res.toastr.message);
+                        });
                     }
                 },
                 error: {

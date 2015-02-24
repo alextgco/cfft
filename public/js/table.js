@@ -1,7 +1,5 @@
 (function(){
 
-
-
     CF = CF || {};
 
     CF.directories = {
