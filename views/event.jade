@@ -35,9 +35,13 @@ block content
                                         i.fa.fa-calendar
                                         |  #{part.start_date} - #{part.end_date}
                             .col-md-4
-                                .sBtn.flRight.red.order-event-part(data-event='#{event.title}', data-event_id='#{event.id}', data-event_part='#{part.title}', data-event_part_id='#{part.id}')
+                                - var buttonClass = (user)? 'order-event-part' : 'goToLogin'
+                                .justDiv(data-event='#{event.title}', data-event_id='#{event.id}', data-event_part='#{part.title}', data-event_part_id='#{part.id}', class="sBtn flRight red #{buttonClass}")
                                     i.fa.fa-paper-plane-o
-                                    |   Подать заявку
+                                    if(user)
+                                        |   Подать заявку
+                                    else
+                                        |   Авторизируйтесь для участия
                                     .modal-order-content
                                         form.form-horizontal
                                             .row

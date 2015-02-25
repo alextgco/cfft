@@ -125,6 +125,8 @@ $(document).ready(function(){
     CF.initEditProfile();
     CF.initOrderEventPart();
     CF.initBackTimer();
+    CF.initMainWow();
+    CF.initLeaderBoard();
 });
 
 (function(){
@@ -581,6 +583,62 @@ $(document).ready(function(){
 
     }
     CF.initBackTimer = initBackTimer;
+
+    function initMainWow(){
+        var o = {
+            command: 'get',
+            object: 'action',
+            params: {
+                where: {
+                    action_types: {
+                        sys_name: 'WOD_OF_WEEK'
+                    },
+                    action_statuses: {
+                        sys_name: '<>DRAFT'
+                    }
+                }
+            }
+        };
+
+        sendQuery(o, function(res){
+            var data = res.data;
+            console.log(data);
+        });
+    };
+    CF.initMainWow = initMainWow;
+
+    function initLeaderBoard(){
+        var fo = {
+            command: 'get',
+            object: 'user',
+            params: {
+                where: {
+                    gender: 'famale'
+                }
+            }
+        };
+
+        var mo = {
+            command: 'get',
+            object: 'user',
+            params: {
+                where: {
+                    gender: 'male'
+                }
+            }
+        };
+
+        sendQuery(fo, function(res){
+            var data = res.data;
+            console.log('famale', data);
+        });
+
+        sendQuery(mo, function(res){
+            var data = res.data;
+            console.log('male', data);
+        });
+    };
+    CF.initLeaderBoard = initLeaderBoard;
 }());
 
 
