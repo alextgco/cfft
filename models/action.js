@@ -9,6 +9,7 @@ module.exports = function(callback){
         required_fields:['payment_type_id','title'],
         validation: {
             payment_type_id:'number',
+            status_id:'number',
             title:'notNull'
         },
         getFormating:{
@@ -66,7 +67,7 @@ module.exports = function(callback){
         if (err){
             console.log(err);
         }
-        action.beforeFunction.get = function (obj, callback) {
+        action.beforeFunction.add = function (obj, callback) {
             if (obj.status_id){
                 action.getDirectoryValue('action_statuses',obj.status_id,function(err,val){
                     if (err){
@@ -77,21 +78,42 @@ module.exports = function(callback){
                         callback(null, obj);
                     }
                 });
+            }else{
+                action.getDirectoryId('action_statuses','DRAFT',function(err,id){
+                    if (err){
+                        return callback(new MyError('Нет такого статуса'));
+                    }
+                    obj.status_id = id;
+                    callback(null, obj);
+                });
+
             }
         };
         action.beforeFunction.modify = function (obj, callback) {
-            if (obj.status_id){
+            if (obj.status_id==''){
+                delete obj.status_id;
+            }
+            if (obj.status_id && obj.status_id!=''){
                 action.getDirectoryValue('action_statuses',obj.status_id,function(err,val){
                     if (err){
                         return callback(new MyError('Нет такого статуса'));
                     }
                     //console.log(funcs.dateAmoreB('2015-02-24 23:58:50','2015-02-24 23:58:51'));
                     if (val == 'DRAFT'){
-                        obj.published = 'setNULL';
+                        obj.published = '5015-02-25 22:41:27';
                         callback(null, obj);
                     }else{
                         obj.published = funcs.getDateTimeMySQL();
+                        callback(null, obj);
                     }
+                });
+            }else{
+                action.getDirectoryId('action_statuses','DRAFT',function(err,id){
+                    if (err){
+                        return callback(new MyError('Нет такого статуса'));
+                    }
+                    obj.status_id = id;
+                    callback(null, obj);
                 });
             }
         };

@@ -123,7 +123,7 @@ $(document).ready(function(){
     CF.initEditProfile();
     CF.initOrderEventPart();
     CF.initMainWow();
-    CF.initLeaderBoard();
+    //CF.initLeaderBoard();
 });
 
 (function(){
@@ -610,7 +610,6 @@ $(document).ready(function(){
         var start = wowWrapper.find('.date-start');
         var end = wowWrapper.find('.date-end');
         var short = wowWrapper.find('.nearrest-wow-exercises');
-        var btn = wowWrapper.find('.nearrest-wow-order');
 
         sendQuery(o, function(res){
             var data = res.data;
@@ -622,12 +621,11 @@ $(document).ready(function(){
                 end.html(getDayMth(data.date_end));
                 wowWrapper.data('to_date', data.date_start);
                 short.html(data.description2);
-                btn.attr('href', 'wow?id='+data.id);
                 CF.initBackTimer();
             }
             console.log(data);
         });
-    }
+    };
     CF.initMainWow = initMainWow;
 
     function initLeaderBoard(){
@@ -660,37 +658,8 @@ $(document).ready(function(){
             var data = res.data;
             console.log('male', data);
         });
-    }
-    CF.initLeaderBoard = initLeaderBoard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //
-    //pareRes = (usersInPart - userPlace) / (usersInPart-1);
-    //timeBackCoeff = switch (part was) { case '<3 mths ago': 1 ; case '<6 mths ago': 0.6; case '<9 mths ago': 0}
-    //partCoeff = switch usersInPart { case '<=5': 0.75;  case '<=10': 1; case '<=15': 1.25;}  users step = 5; coeffStep = 0.25;
-    //const = 2;
-    //var formula = 1000 * ( (partRes1 * timeBackCoeff1 * partCoeff1) + (partRes2 * timeBackCoeff2 * partCoeff2) + (etc) )/ const * (timeBackCoeff1 + timeBackCoeff2 + etc);
+    };
+    //CF.initLeaderBoard = initLeaderBoard;
 }());
 
 
