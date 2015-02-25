@@ -65,6 +65,7 @@ var Model = function (params, callback) {
             callback(null,null);
         }
     };
+    this.getFormating = params.getFormating || {};
     this.table = params.table;
     this.table_ru = params.table_ru || 'Объект';
     this.ending = params.ending || ''; // 'о' 'а'
@@ -221,13 +222,13 @@ Model.prototype.get = function (params, callback) {
             if (whereString !== '') {
                 sql += ' AND';
             }
-            sql += " (" + self.table + ".deleted IS NULL OR " + self.table + ".deleted >'" + funcs.getDataTimeMySQL() + "')"
+            sql += " (" + self.table + ".deleted IS NULL OR " + self.table + ".deleted >'" + funcs.getDateTimeMySQL() + "')"
         }
         if (published) {
             if (whereString !== '' || !deleted) {
                 sql += ' AND';
             }
-            sql += " (" + self.table + ".published IS NOT NULL AND " + self.table + ".published <'" + funcs.getDataTimeMySQL() + "')"
+            sql += " (" + self.table + ".published IS NOT NULL AND " + self.table + ".published <'" + funcs.getDateTimeMySQL() + "')"
         }
         if (sort) {
             var sortColumns = [];
@@ -278,6 +279,7 @@ Model.prototype.get = function (params, callback) {
                                 rows[i][k] = '';
                             }
                         }
+
                         for (var j in self.getFormating) {
                             var val = rows[i][j];
                             try {
@@ -347,7 +349,7 @@ Model.prototype.add = function (obj, callback) {
         return callback(null, funcs.formatResponse(-1, 'error', valid.message, valid.fields));
     }
     var addToModel = function (conn, callback) {
-        obj.created = funcs.getDataTimeMySQL();
+        obj.created = funcs.getDateTimeMySQL();
         console.log(obj);
         conn.insert(self.table, obj, function (err, recordId) {
             if (err){
@@ -458,6 +460,22 @@ Model.prototype.getDirectoryId = function(table, sys_name, callback){
         pool.getConn,
         function(conn,callback){
             conn.queryValue("select id from ?? where sys_name = ?",[table,sys_name],function(err, id){
+                conn.release();
+                callback(err, id);
+            });
+        }
+    ], function (err, id) {
+        if (err){
+            return callback(err);
+        }
+        callback(null, id);
+    });
+};
+Model.prototype.getDirectoryValue = function(table, id, callback){
+    async.waterfall([
+        pool.getConn,
+        function(conn,callback){
+            conn.queryValue("select sys_name from ?? where id = ?",[table,id],function(err, id){
                 conn.release();
                 callback(err, id);
             });

@@ -1,5 +1,6 @@
 var Model = require('./MySQLModel');
 var MyError = require('../error').MyError;
+var funcs = require('../libs/functions');
 module.exports = function(callback){
     var action = new Model({
         table: 'actions',
@@ -65,6 +66,32 @@ module.exports = function(callback){
         if (err){
             console.log(err);
         }
+        /*action.beforeFunction.get = function (obj, callback) {
+            if (obj.status_id){
+                action.getDirectoryValue('action_statuses',obj.status_id,function(err,val){
+                    if (err){
+                        return callback(new MyError('Нет такого статуса'));
+                    }
+                    if (val != 'DRAFT'){
+                        obj.published = funcs.getDateTimeMySQL();
+                        callback(null, obj);
+                    }
+                });
+            }
+        };
+        action.beforeFunction.modify = function (obj, callback) {
+            if (obj.status_id){
+                action.getDirectoryValue('action_statuses',obj.status_id,function(err,val){
+                    if (err){
+                        return callback(new MyError('Нет такого статуса'));
+                    }
+                    if (val == 'DRAFT'){
+                        obj.published = funcs.getDateTimeMySQL();
+                        callback(null, obj);
+                    }
+                });
+            }
+        };*/
 
         callback(action);
     });

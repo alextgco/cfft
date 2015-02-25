@@ -20,10 +20,13 @@ var funcs = {
 
         return o;
     },
-    getDataTimeMySQL: function () {
+    getDateTimeMySQL: function () {
         return moment().format('YYYY-MM-DD HH:mm:ss');
     },
-    getDataMySQL: function () {
+    getDateMySQL: function () {
+        return moment().format('YYYY-MM-DD');
+    },
+    dateAmoreB: function (a,b) {
         return moment().format('YYYY-MM-DD');
     },
     cloneObj: function (obj) {
@@ -41,9 +44,9 @@ var funcs = {
     },
     parseBlob: function(arr){
         if (typeof arr!=='object'){
-            return obj;
+            return arr;
         }
-        return obj.toString();
+        return arr.toString();
     },
     clearEmpty: function(arr) {
         if (typeof arr!=='object'){

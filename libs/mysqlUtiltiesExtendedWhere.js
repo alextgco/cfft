@@ -31,6 +31,8 @@ var upgradeWhere = function(connection){
                 } else if ((value.indexOf('*') !== -1) || (value.indexOf('?') !== -1)) {
                     value = value.replace(/\*/g, '%').replace(/\?/g, '_');
                     clause = key + ' LIKE ' + dbc.escape(value);
+                }else if (value == 'setNULL') {
+                    clause = key + '= NULL';
                 } else clause = key + ' = ' + dbc.escape(value);
             }
             if (result) result = result + ' AND ' + clause; else result = clause;
