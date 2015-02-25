@@ -6,6 +6,10 @@ module.exports = function(callback){
         table_ru: 'Мероприятие',
         ending:'о',
         required_fields:['payment_type_id','title'],
+        validation: {
+            payment_type_id:'number',
+            title:'notNull'
+        },
         getFormating:{
             description1:"parseBlob",
             description2:"parseBlob"

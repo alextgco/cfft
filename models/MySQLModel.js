@@ -34,6 +34,10 @@ var Model = function (params, callback) {
         return false;
     }
     this.validationFormats = {
+        notNull:{
+            format:'<значение>',
+            example:'строка, число, дата...'
+        },
         number:{
             format:'<число>',
             example:'10'
@@ -41,6 +45,10 @@ var Model = function (params, callback) {
         url:{
             format:'<Протокол>://<адрес>',
             example:'http://example.ru'
+        },
+        email:{
+            format:'<Имя>@<домен>',
+            example:'user@example.ru'
         }
     };
     this.beforeFunction = {
@@ -467,7 +475,7 @@ Model.prototype.validate = function(obj){
     var not_valid = [];
     for (var field in self.validation) {
         var valFunc = self.validation[field];
-        if (obj[field]===undefined || typeof funcs.validation[valFunc]!=='function'){
+        if (obj[field]===undefined || typeof funcs.validation[valFunc]!='function'){
             continue;
         }
         if (!funcs.validation[valFunc](obj[field])){

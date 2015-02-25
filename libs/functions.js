@@ -58,7 +58,13 @@ var funcs = {
 
     },
     validation:{
+        notNull:function(val){
+            return (val!='');
+        },
         number:function(val){
+            if (val==''){
+                return false;
+            }
             return !isNaN(+val);
         },
         url:function(val){
