@@ -8,6 +8,12 @@ $(document).ready(function(){
         getObject: getObj,
         wrapper: tableWrapper,
         visible_columns: ['user_surname', 'concat_result', 'status_name', 'video_url', 'user_firstname'],
+        specialColumns: [
+            {
+                column: 'video_url',
+                type: 'link'
+            }
+        ],
         defaultWhere: {
             action_parts: {
                 action_id: action_id,
