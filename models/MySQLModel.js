@@ -474,6 +474,9 @@ Model.prototype.validate = function(obj){
     var self = this;
     var not_valid = [];
     for (var field in self.validation) {
+        if (self.columns.indexOf(field)==-1){
+            continue;
+        }
         var valFunc = self.validation[field];
         if (obj[field]===undefined || typeof funcs.validation[valFunc]!='function'){
             continue;

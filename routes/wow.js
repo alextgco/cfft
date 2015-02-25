@@ -62,7 +62,6 @@ exports.get = function(req, res, next){
             if(result.data.length == 0){
 
             }
-
             async.each(result.data,function(item,callback){
                 api('get', 'results', {where: {action_part_id: item.id}, user_id:req.user}, function(err, resultsRes){
                     if (err){

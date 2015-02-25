@@ -132,7 +132,7 @@ module.exports = function(callback){
                 return callback(new MyError('Не корректный объект'));
             }
             if(!obj.user_id){
-                return callback(new MyError('Не авторизированный доступ'));
+                callback(null, funcs.formatResponse(1, 'error', 'Для отправки заявки необходимо авторизоваться..'));
             }
 
             switch (obj.result_type){
