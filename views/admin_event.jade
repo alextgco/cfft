@@ -103,11 +103,18 @@ block content
                                         input.autoUpload.fc-event-field.form-control(type='text', value="#{event.image}", data-name="image")
                             .col-md-3
                                 .form-group
-                                    label Правила:
+                                    label Дата начала:
                                     if(isNew)
-                                        input.autoUpload.fc-event-field.form-control(type='text', data-name="rules_url", value="")
+                                        input.fc-event-field.form-control.fc_datepicker.fc_control(type='text', value='', data-name='date_start')
                                     else
-                                        input.autoUpload.fc-event-field.form-control(value="#{event.rules_url}", type='text', data-name="rules_url")
+                                        input.fc-event-field.form-control.fc_datepicker.fc_control(type='text', value='#{event.date_start}', data-name='date_start')
+                            .col-md-3
+                                .form-group
+                                    label Дата окончания:
+                                    if(isNew)
+                                        input.fc-event-field.form-control.fc_datepicker.fc_control(type='text', value='', data-name='date_end')
+                                    else
+                                        input.fc-event-field.form-control.fc_datepicker.fc_control(type='text', value='#{event.date_end}', data-name='date_end')
                             .col-md-3
                                 .form-group
                                     label Статус:

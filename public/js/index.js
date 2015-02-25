@@ -108,8 +108,6 @@ $(document).ready(function(){
             }
         });
 
-
-
         $('.calendar-wrapper').fullCalendar({
             lang: 'ru',
             aspectRatio: 1,
@@ -124,7 +122,6 @@ $(document).ready(function(){
     CF.initRegistration();
     CF.initEditProfile();
     CF.initOrderEventPart();
-    CF.initBackTimer();
     CF.initMainWow();
     CF.initLeaderBoard();
 });
@@ -585,6 +582,13 @@ $(document).ready(function(){
     CF.initBackTimer = initBackTimer;
 
     function initMainWow(){
+        function getDayMth(date){
+            var y = date.substr(0,4);
+            var m = date.substr(5,2);
+            var d = date.substr(8,2);
+            return d+'.'+m;
+        }
+
         var o = {
             command: 'get',
             object: 'action',
@@ -596,12 +600,29 @@ $(document).ready(function(){
                     action_statuses: {
                         sys_name: '<>DRAFT'
                     }
-                }
+                },
+                sort: 'date_start',
+                limit: 1
             }
         };
 
+        var wowWrapper = $('.nearrest-wow-event-wrapper');
+        var start = wowWrapper.find('.date-start');
+        var end = wowWrapper.find('.date-end');
+        var short = wowWrapper.find('.nearrest-wow-exercises');
+
         sendQuery(o, function(res){
             var data = res.data;
+            if(data.length > 0){
+                data = data[0];
+                console.log('DDDDD', data.date_start);
+
+                start.html(getDayMth(data.date_start));
+                end.html(getDayMth(data.date_end));
+                wowWrapper.data('to_date', data.date_start);
+                short.html(data.description2);
+                CF.initBackTimer();
+            }
             console.log(data);
         });
     };
