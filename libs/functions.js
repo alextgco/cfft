@@ -27,7 +27,9 @@ var funcs = {
         return moment().format('YYYY-MM-DD');
     },
     dateAmoreB: function (a,b) {
-        return moment().format('YYYY-MM-DD');
+        var a1 = moment(a);
+        var b1 = moment(b);
+        return a1 >= b1;
     },
     cloneObj: function (obj) {
         if (obj == null || typeof(obj) != 'object') {
