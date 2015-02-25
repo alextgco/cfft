@@ -59,6 +59,35 @@ module.exports = function(callback){
         if (err){
             console.log(err);
         }
+        action_parts.beforeFunction.get = function (obj, callback) {
+            if (obj.status_id){
+                action_parts.getDirectoryValue('statuses_of_action_parts',obj.status_id,function(err,val){
+                    if (err){
+                        return callback(new MyError('Нет такого статуса'));
+                    }
+                    if (val != 'DRAFT'){
+                        obj.published = funcs.getDateTimeMySQL();
+                        callback(null, obj);
+                    }
+                });
+            }
+        };
+        action_parts.beforeFunction.modify = function (obj, callback) {
+            if (obj.status_id){
+                action_parts.getDirectoryValue('statuses_of_action_parts',obj.status_id,function(err,val){
+                    if (err){
+                        return callback(new MyError('Нет такого статуса'));
+                    }
+                    //console.log(funcs.dateAmoreB('2015-02-24 23:58:50','2015-02-24 23:58:51'));
+                    if (val == 'DRAFT'){
+                        obj.published = 'setNULL';
+                        callback(null, obj);
+                    }else{
+                        obj.published = funcs.getDateTimeMySQL();
+                    }
+                });
+            }
+        };
 
         callback(action_parts);
     });

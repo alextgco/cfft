@@ -66,7 +66,7 @@ module.exports = function(callback){
         if (err){
             console.log(err);
         }
-        /*action.beforeFunction.get = function (obj, callback) {
+        action.beforeFunction.get = function (obj, callback) {
             if (obj.status_id){
                 action.getDirectoryValue('action_statuses',obj.status_id,function(err,val){
                     if (err){
@@ -85,13 +85,16 @@ module.exports = function(callback){
                     if (err){
                         return callback(new MyError('Нет такого статуса'));
                     }
+                    //console.log(funcs.dateAmoreB('2015-02-24 23:58:50','2015-02-24 23:58:51'));
                     if (val == 'DRAFT'){
-                        obj.published = funcs.getDateTimeMySQL();
+                        obj.published = 'setNULL';
                         callback(null, obj);
+                    }else{
+                        obj.published = funcs.getDateTimeMySQL();
                     }
                 });
             }
-        };*/
+        };
 
         callback(action);
     });
