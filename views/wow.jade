@@ -35,9 +35,13 @@ block content
                                         i.fa.fa-calendar
                                         |  #{part.start_date} - #{part.end_date}
                             .col-md-4
-                                .sBtn.flRight.red.order-event-part(data-event='#{event.title}', data-event_id='#{event.id}', data-event_part='#{part.title}', data-event_part_id='#{part.id}')
+                                - var buttonClass = (user)? 'order-event-part' : 'goToLogin'
+                                .justDiv(data-event='#{event.title}', data-event_id='#{event.id}', data-event_part='#{part.title}', data-event_part_id='#{part.id}', class="sBtn flRight red #{buttonClass}")
                                     i.fa.fa-paper-plane-o
-                                    |   Подать заявку
+                                    if(user)
+                                        |   Подать заявку
+                                    else
+                                        |   Авторизируйтесь для участия
                                     .modal-order-content
                                         form.form-horizontal
                                             .row
@@ -107,287 +111,51 @@ block content
                                 .tab-pane.active(role='tabpanel', id="rules_#{part.id}")
                                     .row.padTop30
                                         .col-md-12
-                                            .col-md-6
-                                                h4.darkHd Комплекс
-                                                !{part.desc_complex}
-                                                hr
-                                                h4.darkHd Примечание
-                                                !{part.note}
-                                                hr
-                                                h4.darkHd Подсчет очков
-                                                !{part.desc_scoring}
-                                                hr
-                                                h4.darkHd Оборудование
-                                                !{part.desc_inventory}
-                                                hr
-                                                h4.darkHd Стандарты видеосъкемки
-                                                !{part.desc_video_std}
+                                            if(part.desc_complex.length == 0 && part.note.length == 0 && part.desc_scoring.length == 0 && part.desc_inventory.length == 0 && part.desc_video_std.length == 0 && part.desc_move_std.length == 0)
+                                                h4 Нет информации
+                                            else
+                                                if(part.desc_move_std.length > 0)
+                                                    .wid50pr.flLeft
+                                                        if(part.desc_complex.length > 0)
+                                                            h4.darkHd Комплекс
+                                                            !{part.desc_complex}
+                                                        if(part.note.length > 0)
+                                                            h4.darkHd Примечание
+                                                            !{part.note}
+                                                        if(part.desc_scoring.length > 0)
+                                                            h4.darkHd Подсчет очков
+                                                            !{part.desc_scoring}
+                                                        if(part.desc_inventory.length > 0)
+                                                            h4.darkHd Оборудование
+                                                            !{part.desc_inventory}
+                                                        if(part.desc_video_std.length > 0)
+                                                            h4.darkHd Стандарты видеосъкемки
+                                                            !{part.desc_video_std}
+                                                else
+                                                    .wid100pr.flLeft
+                                                        if(part.desc_complex.length > 0)
+                                                            h4.darkHd Комплекс
+                                                            !{part.desc_complex}
+                                                        if(part.note.length > 0)
+                                                            h4.darkHd Примечание
+                                                            !{part.note}
+                                                        if(part.desc_scoring.length > 0)
+                                                            h4.darkHd Подсчет очков
+                                                            !{part.desc_scoring}
+                                                        if(part.desc_inventory.length > 0)
+                                                            h4.darkHd Оборудование
+                                                            !{part.desc_inventory}
+                                                        if(part.desc_video_std.length > 0)
+                                                            h4.darkHd Стандарты видеосъкемки
+                                                            !{part.desc_video_std}
 
-                                            .col-md-6
-                                                h4.darkHd Стандарты движений
-                                                !{part.desc_move_std}
+                                                .wid50pr.flLeft
+                                                    if(part.desc_move_std.length > 0)
+                                                        h4.darkHd Стандарты движений
+                                                        !{part.desc_move_std}
 
                                 .tab-pane(role='tabpanel', id="results_#{part.id}")
-                                    //.row.padTop30
-                                    //    .col-md-12
-                                            //.col-md-3
-                                            //    .form-group
-                                            //        label Страна:
-                                            //        #s2id_autogen1.select2-container.form-control
-                                            //            a.select2-choice(href='javascript:void(0)', tabindex='-1')
-                                            //                span#select2-chosen-2.select2-chosen Россия
-                                            //                abbr.select2-search-choice-close
-                                            //                span.select2-arrow(role='presentation')
-                                            //                    b(role='presentation')
-                                            //            label.select2-offscreen(for='s2id_autogen2')
-                                            //            input#s2id_autogen2.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-2')
-                                            //            .select2-drop.select2-display-none.select2-with-searchbox
-                                            //                .select2-search
-                                            //                    label.select2-offscreen(for='s2id_autogen2_search')
-                                            //                    input#s2id_autogen2_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-2', placeholder='')
-                                            //                ul#select2-results-2.select2-results(role='listbox')
-                                            //        select.form-control(tabindex='-1', title='', style='display: none;')
-                                            //            option(value='1') Россия
-                                            //            option(value='1') Украина
-                                            //            option(value='1') Белоруссия
-                                            //.col-md-3
-                                            //    .form-group
-                                            //        label Город:
-                                            //        #s2id_autogen3.select2-container.form-control
-                                            //            a.select2-choice(href='javascript:void(0)', tabindex='-1')
-                                            //                span#select2-chosen-4.select2-chosen Москва
-                                            //                abbr.select2-search-choice-close
-                                            //                span.select2-arrow(role='presentation')
-                                            //                    b(role='presentation')
-                                            //            label.select2-offscreen(for='s2id_autogen4')
-                                            //            input#s2id_autogen4.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-4')
-                                            //            .select2-drop.select2-display-none.select2-with-searchbox
-                                            //                .select2-search
-                                            //                    label.select2-offscreen(for='s2id_autogen4_search')
-                                            //                    input#s2id_autogen4_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-4', placeholder='')
-                                            //                ul#select2-results-4.select2-results(role='listbox')
-                                            //        select.form-control(tabindex='-1', title='', style='display: none;')
-                                            //            option(value='1') Москва
-                                            //            option(value='1') Санкт-Петербург
-                                            //            option(value='1') Тверь
-                                            //.col-md-3
-                                            //    .form-group
-                                            //        label Клуб:
-                                            //        #s2id_autogen5.select2-container.form-control
-                                            //            a.select2-choice(href='javascript:void(0)', tabindex='-1')
-                                            //                span#select2-chosen-6.select2-chosen Crossfit central
-                                            //                abbr.select2-search-choice-close
-                                            //                span.select2-arrow(role='presentation')
-                                            //                    b(role='presentation')
-                                            //            label.select2-offscreen(for='s2id_autogen6')
-                                            //            input#s2id_autogen6.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-6')
-                                            //            .select2-drop.select2-display-none.select2-with-searchbox
-                                            //                .select2-search
-                                            //                    label.select2-offscreen(for='s2id_autogen6_search')
-                                            //                    input#s2id_autogen6_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-6', placeholder='')
-                                            //                ul#select2-results-6.select2-results(role='listbox')
-                                            //        select.form-control(tabindex='-1', title='', style='display: none;')
-                                            //            option(value='1') Crossfit central
-                                            //            option(value='1') sport unlimited
-                                            //            option(value='1') xFit
-                                            //.col-md-3
-                                            //    .form-group
-                                            //        label Пол:
-                                            //        #s2id_autogen7.select2-container.form-control
-                                            //            a.select2-choice(href='javascript:void(0)', tabindex='-1')
-                                            //                span#select2-chosen-8.select2-chosen Мужской
-                                            //                abbr.select2-search-choice-close
-                                            //                span.select2-arrow(role='presentation')
-                                            //                    b(role='presentation')
-                                            //            label.select2-offscreen(for='s2id_autogen8')
-                                            //            input#s2id_autogen8.select2-focusser.select2-offscreen(type='text', aria-haspopup='true', role='button', aria-labelledby='select2-chosen-8')
-                                            //            .select2-drop.select2-display-none.select2-with-searchbox
-                                            //                .select2-search
-                                            //                    label.select2-offscreen(for='s2id_autogen8_search')
-                                            //                    input#s2id_autogen8_search.select2-input(type='text', autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false', role='combobox', aria-expanded='true', aria-autocomplete='list', aria-owns='select2-results-8', placeholder='')
-                                            //                ul#select2-results-8.select2-results(role='listbox')
-                                            //        select.form-control(tabindex='-1', title='', style='display: none;')
-                                            //            option(value='1') Мужской
-                                            //            option(value='1') Женский
                                     .row
                                         .col-md-12
-                                            if(part.resultsList.length == 0)
-                                                h4.ta-center Пока нет результатов.
-                                            else
-                                                table.table
-                                                    thead
-                                                        tr
-                                                            th Место
-                                                            th Атлет
-                                                            th Результат
-                                                            th Видео
-                                                    tbody
-                                                        each result, rIdx in part.resultsList
-                                                            tr
-                                                                td #{rIdx+1}
-                                                                td #{result.user_firstname} #{result.user_surname}
-                                                                td.posRel
-                                                                    .result-output
-                                                                        | #{result.concat_result}
-                                                                    .statusColor(class="#{result.status_name_sys}")
-                                                                        | #{result.status_name}
-                                                                td
-                                                                    a(target="_blank", href='#{result.video_url}')
-                                                                        i.fa.fa-video-camera
-                                                if(part.resultsList.length > 3)
-                                                    nav
-                                                        ul.pagination
-                                                            li
-                                                                a(href='#', aria-label='Previous')
-                                                                    span(aria-hidden='true') «
-                                                            li
-                                                                a(href='#') 1
-                                                            li
-                                                                a(href='#') 2
-                                                            li
-                                                                a(href='#') 3
-                                                            li
-                                                                a(href='#') 4
-                                                            li
-                                                                a(href='#') 5
-                                                            li
-                                                                a(href='#', aria-label='Next')
-                                                                    span(aria-hidden='true') »
-
-
-
-
-                                            //table.table
-                                            //    thead
-                                            //        tr
-                                            //            th Место
-                                            //            th Атлет
-                                            //            th Результат
-                                            //            th Видео
-                                            //    tbody
-                                            //        tr.warning
-                                            //            th(scope='row')
-                                            //                span.badge 1
-                                            //            td Андрей Ганин
-                                            //            td 5 (246(6:48))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr.success
-                                            //            th(scope='row')
-                                            //                span.badge 2
-                                            //            td Юрий Казаков
-                                            //            td 3 (266(5:57))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr.info
-                                            //            th(scope='row')
-                                            //                span.badge 3
-                                            //            td Владимир Сайдашев
-                                            //            td 2 (268(5:49))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 4
-                                            //            td Ярощук Александр
-                                            //            td 14 (240(5:45))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 5
-                                            //            td Виталий Виткин
-                                            //            td 22 (220(6:41))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 6
-                                            //            td Алексей Царюк
-                                            //            td 22 (220(6:41))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 7
-                                            //            td Ярощук Александр
-                                            //            td 14 (240(5:45))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 8
-                                            //            td Виталий Виткин
-                                            //            td 22 (220(6:41))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 9
-                                            //            td Алексей Царюк
-                                            //            td 22 (220(6:41))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 10
-                                            //            td Ярощук Александр
-                                            //            td 14 (240(5:45))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 11
-                                            //            td Виталий Виткин
-                                            //            td 22 (220(6:41))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 12
-                                            //            td Алексей Царюк
-                                            //            td 22 (220(6:41))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 13
-                                            //            td Ярощук Александр
-                                            //            td 14 (240(5:45))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 14
-                                            //            td Виталий Виткин
-                                            //            td 22 (220(6:41))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //        tr
-                                            //            th(scope='row') 15
-                                            //            td Алексей Царюк
-                                            //            td 22 (220(6:41))
-                                            //            td
-                                            //                a(href='watch.html')
-                                            //                    i.fa.fa-video-camera
-                                            //nav
-                                            //    ul.pagination
-                                            //        li
-                                            //            a(href='#', aria-label='Previous')
-                                            //                span(aria-hidden='true') «
-                                            //        li
-                                            //            a(href='#') 1
-                                            //        li
-                                            //            a(href='#') 2
-                                            //        li
-                                            //            a(href='#') 3
-                                            //        li
-                                            //            a(href='#') 4
-                                            //        li
-                                            //            a(href='#') 5
-                                            //        li
-                                            //            a(href='#', aria-label='Next')
-                                            //                span(aria-hidden='true') »
+                                            .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}")
+    script(type="text/javascript", src="js/html/event.js")

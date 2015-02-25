@@ -205,7 +205,7 @@ $(document).ready(function(){
     //user
 
     function initUserObject(){
-        var userBtn = $('#userObject');
+        var userBtn = $('.goToLogin');
         userBtn.off('click').on('click', function(){
 
             CF.getTemplate('login_modal', function(res){

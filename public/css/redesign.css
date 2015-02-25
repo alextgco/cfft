@@ -782,8 +782,10 @@ a.white:hover{
 }
 
 h4.darkHd{
-    background-color: #343434;
-    color: #FFF;
+    /*background-color: #343434;*/
+    background-image: url(../img/partners_header_bg.png);;
+    color: #000;
+    margin-right: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 14px;

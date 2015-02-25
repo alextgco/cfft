@@ -160,6 +160,7 @@
 
         var prev = (_t.tempPage > 1)? '<li><a href="#" aria-label="Previous" class="prev"><span aria-hidden="true">&laquo;</span></a></li>' : '';
         var next = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" aria-label="Next" class="next"><span aria-hidden="true">&raquo;</span></a></li>' : '';
+        var page = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" data-page="{{pageNo}}" class="page">{{pageNo}}</a></li>' : '';
 
         var tpl = '<table class="table simpleView">' +
                     '<thead>' +
@@ -177,7 +178,7 @@
                         '<ul class="pagination">'+
                             prev+
                             '{{#pages}}'+
-                                '<li><a href="#" data-page="{{pageNo}}" class="page">{{pageNo}}</a></li>'+
+                                page +
                             '{{/pages}}'+
                             next+
                         '</ul>'+
@@ -240,6 +241,11 @@
         _t.wrapper.find('table.table.simpleView').remove();
         _t.wrapper.find('nav').remove();
         _t.wrapper.append(Mustache.to_html(tpl, mO));
+
+        console.log(_t.data);
+        if(_t.data.length == 0){
+            _t.wrapper.append('Результатов нет, пока.');
+        }
         console.log(mO);
         if(typeof cb == 'function'){
             cb();
