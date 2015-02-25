@@ -664,11 +664,33 @@ $(document).ready(function(){
     CF.initLeaderBoard = initLeaderBoard;
 
 
-    // pareRes = (usersInPart - userPlace) / (usersInPart-1);
-    // timeBackCoeff = switch (part was) { case '<3 mths ago': 1 ; case '<6 mths ago': 0.6; case '<9 mths ago': 0}
-    // partCoeff = switch usersInPart { case '<=5': 0.75;  case '<=10': 1; case '<=15': 1.25;}  users step = 5; coeffStep = 0.25;
-    // const = 2;
-    // var formula = 1000 * ( (partRes1 * timeBackCoeff1 * partCoeff1) + (partRes2 * timeBackCoeff2 * partCoeff2) + (etc) )/ const * (timeBackCoeff1 + timeBackCoeff2 + etc);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //
+    //pareRes = (usersInPart - userPlace) / (usersInPart-1);
+    //timeBackCoeff = switch (part was) { case '<3 mths ago': 1 ; case '<6 mths ago': 0.6; case '<9 mths ago': 0}
+    //partCoeff = switch usersInPart { case '<=5': 0.75;  case '<=10': 1; case '<=15': 1.25;}  users step = 5; coeffStep = 0.25;
+    //const = 2;
+    //var formula = 1000 * ( (partRes1 * timeBackCoeff1 * partCoeff1) + (partRes2 * timeBackCoeff2 * partCoeff2) + (etc) )/ const * (timeBackCoeff1 + timeBackCoeff2 + etc);
 }());
 
 
