@@ -311,22 +311,39 @@ $(document).ready(function(){
     removeEvent.off('click').on('click', function(){
         var id = $(this).data('action_id');
         var _t = this;
-        bootbox.confirm('Вы уверены?', function(){
-            var o = {
-                command: 'remove',
-                object: 'action',
-                params: {
-                    id: id
-                }
-            };
 
-            sendQuery(o, function(res){
-                if(res.code == 0){
-                    $(_t).parents('li.action').remove();
+        bootbox.dialog({
+            title: 'Подтверждение',
+            message: 'Вы уверены, что хотите удалить данное мероприятие?',
+            buttons: {
+                success: {
+                    label: 'Подтвердить',
+                    callback: function(){
+                        var o = {
+                            command: 'remove',
+                            object: 'action',
+                            params: {
+                                id: id
+                            }
+                        };
+
+                        sendQuery(o, function(res){
+                            if(res.code == 0){
+                                $(_t).parents('li.action').remove();
+                            }
+                            toastr[res.toastr.type](res.toastr.message);
+                        });
+                    }
+                },
+                error: {
+                    label: 'Отмена',
+                    callback: function(){
+
+                    }
                 }
-                toastr[res.toastr.type](res.toastr.message);
-            });
+            }
         });
+
     });
 
     var removePart = $('.remove-event-part');
@@ -337,7 +354,7 @@ $(document).ready(function(){
         var _t = this;
         bootbox.dialog({
             title: 'Подтверждение',
-            message: 'Вы уверены, что хотите удалить данное мероприятие?',
+            message: 'Вы уверены, что хотите удалить данный этап мероприятия?',
             buttons: {
                 success: {
                     label: 'Подтвердить',
