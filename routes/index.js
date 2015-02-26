@@ -37,7 +37,8 @@ module.exports = function (app) {
   });
 
   app.get('/for_partners', function(req, res, next){
-    res.render('for_partners');
+    console.log(res);
+    res.render('for_athlets');
   });
 
   app.get('/contacts', function(req, res, next){
