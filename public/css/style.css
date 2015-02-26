@@ -635,6 +635,28 @@ input[type="number"].invalid{
     position: relative;
     padding-left: 27px;
 }
+.event-part-status{
+    display: inline-block;
+    background-color: #E8E8E8;
+    font-size: 18px;
+    padding: 3px 9px;
+    margin-left: 20px;
+    border-radius: 12px;
+    position: relative;
+}
+.event-part-status.OPENED{
+    background-color: #128e18;
+    color: #fff;
+}
+.event-part-status.CLOSED{
+    background-color: #3f5ccc;
+    color: #fff;
+}
+.event-part-status.FINISHED{
+    background-color: #ccc;
+    color: #000;
+}
+
 
 .event-part-date i{
     position: absolute;

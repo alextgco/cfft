@@ -12,7 +12,7 @@
   "mysqlConnection":{
     "connectionLimit":100,
     "port": "3306",
-    "host": "192.168.1.52",
+    "host": "192.168.1.200",
     "user": "root",
     "password": "aambfi5y",
     "database": "cfft",
