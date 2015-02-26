@@ -1,5 +1,6 @@
 var Model = require('./MySQLModel');
 var MyError = require('../error').MyError;
+var UserError = require('../error').UserError;
 var funcs = require('../libs/functions');
 module.exports = function(callback){
     var results = new Model({
@@ -175,23 +176,65 @@ module.exports = function(callback){
             if (!finded) {
                 return callback(new MyError('Не переданы (или переданы не корректно) обязательные поля. ' + notFinded.join(', ')));
             }
-            results.getDirectoryId('result_statuses','IN_QUEUE',function(err,id){
-                if (err){
-                    return callback(new MyError('Нет подходящего статуса'));
-                }
-                obj.status_id = id;
-                results.add(obj, function(err,result){
-                    //{"code":0,"toastr":{"type":"success","message":"Результат успешно добавлен."},"data":{"id":36}}
-                    if(err){
-                        return callback(err,result);
-                    }
-                    if (result.code!=0){
-                        return callback(err,result);
-                    }
-                    var id = result.data.id;
-                    callback(err,result);
+            obj.isAff = +obj.isAff || 0;
+
+            results.getDirectoryId('action_statuses','OPENED',function(err,action_status_id){
+                results.getDirectoryId('statuses_of_action_parts','OPENED',function(err,action_part_status_id){
+                    pool.getConn(function(err,conn){
+                        conn.queryValue("select count(*) from action_parts ap left join actions as a on ap.action_id = a.id where a.status_id=? and ap.status_id=? and ap.id = ?",
+                            [action_part_status_id, action_status_id, obj.action_part_id],
+                            function (err, v) {
+                                conn.release();
+                                if (err){
+                                    return callback(err);
+                                }
+                                if (v==0){
+                                    return callback(null, funcs.formatResponse(1, 'error', 'Регистрация закрыта.'));
+                                }
+                                results.getDirectoryId('result_statuses','IN_QUEUE',function(err,id){
+                                    if (err){
+                                        return callback(new MyError('Нет подходящего статуса'));
+                                    }
+                                    obj.status_id = id;
+                                    results.getDirectoryId('result_statuses','IN_HISTORY',function(err,result_status_id){
+                                        if (err){
+                                            return callback(new MyError('Нет такого статуса'));
+                                        }
+
+                                        results.add(obj, function(err,result){
+                                            //{"code":0,"toastr":{"type":"success","message":"Результат успешно добавлен."},"data":{"id":36}}
+                                            if(err){
+                                                return callback(err,result);
+                                            }
+                                            if (result.code!=0){
+                                                return callback(err,result);
+                                            }
+                                            var id = result.data.id;
+
+                                            pool.getConn(function(err,conn){
+                                                var sql = 'update results set published = NULL, status_id = ? where user_id = ? AND action_part_id = ? AND published IS NOT NULL AND id <> ?';
+                                                conn.query(sql,[result_status_id, obj.user_id,obj.action_part_id,id],function(err,affected){
+                                                    console.log('update:', err, affected);
+                                                    conn.release();
+                                                    callback(null,funcs.formatResponse(0, 'success', 'Заявка принята.'));
+
+                                                })
+                                            });
+
+
+                                        });
+
+
+
+                                    });
+
+
+                                });
+                            })
+                    });
                 });
             });
+
         };
         results.approve = function(obj,callback){
             results.getDirectoryId('result_statuses',obj.status,function(err,id){

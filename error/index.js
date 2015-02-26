@@ -28,6 +28,17 @@ function MyError(message){
 util.inherits(MyError, Error);
 MyError.prototype.name = 'MyError';
 
+
+function UserError(message){
+    Error.apply(this,arguments);
+    Error.captureStackTrace(this, UserError);
+    this.message= message;
+}
+util.inherits(UserError, Error);
+UserError.prototype.name = 'UserError';
+
+
+exports.UserError = UserError;
 exports.MyError = MyError;
 exports.AuthError = AuthError;
 exports.HttpError = HttpError;

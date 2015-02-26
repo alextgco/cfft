@@ -10,7 +10,7 @@ var mysqlUtilitiesExtendedWhere = require('./mysqlUtiltiesExtendedWhere');
 cMysql.on('connection', function(connection) {
     console.log('MySQL pool connected');
     mysqlUtilities.upgrade(connection);
-    mysqlUtilitiesExtendedWhere.upgradeWhere(connection);
+    //mysqlUtilitiesExtendedWhere.upgradeWhere(connection);
     mysqlUtilities.introspection(connection);
 });
 cMysql.on('error', function(err) {

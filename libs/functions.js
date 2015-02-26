@@ -67,13 +67,13 @@ var funcs = {
             return (val!='');
         },
         number:function(val){
-            if (val==''){
+            if (val===''){
                 return false;
             }
             return !isNaN(+val);
         },
         url:function(val){
-            var regExp = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+            var regExp = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/;
             return regExp.test(val);
         },
         email:function(val){

@@ -1,5 +1,7 @@
 var async = require('async');
 var MyError = require('../error').MyError;
+var UserError = require('../error').UserError;
+
 var funcs = require('../libs/functions');
 
 /**
@@ -332,25 +334,9 @@ Model.prototype.get = function (params, callback) {
 };
 Model.prototype.add = function (obj, callback) {
     var self = this;
-    for (var i in this.required_fields) {
-        var finded = false;
-        for (var j in obj) {
-            if (j == this.required_fields[i]) {
-                finded = true;
-                break;
-            }
-        }
-        if (!finded) {
-            return callback(new MyError('Не переданы обязательные поля. ' + this.required_fields.join(', ')));
-        }
-    }
-    var valid = self.validate(obj);
-    if (typeof valid=='object'){
-        return callback(null, funcs.formatResponse(-1, 'error', valid.message, valid.fields));
-    }
+
     var addToModel = function (conn, callback) {
         obj.created = funcs.getDateTimeMySQL();
-        console.log(obj);
         conn.insert(self.table, obj, function (err, recordId) {
             if (err){
                 console.log(err);
@@ -364,6 +350,22 @@ Model.prototype.add = function (obj, callback) {
             self.beforeFunction['add'](obj,function(err){
                 if (err){
                     return callback(new MyError('Ошибка выполнения beforeFunction'));
+                }
+                for (var i in self.required_fields) {
+                    var finded = false;
+                    for (var j in obj) {
+                        if (j == self.required_fields[i]) {
+                            finded = true;
+                            break;
+                        }
+                    }
+                    if (!finded) {
+                        return callback(new MyError('Не переданы обязательные поля. ' + self.required_fields.join(', ')));
+                    }
+                }
+                var valid = self.validate(obj);
+                if (typeof valid=='object'){
+                    return callback(new UserError(funcs.formatResponse(-1, 'error', valid.message, valid.fields)));
                 }
                 return callback(null);
             });
@@ -380,18 +382,12 @@ Model.prototype.add = function (obj, callback) {
 };
 Model.prototype.modify = function (obj, callback) {
     var self = this;
-    for (var i in self.not_editable) {
-        delete obj[self.not_editable[i]];
-    }
-    var valid = self.validate(obj);
-    if (typeof valid=='object'){
-        return callback(null, funcs.formatResponse(-1, 'error', valid.message, valid.fields));
-    }
+
     var modifyModel = function (conn, callback) {
         if (!obj.id) {
             return callback(new MyError('Не передано ключевое поле. id,'+self.required_fields.join(',')));
         }
-        console.log(obj);
+        console.log(conn.where(obj));
         conn.update(self.table, obj, function (err, affected) {
             if (err){
                 console.log(err);
@@ -405,6 +401,13 @@ Model.prototype.modify = function (obj, callback) {
             self.beforeFunction['modify'](obj,function(err){
                 if (err){
                     return callback(new MyError('Ошибка выполнения beforeFunction'));
+                }
+                for (var i in self.not_editable) {
+                    delete obj[self.not_editable[i]];
+                }
+                var valid = self.validate(obj);
+                if (typeof valid=='object'){
+                    return callback(new UserError(funcs.formatResponse(-1, 'error', valid.message, valid.fields)));
                 }
                 return callback(null);
             });

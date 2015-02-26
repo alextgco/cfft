@@ -1,4 +1,5 @@
 var api = require('../libs/userApi');
+var UserError = require('../error').UserError;
 exports.post = function(req, res, next){
     var command = req.body.command;
     var object = req.body.object;
@@ -16,7 +17,11 @@ exports.post = function(req, res, next){
     newParams.user_id = req.user.id;
     api(command, object, newParams,function(err,result){
         if (err){
-            res.status(500).send(err);
+            if (err instanceof UserError){
+                res.status(200).send(err.message);
+            }else{
+                res.status(500).send(err);
+            }
         }else{
             res.status(200).send(result);
         }
