@@ -605,7 +605,7 @@ $(document).ready(function(){
                         sys_name: 'WOD_OF_WEEK'
                     },
                     action_statuses: {
-                        sys_name: '<>DRAFT'
+                        sys_name: 'OPENED'
                     }
                 },
                 sort: 'date_start',
