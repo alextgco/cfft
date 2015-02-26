@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multibooker</title>
+
+    <meta charset="UTF-8" />
+
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <link href="plugins/fontAwsome/fontAwsome.css" type="text/css" rel="stylesheet">
+
+    <script type="text/javascript" src="plugins/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="plugins/mustache.js"></script>
+
+    <script type="text/javascript" src="js/script.js"></script>
+
+
+</head>
+<body>
+
+<div id="container">
+
+    <div class="navigate">
+        <div class="prev arr">
+            <i class="icon-arrow-left"></i>
+        </div>
+
+        <div class="tempPage">1</div>
+
+        <div class="next arr">
+            <i class="icon-arrow-right"></i>
+        </div>
+    </div>
+
+    <!--1-->
+    <div class="sItem active" data-id="1">
+        <div class="imagePlace">
+            <img src="img/ss1.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>
+                        Краткий мануал о том, как быстро запустить продажу онлайн
+                        билетов на паромы с помощью системы multibooker.
+                    </h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--2-->
+
+    <div class="sItem" data-id="2">
+        <div class="imagePlace">
+            <img src="img/slide1.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Создать мероприятие без схемы зала</h1>
+                    <p>Создание мероприятия без указания схемы зала подразумевает мероприятие со входыми билетами.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--3-->
+
+    <div class="sItem" data-id="3">
+        <div class="imagePlace">
+            <img src="img/slide4.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Создать входные билеты на мероприятие</h1>
+                    <p>Можно создавать любое количество типов входных билетов, взрослые, детские, автомобили  и т.д.</p>
+                    <p>Указывается название типа билета, цена и количество.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--4-->
+    <div class="sItem" data-id="4">
+        <div class="imagePlace">
+            <img src="img/slide3.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Сгенерировать такие же мероприятия на каждый день при помощи модуля генерации репертуара</h1>
+                    <!--<p>Модуль требует небольших</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--5-->
+    <div class="sItem" data-id="5">
+        <div class="imagePlace">
+            <img src="img/slide5.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Проставить сгенерированным мероприятиям настройки, позволяющие продавать их через интернет</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--6-->
+
+    <div class="sItem" data-id="6">
+        <div class="imagePlace">
+            <img src="img/slide6.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Настроить фреймы продаж</h1>
+                    <p>Указать пары мероприятие - фрейм, заполнить параметры продажи, наценка, сервисный сбор и пр.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--7-->
+
+    <div class="sItem" data-id="7">
+        <div class="imagePlace">
+            <img src="img/slide7.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Внедрить виджет на свой сайт</h1>
+                    <p>Есть подробная документация, фрейм поддерживает все браузеры, internet explorer 9+</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--8-->
+
+    <div class="sItem" data-id="8">
+        <div class="imagePlace">
+            <img src="img/slide9.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Виджет появляется у вас на сайте</h1>
+                    <p>
+                        Ссылка на тестовый виджет: <a target="_blank" href="http://demo.multibooker.ru/widget">demo.multibooker.ru/widget</a><br>
+                        Ссылка на тестовый виджет со схемой зала: <a target="_blank" href="http://demo.multibooker.ru/widget_hall">demo.multibooker.ru/widget_hall</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sItem" data-id="9">
+        <div class="imagePlace">
+            <img src="img/slide8.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Пример электронного билета, который приходит покупателю на почту.</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sItem" data-id="10">
+        <div class="imagePlace">
+            <img src="img/ss1.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Вы можете попробовать поработать в нашей системе в демо режиме: <a href="http://demo.multibooker.ru">multibooker</a></h1>
+                    <p><b>Login:</b> test4</p>
+                    <p><b>Password:</b> test4</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

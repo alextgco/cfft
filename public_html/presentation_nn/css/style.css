@@ -1,0 +1,210 @@
+
+@font-face
+{
+    font-family: OpenSansBold;
+    src: url(../fonts/OpenSans-Bold.ttf);
+}
+
+@font-face
+{
+    font-family: OpenSansItalic;
+    src: url(../fonts/OpenSans-Italic.ttf);
+}
+
+@font-face
+{
+    font-family: OpenSansLight;
+    src: url(../fonts/OpenSans-Light.ttf);
+}
+
+@font-face
+{
+    font-family: OpenSansLightItelic;
+    src: url(../fonts/OpenSans-LightItalic.ttf);
+}
+
+@font-face
+{
+    font-family: OpenSans;
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+
+@font-face
+{
+    font-family: OpenSansSemibold;
+    src: url(../fonts/OpenSans-Semibold.ttf);
+}
+
+@font-face
+{
+    font-family: OpenSansSemiboldItalic;
+    src: url(../fonts/OpenSans-SemiboldItalic.ttf);
+}
+
+body{
+    font-family: OpenSans, 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+h1,h2,h3,h4,h5,h6, label{
+    font-family: OpenSans, 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif!important;
+}
+
+.hiddenImp{
+    display: none!important;
+}
+
+#container{
+
+}
+
+.sItem{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    right: -100%;
+    /*display: none;*/
+}
+.sItem.active{
+    right: 0;
+}
+
+.imagePlace{
+    height: 100%;
+    background-color: #fff;
+}
+.imagePlace img{
+    /*height: 110%;*/
+}
+.infoPlace a{
+    color: rgb(177, 213, 244);
+}
+
+.infoPlace{
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    color: #fff;
+    text-shadow: 0 0 15px #000;
+    top: 0;
+    right: 0;
+    /*box-shadow: 0 0 10px #ccc;*/
+}
+
+.opacityBg{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    top:0;
+    left: 0;
+    z-index: 10;
+}
+.infoBlockInner{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    z-index: 100;
+    overflow: auto;
+}
+
+
+.closeInfo{
+    position: absolute;
+    top: 6px;
+    right: 7px;
+    width: 53px;
+    font-size: 40px;
+    color: rgb(207, 232, 255);;
+    text-align: center;
+    cursor: pointer;
+    z-index: 150;
+}
+
+.closeInfo:hover{
+    color: rgb(127, 214, 255);
+}
+
+.openInfo{
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    font-size: 220px;
+    color: rgb(207, 232, 255);
+    cursor: pointer;
+    height: 216px;
+    line-height: 200px;
+    width: 216px;
+    text-align: center;
+}
+.openInfo:hover{
+    color: rgb(127, 214, 255);
+}
+.padder30{
+    padding: 30px;
+}
+
+.infoBlockInner ul{
+    margin: 0;
+    padding: 0;
+    color: #555;
+    font-size: 22px;
+}
+.infoBlockInner h1{
+    color: #fff;
+}
+.infoBlockInner h1{
+    color: #fff;
+}
+
+
+.infoBlockInner ul li{
+    list-style: none;
+    margin-bottom: 10px;
+}
+.infoBlockInner ul li i{
+    color: #0088bb;
+}
+
+.navigate{
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    z-index: 1000;
+}
+.navigate .arr{
+    float: left;
+    font-size: 60px;
+    color: rgba(0,0,0,0.8);
+    opacity: 0.6;
+    width: 80px;
+    text-align: center;
+    cursor: pointer;
+}
+.navigate .arr.disabled{
+    display: none;
+}
+
+.navigate .arr:hover{
+    opacity: 1;
+}
+
+.navigate .tempPage{
+    float: left;
+    width: 70px;
+    font-size: 40px;
+    background-color: #fff;
+    height: 63px;
+    border-radius: 35px;
+    text-align: center;
+    padding-top: 7px;
+    margin-top: 9px;
+    box-shadow: 1px 1px 8px #333;
+    color: rgb(52, 130, 214);float: left;
+}

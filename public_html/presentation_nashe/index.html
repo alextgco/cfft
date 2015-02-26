@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multibooker</title>
+
+    <meta charset="UTF-8" />
+
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <link href="plugins/fontAwsome/fontAwsome.css" type="text/css" rel="stylesheet">
+
+    <script type="text/javascript" src="plugins/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="plugins/mustache.js"></script>
+
+    <script type="text/javascript" src="js/script.js"></script>
+
+
+</head>
+<body>
+
+<div id="container">
+
+    <div class="navigate">
+        <div class="prev arr">
+            <i class="icon-arrow-left"></i>
+        </div>
+
+        <div class="tempPage">1</div>
+
+        <div class="next arr">
+            <i class="icon-arrow-right"></i>
+        </div>
+    </div>
+
+    <!--1-->
+    <div class="sItem active" data-id="1">
+        <div class="imagePlace">
+            <img src="img/ss1.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>
+                        Краткий мануал о том, как выдать билеты на реализацию в единое поле всем агентам.
+                    </h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--2-->
+
+    <div class="sItem" data-id="2">
+        <div class="imagePlace">
+            <img src="img/n2.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Создать схему зала</h1>
+                    <p>При помощи удобного редактора, позволяющего создавать схему любой конфигурации.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--3-->
+
+    <div class="sItem" data-id="3">
+        <div class="imagePlace">
+            <img src="img/n3.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Разметить зал фондами, поясами и назначить цены</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--4-->
+    <div class="sItem" data-id="4">
+        <div class="imagePlace">
+            <img src="img/n4.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Создать мероприятие на основе созданной схемы зала.</h1>
+                    <!--<p>Модуль требует небольших</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--5-->
+    <div class="sItem" data-id="5">
+        <div class="imagePlace">
+            <img src="img/n5.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Выдать квоту агенту</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--6-->
+
+    <div class="sItem" data-id="6">
+        <div class="imagePlace">
+            <img src="img/n6.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Или выдать билеты в единое поле</h1>
+                    <p>
+                        Доступно гибкое распределение доступа к местам между агентами.
+                        В дальнейшем, во время продажи, вам доступна интерактивная
+                        схема на которой отражены все продажи в деталях, что позволяет своевременно
+                        перераспределить доступы для более продуктивной и быстрой продажи, если это необходимо.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sItem" data-id="7">
+        <div class="imagePlace">
+            <img src="img/n8.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Так же вы можете продавать билеты через кассы</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="sItem" data-id="8">
+        <div class="imagePlace">
+            <img src="img/n9.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Или через виджет на сайте</h1>
+                    <p>
+                        Необходимо создать пару мероприятие - фрейм в системе и вставить несколько строк кода в вашу страницу.
+                    </p>
+
+                    <h1>Виджет появится у вас на сайте</h1>
+
+                    <p>
+                        Ссылка на тестовый виджет со входными билетами: <a target="_blank" href="http://demo.multibooker.ru/widget">demo.multibooker.ru/widget</a><br>
+                        Ссылка на тестовый виджет со схемой зала: <a target="_blank" href="http://demo.multibooker.ru/widget_hall">demo.multibooker.ru/widget_hall</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--7-->
+
+    <div class="sItem" data-id="9">
+        <div class="imagePlace">
+            <img src="img/n7.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>У вас всегда есть возможность снять отчет по любым операциям за любой период или по конкретной операции</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--8-->
+
+
+
+    <div class="sItem" data-id="10">
+        <div class="imagePlace">
+            <img src="img/slide8.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Пример электронного билета, который приходит покупателю на почту.</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sItem" data-id="11">
+        <div class="imagePlace">
+            <img src="img/ss1.jpg">
+            <div class="openInfo">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+        <div class="infoPlace">
+            <div class="opacityBg"></div>
+            <div class="closeInfo">
+                <i class="icon-remove"></i>
+            </div>
+            <div class="infoBlockInner">
+                <div class="padder30">
+                    <h1>Вы можете попробовать поработать в нашей системе в демо режиме: <a href="http://demo.multibooker.ru">multibooker</a></h1>
+                    <p><b>Login:</b> test4</p>
+                    <p><b>Password:</b> test4</p>
+                    <i>
+                        P.S. В связи с тем, что многие имеют доступ к демо версии, там могут быть сбиты настройки (что-то может не работать).
+                        Просим отнестись с пониманием.
+                    </i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

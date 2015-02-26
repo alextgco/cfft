@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Multibooker</title>
+
+        <meta charset="UTF-8" />
+
+        <link href="css/style.css" type="text/css" rel="stylesheet">
+        <link href="plugins/fontAwsome/fontAwsome.css" type="text/css" rel="stylesheet">
+
+        <script type="text/javascript" src="plugins/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="plugins/mustache.js"></script>
+
+        <script type="text/javascript" src="js/script.js"></script>
+
+
+    </head>
+    <body>
+
+        <div id="container">
+
+            <div class="navigate">
+                <div class="prev arr">
+                    <i class="icon-arrow-left"></i>
+                </div>
+
+                <div class="tempPage">1</div>
+
+                <div class="next arr">
+                    <i class="icon-arrow-right"></i>
+                </div>
+            </div>
+
+            <!--1-->
+            <div class="sItem active" data-id="1">
+                <div class="imagePlace">
+                    <img src="img/ss1.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>
+                                Краткое описание преимуществ системы multibooker
+                            </h1>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--2-->            
+            <div class="sItem" data-id="2">
+                <div class="imagePlace">
+                    <img src="img/install.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Multibooker легко устанавливается</h1>
+
+                            <p>Для запуска системы необходмио:</p>
+
+                            <ol>
+                                <li>Заключить договор с театром.</li>
+                                <li>Обеспечить в театре интернет.</li>
+                                <li>Установить Google Chrome на всех компьютерах,
+                                    где будет использоваться multibooker.</li>
+                                <li>Открыть порт 8080.</li>
+                            </ol>
+                            <p>Далее мы у себя на сервере создаем копию системы и даем доступ театру.</p>
+                            <p>Система работает по адресу theatre_example.multibooker.ru</p>
+                            <p>Всё!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--3-->
+
+            <div class="sItem" data-id="3">
+                <div class="imagePlace">
+                    <img src="img/system.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Возможности</h1>
+
+                            <p>
+                                Multibooker позволяет эффективно и удобно вести билетное хозяйство, в системе
+                                предусмотрено все необходимое, от редактора схем залов, до гибкой настройки продаж.
+                            </p>
+                            <p>
+                                Все необходимое для работы с системой описано в подробной документации.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--4-->
+
+            <div class="sItem" data-id="4">
+                <div class="imagePlace">
+                    <img src="img/report.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Отчетность</h1>
+                            <p>
+                                Каждая операция, проводимая в системе, логируется в отчетности, таким образом можно в любой момент получить
+                                актуальную информацию по любому мероприятию / кассиру / агенту / квоте / билету / заказу и т.д.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--5-->
+
+            <div class="sItem" data-id="5">
+                <div class="imagePlace">
+                    <img src="img/mobile.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>API</h1>
+                            <p>
+                                API multibooker позволяет выводить всю необходимую информацию в любую внешнюю систему,
+                                например мы можем транслировать актуальную информацию по любому "срезу" БД в мобильное приложение.
+                                Таким образом, обладатель приложения будет всегда в курсе всех событий по всем подведомстевнным театрам.
+                            </p>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--6-->
+
+            <div class="sItem" data-id="6">
+                <div class="imagePlace">
+                    <img src="img/skd.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>СКД</h1>
+
+                            <p>в Multibooker предусмотрена система контроля доступа, которая позволяет в реальном времени отслеживать проходы на мероприятие.</p>
+                            <p>
+                                Если в театре уже установлено оборудование СКД, то мы просто с ним интегрируемся,
+                                в противном случае, мы готовы предоставить быстрое решение со сканерами штрих-кодов,
+                                с которыми multibooker уже синтегрирован.
+                                Если по каким-либо причинам, сканеры не подходят, театр самостоятельно выбирает оборудование
+                                и устанавливет его, после чего мы с ним интегрируемся.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--7-->
+
+            <div class="sItem" data-id="7">
+                <div class="imagePlace">
+                    <img src="img/slide7.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Продажа через интернет</h1>
+                            <p>
+                                Любое мероприятие можно легко продавать через интернет, для этого
+                                необходимо сделать пару настроек и вставить небольшой кусок кода на сайт,
+                                с которого будут идти продажи.
+                            </p>
+                            <p>Ссылка на тестовый виджет со схемой зала: <a target="_blank" href="http://demo.multibooker.ru/widget_hall">demo.multibooker.ru/widget_hall</a></p>
+                            <p>Ссылка на тестовый виджет со входными билетами: <a target="_blank" href="http://demo.multibooker.ru/widget">demo.multibooker.ru/widget</a><br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--8-->
+            
+
+            <div class="sItem" data-id="8">
+                <div class="imagePlace">
+                    <img src="img/slide8.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Электронный билет</h1>
+                            <p>Пример электронного билета, который приходит покупателю на почту.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sItem" data-id="9">
+                <div class="imagePlace">
+                    <img src="img/museum.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Подключение музеев: </h1>
+                            <p>
+                                Выставка в музее отличается от мероприятия в театре, отсутствием точной даты, времени и указания места в зале.
+                            </p>
+                            <p>
+                                В мультибукере предусмотрен механизм создания и продажи входных билетов без указания мест.<br><br>
+
+                                Дополнительно возможно расширить функционал  возможностью настройки диапазона дат выставки,
+                                возможности ограничения продаж билетов по времени, настройки тарификации для разных категорий посетителей.
+                                <br><br>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="sItem" data-id="10">
+                <div class="imagePlace">
+                    <img src="img/ss1.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Вы можете поработать в нашей системе в демо режиме: </h1>
+                            <h1><a href="http://demo.multibooker.ru">multibooker</a></h1>
+
+                            <p><b>Login:</b> test4</p>
+                            <p><b>Password:</b> test4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </body>
+</html>

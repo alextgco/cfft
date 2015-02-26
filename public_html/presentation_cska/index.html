@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Multibooker</title>
+
+        <meta charset="UTF-8" />
+
+        <link href="css/style.css" type="text/css" rel="stylesheet">
+        <link href="plugins/fontAwsome/fontAwsome.css" type="text/css" rel="stylesheet">
+
+        <script type="text/javascript" src="plugins/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="plugins/mustache.js"></script>
+
+        <script type="text/javascript" src="js/script.js"></script>
+
+
+    </head>
+    <body>
+
+        <div id="container">
+
+            <div class="navigate">
+                <div class="prev arr">
+                    <i class="icon-arrow-left"></i>
+                </div>
+
+                <div class="tempPage">1</div>
+
+                <div class="next arr">
+                    <i class="icon-arrow-right"></i>
+                </div>
+            </div>
+
+            <!--1-->
+            <div class="sItem active" data-id="1">
+                <div class="imagePlace">
+                    <img src="img/ss1.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>CRM пользователи</h1>
+
+                            <h1>Описание модуля «CRM пользователи» в системе multibooker</h1>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--2-->            
+            <div class="sItem" data-id="2">
+                <div class="imagePlace">
+                    <img src="img/crm-user2.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>CRM модуль</h1>
+
+                            <p>Модуль позволяет объединять данные пользователей в единую базу как с интернет заказов, так и с касс.</p>
+
+                            
+                            <p>
+                                На данный момент в таблице предусмотрены поля:
+                                <br> - ФИО,
+                                <br> - e-mail,
+                                <br> - телефон,
+                                <br> - данные банковской карты.
+                            </p>
+                            <p>Таблица расширяема, и мы легко добавим любые поля для вашей базы данных.</p>
+
+                            <p>Таблица фильтруется по любому полю.</p>
+                            
+                            <p>Фильтры легко настраиваются и позволяют оперативно найти любого пользователя. Также имеется быстрый поиск по ключевым полям.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--3-->
+
+            <div class="sItem" data-id="3">
+                <div class="imagePlace">
+                    <img src="img/anketa.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Анкета пользователя в заказах</h1>
+
+                            <p>Окно оформления заказа имеет анкету пользователя и данные о выбранных билетах.</p>
+
+                            <p>Для оформления заказа вы можете выбрать уже имеющегося crm пользователя или оформить нового.</p>
+
+                            <p>Анкета имеет следующие поля:
+                                <br> - crm клиент,
+                                <br> - телефон клиента,
+                                <br> - e-mail клиента.
+                            </p>
+                            <p>Количество полей с параметрами анкеты настраивается и может быть расширено по вашему желанию.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--4-->
+
+            <div class="sItem" data-id="4">
+                <div class="imagePlace">
+                    <img src="img/pf.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Фрейм - поля платёжной формы</h1>
+
+                            <p>Выбранные поля с параметрами для анкеты пользователя можно выводить и на платёжной странице.</p>
+                            
+                            <p>Количество и параметры полей также могут быть расширены по вашему желанию.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--5-->
+
+            <div class="sItem" data-id="5">
+                <div class="imagePlace">
+                    <img src="img/rassilka3.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Рассылка</h1>
+
+                            <p>Можно осуществлять рассылку по любым «срезам» базы crm пользователей.</p>
+
+                            <p>Возможно настроить рассылку как через e-mail, так и через sms.</p>
+
+                            <p>Наличие окна вёрстки шаблонов письма для рассылки.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--6-->
+
+            <div class="sItem" data-id="6">
+                <div class="imagePlace">
+                    <img src="img/statistica2.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Визуализация статистики</h1>
+
+                            <p>Вся информация из базы может визуализироваться в виде графиков и диаграмм с возможностью гибкой настройки и фильтрации.</p>
+
+                            <p></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--7-->
+
+            <div class="sItem" data-id="7">
+                <div class="imagePlace">
+                    <img src="img/database.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Интеграция</h1>
+                            
+                            <p>Возможно интегрировать пользователей вашего личного кабинета с базой данных системы multibooker.</p>
+                            
+                            
+                            
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--8-->
+
+            <div class="sItem" data-id="8">
+                <div class="imagePlace">
+                    <img src="img/ss1.jpg">
+                    <div class="openInfo">
+                        <i class="icon-info-sign"></i>
+                    </div>
+                </div>
+                <div class="infoPlace">
+                    <div class="opacityBg"></div>
+                    <div class="closeInfo">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <div class="infoBlockInner">
+                        <div class="padder30">
+                            <h1>Вы можете поработать в нашей системе в демо режиме: </h1>
+                            <h1><a href="http://demo.multibooker.ru">multibooker</a></h1>
+
+                            <p><b>Login:</b> test4</p>
+                            <p><b>Password:</b> test4</p>
+                            
+                            <br><br>
+                            <h1>Пример виджета online продажи</h1>
+                            
+                            <p>Ссылка на тестовый виджет со схемой зала: <a target="_blank" href="http://demo.multibooker.ru/widget_hall">demo.multibooker.ru/widget_hall</a></p>
+                            <p>Ссылка на тестовый виджет с входными билетами: <a target="_blank" href="http://demo.multibooker.ru/widget">demo.multibooker.ru/widget</a><br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </body>
+</html>
