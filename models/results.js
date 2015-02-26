@@ -255,15 +255,45 @@ module.exports = function(callback){
                 console.log('Не корректно передан action_part_id параметры. rePosition');
                 return callback(new MyError('Не корректно передан action_part_id параметры. rePosition'));
             }
-            results.get({
-                action_part_id : action_part_id
-            },function(err, result){
+            // Получим тип (формат) результата
+            pool.getConn(function(err, conn){
                 if (err){
-                    console.log('rePosition results.get',err);
                     return callback(err);
                 }
-                console.dir(result);
+                conn.queryRow('select rt.id as id,rt.sys_name as name from action_parts ap left join result_types as rt on ap.result_type_id = rt.id ' +
+                'where ap.id = ?',action_part_id, function(err,r1){
+                    conn.release();
+                    if (err){
+                        return callback(err);
+                    }
+                    var result_type_id = r1.id;
+                    var result_type = r1.name;
+                    var sql = "SELECT r.result_type_id, r.result_repeat, r.result_min, r.result_sec, r.result_approach from results r" +
+                        "left join result_statuses as rs on r.status_id = rs.id " +
+                        "where r.action_part_id = ? and r.published is not null and rs.sys_name in ('IN_QUEUE',)";
+                    results.get({
+                            columns:['result_type_id','result_repeat'],
+                            where: {
+                                action_part_id: action_part_id,
+                                published: true,
+                                result_type_id: result_type_id,
+                                result_statuses: {
+                                    sys_name: "in('IN_QUEUE','IN_PROGERSS','ACCEPTED')"
+                                }
+                            }
+                        }
+                        , function (err, result) {
+                            if (err) {
+                                console.log('rePosition results.get', err);
+                                return callback(err);
+                            }
+                            console.dir(result);
+                        });
+
+
+                });
             });
+
 
 
         };

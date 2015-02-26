@@ -230,10 +230,8 @@ Model.prototype.get = function (params, callback) {
             if (whereString !== '' || !deleted) {
                 sql += ' AND';
             }
-
-
-
-            sql += " (" + self.table + ".published IS NOT NULL AND " + self.table + ".published <'" + funcs.getDateTimeMySQL() + "')"
+            published = (published===true)? funcs.getDateTimeMySQL() : published;
+            sql += " (" + self.table + ".published IS NOT NULL AND " + self.table + ".published <'" + published + "')"
         }
         if (sort) {
             var sortColumns = [];

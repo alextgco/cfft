@@ -55,6 +55,10 @@ module.exports = function(callback){
                         {
                             column:"name",
                             alias:"status"
+                        },
+                        {
+                            column:"sys_name",
+                            alias:"status_sys_name"
                         }
                     ]
                 }
