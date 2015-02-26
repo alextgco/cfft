@@ -36,6 +36,16 @@ module.exports = function (app) {
     res.render('for_athlets');
   });
 
+  app.get('/for_partners', function(req, res, next){
+    console.log(res);
+    res.render('for_athlets');
+  });
+
+  app.get('/contacts', function(req, res, next){
+    res.render('contacts');
+  });
+
+
   app.get('/rules', function(req, res, next){
     res.render('rules');
   });
