@@ -67,7 +67,6 @@ exports.get = function(req, res, next){
                     if (err){
                         return callback(err);
                     }
-
                     item.resultsList = resultsRes.data;
                     callback(null);
                 });

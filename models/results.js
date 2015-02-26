@@ -278,7 +278,7 @@ module.exports = function(callback){
 
                             break;
                         case "TIE_BREAK":
-                            sort = ' order by result_approach DESC, result_repeat DESC, result_min, result_sec';
+                            sort = ' order by result_repeat DESC, result_min, result_sec';
                             sort = '';
                             break;
                         case "TIE_BREAK_SHORT":
@@ -288,8 +288,6 @@ module.exports = function(callback){
                             sort = '';
                             break;
                     }
-
-
                     var sql = "SELECT r.id, r.result_type_id, r.result_repeat, r.result_min, r.result_sec, r.result_approach from results r " +
                         "left join result_statuses as rs on r.status_id = rs.id " +
                         "where r.action_part_id = ? and r.result_type_id = ? and r.published is not null and rs.sys_name in ('IN_QUEUE','IN_PROGERSS','ACCEPTED')";
