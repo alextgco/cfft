@@ -2,6 +2,7 @@ var Model = require('./MySQLModel');
 var MyError = require('../error').MyError;
 var UserError = require('../error').UserError;
 var funcs = require('../libs/functions');
+var async = require('async');
 module.exports = function(callback){
     var results = new Model({
         allowedForUserCommand:['get','addOrder'],
@@ -116,7 +117,7 @@ module.exports = function(callback){
 
         results.beforeFunction.get = function (obj, callback) {
             var exludedColumns = ['published', 'created', 'deleted'];
-            var columns = funcs.cloneObj(results.columns);
+            var columns = obj.columns || funcs.cloneObj(results.columns);
             for (var i in exludedColumns) {
                 columns.splice(columns.indexOf(exludedColumns[i]),1);
                 //delete columns[columns.indexOf(exludedColumns[i])];
@@ -210,7 +211,6 @@ module.exports = function(callback){
                                             pool.getConn(function(err,conn){
                                                 var sql = 'update results set published = NULL, status_id = ? where user_id = ? AND action_part_id = ? AND published IS NOT NULL AND id <> ?';
                                                 conn.query(sql,[result_status_id, obj.user_id,obj.action_part_id,id],function(err,affected){
-                                                    console.log('update:', err, affected);
                                                     conn.release();
                                                     callback(null,funcs.formatResponse(0, 'success', 'Заявка принята.'));
                                                     results.rePosition({
@@ -268,27 +268,79 @@ module.exports = function(callback){
                     }
                     var result_type_id = r1.id;
                     var result_type = r1.name;
-                    var sql = "SELECT r.result_type_id, r.result_repeat, r.result_min, r.result_sec, r.result_approach from results r" +
+                    var sort = '';
+                    switch (result_type){
+                        case "TIME":
+                            sort = ' order by result_min, result_sec';
+                            break;
+                        case "REPEAT":
+                            sort = ' order by result_repeat DESC';
+
+                            break;
+                        case "TIE_BREAK":
+                            sort = ' order by result_approach DESC, result_repeat DESC, result_min, result_sec';
+                            sort = '';
+                            break;
+                        case "TIE_BREAK_SHORT":
+                            sort = ' order by result_repeat DESC, result_min, result_sec';
+                            break;
+                        default :
+                            sort = '';
+                            break;
+                    }
+
+
+                    var sql = "SELECT r.id, r.result_type_id, r.result_repeat, r.result_min, r.result_sec, r.result_approach from results r " +
                         "left join result_statuses as rs on r.status_id = rs.id " +
-                        "where r.action_part_id = ? and r.published is not null and rs.sys_name in ('IN_QUEUE',)";
-                    results.get({
-                            columns:['result_type_id','result_repeat'],
-                            where: {
-                                action_part_id: action_part_id,
-                                published: true,
-                                result_type_id: result_type_id,
-                                result_statuses: {
-                                    sys_name: "in('IN_QUEUE','IN_PROGERSS','ACCEPTED')"
-                                }
+                        "where r.action_part_id = ? and r.result_type_id = ? and r.published is not null and rs.sys_name in ('IN_QUEUE','IN_PROGERSS','ACCEPTED')";
+                    sql += sort;
+                    console.log(sql);
+                    pool.getConn(function(err,conn){
+                        if (err){
+                            return callback(err);
+                        }
+                        conn.query(sql,[action_part_id,result_type_id],function(err, r2){
+                            conn.release();
+                            if (err){
+                                console.log(err);
+                                return callback(err);
+                            }
+                            for (var i in r2) {
+                                r2[i].position = +i+1;
+                            }
+                            async.each(r2,function(item, callback){
+                                results.modify({
+                                    id:item.id,
+                                    position:item.position
+                                },function(err,affected){
+                                    if (err){
+                                        console.log(err);
+                                    }
+                                    callback(null,affected);
+                                })
+                            })
+
+                        });
+                    });
+
+                    /*var o = {
+                        columns:['result_type_id','result_repeat'],
+                        where: {
+                            action_part_id: action_part_id,
+                            published: true,
+                            result_type_id: result_type_id,
+                            result_statuses: {
+                                sys_name: "('IN_QUEUE','IN_PROGERSS','ACCEPTED')"
                             }
                         }
-                        , function (err, result) {
+                    };
+                    results.get(o, function (err, result) {
                             if (err) {
                                 console.log('rePosition results.get', err);
                                 return callback(err);
                             }
                             console.dir(result);
-                        });
+                        });*/
 
 
                 });
