@@ -197,7 +197,6 @@ module.exports = function(callback){
                                         if (err){
                                             return callback(new MyError('Нет такого статуса'));
                                         }
-
                                         results.add(obj, function(err,result){
                                             //{"code":0,"toastr":{"type":"success","message":"Результат успешно добавлен."},"data":{"id":36}}
                                             if(err){
@@ -214,18 +213,15 @@ module.exports = function(callback){
                                                     console.log('update:', err, affected);
                                                     conn.release();
                                                     callback(null,funcs.formatResponse(0, 'success', 'Заявка принята.'));
+                                                    results.rePosition({
+                                                        action_part_id:obj.action_part_id
+                                                    }, function(err,r){
 
+                                                    });
                                                 })
                                             });
-
-
                                         });
-
-
-
                                     });
-
-
                                 });
                             })
                     });
@@ -247,6 +243,28 @@ module.exports = function(callback){
                     callback(err,result);
                 })
             });
+
+        };
+        results.rePosition = function(obj,callback){
+            if (typeof obj!='object'){
+                console.log('Не корректно переданы параметры. rePosition');
+                return callback(new MyError('Не корректно переданы параметры. rePosition'));
+            }
+            var action_part_id = obj.action_part_id;
+            if (isNaN(+action_part_id)){
+                console.log('Не корректно передан action_part_id параметры. rePosition');
+                return callback(new MyError('Не корректно передан action_part_id параметры. rePosition'));
+            }
+            results.get({
+                action_part_id : action_part_id
+            },function(err, result){
+                if (err){
+                    console.log('rePosition results.get',err);
+                    return callback(err);
+                }
+                console.dir(result);
+            });
+
 
         };
 
