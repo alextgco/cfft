@@ -3,10 +3,12 @@
     <envs>
       <env name="DEBUG" value="temp0" />
     </envs>
-    <browser url="http://localhost:3000/" />
+    <browser start="false" url="http://localhost:3000/" with-js-debugger="false" />
     <RunnerSettings RunnerId="Basic" />
+    <RunnerSettings RunnerId="NodeJS.run" />
     <RunnerSettings RunnerId="debuggableProgram" />
     <ConfigurationWrapper RunnerId="Basic" />
+    <ConfigurationWrapper RunnerId="NodeJS.run" />
     <ConfigurationWrapper RunnerId="debuggableProgram" />
     <method />
   </configuration>
