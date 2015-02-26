@@ -14,7 +14,9 @@ exports.post = function(req, res, next){
     }else{
         return res.status(500).send('Не передан params');
     }
-    newParams.user_id = req.user.id;
+    if (req.user) {
+        newParams.user_id = req.user.id;
+    }
     api(command, object, newParams,function(err,result){
         if (err){
             if (err instanceof UserError){

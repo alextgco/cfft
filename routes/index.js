@@ -10,7 +10,7 @@ module.exports = function (app) {
   });
   app.get('/admin', checkAdmin, require('./admin').get);
   app.post('/admin/api', checkAdmin, require('./adminApi').post);
-  app.post('/api', checkAuthApi, require('./userApi').post);
+  app.post('/api', require('./userApi').post);
 
   //app.get('/login', require('./login').get);
   app.post('/login', require('./login').post);

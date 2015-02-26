@@ -115,9 +115,6 @@ module.exports = function(callback){
         //var protoGet = results.get;
 
         results.beforeFunction.get = function (obj, callback) {
-            /*if (!obj.user_id) {
-                return callback(null,null);
-            }*/
             var exludedColumns = ['published', 'created', 'deleted'];
             var columns = funcs.cloneObj(results.columns);
             for (var i in exludedColumns) {
