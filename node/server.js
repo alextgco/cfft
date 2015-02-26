@@ -971,3 +971,5 @@ server.init();
 //…or push an existing repository from the command line
 //git remote add origin https://github.com/multibooker2015/2.70.git
 //git push -u origin master
+
+// git remote set-url origin https://github.com/multibooker2015/2.70
