@@ -1,6 +1,6 @@
 var api = require('../libs/api');
 exports.get = function(req, res, next){
-    api('get', 'results', {limit: 20}, function(err,result){
+    api('get', 'results', {limit: 20, sort: 'position'}, function(err,result){
         if (err){
             console.log(err, 'admin_results');
         }else{

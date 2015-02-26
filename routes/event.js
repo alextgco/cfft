@@ -44,7 +44,7 @@ exports.get = function(req, res, next){
             }
 
             async.each(result.data,function(item,callback){
-                api('get', 'results', {where: {action_part_id: item.id}, user_id:req.user}, function(err, resultsRes){
+                api('get', 'results', {where: {action_part_id: item.id}, sort: 'position', user_id:req.user}, function(err, resultsRes){
                     if (err){
                         console.log(err, 'admin_event');
                         return callback(err);
