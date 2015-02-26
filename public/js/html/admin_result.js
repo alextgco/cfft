@@ -10,7 +10,9 @@ $(document).ready(function(){
         goToObject: 'admin_judge_result',
         primaryKey: 'id',
         where: {
-            status_name_sys: '<>IN_HISTORY'
+            result_statuses:{
+                sys_name: '<>IN_HISTORY'
+            }
         },
         sort: 'position',
         filters: [
