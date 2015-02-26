@@ -75,8 +75,8 @@ module.exports = function(callback){
                     }
                     if (val != 'DRAFT'){
                         obj.published = funcs.getDateTimeMySQL();
-                        callback(null, obj);
                     }
+                    callback(null, obj);
                 });
             }else{
                 action.getDirectoryId('action_statuses','DRAFT',function(err,id){
