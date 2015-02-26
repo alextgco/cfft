@@ -9,6 +9,10 @@ $(document).ready(function(){
         //'id','action_id','status_name_sys','video_url'
         goToObject: 'admin_judge_result',
         primaryKey: 'id',
+        where: {
+            status_name_sys: '<>IN_HISTORY'
+        },
+        sort: 'position',
         filters: [
             {
                 label: 'Мероприятие',

@@ -17,6 +17,7 @@ $(document).ready(function(){
             getObject: getObj,
             wrapper: tbl,
             visible_columns: ['user_surname', 'concat_result', 'status_name', 'video_url', 'user_firstname'],
+            sort: 'position',
             specialColumns: [
                 {
                     column: 'video_url',
