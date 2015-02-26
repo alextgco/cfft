@@ -59,3 +59,5 @@
 20112: 20111: Сектор мероприятия с id "2968" не существует в системе.
    debug - websocket writing 5:::{"name":"socketQueryCallback","args":["FAC75ADF-D0AF-4DBD-A8AC-24CBBB813B585","{\"results\":[{\"code\":\"20112\",\"object\":\"Main_Int\",\"toastr\":{\"type\":\"error\",\"title\":\"ОШИБКА\",\"message\":\"20112: 20111: Сектор мероприятия с id \\\"2968\\\" не существует в системе.\"}}],\"connection_id\":\"\",\"in_out_key\":\"oh5rzosxx5X0tr9G20uj\"}"]}
 time
+
+

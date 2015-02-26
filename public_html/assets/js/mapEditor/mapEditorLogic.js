@@ -2320,7 +2320,6 @@ var mapEditorLogicInit = function(mapEditor_map){
             };
             var newObj = new Zone(params);
             zones.addZone(newObj);
-
         }
     });
 

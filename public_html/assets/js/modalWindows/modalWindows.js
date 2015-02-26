@@ -370,8 +370,7 @@ var modalWindow = function(){
             collapse:       _t.wrapper.find('.mw-collapse'),
             fullscreen:     _t.wrapper.find('.mw-fullscreen'),
             close:          _t.wrapper.find('.mw-close'),
-            footerBtn:      $('.mw-try-wrap[data-id="mw-'+_t.wrapId+'"]'),
-            saveBtn:        _t.wrapper.find('.mw-save-form')
+            footerBtn:      $('.mw-try-wrap[data-id="mw-'+_t.wrapId+'"]')
         };
         _t.footerButton = blocks.footerBtn;
         _t.setActive();
@@ -446,7 +445,7 @@ var modalWindow = function(){
         blocks.header.off('mousedown').on('mousedown', function(e){
             _t.setActive();
 
-            if( $(e.target).hasClass('mw-save-form') || $(e.target).hasClass('mw-collapse') || $(e.target).hasClass('mw-fullscreen') || $(e.target).hasClass('mw-close') || $(e.target).parents('.mw-actionBtns').length > 0 ){
+            if($(e.target).hasClass('mw-insertIntoHeader') || $(e.target).parents('.mw-insertIntoHeader').length > 0 ||  $(e.target).hasClass('mw-save-form') || $(e.target).hasClass('mw-collapse') || $(e.target).hasClass('mw-fullscreen') || $(e.target).hasClass('mw-close') || $(e.target).parents('.mw-actionBtns').length > 0 ){
 
             }else{
                 _t.inMove = _t.draggable;
@@ -463,10 +462,6 @@ var modalWindow = function(){
             windows.removeItem(_t);
             $('#modalSelectionPrevent').css('zIndex', '-10');
             $(_t).trigger('close');
-        });
-
-        blocks.saveBtn.on('click',function(){
-            $(_t).trigger('save');
         });
 
         $(document).on('click', function(){
@@ -841,11 +836,6 @@ var modalWindow = function(){
             windows.removeItem(_this);
             $(_this).trigger('close');
         });
-
-        blocks.saveBtn.on('click',function(){
-            $(_this).trigger('save');
-        });
-
         blocks.fullscreen.on('click', function(){
             _this.startPosition = 'center';
             _this.waitForPosition = 'fullscreen';

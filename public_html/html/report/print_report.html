@@ -24,10 +24,17 @@
         send_query({command:"get",object:obj,sid:$_GET['sid'],params:params},function(result){
             var primalRess = result;
             result = parseResult(result);
-
-            if(primalRess.RC != 0){
-                alert(primalRess['MESSAGE']);
-                toastr[primalRess['TOAST_TYPE']](primalRess['MESSAGE']);
+            if(primalRess.RC){
+                if(primalRess.RC != 0){
+                    var temp = jQuery.extend(true, {}, window.parent.toastr.options);
+                    window.parent.toastr.options = {"positionClass": "toast-top-right"};
+                    window.parent.toastr[primalRess['TOAST_TYPE']](primalRess['MESSAGE']);
+                    window.parent.toastr.options = temp;
+                }else{
+                    var html = result;
+                    $("#report").html(html);
+                    window.print();
+                }
             }else{
                 var html = result;
                 $("#report").html(html);

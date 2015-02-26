@@ -562,6 +562,7 @@ function mapEditor_init(id){
     });
 
     mapEditor_map.container.on('loadAreaGroup_callbackFull',function(e,obj){
+
         $(document).trigger('zonesUpdate');
     });
 
