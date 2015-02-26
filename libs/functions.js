@@ -50,6 +50,11 @@ var funcs = {
         }
         return arr.toString();
     },
+    age: function(val){
+        if (!moment(val).isValid()){
+            return val;
+        }
+    },
     clearEmpty: function(arr) {
         if (typeof arr!=='object'){
             return arr;
