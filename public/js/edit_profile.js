@@ -66,7 +66,7 @@ $(document).ready(function(){
     confirm.off('click').on('click', function(){
         var data = acquireData();
         var o = {
-            command: 'editProfile',
+            command: 'modifyProfile',
             object: 'user',
             params:{}
         };
