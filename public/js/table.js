@@ -151,6 +151,9 @@
     CF.Table.prototype.renderFilters = function(){
         var _t = this;
         _t.wrapper.find('.filterContainer').remove();
+        if(_t.filters.length == 0){
+            return;
+        }
         var html = '<div class="filterContainer"><div class="row"><div class="filters-wrapper"></div><div class=""><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div></div></div>';
         _t.wrapper.prepend(html);
     };
