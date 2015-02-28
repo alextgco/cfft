@@ -54,6 +54,9 @@ var funcs = {
         if (!moment(val).isValid()){
             return val;
         }
+        var a = moment(val);
+        var b = moment();
+        return b.diff(a,'years');
     },
     clearEmpty: function(arr) {
         if (typeof arr!=='object'){
