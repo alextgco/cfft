@@ -159,5 +159,27 @@ block content
                                 .tab-pane(role='tabpanel', id="results_#{part.id}")
                                     .row
                                         .col-md-12
-                                            .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}")
+                                            div(role="tabpanel")
+                                                ul.nav.nav-pills(role="tablist")
+                                                    li.active(role="results_by_range_#{part.id}")
+                                                        a(href="#male_#{part.id}", aria-controls="male_#{part.id}", role="tab", data-toggle="tab") Мужчины
+                                                    li(role="results_by_range_#{part.id}")
+                                                        a(href="#male40_#{part.id}", aria-controls="male40_#{part.id}", role="tab", data-toggle="tab") Мужчины 40+
+                                                    li(role="results_by_range_#{part.id}")
+                                                        a(href="#famale_#{part.id}", aria-controls="famale_#{part.id}", role="tab", data-toggle="tab") Женщины
+                                                    li(role="results_by_range_#{part.id}")
+                                                        a(href="#famale40_#{part.id}", aria-controls="famale40_#{part.id}", role="tab", data-toggle="tab") Женщины 40+
+                                                .tab-content
+                                                    .tab-pane.active(role="tabpanel", id="male_#{part.id}")
+                                                        | male
+                                                        .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}", data-range_where="male")
+                                                    .tab-pane(role="tabpanel", id="male40_#{part.id}")
+                                                        | male40
+                                                        .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}", data-range_where="male40")
+                                                    .tab-pane(role="tabpanel", id="famale_#{part.id}")
+                                                        | famale
+                                                        .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}", data-range_where="famale")
+                                                    .tab-pane(role="tabpanel", id="famale40_#{part.id}")
+                                                        | famale40
+                                                        .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}", data-range_where="famale40")
     script(type="text/javascript", src="js/html/event.js")

@@ -10,26 +10,6 @@ block content
         - var rewards = data.rewards.data[0];
         - var sParts = JSON.stringify(parts);
     .container.posRel
-        ////id
-        ////action_id
-        ////title
-        ////part_title
-        //result_type_id
-        //judgement_finish_datetime
-        //status_id
-        ////main_video_url
-        //start_date
-        //end_date
-        //created
-        //published
-        //deleted
-        ////desc_complex
-        ////note
-        ////desc_move_std
-        ////desc_scoring
-        ////desc_inventory
-        ////desc_video_std
-
         if(isNew)
             h2 Создание мероприятия
         else
@@ -200,6 +180,7 @@ block content
                                                                             .sBtn.small.red.flRight.remove-event-part.marRight3(data-action_id="#{event.id}", data-id="#{parts.id}")
                                                                                 i.fa.fa-trash-o
                                                                                 |   Удалить
+
                                                                             .sBtn.small.green.flRight.save-edit-event-part.marRight3(data-action_id="#{event.id}", data-id="#{parts.id}")
                                                                                 i.fa.fa-save
                                                                                 |   Сохранить
@@ -227,27 +208,31 @@ block content
                                                                         .form-group.col-md-4
                                                                             label Статус:
                                                                             input.fc-event-part-field.select2.form-control.fc_control(value='#{parts.status_id}', data-text="#{parts.status}", data-name='status_id', type="hidden", data-table="statuses_of_action_parts")
-                                                                    .row
-                                                                        .form-group.col-md-6
-                                                                            label Комплекс:
-                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_complex}', data-editor='html', data-name='desc_complex', id="#{parts.id}-desc_complex")
-                                                                        .form-group.col-md-6
-                                                                            label Примечание:
-                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.note}', data-editor='html', data-name='note', id="#{parts.id}-note")
-                                                                    .row
-                                                                        .form-group.col-md-6
-                                                                            label Стандарты движений:
-                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_move_std}', data-editor='html', data-name='desc_move_std', id="#{parts.id}-desc_move_std")
-                                                                        .form-group.col-md-6
-                                                                            label Подсчет очков:
-                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_scoring}', data-editor='html', data-name='desc_scoring', id="#{parts.id}-desc_scoring")
-                                                                    .row
-                                                                        .form-group.col-md-6
-                                                                            label Оборудование:
-                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_inventory}', data-editor='html', data-name='desc_inventory', id="#{parts.id}-desc_inventory")
-                                                                        .form-group.col-md-6
-                                                                            label Стандарты видеосъемки:
-                                                                            textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_video_std}', data-editor='html', data-name='desc_video_std', id="#{parts.id}-desc_video_std")
+                                                                    .collapseable
+                                                                        .collapseBtn
+                                                                            .fa.fa-minus
+                                                                        | AAAAAAAAAAAAA
+                                                                        .row
+                                                                            .form-group.col-md-6
+                                                                                label Комплекс:
+                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_complex}', data-editor='html', data-name='desc_complex', id="#{parts.id}-desc_complex")
+                                                                            .form-group.col-md-6
+                                                                                label Примечание:
+                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.note}', data-editor='html', data-name='note', id="#{parts.id}-note")
+                                                                        .row
+                                                                            .form-group.col-md-6
+                                                                                label Стандарты движений:
+                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_move_std}', data-editor='html', data-name='desc_move_std', id="#{parts.id}-desc_move_std")
+                                                                            .form-group.col-md-6
+                                                                                label Подсчет очков:
+                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_scoring}', data-editor='html', data-name='desc_scoring', id="#{parts.id}-desc_scoring")
+                                                                        .row
+                                                                            .form-group.col-md-6
+                                                                                label Оборудование:
+                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_inventory}', data-editor='html', data-name='desc_inventory', id="#{parts.id}-desc_inventory")
+                                                                            .form-group.col-md-6
+                                                                                label Стандарты видеосъемки:
+                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{parts.desc_video_std}', data-editor='html', data-name='desc_video_std', id="#{parts.id}-desc_video_std")
 
 
                                                                 .fn-vagon
@@ -306,6 +291,7 @@ block content
                                                                                 //.sBtn.small.blue.flRight.marRight3.to_results
                                                                                 //    i.fa.fa-list-ul
                                                                                 //    |   К результатам
+
                                                                         .row
                                                                             .form-group.col-md-4
                                                                                 label Наименование:
@@ -322,58 +308,47 @@ block content
                                                                             .form-group.col-md-4
                                                                                 label Статус:
                                                                                 input.fc-event-part-field.select2.form-control.fc_control(value='#{part.status_id}', data-text="#{part.status}", data-name='status_id', type="hidden", data-table="statuses_of_action_parts")
-                                                                        .row
-                                                                            .form-group.col-md-6
-                                                                                label Комплекс:
-                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_complex}', data-editor='html', data-name='desc_complex', id="#{part.id}-desc_complex")
-                                                                            .form-group.col-md-6
-                                                                                label Примечание:
-                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.note}', data-editor='html', data-name='note', id="#{part.id}-note")
-                                                                        .row
-                                                                            .form-group.col-md-6
-                                                                                label Стандарты движений:
-                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_move_std}', data-editor='html', data-name='desc_move_std', id="#{part.id}-desc_move_std")
-                                                                            .form-group.col-md-6
-                                                                                label Подсчет очков:
-                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_scoring}', data-editor='html', data-name='desc_scoring', id="#{part.id}-desc_scoring")
-                                                                        .row
-                                                                            .form-group.col-md-6
-                                                                                label Оборудование:
-                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_inventory}', data-editor='html', data-name='desc_inventory', id="#{part.id}-desc_inventory")
-                                                                            .form-group.col-md-6
-                                                                                label Стандарты видеосъемки:
-                                                                                textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_video_std}', data-editor='html', data-name='desc_video_std', id="#{part.id}-desc_video_std")
+                                                                        .collapseable
+                                                                            h4.padBot10.borBot1CCC Описание этапа
+                                                                            .collapseBtn
+                                                                                .fa.fa-minus
+                                                                                |  Свернуть
+                                                                            .collapseContent
+                                                                                .row
+                                                                                    .form-group.col-md-6
+                                                                                        label Комплекс:
+                                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_complex}', data-editor='html', data-name='desc_complex', id="#{part.id}-desc_complex")
+                                                                                    .form-group.col-md-6
+                                                                                        label Примечание:
+                                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.note}', data-editor='html', data-name='note', id="#{part.id}-note")
+                                                                                .row
+                                                                                    .form-group.col-md-6
+                                                                                        label Стандарты движений:
+                                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_move_std}', data-editor='html', data-name='desc_move_std', id="#{part.id}-desc_move_std")
+                                                                                    .form-group.col-md-6
+                                                                                        label Подсчет очков:
+                                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_scoring}', data-editor='html', data-name='desc_scoring', id="#{part.id}-desc_scoring")
+                                                                                .row
+                                                                                    .form-group.col-md-6
+                                                                                        label Оборудование:
+                                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_inventory}', data-editor='html', data-name='desc_inventory', id="#{part.id}-desc_inventory")
+                                                                                    .form-group.col-md-6
+                                                                                        label Стандарты видеосъемки:
+                                                                                        textarea.fc-event-part-field.form-control.cf_text_editor.fc_control(value='#{part.desc_video_std}', data-editor='html', data-name='desc_video_std', id="#{part.id}-desc_video_std")
+
+                                                                        .collapseable
+                                                                            h4.padBot10.borBot1CCC Заявки на этап
+                                                                            .collapseBtn
+                                                                                .fa.fa-minus
+                                                                                |  Свернуть
+                                                                            .collapseContent
+                                                                                .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}")
 
 
                                                                     .fn-vagon
-                                                                        h3 Проверенные заявки
-                                                                        table.table
-                                                                            thead
-                                                                                tr
-                                                                                    th Атлет
-                                                                                    th Реультат
-                                                                                    th Судья
-                                                                            tbody
-                                                                                tr
-                                                                                    td
-                                                                                        a(href='user.html') Атлет 1
-                                                                                    td 5 (4 (11:27))
-                                                                                    td
-                                                                                        a(href='judge.html') Судья 1
-                                                                                tr
-                                                                                    td
-                                                                                        a(href='user.html') Атлет 1
-                                                                                    td 5 (4 (11:27))
-                                                                                    td
-                                                                                        a(href='judge.html') Судья 1
-                                                                                tr
-                                                                                    td
-                                                                                        a(href='user.html') Атлет 1
-                                                                                    td 5 (4 (11:27))
-                                                                                    td
-                                                                                        a(href='judge.html') Судья 1
                                                                         .sBtn.small.blue.flRight.marRight3.back_results
                                                                             i.fa.fa-reply
                                                                             |   Назад
+    script(type="text/javascript", src="js/html/admin_event.js")
 
 

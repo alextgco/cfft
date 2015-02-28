@@ -230,3 +230,49 @@ table.table.simpleView tr:nth-child(2n) td{
 .clear-filter{
     background-color: #444;
 }
+.collapseBtn{
+    float: right;
+    right: 0;
+    background-color: #f7f7f7;
+    top: 0;
+    cursor: pointer;
+    padding: 7px 14px;
+    position: absolute;
+}
+.collapseBtn:hover{
+    background-color: #f0f0f0;
+}
+.collapseable{
+    position: relative;
+}
+.borBot1CCC{
+    border-bottom: 1px solid #ccc;
+}
+.padBot10{
+    padding-bottom: 10px;
+}
+
+
+.statusColor.IN_QUEUE{
+    background-color: #ccc;
+    color: #333;
+}
+.statusColor.IN_PROGRESS{
+    background-color: #356ecc;
+    color: #fff;
+}
+.statusColor.ACCEPTED{
+    background-color: #128e18;
+    color: #fff;
+}
+.statusColor.REJECTED{
+    background-color: #d72f2e;
+    color: #fff;
+}
+.result_status{
+    float: left;
+    padding: 2px 7px;
+    font-size: 14px;
+    border-radius: 3px;
+    margin-left: 15px;
+}

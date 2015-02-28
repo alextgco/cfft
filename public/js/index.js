@@ -114,6 +114,36 @@ $(document).ready(function(){
             contentHeight: 'auto'
         });
 
+        //type == true (COLLAPSE)
+        //type == false (EXPAND)
+        function collapseBlock(wrapper, type, cb){
+            var content = wrapper.find('.collapseContent');
+            console.log(content);
+            if(type){
+                content.hide(0);
+            }else{
+                content.show(0);
+            }
+            if(typeof cb == 'function'){
+                cb();
+            }
+        }
+
+
+        $('.collapseBtn').off('click').on('click', function(){
+            var parent = $(this).parents('.collapseable');
+            var $self = $(this);
+            if($(this).hasClass('collapsed')){
+                collapseBlock(parent, false, function(){
+                    $self.html('<div class="fa fa-minus"></div> Свернуть').removeClass('collapsed');
+                });
+            }else{
+                collapseBlock(parent, true, function(){
+                    $self.html('<div class="fa fa-plus"></div> Развернуть').addClass('collapsed');
+                });
+            }
+        });
+
     }());
 
 
@@ -614,6 +644,7 @@ $(document).ready(function(){
         };
 
         var wowWrapper = $('.nearrest-wow-event-wrapper');
+        var header = $('.nearrest-wow-title');
         var start = wowWrapper.find('.date-start');
         var end = wowWrapper.find('.date-end');
         var short = wowWrapper.find('.nearrest-wow-exercises');
@@ -627,6 +658,7 @@ $(document).ready(function(){
                 start.html(getDayMth(data.date_start));
                 end.html(getDayMth(data.date_end));
                 wowWrapper.data('to_date', data.date_start);
+                header.html(data.title);
                 short.html(data.description2);
                 CF.initBackTimer();
             }
