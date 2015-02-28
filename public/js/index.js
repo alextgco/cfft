@@ -24,8 +24,6 @@ var sendQuery = function (obj, cb) {
 };
 $(document).ready(function(){
 
-
-
     (function(){
         $('#logo').off('click').on('click', function(){
             if($(this).hasClass('adminHome')){
@@ -57,7 +55,7 @@ $(document).ready(function(){
         $('select').select2();
 
 
-        $('input.select2.fc-event-field, input.select2.fc-event-part-field').each(function(idx, elem){
+        $('input.select2, input.select2').each(function(idx, elem){
             var $elem = $(elem);
             var name = $elem.data('name');
             $elem.select2({
