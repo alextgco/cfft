@@ -70,7 +70,7 @@ $(document).ready(function(){
                         }
                     };
                     if(query.term.length > 0){
-                        o.params.where[name] = '%'+query.term+'%';
+                        o.params.where[name] = '*'+query.term+'*';
                     }
 
                     sendQuery(o, function(res){
