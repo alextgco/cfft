@@ -69,8 +69,8 @@ $(document).ready(function(){
                             where: {}
                         }
                     };
-                    if($elem.select2('data').text.length > 0){
-                        o.where[name] = $elem.select2('data').text;
+                    if(query.term.length > 0){
+                        o.params.where[name] = '%'+query.term+'%';
                     }
 
                     sendQuery(o, function(res){
