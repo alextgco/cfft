@@ -1,5 +1,19 @@
 var CF = {};
 (function(){
+    CF.cloneObj = function (obj) {
+        if (obj == null || typeof(obj) != 'object') {
+            return obj;
+        }
+        var temp = {};
+        if (obj.length){
+            temp = [];
+        }
+        for (var key in obj) {
+            temp[key] = this.cloneObj(obj[key]);
+        }
+        return temp;
+    };
+
     CF.getJsonFromUrl = function(){
         var query = location.search.substr(1);
         var result = {};

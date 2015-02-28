@@ -976,32 +976,56 @@ h4.darkHd{
 .filters-wrapper{
     margin-bottom: 15px;
     margin-top: 15px;
+    float: left;
+    width: 100%;
+    padding-right: 130px;
+    padding-left: 15px;
 }
 .filterBtn{
     font-size: 24px;
-    width: 49%;
+    width: 50px;
     background-color: #eee;
     padding-bottom: 7px;
-    padding-top: 7px;
     text-align: center;
-    margin-top: 18px;
-    margin-left: 1%;
-    border-radius: 4px;
+    position: absolute;
+    margin: 0;
     cursor: pointer;
     color: #fff;
+    height: 50px;
+    padding-top: 14px;
 }
 .filterBtn:hover{
-    opacity: 0.9;
+    /*opacity: 0.9;*/
 }
 .confirm-filter{
     background-color: #128e18;
+    right: 65px;
 }
 .clear-filter{
     background-color: #444;
+    right: 15px;
 }
 .no_results{
     width: 100%;
     text-align: center;
     margin-top: -46px;
     font-size: 20px;
+    padding-bottom: 16px;
+}
+.event-results-tabs .nav-pills>li>a{
+    border-radius: 4px 4px 0 0;
+    padding: 5px 13px;
+    margin-top: 10px;
+}
+.event-results-tabs .tab-pane{
+    background-color: #EBEDED;
+    border-top: 1px solid rgb(35, 87, 132);
+
+}
+.event-results-tabs .filterBtn{
+    color: #181818;
+    background-color: transparent!important;
+}
+.event-results-tabs .filterBtn:hover{
+    background-color: rgba(0,0,0,0.1)!important;
 }

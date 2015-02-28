@@ -151,7 +151,7 @@
     CF.Table.prototype.renderFilters = function(){
         var _t = this;
         _t.wrapper.find('.filterContainer').remove();
-        var html = '<div class="filterContainer"><div class="row"><div class="filters-wrapper col-md-11"></div><div class="col-md-1"><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div></div></div>';
+        var html = '<div class="filterContainer"><div class="row"><div class="filters-wrapper"></div><div class=""><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div></div></div>';
         _t.wrapper.prepend(html);
     };
 
@@ -368,7 +368,10 @@
         });
 
         _t.wrapper.find('.clear-filter').off('click').on('click', function(){
-            _t.where = _t.defaultWhere;
+            _t.where = CF.cloneObj(_t.defaultWhere);
+
+            console.log(_t.where);
+
             _t.getData(function(){
                 _t.render(function(){
                     _t.setHandlers();

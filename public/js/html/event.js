@@ -15,19 +15,41 @@ $(document).ready(function(){
         getObj = tbl.data('get_object');
         rangeWhere = tbl.data('range_where');
 
-        switch(rangeWhere){
-            case 'male':
+        var whereObj = {
+            action_parts: {
+                action_id: action_id,
+                id: part_id
+            }
+        };
 
-                break;
-            case 'male40':
-                break;
-            case 'famale':
-                break;
-            case 'famale40':
-                break;
-            default:
-                break;
-        }
+        //switch(rangeWhere){
+        //    case 'male':
+        //        whereObj['users'] = {
+        //            gender_sys_name: 'MALE',
+        //            age: '<=40'
+        //        };
+        //        break;
+        //    case 'male40':
+        //        whereObj['users'] = {
+        //            gender_sys_name: 'MALE',
+        //            age: '>40'
+        //        };
+        //        break;
+        //    case 'famale':
+        //        whereObj['users'] = {
+        //            gender_sys_name: 'FAMALE',
+        //            age: '<40'
+        //        };
+        //        break;
+        //    case 'famale40':
+        //        whereObj['users'] = {
+        //            gender_sys_name: 'FAMALE',
+        //            age: '>40'
+        //        };
+        //        break;
+        //    default:
+        //        break;
+        //}
 
 
         var table = new CF.Table({
@@ -41,18 +63,8 @@ $(document).ready(function(){
                     type: 'link'
                 }
             ],
-            defaultWhere: {
-                action_parts: {
-                    action_id: action_id,
-                    id: part_id
-                }
-            },
-            where: {
-                action_parts: {
-                    action_id: action_id,
-                    id: part_id
-                }
-            },
+            defaultWhere: whereObj,
+            where: whereObj,
             goToObject: '',
             primaryKey: 'id',
             filters: [
