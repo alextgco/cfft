@@ -474,7 +474,9 @@ body{
 .nearrest-wow-exercises{
     text-align: left;
     color: #b8b7b7;
-    margin-top: 10px;
+    margin-top: 27px;
+    border-top: 1px solid #626262;
+    padding-top: 15px;
 }
 .nearrest-wow-timer-row{
     /*width: 100%;*/
@@ -799,10 +801,55 @@ h4.darkHd{
     display: none;
 
 }
-
+.nearresr-wow-timer-init{
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    float: left;
+    position: relative;
+}
 .countdown-section{
 
 }
+.countdown-row{
+    position: relative;
+
+}
+
+.countdown-show4{
+    width: 100%!important;
+    float: left;
+    margin-left: 0;
+}
+.countdown-show3{
+    width: 75%!important;
+    float: left;
+    margin-left: 12.5%;
+}
+.countdown-show2{
+    width: 50%!important;
+    float: left;
+    margin-left: 25%;
+}
+.countdown-show1{
+    width: 25%!important;
+    float: left;
+    margin-left: 37.5%;
+}
+
+.countdown-show3 .countdown-amount,
+.countdown-show3 .countdown-period{
+    width: 33%;
+}
+.countdown-show2 .countdown-amount,
+.countdown-show2 .countdown-period{
+    width: 50%;
+}
+.countdown-show1 .countdown-amount,
+.countdown-show1 .countdown-period{
+    width: 100%;
+}
+
 .countdown-amount{
     color: #fff;
     display: block;
@@ -812,16 +859,53 @@ h4.darkHd{
     text-align: center;
 }
 .countdown-period{
-    /*color: #ccc;*/
-    /*position: absolute;*/
-    /*margin-top: 20px;*/
-    /*width: 25%;*/
-    /*text-align: center;*/
+    position: absolute;
+    margin-top: 23px;
+    width: 25%;
+
+    left: 0;
+    text-align: center;
     /*float: left;*/
-    /*font-size: 11px;*/
-    /*display: block;*/
-    display: none;
+    font-size: 11px;
+    color: #fff;
 }
+.countdown-show4 .countdown-section:nth-child(1) .countdown-period{
+    left: 0;
+}
+.countdown-show4 .countdown-section:nth-child(2) .countdown-period{
+    left: 25%;
+}
+.countdown-show4 .countdown-section:nth-child(3) .countdown-period{
+    left: 50%;
+}
+.countdown-show4 .countdown-section:nth-child(4) .countdown-period{
+    left: 75%;
+}
+
+.countdown-show3 .countdown-section:nth-child(1) .countdown-period{
+    left: 0;
+}
+.countdown-show3 .countdown-section:nth-child(2) .countdown-period{
+    left: 33.3%;
+}
+.countdown-show3 .countdown-section:nth-child(3) .countdown-period{
+    left: 66.6%;
+}
+
+
+.countdown-show2 .countdown-section:nth-child(1) .countdown-period{
+    left: 0;
+}
+.countdown-show2 .countdown-section:nth-child(2) .countdown-period{
+    left: 50%;
+}
+
+
+.countdown-show1 .countdown-section:nth-child(1) .countdown-period{
+    left: 0;
+}
+
+
 .countdown-section:last-child .countdown-amount{
     color: #ff8a06;
 }

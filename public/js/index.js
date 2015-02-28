@@ -644,6 +644,7 @@ $(document).ready(function(){
         };
 
         var wowWrapper = $('.nearrest-wow-event-wrapper');
+        var header = $('.nearrest-wow-title');
         var start = wowWrapper.find('.date-start');
         var end = wowWrapper.find('.date-end');
         var short = wowWrapper.find('.nearrest-wow-exercises');
@@ -657,6 +658,7 @@ $(document).ready(function(){
                 start.html(getDayMth(data.date_start));
                 end.html(getDayMth(data.date_end));
                 wowWrapper.data('to_date', data.date_start);
+                header.html(data.title);
                 short.html(data.description2);
                 CF.initBackTimer();
             }
