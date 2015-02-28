@@ -976,32 +976,218 @@ h4.darkHd{
 .filters-wrapper{
     margin-bottom: 15px;
     margin-top: 15px;
+    float: left;
+    width: 100%;
+    padding-right: 130px;
+    padding-left: 15px;
 }
 .filterBtn{
     font-size: 24px;
-    width: 49%;
+    width: 50px;
     background-color: #eee;
     padding-bottom: 7px;
-    padding-top: 7px;
     text-align: center;
-    margin-top: 18px;
-    margin-left: 1%;
-    border-radius: 4px;
+    position: absolute;
+    margin: 0;
     cursor: pointer;
     color: #fff;
+    height: 50px;
+    padding-top: 14px;
 }
 .filterBtn:hover{
-    opacity: 0.9;
+    /*opacity: 0.9;*/
 }
 .confirm-filter{
     background-color: #128e18;
+    right: 65px;
 }
 .clear-filter{
     background-color: #444;
+    right: 15px;
 }
 .no_results{
     width: 100%;
     text-align: center;
     margin-top: -46px;
     font-size: 20px;
+    padding-bottom: 16px;
+}
+.event-results-tabs .nav-pills>li>a{
+    border-radius: 4px 4px 0 0;
+    padding: 5px 13px;
+    margin-top: 10px;
+}
+.event-results-tabs .tab-pane{
+    background-color: #EBEDED;
+    border-top: 1px solid rgb(35, 87, 132);
+
+}
+.event-results-tabs .filterBtn{
+    color: #181818;
+    background-color: transparent!important;
+}
+.event-results-tabs .filterBtn:hover{
+    background-color: rgba(0,0,0,0.1)!important;
+}
+.user-photo-wrapper{
+    position: relative;
+}
+.user-photo-wrapper img{
+    width: 100%;
+    border-radius: 4px;
+}
+.user-photo-clear{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 50px;
+    width: 50px;
+    background-color: rgba(255, 255, 255,0.4);
+    border-radius: 50%;
+    text-align: center;
+    color: rgb(224, 27, 26);
+    padding-top: 8px;
+    font-size: 22px;
+    cursor: pointer;
+    padding-left: 1px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.user-photo-clear:hover{
+    background-color: #fff;
+}
+.wows-list-wrapper{
+    /*padding: 0;*/
+}
+.wows-list-wrapper .col-md-3{
+    /*padding: 0;*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+}
+
+.wows-list-wrapper a img{
+    width: 100%;
+
+}
+.wow-item-info{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: rgba(255,255,255,0.4);
+}
+
+.wow-item-bottom{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.wow-item-info .titleInner{
+    width: 100%;
+}
+
+.wow-item-bottom .dateInner{
+    margin: 0;
+    border-radius: 0;
+    display: block;
+    float: left;
+    width: 50%;
+    font-size: 12px;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    font-family: arial, sans-serif;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+.wow-item-bottom .action-status{
+    margin: 0;
+    border-radius: 0;
+    display: block;
+    float: left;
+    width: 50%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.wow-item-info .titleInner a{
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: openSanssemibold, arial, sans-serif;
+    background-color: rgba(255,255,255,0.8);
+    border-top: 4px solid #666565;
+}
+.wow-item-desc{
+    font-size: 13px;
+    padding: 5px 15px;
+    color: #000;
+    height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 24px;
+    white-space: nowrap;
+}
+.wow-item-desc p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 24px;
+}
+.wow-item-bottom .action-status.OPENED{
+    background-color: rgba(18, 142, 24, 0.5);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.wow-item-bottom .action-status.CLOSED{
+    background-color: rgba(63, 92, 204, 0.50);
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.wow-item-bottom .action-status.FINISHED{
+    background-color: rgba(204, 204, 204, 0.51);
+    color: #000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.wow-item-inner{
+    width: 100%;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.wow-item-inner:hover{
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+.wow-item-inner:hover .wow-item-info .titleInner a{
+    border-top: 4px solid #FF6B00;
+}
+.event-reglament-link{
+    color: #9D9D9D;
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 20px;
+    padding: 0px 9px;
+    border-radius: 3px;
+    font-family: openSans, arial, sans-serif;
+    text-shadow: 0 0 0;
+}
+.event-reglament-link:hover{
+    text-decoration: none;
+    background-color: #333;
+    color: #fff;
 }

@@ -8,20 +8,32 @@ block content
                 .col-md-12
                     form#form-registration(name="form-registration")
                         .row
-                            .col-md-12
-                                .col-md-3
+                            .col-md-6
+                                .col-md-12
                                     .form-group
                                         label.control-label
-                                            | &#1055;&#1086;&#1095;&#1090;&#1072;:
+                                            | Имя
+                                            span.red-star *
+                                        input.form-control.fc-field(type="text", data-server_name="name", data-title="Имя", data-required="true", data-editor="text", placeholder="Имя")
+                                .col-md-12
+                                    .form-group
+                                        label.control-label
+                                            | Фамилия
+                                            span.red-star *
+                                        input.form-control.fc-field(type="text", data-server_name="surname", data-title="Фамилия", data-required="true", data-editor="text", placeholder="Фамилия")
+                                .col-md-12
+                                    .form-group
+                                        label.control-label
+                                            | Почта
                                             span.red-star *
                                         input.form-control.fc-field(type="text", data-server_name="email", data-title="Почта", data-required="true", data-editor="email", placeholder="Почта")
-                                .col-md-3
+                                .col-md-12
                                     .form-group
                                         label.control-label &#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;:
                                         .input-group
                                             .input-group-addon +7
                                             input.form-control.maskedPhone.fc-field(type="text", data-server_name="phone", data-title="Телефон", data-editor="phone", placeholder="Телефон")
-                                .col-md-3
+                                .col-md-12
                                     .form-group
                                         label.control-label
                                             |Пароль
@@ -30,7 +42,7 @@ block content
                                             .input-group-addon
                                                 i.fa.fa-key
                                             input.form-control.fc-field(type="password", data-server_name="password", data-title="Пароль", data-required="true", data-editor="text", placeholder="Пароль")
-                                .col-md-3
+                                .col-md-12
                                     .form-group
                                         label.control-label
                                             |Подтверждение пароля
@@ -39,92 +51,46 @@ block content
                                             .input-group-addon
                                                 i.fa.fa-key
                                             input.form-control.fc-field(type="password", data-server_name="confirm_password", data-title="Подтверждение пароля", data-required="true", data-editor="text", placeholder="Подтверждение пароля")
-                        hr
-                        .row
-                            .col-md-12
-                                .col-md-3
-                                    .form-group
-                                        label.control-label
-                                            | &#1048;&#1084;&#1103;:
-                                            span.red-star *
-                                        input.form-control.fc-field(type="text", data-server_name="name", data-title="Имя", data-required="true", data-editor="text", placeholder="Имя")
-                                .col-md-3
-                                    .form-group
-                                        label.control-label
-                                            | &#1060;&#1072;&#1084;&#1080;&#1083;&#1080;&#1103;:
-                                            span.red-star *
-                                        input.form-control.fc-field(type="text", data-server_name="surname", data-title="Фамилия", data-required="true", data-editor="text", placeholder="Фамилия")
                                 //.col-md-4.form-group
                                 //    label.control-label
                                 //        | &#1054;&#1090;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086;:
                                 //    input.form-control.fc-field(type="text", data-server_name="secondname", data-title="Отчество", data-required="false", data-editor="text", placeholder="Отчество")
-                                .col-md-3
+                                .col-md-12
                                     .form-group
-                                        label.control-label &#1055;&#1086;&#1083;:
-                                        select.form-control.fc-field(data-server_name="gender", data-title="Пол", data-editor="select")
-                                            option &#1052;&#1091;&#1078;&#1089;&#1082;&#1086;&#1081;
-                                            option &#1046;&#1077;&#1085;&#1089;&#1082;&#1080;&#1081;
-                                .col-md-3
+                                        label.control-label Пол
+                                        input.select2.form-control(type="hidden", data-name="gender", value="", data-text="", data-table="gender")
+                                        //select.form-control.fc-field(data-server_name="gender", data-title="Пол", data-editor="select")
+                                        //    option(value="male") Мужской
+                                        //    option(value="famale") Женский
+                                .col-md-12
                                     .form-group
                                         label.control-label &#1044;&#1072;&#1090;&#1072; &#1088;&#1086;&#1078;&#1076;&#1077;&#1085;&#1080;&#1103;:
                                         .input-group
-                                            input.form-control.cf_datepicker.fc-field(type="text", data-server_name="birthday", data-title="Дата рождения", data-editor="date", placeholder="Дата рождения")
+                                            input.form-control.fc_datepicker.fc-field(type="text", data-server_name="birthday", data-title="Дата рождения", data-editor="date", placeholder="Дата рождения")
                                             .input-group-addon
                                                 i.fa.fa-calendar
-                                .col-md-6
+                                .col-md-12
                                     .form-group
                                         .checkbox
                                             label
                                                 input.fc-field(type="checkbox", data-server_name="isAgree", data-title="Согласен(на) на рассылку", data-editor="checkbox")
-                                                | &#1071; &#1093;&#1086;&#1095;&#1091; &#1087;&#1086;&#1083;&#1091;&#1095;&#1072;&#1090;&#1100; &#1091;&#1074;&#1077;&#1076;&#1086;&#1084;&#1083;&#1077;&#1085;&#1080;&#1103; &#1080; &#1085;&#1086;&#1074;&#1086;&#1089;&#1090;&#1080;
-                        //.col-md-6
-                        //
-                        //
-                        //    .form-group
-                        //        label.control-label
-                        //            | &#1057;&#1090;&#1088;&#1072;&#1085;&#1072;:
-                        //            span.red-star *
-                        //
-                        //        select.form-control.fc-field(data-server_name="country", data-title="Страна", data-required="true", data-editor="select")
-                        //            option &#1056;&#1086;&#1089;&#1089;&#1080;&#1103;
-                        //            option &#1042;&#1077;&#1083;&#1080;&#1082;&#1086;&#1073;&#1088;&#1080;&#1090;&#1072;&#1085;&#1080;&#1103;
-                        //            option &#1057;&#1064;&#1040;
-                        //            option &#1041;&#1077;&#1083;&#1100;&#1075;&#1080;&#1103;
-                        //            option &#1058;&#1072;&#1090;&#1072;&#1088;&#1089;&#1090;&#1072;&#1085;
-                        //    .form-group
-                        //        label.control-label
-                        //            | &#1043;&#1086;&#1088;&#1086;&#1076;:
-                        //            span.red-star *
-                        //
-                        //        select.form-control.fc-field(data-server_name="city", data-title="Город", data-required="true", data-editor="select")
-                        //            option &#1052;&#1086;&#1089;&#1082;&#1074;&#1072;
-                        //            option &#1057;&#1072;&#1085;&#1082;&#1090;-&#1055;&#1077;&#1090;&#1077;&#1088;&#1073;&#1091;&#1088;&#1075;
-                        //            option &#1045;&#1082;&#1072;&#1090;&#1077;&#1088;&#1080;&#1085;&#1073;&#1091;&#1088;&#1075;
-                        //            option &#1058;&#1074;&#1077;&#1088;&#1100;
-                        //            option &#1050;&#1072;&#1083;&#1091;&#1075;&#1072;
-                        //    .form-group
-                        //        label.control-label
-                        //            | &#1050;&#1083;&#1091;&#1073;:
-                        //            span.red-star *
-                        //
-                        //        select.form-control.fc-field(data-server_name="club", data-title="Клуб", data-required="true", data-editor="select")
-                        //            option &#1053;&#1077; &#1089;&#1086;&#1089;&#1090;&#1086;&#1102; &#1074; &#1082;&#1083;&#1091;&#1073;&#1077;
-                        //            option &#1050;&#1083;&#1091;&#1073; 1
-                        //            option &#1050;&#1083;&#1091;&#1073; 2
-                        //            option &#1050;&#1083;&#1091;&#1073; 3
-                        //            option &#1050;&#1083;&#1091;&#1073; 4
-                        //    .form-group
-                        //        label.control-label &#1042;&#1077;&#1089;:
-                        //        .input-group
-                        //            input.form-control.fc-field(type="number", data-server_name="weight", data-title="Вес", data-editor="number", placeholder="Вес")
-                        //            .input-group-addon &#1082;&#1075;.
-                        //    .form-group
-                        //        label.control-label &#1056;&#1086;&#1089;&#1090;:
-                        //        .input-group
-                        //            input.form-control.fc-field(type="number", data-server_name="tall", data-title="Рост", data-editor="number", placeholder="Рост")
-                        //            .input-group-addon &#1089;&#1084;.
+                                                | Я хочу получать уведомления и новости
 
-
+                            .col-md-6
+                                .col-md-12
+                                    .form-group
+                                        label.control-label
+                                            | Фото
+                                            span.red-star *
+                                        div.input-group
+                                            .input-group-addon
+                                                i.fa.fa-image
+                                            input.form-control.fc-field.userPhotoInput(type="text", data-server_name="photo", data-title="Фото", data-required="false", data-editor="text", placeholder="Выберите изображение")
+                                .col-md-12
+                                    .user-photo-wrapper
+                                        .user-photo-clear
+                                            .fa.fa-trash
+                                        img(src="img/user_default_m.jpg")
                         .row
                             .col-md-12
                                 hr

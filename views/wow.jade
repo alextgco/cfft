@@ -11,6 +11,8 @@ block content
     h2.event-main-header
         .container.posRel
             | #{event.title}
+            a.event-reglament-link(href="rules_wow")
+                | Регламент
             .event-main-date #{event.date_start_text}
     .container
         .row.padTop30
@@ -107,14 +109,14 @@ block content
                                 li.active(role='presentation')
                                     a(href='#rules_#{part.id}', aria-controls='rules_#{part.id}', role='tab', data-toggle='tab', aria-expanded='true') Правила
                                 li(role='presentation')
-                                    //if(part.status_sys)
                                     a(href='#results_#{part.id}', aria-controls='results_#{part.id}', role='tab', data-toggle='tab', aria-expanded='false') Предварительные результаты
                             .tab-content
                                 .tab-pane.active(role='tabpanel', id="rules_#{part.id}")
                                     .row.padTop30
                                         .col-md-12
                                             if(part.desc_complex.length == 0 && part.note.length == 0 && part.desc_scoring.length == 0 && part.desc_inventory.length == 0 && part.desc_video_std.length == 0 && part.desc_move_std.length == 0)
-                                                h4 Нет информации
+                                                .col-md-12
+                                                    h4 Нет информации
                                             else
                                                 if(part.desc_move_std.length > 0)
                                                     .wid50pr.flLeft
@@ -159,7 +161,7 @@ block content
                                 .tab-pane(role='tabpanel', id="results_#{part.id}")
                                     .row
                                         .col-md-12
-                                            div(role="tabpanel")
+                                            div.event-results-tabs(role="tabpanel")
                                                 ul.nav.nav-pills(role="tablist")
                                                     li.active(role="results_by_range_#{part.id}")
                                                         a(href="#male_#{part.id}", aria-controls="male_#{part.id}", role="tab", data-toggle="tab") Мужчины
@@ -171,15 +173,11 @@ block content
                                                         a(href="#famale40_#{part.id}", aria-controls="famale40_#{part.id}", role="tab", data-toggle="tab") Женщины 40+
                                                 .tab-content
                                                     .tab-pane.active(role="tabpanel", id="male_#{part.id}")
-                                                        | male
                                                         .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}", data-range_where="male")
                                                     .tab-pane(role="tabpanel", id="male40_#{part.id}")
-                                                        | male40
                                                         .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}", data-range_where="male40")
                                                     .tab-pane(role="tabpanel", id="famale_#{part.id}")
-                                                        | famale
                                                         .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}", data-range_where="famale")
                                                     .tab-pane(role="tabpanel", id="famale40_#{part.id}")
-                                                        | famale40
                                                         .initMeTable(data-get_object="results", data-action_id="#{event.id}", data-part_id="#{part.id}", data-range_where="famale40")
     script(type="text/javascript", src="js/html/event.js")
