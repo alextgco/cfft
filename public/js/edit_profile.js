@@ -65,7 +65,19 @@ $(document).ready(function(){
 
     confirm.off('click').on('click', function(){
         var data = acquireData();
-        console.log(data);
+        var o = {
+            command: 'editProfile',
+            object: 'user',
+            params:{}
+        };
+        for(var i in data){
+            o.params[data[i].name] = data[i].val
+        }
+        console.log(o);
+
+        sendQuery(o, function(res){
+            toastr[res.toastr.type](res.toastr.message);
+        });
     });
 
 
