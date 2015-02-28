@@ -212,8 +212,11 @@ module.exports = function(callback){
                 return callback(new MyError('Как на счет авторизироваться?'));
             }
             obj.id = obj.user_id;
+            if (obj.name){
+                obj.firstname = obj.name;
+            }
             var required_fields = [].concat(user.required_fields);
-            var avaliable_fields = ['id','firstname','surname','secondname','phone','city_id','gender_id','weight','birthday','height','photo','isAgree'].concat(required_fields);
+            var avaliable_fields = ['id','firstname','surname','secondname','phone','city_id','gender_id','weight','birthday','height','photo','isAgree'];//.concat(required_fields);
             for (var i0 in obj) {
                 if (avaliable_fields.indexOf(i0)==-1) {
                     delete obj[i0];
@@ -239,9 +242,7 @@ module.exports = function(callback){
             if (obj.isAgree){
                 obj.isAgree = (obj.isAgree)?1:0;
             }
-            if (obj.name){
-                obj.firstname = obj.name;
-            }
+
             user.modify(obj,function(err,results){
                 callback(err,results);
             });
