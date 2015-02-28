@@ -11,7 +11,7 @@ module.exports = function(command,object,params,callback){
             params.published = true;
         }
         var allowedForUserCommand = model.allowedForUserCommand || [];
-        if (allowedForUserCommand.indexOf(command)===-1){
+        if (allowedForUserCommand.indexOf(command)===-1 && command!='get'){
             return callback('Команда '+command+' запрещена.');
         }
         model[command](params,function(err,result){
