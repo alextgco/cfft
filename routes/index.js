@@ -28,9 +28,12 @@ module.exports = function (app) {
 
   app.get('/wows', require('./wows').get);
 
+  app.get('/edit_profile', checkAuth, require('./edit_profile').get);
+
   app.get('/profile', checkAuth, function(req, res, next){
     res.render('profile');
   });
+
 
   app.get('/for_athlets', function(req, res, next){
     res.render('for_athlets');
