@@ -10,6 +10,7 @@ var UserError = require('../error').UserError;
 var moment = require('moment');
 module.exports = function(callback){
     var user = new Model({
+        /*allowedForUserCommand:['get','modifyProfile'],*/
         table: 'users',
         table_ru: 'Пользователь',
         ending:'',
@@ -203,6 +204,46 @@ module.exports = function(callback){
                         }
                     });
                 }
+            });
+        };
+
+        user.modifyProfile = function(obj,callback){
+            if (!obj.user_id){
+                return callback(new MyError('Как на счет авторизироваться?'));
+            }
+            obj.id = obj.user_id;
+            var required_fields = [].concat(user.required_fields);
+            var avaliable_fields = ['id','firstname','surname','secondname','phone','city_id','gender_id','weight','birthday','height','photo','isAgree'].concat(required_fields);
+            for (var i0 in obj) {
+                if (avaliable_fields.indexOf(i0)==-1) {
+                    delete obj[i0];
+                }
+            }
+            var notFinded = [];
+            for (var i in required_fields) {
+                var finded = false;
+                for (var j in obj) {
+                    if (j == required_fields[i] || obj[j]=='') {
+                        finded = true;
+                        break;
+                    }
+                }
+                notFinded.push(required_fields[i]);
+            }
+            if (!finded) {
+                return callback(new MyError('Не переданы (или переданы не корректно) обязательные поля. ' + notFinded.join(', ')));
+            }
+            if (obj.birthday){
+                obj.age = funcs.age(obj.birthday);
+            }
+            if (obj.isAgree){
+                obj.isAgree = (obj.isAgree)?1:0;
+            }
+            if (obj.name){
+                obj.firstname = obj.name;
+            }
+            user.modify(obj,function(err,results){
+                callback(err,results);
             });
         };
 

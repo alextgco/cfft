@@ -4,11 +4,14 @@ module.exports = function(command,object,params,callback){
         return callback('Команда '+command+' запрещена.');
     }
     var useModel = function(model){
+        if (typeof model[command]!=='function'){
+            return callback('Нет такой команды')
+        }
         if (command == 'get'){
             params.published = true;
         }
         var allowedForUserCommand = model.allowedForUserCommand || [];
-        if (allowedForUserCommand.indexOf(command)!==-1){
+        if (allowedForUserCommand.indexOf(command)===-1){
             return callback('Команда '+command+' запрещена.');
         }
         model[command](params,function(err,result){

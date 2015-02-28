@@ -321,24 +321,7 @@ module.exports = function(callback){
                         });
                     });
 
-                    /*var o = {
-                        columns:['result_type_id','result_repeat'],
-                        where: {
-                            action_part_id: action_part_id,
-                            published: true,
-                            result_type_id: result_type_id,
-                            result_statuses: {
-                                sys_name: "('IN_QUEUE','IN_PROGERSS','ACCEPTED')"
-                            }
-                        }
-                    };
-                    results.get(o, function (err, result) {
-                            if (err) {
-                                console.log('rePosition results.get', err);
-                                return callback(err);
-                            }
-                            console.dir(result);
-                        });*/
+
 
 
                 });
