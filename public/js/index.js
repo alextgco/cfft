@@ -61,18 +61,29 @@ $(document).ready(function(){
             $elem.select2({
                 query: function(query){
                     var data = {results: []};
-                    sendQuery({
+
+                    var o = {
                         command: 'get',
                         object: $elem.data('table'),
-                        params: {}
-                    }, function(res){
+                        params: {
+                            where: {}
+                        }
+                    };
+                    if($elem.select2('data').text.length > 0){
+                        o.where[name] = $elem.select2('data').text;
+                    }
+
+                    sendQuery(o, function(res){
                         for(var i in res.data){
                             var item = res.data[i];
                             data.results.push({
                                 id: item.id,
-                                text: item.name
+                                text: item[name]
                             });
                         }
+
+                        console.log(data);
+
                         query.callback(data);
                     });
                 },
@@ -81,6 +92,27 @@ $(document).ready(function(){
                     callback(data);
                 }
             });
+
+            if($elem.data('server_name') == "gender_id"){
+                var userPhotoWrapper = $('.user-photo-wrapper');
+                var userPhotoImg = userPhotoWrapper.find('img');
+
+                $elem.off('change').on('change', function(){
+                    var userPhotoInput = $('input.fc-field[data-server_name="photo"]');
+                    var val = $(this).select2('data').id;
+
+                    if(userPhotoInput.val() == ''){
+                        if(val == 1){
+                            userPhotoImg.attr('src', 'img/user_default_m.jpg');
+                        }else if(val == 2){
+                            userPhotoImg.attr('src', 'img/user_default_f.jpg');
+                        }else{
+                            userPhotoImg.attr('src', 'img/user_default_m.jpg');
+                        }
+                    }
+                });
+            }
+
         });
 
         var cf_text_editors = $('.cf_text_editor');
@@ -371,7 +403,7 @@ $(document).ready(function(){
                         break;
                     case 'date':
                         val = control.val();
-                        if(!CF.validator.date(val)){
+                        if(!CF.validator.text(val)){
                             formValid += notifyInvalid(control);
                         }else{
                             fields.push({

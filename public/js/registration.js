@@ -50,28 +50,33 @@ $(document).ready(function(){
         });
     });
 
-    $('select[data-server_name="gender"]').select2().off('change').on('change', function(){
-        var userPhotoInput = $('input.fc-field[data-server_name="photo"]');
-        var val = $(this).select2('data').id;
-        if(userPhotoInput.val() == ''){
-            if(val == 'male'){
-                userPhotoImg.attr('src', 'img/user_default_m.jpg');
-            }else if(val == 'famale'){
-                userPhotoImg.attr('src', 'img/user_default_f.jpg');
-            }else{
-                userPhotoImg.attr('src', 'img/user_default_m.jpg');
-            }
-        }
-    });
+
+    //$('.select2[data-server_name="gender_id"]').select2().off('change').on('change', function(){
+    //    alert(13);
+    //    var userPhotoInput = $('input.fc-field[data-server_name="photo"]');
+    //    var val = $(this).select2('data').id;
+    //    if(userPhotoInput.val() == ''){
+    //        if(val == 'MALE'){
+    //            userPhotoImg.attr('src', 'img/user_default_m.jpg');
+    //        }else if(val == 'FAMALE'){
+    //            userPhotoImg.attr('src', 'img/user_default_f.jpg');
+    //        }else{
+    //            userPhotoImg.attr('src', 'img/user_default_m.jpg');
+    //        }
+    //    }
+    //});
 
     $('.user-photo-clear').off('click').on('click', function(){
         var userPhotoInput = $('input.fc-field[data-server_name="photo"]');
         if(userPhotoInput.val().length > 0){
             userPhotoInput.val('');
-            var val = $('select[data-server_name="gender"]').select2('data').id;
-            if(val == 'male'){
+            var val = $('[data-server_name="gender"]').select2('data').id;
+
+            console.log(val);
+
+            if(val == 1){
                 userPhotoImg.attr('src', 'img/user_default_m.jpg');
-            }else if(val == 'famale'){
+            }else if(val == 2){
                 userPhotoImg.attr('src', 'img/user_default_f.jpg');
             }else{
                 userPhotoImg.attr('src', 'img/user_default_m.jpg');

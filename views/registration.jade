@@ -60,7 +60,7 @@ block content
                                         label.control-label
                                             | Пол
                                             span.red-star *
-                                        input.select2.form-control.fc-field(type="hidden", data-server_name="gender_id", data-editor="select" data-name="gender_id", data-required="true", value="", data-text="", data-table="gender")
+                                        input.select2.form-control.fc-field(type="hidden", data-server_name="gender_id", data-editor="select" data-name="name", data-required="true", value="", data-text="", data-table="gender")
                                 .col-md-12
                                     .form-group
                                         label.control-label
@@ -70,6 +70,13 @@ block content
                                             input.form-control.fc_datepicker.fc-field(type="text", data-required="true", data-server_name="birthday", data-title="Дата рождения", data-editor="date", placeholder="Дата рождения")
                                             .input-group-addon
                                                 i.fa.fa-calendar
+                                .col-md-12
+                                    .form-group
+                                        label.control-label
+                                            | Город
+                                            span.red-star *
+                                        input.select2.form-control.fc-field(type="hidden", data-server_name="city_id", data-editor="select", data-name="title", data-required="true", value="", data-text="", data-table="city")
+
                                 .col-md-12
                                     .form-group
                                         .checkbox
