@@ -82,6 +82,7 @@ var Model = function (params, callback) {
     this.concatFields = params.concatFields || [];
     this.sort = params.sort;
     this.validation = params.validation;
+    this.distinct = params.distinct;
     self.columns = params.additionalColumns || [];
     pool.getConn(function (err, conn) {
         if (err) {
@@ -131,11 +132,12 @@ Model.prototype.get = function (params, callback) {
     var getRows = function (conn, callback) {
         var where = params.where || {};
         var limit = params.limit || 1000;
-        var sort = params.sort || (self.sort) ? funcs.cloneObj(self.sort) : {column:'id',direction:'DESC'};
+        var sort = params.sort || (self.sort) ? funcs.cloneObj(self.sort) : {column:'id',direction:'ASC'};
         var deleted = !!params.deleted;
         var published = params.published;
+        var distinct = (self.distinct)? ' DISTINCT ' : '';
         var columns = params.columns || funcs.cloneObj(self.columns);
-        var sqlStart = "SELECT " + columns.join(', ') + " FROM " + self.table;
+        var sqlStart = "SELECT " +distinct+ columns.join(', ') + " FROM " + self.table;
         var sql = "";
 
 
@@ -203,7 +205,7 @@ Model.prototype.get = function (params, callback) {
                 }
             }
             where = tmpWhere;
-            sqlStart = "SELECT " + columns.join(', ') + " FROM " + self.table;
+            sqlStart = "SELECT " + distinct + columns.join(', ') + " FROM " + self.table;
             sql += extTablesOn.join('');
         } else {
 
@@ -237,7 +239,7 @@ Model.prototype.get = function (params, callback) {
             var sortColumns = [];
 
             function prepareSort(obj) {
-                sortColumns.push((obj.table || self.table) + '.' + obj.column + ' ' + (obj.direction || 'DESC'));
+                sortColumns.push((obj.table || self.table) + '.' + obj.column + ' ' + (obj.direction || 'ASC'));
             }
 
             if (typeof sort == 'object') {
