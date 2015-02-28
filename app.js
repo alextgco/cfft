@@ -35,8 +35,8 @@ require('dns').lookup(require('os').hostname(), function (err, add, fam) {
     console.log('addr: '+add);
 });
 
-var moment = require('moment');
-console.log(moment(moment('2015-02-23 21:08:37')-moment('2014-02-23 21:08:37')));
+//var moment = require('moment');
+//console.log(moment(moment('2015-02-23 21:08:37')-moment('2014-02-23 21:08:37')));
 //var options = config.get('mysqlConnection');
 /*var options = {
     host: 'localhost',

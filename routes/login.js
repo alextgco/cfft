@@ -2,8 +2,8 @@
 
 var HttpError = require('../error').HttpError;
 var AuthError = require('../error').AuthError;
-var user = require('../models/user');
 
+var api = require('../libs/userApi');
 
 exports.get = function(req, res, next){
     res.render('login',{
@@ -14,7 +14,11 @@ exports.get = function(req, res, next){
 exports.post = function(req, res, next){
     var login = req.body.login;
     var password = req.body.password;
-    user.authorize(login,password,function(err,user){
+
+    api('authorize', 'user', {
+        login:login,
+        password:password
+    }, function(err,user){
         if (err){
             if (err instanceof AuthError){
                 return res.json(403, err);
@@ -25,6 +29,7 @@ exports.post = function(req, res, next){
         req.session.user = user.id;
         res.send(200);
     });
+
 
 
 

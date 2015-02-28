@@ -1,5 +1,6 @@
-var user = require('../models/user');
 var sendSuccessConfirm = require('../modules/regMailer').sendSuccessConfirm;
+
+var apiAdmin = require('../libs/api');
 
 var finish = function(err, res){
     if (err){
@@ -15,7 +16,11 @@ exports.get = function(req, res, next){
     if (p=='done'){
         return finish(true, res);
     }
-    user.confirmEmail(email,p, function(err){
+
+    apiAdmin('confirmEmail', 'user', {
+        email:email,
+        p:p
+    }, function(err,results){
         if (err) {
             console.log(err);
             return finish(err, res);
@@ -26,6 +31,7 @@ exports.get = function(req, res, next){
 
         });
     });
+
     /*User.confirmEmail(email,p,function(err,user){
         if (err) {
             console.log(err);
