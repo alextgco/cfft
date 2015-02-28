@@ -298,13 +298,13 @@
             if(filter.type == 'like'){
                 html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="text" data-where_type="'+filter.whereType+'" data-where_table="'+filter.whereTable+'" class="tableFilter form-control" data-filter_type="like" data-column="'+filter.column+'"/></div>';
             }else if(filter.type == 'select'){
-                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="hidden" data-where_type="'+filter.whereType+'" data-where_table="'+filter.whereTable+'" data-return_id="'+filter.returnId+'" data-return_name="'+filter.returnName+'" class="tableFilter form-control select2" data-text="" data-filter_type="select" data-name="'+filter.column+'" data-table="'+filter.tableName+'" data-column="'+filter.column+'"/></div>';
+                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="hidden" data-where_type="'+filter.whereType+'" data-where_table="'+filter.whereTable+'" data-return_id="'+filter.returnId+'" data-return_name="'+filter.returnName+'" class="tableFilter form-control select2" data-text="" data-filter_type="select" data-name="'+filter.column+'" data-server_name="'+filter.returnName+'" data-table="'+filter.tableName+'" data-column="'+filter.column+'"/></div>';
             }
             filterWrapper.append(html);
         }
         filterWrapper.find('input.select2[type="hidden"]').each(function(idx, elem){
             var $elem = $(elem);
-            var name = $elem.data('name');
+            var name = $elem.data('server_name');
             var returnId = $elem.data('return_id');
             var returnName = $elem.data('return_name');
             var whereType = $elem.data('where_type');
@@ -312,11 +312,20 @@
             $elem.select2({
                 query: function(query){
                     var data = {results: []};
-                    sendQuery({
+
+
+                    var o = {
                         command: 'get',
                         object: $elem.data('table'),
-                        params: {}
-                    }, function(res){
+                        params: {
+                            where: {}
+                        }
+                    };
+                    if(query.term.length > 0){
+                        o.params.where[name] = '*'+query.term+'*';
+                    }
+
+                    sendQuery(o, function(res){
                         for(var i in res.data){
                             var item = res.data[i];
                             data.results.push({

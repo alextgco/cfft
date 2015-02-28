@@ -12,13 +12,15 @@ block content
                 .col-md-12
                     form#form-profile(name="form-profile")
                         .col-md-4
-                            .user-photo
+                            .user-photo-wrapper
                                 - var photo = (!user.photo || user.photo == '' || user.photo == 'null')? (user.gender_id == 1)? 'img/user_default_m.jpg' : 'img/user_default_f.jpg' : 'upload/'+user.photo;
+                                .user-photo-clear
+                                    .fa.fa-trash
                                 img(src="#{photo}")
                             div.input-group.marTop10
                                 .input-group-addon
                                     i.fa.fa-image
-                                input.form-control.fc-field.userPhotoInput(type="text", data-server_name="photo", data-title="Фото", data-required="false", data-editor="text", placeholder="Выберите изображение")
+                                input.form-control.fc-field.userPhotoInput(type="text", value="#{user.photo}", data-server_name="photo", data-title="Фото", data-required="false", data-editor="text", placeholder="Выберите изображение")
                         .col-md-6
                             table.table
                                 tbody
@@ -53,8 +55,9 @@ block content
                                         td
                                             input.select2.form-control.fc-field(type="hidden", data-server_name="city_id", data-editor="select", data-name="title", data-required="true", value="#{user.city_id}", data-text="#{user.city}", data-table="city")
             .row
-                .col-md-12
-                    .sBtn.green.save_profile
-                        .fa.fa-save
-                        |  Сохранить
+                .col-md-10
+                    .col-md-12
+                        .sBtn.flRight.green.save_profile
+                            .fa.fa-save
+                            |  &nbsp;&nbsp;Сохранить
     script(src="js/edit_profile.js")

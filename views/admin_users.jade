@@ -1,7 +1,8 @@
 extends admin_layout
 block content
-   .container
+   .container.posRel
       h2 Пользователи
       hr
-      .row
-         .col-md-12
+      .event-results-tabs
+         .initMeTable(data-get_object="user")
+   script(type="text/javascript", src="js/html/admin_users.js")

@@ -57,6 +57,9 @@ $(document).ready(function(){
 
         $('input.select2, input.select2').each(function(idx, elem){
             var $elem = $(elem);
+            if($elem.parents('.filterWrapper').length > 0){
+                return;
+            }
             var name = $elem.data('name');
             $elem.select2({
                 query: function(query){
@@ -73,6 +76,7 @@ $(document).ready(function(){
                         o.params.where[name] = '*'+query.term+'*';
                     }
 
+
                     sendQuery(o, function(res){
                         for(var i in res.data){
                             var item = res.data[i];
@@ -82,7 +86,7 @@ $(document).ready(function(){
                             });
                         }
 
-                        console.log(data);
+                        console.log(res);
 
                         query.callback(data);
                     });

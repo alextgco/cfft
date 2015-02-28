@@ -26,7 +26,7 @@ $(document).ready(function(){
                 return;
             }
             var $elem = $(elem);
-            var column = $elem.data('name');
+            var column = $elem.data('server_name');
             var val = (!$elem.val() || $elem.val() == 'undefined')? "" : $elem.val();
             if($elem.hasClass('cf_text_editor')){
                 val = CKEDITOR.instances[action_id + '-' + column].getData();
@@ -82,7 +82,7 @@ $(document).ready(function(){
                 return;
             }
             var $elem = $(elem);
-            var column = $elem.data('name');
+            var column = $elem.data('server_name');
             var val = (!$elem.val() || $elem.val() == 'undefined')? "" : $elem.val();
             if($elem.hasClass('cf_text_editor')){
                 val = CKEDITOR.instances[part_id + '-' + column].getData();//$('#cke_' + part_id + '-' + column);

@@ -76,7 +76,7 @@ $(document).ready(function(){
         var userPhotoInput = $('input.fc-field[data-server_name="photo"]');
         if(userPhotoInput.val().length > 0){
             userPhotoInput.val('');
-            var val = $('[data-server_name="gender"]').select2('data').id;
+            var val = $('[data-server_name="gender_id"]').select2('data').id;
 
             console.log(val);
 
