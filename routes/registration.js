@@ -1,5 +1,7 @@
 var HttpError = require('../error').HttpError;
 var AuthError = require('../error').AuthError;
+var MyError = require('../error').MyError;
+var UserError = require('../error').UserError;
 var jade = require('jade');
 var Guid = require('guid');
 var sendConfirm = require('../modules/regMailer').sendConfirm;
@@ -37,8 +39,11 @@ exports.post = function(req, res, next){
     api('registration', 'user', obj, function(err,user_id){
         if (err){
             console.log(err);
-            if (err instanceof AuthError){
-                return res.json(403, err);
+            if (err instanceof MyError){
+                return res.status(403).json(funcs.formatResponse(-1,'error',err.message));
+                //return res.json(403, err);
+            }else if (err instanceof UserError){
+                return res.status(403).json(err);
             }else{
                 return next(err);
             }

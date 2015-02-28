@@ -6,7 +6,10 @@ module.exports = function(callback){
         table: 'cities',
         table_ru: 'Город',
         ending:'',
+        distinct:true,
+        columns:['id','title','country_id'],
         required_fields:['country_id','title'],
+        sort:' important DESC, title',
         validation: {
             country_id:'number',
             title:'notNull'

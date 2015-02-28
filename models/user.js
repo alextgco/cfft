@@ -5,6 +5,7 @@ var crypto = require('crypto');
 var async = require('async');
 var AuthError = require('../error').AuthError;
 var MyError = require('../error').MyError;
+var UserError = require('../error').UserError;
 
 var moment = require('moment');
 module.exports = function(callback){
@@ -131,6 +132,25 @@ module.exports = function(callback){
             obj.hashedPassword = passObj.hashedPassword;
             obj.salt = passObj.salt;
             delete obj.password;
+
+            for (var i in user.required_fields) {
+                var finded = false;
+                for (var j in obj) {
+                    if (j == user.required_fields[i]) {
+                        finded = true;
+                        break;
+                    }
+                }
+                if (!finded) {
+                    return callback(new MyError('Не переданы обязательные поля. ' + user.required_fields.join(', ')));
+                }
+            }
+            var valid = user.validate(obj);
+            if (typeof valid=='object'){
+                return callback(new UserError(funcs.formatResponse(-1, 'error', valid.message, valid.fields)));
+            }
+
+
             this.checkExist(obj.email,function(err){
                 if (err) {
                     return callback(err)
