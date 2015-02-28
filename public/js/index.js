@@ -24,6 +24,8 @@ var sendQuery = function (obj, cb) {
 };
 $(document).ready(function(){
 
+
+
     (function(){
         $('#logo').off('click').on('click', function(){
             if($(this).hasClass('adminHome')){

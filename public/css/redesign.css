@@ -1029,3 +1029,29 @@ h4.darkHd{
 .event-results-tabs .filterBtn:hover{
     background-color: rgba(0,0,0,0.1)!important;
 }
+.user-photo-wrapper{
+    position: relative;
+}
+.user-photo-wrapper img{
+    width: 100%;
+    border-radius: 4px;
+}
+.user-photo-clear{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 50px;
+    width: 50px;
+    background-color: rgba(255, 255, 255,0.4);
+    border-radius: 50%;
+    text-align: center;
+    color: rgb(224, 27, 26);
+    padding-top: 8px;
+    font-size: 22px;
+    cursor: pointer;
+    padding-left: 1px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.user-photo-clear:hover{
+    background-color: #fff;
+}
