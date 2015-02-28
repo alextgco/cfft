@@ -71,6 +71,9 @@ var funcs = {
 
     },
     validation:{
+        isDate:function(val){
+            return moment(val).isValid();
+        },
         notNull:function(val){
             return (val!='');
         },

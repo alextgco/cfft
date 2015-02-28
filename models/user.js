@@ -13,12 +13,12 @@ module.exports = function(callback){
         table: 'users',
         table_ru: 'Пользователь',
         ending:'',
-        required_fields:['firstname','email','birthday','gender'],
+        required_fields:['firstname','surname','email','birthday','gender_id','city_id'],
         getFormating:{
             /*birthday:'age'*/
         },
         validation: {
-            birthday:'number',
+            birthday:'isDate',
             gender:'number'
         },
         join_objs:[
@@ -26,6 +26,10 @@ module.exports = function(callback){
                 gender_id:{
                     table:"gender",
                     fields:[
+                        {
+                            column:"id",
+                            alias:"gender_id"
+                        },
                         {
                             column:"name",
                             alias:"gender"

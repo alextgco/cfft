@@ -22,18 +22,52 @@ exports.post = function(req, res, next){
         return res.json(403, {message:'Не указан пароль'});
     }
     var guid = Guid.create().value;
+    /*
+    * id
+     firstname
+     surname
+     secondname
+     phone
+     city_id
+     gender_id
+     weight
+     birthday
+     height
+     photo
+     isAgree
+     raiting
+     isBanned
+     bannedToDate
+     email
+     hashedPassword
+     salt
+     created
+     confirmed
+     mailKey
+     isAdmin
+     deleted
+     published
+     age
+
+     */
+
     var obj = {
         firstname:req.body.name,
         surname:req.body.surname,
-        secondname:req.body.secondname,
-        /*gender_id:req.body.gender,*/
         email:req.body.email,
-      /*  country:req.body.country,
-        city:req.body.city,
-        club:req.body.club,*/
+        secondname:req.body.secondname,
+        gender_id:req.body.gender_id,
+        birthday:req.body.birthday,
+        city_id:req.body.city_id,
+        age:funcs.age(req.body.birthday),
         isAgree:(req.body.isAgree)?1:0,
         password:req.body.password,
-        mailKey:guid
+        mailKey:guid,
+        phone:req.body.phone,
+        weight:req.body.weight,
+        height:req.body.height,
+        photo:req.body.photo
+
     };
 
     api('registration', 'user', obj, function(err,user_id){
