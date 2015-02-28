@@ -15,7 +15,19 @@ $(document).ready(function(){
         getObj = tbl.data('get_object');
         rangeWhere = tbl.data('range_where');
 
-        //switch
+        switch(rangeWhere){
+            case 'male':
+
+                break;
+            case 'male40':
+                break;
+            case 'famale':
+                break;
+            case 'famale40':
+                break;
+            default:
+                break;
+        }
 
 
         var table = new CF.Table({
