@@ -114,6 +114,36 @@ $(document).ready(function(){
             contentHeight: 'auto'
         });
 
+        //type == true (COLLAPSE)
+        //type == false (EXPAND)
+        function collapseBlock(wrapper, type, cb){
+            var content = wrapper.find('.collapseContent');
+            console.log(content);
+            if(type){
+                content.hide(0);
+            }else{
+                content.show(0);
+            }
+            if(typeof cb == 'function'){
+                cb();
+            }
+        }
+
+
+        $('.collapseBtn').off('click').on('click', function(){
+            var parent = $(this).parents('.collapseable');
+            var $self = $(this);
+            if($(this).hasClass('collapsed')){
+                collapseBlock(parent, false, function(){
+                    $self.html('<div class="fa fa-minus"></div> Свернуть').removeClass('collapsed');
+                });
+            }else{
+                collapseBlock(parent, true, function(){
+                    $self.html('<div class="fa fa-plus"></div> Развернуть').addClass('collapsed');
+                });
+            }
+        });
+
     }());
 
 

@@ -21,6 +21,7 @@ $(document).ready(function(){
                         };
                         sendQuery(o, function(res){
                             toastr[res.toastr.type](res.toastr.message);
+                            document.location.reload();
                         });
                     }
                 },
@@ -54,6 +55,7 @@ $(document).ready(function(){
                         };
                         sendQuery(o, function(res){
                             toastr[res.toastr.type](res.toastr.message);
+                            document.location.reload();
                         });
                     }
                 },

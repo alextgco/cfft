@@ -151,7 +151,7 @@
     CF.Table.prototype.renderFilters = function(){
         var _t = this;
         _t.wrapper.find('.filterContainer').remove();
-        var html = '<div class="filterContainer"><div class="filters-wrapper col-md-11"></div><div class="col-md-1"><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div></div>';
+        var html = '<div class="filterContainer"><div class="row"><div class="filters-wrapper col-md-11"></div><div class="col-md-1"><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div></div></div>';
         _t.wrapper.prepend(html);
     };
 
@@ -240,13 +240,12 @@
         }
         _t.wrapper.find('table.table.simpleView').remove();
         _t.wrapper.find('nav').remove();
+        _t.wrapper.find('.no_results').remove();
         _t.wrapper.append(Mustache.to_html(tpl, mO));
 
-        console.log(_t.data);
         if(_t.data.length == 0){
-            _t.wrapper.append('Результатов нет, пока.');
+            _t.wrapper.append('<div class="no_results">Результатов нет, пока.</div>');
         }
-        console.log(mO);
         if(typeof cb == 'function'){
             cb();
         }

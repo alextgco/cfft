@@ -915,3 +915,9 @@ h4.darkHd{
 .clear-filter{
     background-color: #444;
 }
+.no_results{
+    width: 100%;
+    text-align: center;
+    margin-top: -46px;
+    font-size: 20px;
+}
