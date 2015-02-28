@@ -29,7 +29,7 @@ block content
                                         input.form-control.fc-field(type="text", data-server_name="email", data-title="Почта", data-required="true", data-editor="email", placeholder="Почта")
                                 .col-md-12
                                     .form-group
-                                        label.control-label &#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;:
+                                        label.control-label Телефон
                                         .input-group
                                             .input-group-addon +7
                                             input.form-control.maskedPhone.fc-field(type="text", data-server_name="phone", data-title="Телефон", data-editor="phone", placeholder="Телефон")
@@ -57,16 +57,17 @@ block content
                                 //    input.form-control.fc-field(type="text", data-server_name="secondname", data-title="Отчество", data-required="false", data-editor="text", placeholder="Отчество")
                                 .col-md-12
                                     .form-group
-                                        label.control-label Пол
-                                        input.select2.form-control(type="hidden", data-name="gender", value="", data-text="", data-table="gender")
-                                        //select.form-control.fc-field(data-server_name="gender", data-title="Пол", data-editor="select")
-                                        //    option(value="male") Мужской
-                                        //    option(value="famale") Женский
+                                        label.control-label
+                                            | Пол
+                                            span.red-star *
+                                        input.select2.form-control.fc-field(type="hidden", data-server_name="gender_id", data-editor="select" data-name="gender_id", data-required="true", value="", data-text="", data-table="gender")
                                 .col-md-12
                                     .form-group
-                                        label.control-label &#1044;&#1072;&#1090;&#1072; &#1088;&#1086;&#1078;&#1076;&#1077;&#1085;&#1080;&#1103;:
+                                        label.control-label
+                                            | Дата рождения
+                                            span.red-star *
                                         .input-group
-                                            input.form-control.fc_datepicker.fc-field(type="text", data-server_name="birthday", data-title="Дата рождения", data-editor="date", placeholder="Дата рождения")
+                                            input.form-control.fc_datepicker.fc-field(type="text", data-required="true", data-server_name="birthday", data-title="Дата рождения", data-editor="date", placeholder="Дата рождения")
                                             .input-group-addon
                                                 i.fa.fa-calendar
                                 .col-md-12
@@ -81,7 +82,6 @@ block content
                                     .form-group
                                         label.control-label
                                             | Фото
-                                            span.red-star *
                                         div.input-group
                                             .input-group-addon
                                                 i.fa.fa-image

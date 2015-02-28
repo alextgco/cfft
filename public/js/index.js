@@ -307,7 +307,12 @@ $(document).ready(function(){
             var label = control.data('title');
             var isRequired = control.data('required');
             if(isRequired){
-                CF.invalidField(control);
+                if(control.attr('type') == 'hidden'){
+                    console.log(control.parents('.form-group').eq(0).find('div.select2.fc-field').eq(0));
+                    CF.invalidField(control.parents('.form-group').eq(0).find('div.select2.fc-field').eq(0));
+                }else{
+                    CF.invalidField(control);
+                }
                 toastr['error']('Некорректно заполнено поле '+ label);
                 return 1;
             }else{
@@ -327,7 +332,6 @@ $(document).ready(function(){
                 var val2 = undefined;
 
                 CF.validField(control);
-
                 switch (editor){
                     case 'text':
                         val = control.val();
@@ -355,10 +359,15 @@ $(document).ready(function(){
                     case 'select':
                         val = control.select2('data').id;
                         val2 = control.select2('data').text;
-                        fields.push({
-                            name: serverName,
-                            val: val
-                        });
+
+                        if(!CF.validator.text(val2)){
+                            formValid += notifyInvalid(control);
+                        }else{
+                            fields.push({
+                                name: serverName,
+                                val: val
+                            });
+                        }
                         break;
                     case 'date':
                         val = control.val();
@@ -404,6 +413,8 @@ $(document).ready(function(){
                         break;
                 }
             }
+
+            console.log(fields);
 
             if(formValid == 0){
 
