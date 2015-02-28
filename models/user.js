@@ -12,7 +12,7 @@ module.exports = function(callback){
     var user = new Model({
         allowedForUserCommand:['get','modifyProfile'],
         table: 'users',
-        table_ru: 'Пользователь',
+        table_ru: 'ПользователЬ',
         ending:'',
         required_fields:['firstname','surname','email','birthday','gender_id','city_id'],
         getFormating:{

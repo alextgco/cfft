@@ -67,6 +67,7 @@ var Model = function (params, callback) {
             callback(null,null);
         }
     };
+    this.allowedForUserCommand = params.allowedForUserCommand || [];
     this.getFormating = params.getFormating || {};
     this.table = params.table;
     this.table_ru = params.table_ru || 'Объект';
