@@ -1055,3 +1055,139 @@ h4.darkHd{
 .user-photo-clear:hover{
     background-color: #fff;
 }
+.wows-list-wrapper{
+    /*padding: 0;*/
+}
+.wows-list-wrapper .col-md-3{
+    /*padding: 0;*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+}
+
+.wows-list-wrapper a img{
+    width: 100%;
+
+}
+.wow-item-info{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: rgba(255,255,255,0.4);
+}
+
+.wow-item-bottom{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.wow-item-info .titleInner{
+    width: 100%;
+}
+
+.wow-item-bottom .dateInner{
+    margin: 0;
+    border-radius: 0;
+    display: block;
+    float: left;
+    width: 50%;
+    font-size: 12px;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    font-family: arial, sans-serif;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+.wow-item-bottom .action-status{
+    margin: 0;
+    border-radius: 0;
+    display: block;
+    float: left;
+    width: 50%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.wow-item-info .titleInner a{
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: openSanssemibold, arial, sans-serif;
+    background-color: rgba(255,255,255,0.8);
+    border-top: 4px solid #666565;
+}
+.wow-item-desc{
+    font-size: 13px;
+    padding: 5px 15px;
+    color: #000;
+    height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 24px;
+    white-space: nowrap;
+}
+.wow-item-desc p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 24px;
+}
+.wow-item-bottom .action-status.OPENED{
+    background-color: rgba(18, 142, 24, 0.5);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.wow-item-bottom .action-status.CLOSED{
+    background-color: rgba(63, 92, 204, 0.50);
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.wow-item-bottom .action-status.FINISHED{
+    background-color: rgba(204, 204, 204, 0.51);
+    color: #000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.wow-item-inner{
+    width: 100%;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.wow-item-inner:hover{
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+.wow-item-inner:hover .wow-item-info .titleInner a{
+    border-top: 4px solid #FF6B00;
+}
+.event-reglament-link{
+    color: #9D9D9D;
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 20px;
+    padding: 0px 9px;
+    border-radius: 3px;
+    font-family: openSans, arial, sans-serif;
+    text-shadow: 0 0 0;
+}
+.event-reglament-link:hover{
+    text-decoration: none;
+    background-color: #333;
+    color: #fff;
+}

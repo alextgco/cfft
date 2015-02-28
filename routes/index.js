@@ -45,8 +45,12 @@ module.exports = function (app) {
   });
 
 
-  app.get('/rules', function(req, res, next){
-    res.render('rules');
+  app.get('/rules_games', function(req, res, next){
+    res.render('rules_games');
+  });
+
+  app.get('/rules_wow', function(req, res, next){
+    res.render('rules_wow');
   });
 
   app.get('/registration_error', function(req, res, next){

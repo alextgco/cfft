@@ -11,6 +11,8 @@ block content
     h2.event-main-header
         .container.posRel
             | #{event.title}
+            a.event-reglament-link(href="rules_games")
+                | Регламент
             .event-main-date #{event.date_start_text}
     .container
         .row.padTop30
@@ -113,7 +115,8 @@ block content
                                     .row.padTop30
                                         .col-md-12
                                             if(part.desc_complex.length == 0 && part.note.length == 0 && part.desc_scoring.length == 0 && part.desc_inventory.length == 0 && part.desc_video_std.length == 0 && part.desc_move_std.length == 0)
-                                                h4 Нет информации
+                                                .col-md-12
+                                                    h4 Нет информации
                                             else
                                                 if(part.desc_move_std.length > 0)
                                                     .wid50pr.flLeft
@@ -159,7 +162,7 @@ block content
                                     .row
                                         .col-md-12
                                             div.event-results-tabs(role="tabpanel")
-                                                ul.nav.nav-tabs(role="tablist")
+                                                ul.nav.nav-pills(role="tablist")
                                                     li.active(role="results_by_range_#{part.id}")
                                                         a(href="#male_#{part.id}", aria-controls="male_#{part.id}", role="tab", data-toggle="tab") Мужчины
                                                     li(role="results_by_range_#{part.id}")

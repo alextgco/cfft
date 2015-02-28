@@ -11,6 +11,8 @@ block content
     h2.event-main-header
         .container.posRel
             | #{event.title}
+            a.event-reglament-link(href="rules_wow")
+                | Регламент
             .event-main-date #{event.date_start_text}
     .container
         .row.padTop30
@@ -107,14 +109,14 @@ block content
                                 li.active(role='presentation')
                                     a(href='#rules_#{part.id}', aria-controls='rules_#{part.id}', role='tab', data-toggle='tab', aria-expanded='true') Правила
                                 li(role='presentation')
-                                    //if(part.status_sys)
                                     a(href='#results_#{part.id}', aria-controls='results_#{part.id}', role='tab', data-toggle='tab', aria-expanded='false') Предварительные результаты
                             .tab-content
                                 .tab-pane.active(role='tabpanel', id="rules_#{part.id}")
                                     .row.padTop30
                                         .col-md-12
                                             if(part.desc_complex.length == 0 && part.note.length == 0 && part.desc_scoring.length == 0 && part.desc_inventory.length == 0 && part.desc_video_std.length == 0 && part.desc_move_std.length == 0)
-                                                h4 Нет информации
+                                                .col-md-12
+                                                    h4 Нет информации
                                             else
                                                 if(part.desc_move_std.length > 0)
                                                     .wid50pr.flLeft
