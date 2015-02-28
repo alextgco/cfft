@@ -69,7 +69,8 @@ $(document).ready(function(){
                         command: 'get',
                         object: $elem.data('table'),
                         params: {
-                            where: {}
+                            where: {},
+                            limit: 100
                         }
                     };
                     if(query.term.length > 0){
