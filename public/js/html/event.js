@@ -22,34 +22,34 @@ $(document).ready(function(){
             }
         };
 
-        //switch(rangeWhere){
-        //    case 'male':
-        //        whereObj['users'] = {
-        //            gender_sys_name: 'MALE',
-        //            age: '<=40'
-        //        };
-        //        break;
-        //    case 'male40':
-        //        whereObj['users'] = {
-        //            gender_sys_name: 'MALE',
-        //            age: '>40'
-        //        };
-        //        break;
-        //    case 'famale':
-        //        whereObj['users'] = {
-        //            gender_sys_name: 'FAMALE',
-        //            age: '<40'
-        //        };
-        //        break;
-        //    case 'famale40':
-        //        whereObj['users'] = {
-        //            gender_sys_name: 'FAMALE',
-        //            age: '>40'
-        //        };
-        //        break;
-        //    default:
-        //        break;
-        //}
+        switch(rangeWhere){
+            case 'male':
+                whereObj['users'] = {
+                    gender_sys_name: 'MALE',
+                    age: '<=40'
+                };
+                break;
+            case 'male40':
+                whereObj['users'] = {
+                    gender_sys_name: 'MALE',
+                    age: '>40'
+                };
+                break;
+            case 'famale':
+                whereObj['users'] = {
+                    gender_sys_name: 'FAMALE',
+                    age: '<40'
+                };
+                break;
+            case 'famale40':
+                whereObj['users'] = {
+                    gender_sys_name: 'FAMALE',
+                    age: '>40'
+                };
+                break;
+            default:
+                break;
+        }
 
 
         var table = new CF.Table({
