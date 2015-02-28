@@ -10,7 +10,7 @@ var UserError = require('../error').UserError;
 var moment = require('moment');
 module.exports = function(callback){
     var user = new Model({
-        /*allowedForUserCommand:['get','modifyProfile'],*/
+        allowedForUserCommand:['get','modifyProfile'],
         table: 'users',
         table_ru: 'Пользователь',
         ending:'',
