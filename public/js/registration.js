@@ -8,9 +8,15 @@ var registration = function (obj, cb) {
         },
         statusCode: {
             200: function (result) {
-                $('#form-registration').remove();
-                $('#after-registration').show(0);
-                cb(result);
+                if(result.code == 0){
+                    $('#form-registration').remove();
+                    $('#after-registration').show(0);
+                    cb(result);
+                }else{
+
+                }
+
+                toastr[result.toastr.type](result.toastr.message);
             },
             403: function (result) {
                 var res = JSON.parse(result.responseText);

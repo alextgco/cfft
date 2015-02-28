@@ -15,6 +15,10 @@ block content
                             .user-photo
                                 - var photo = (!user.photo || user.photo == '' || user.photo == 'null')? (user.gender_id == 1)? 'img/user_default_m.jpg' : 'img/user_default_f.jpg' : 'upload/'+user.photo;
                                 img(src="#{photo}")
+                            div.input-group.marTop10
+                                .input-group-addon
+                                    i.fa.fa-image
+                                input.form-control.fc-field.userPhotoInput(type="text", data-server_name="photo", data-title="Фото", data-required="false", data-editor="text", placeholder="Выберите изображение")
                         .col-md-6
                             table.table
                                 tbody
@@ -23,7 +27,6 @@ block content
                                             | Имя
                                         td
                                             input.form-control.fc-field(type="text", data-server_name="name", data-title="Имя", data-required="true", data-editor="text", placeholder="Имя", value="#{user.firstname}")
-
                                     tr
                                         td
                                             | Фамилия
@@ -43,14 +46,15 @@ block content
                                         td
                                             | Пол
                                         td
-                                            input.select2.form-control.fc-field(type="hidden", data-server_name="gender_id", data-editor="select" data-name="name", data-required="true", value="#{user.gender}", data-text="", data-table="gender")
-                                    tr
-                                        td
-                                            | Возраст
-                                        td
-                                            | #{user.age}
+                                            input.select2.form-control.fc-field(type="hidden", data-server_name="gender_id", data-editor="select" data-name="name", data-required="true", value="#{user.gender_id}", data-text="#{user.gender}", data-table="gender")
                                     tr
                                         td
                                             | Город
                                         td
-                                            | #{user.city}
+                                            input.select2.form-control.fc-field(type="hidden", data-server_name="city_id", data-editor="select", data-name="title", data-required="true", value="#{user.city_id}", data-text="#{user.city}", data-table="city")
+            .row
+                .col-md-12
+                    .sBtn.green.save_profile
+                        .fa.fa-save
+                        |  Сохранить
+    script(src="js/edit_profile.js")
