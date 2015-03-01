@@ -6,9 +6,13 @@ exports.get = function(req, res, next){
             console.log(err, 'profile');
         }else{
             console.log(result);
-            res.render('profile', {
-                items: result
-            });
+            if(result.data.length == 0){
+                res.render('page_404');
+            }else{
+                res.render('profile', {
+                    items: result
+                });
+            }
         }
     });
 };
