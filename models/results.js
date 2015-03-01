@@ -188,6 +188,9 @@ module.exports = function(callback){
             results.getDirectoryId('action_statuses','OPENED',function(err,action_status_id){
                 results.getDirectoryId('statuses_of_action_parts','OPENED',function(err,action_part_status_id){
                     pool.getConn(function(err,conn){
+                        if (err){
+                            return callback(err);
+                        }
                         conn.queryValue("select count(*) from action_parts ap left join actions as a on ap.action_id = a.id where a.status_id=? and ap.status_id=? and ap.id = ?",
                             [action_part_status_id, action_status_id, obj.action_part_id],
                             function (err, v) {
@@ -350,6 +353,80 @@ module.exports = function(callback){
 
         };
         results.actionLeaderBoard = function(obj, callback){
+
+            results.getDirectoryId('result_statuses','ACCEPTED',function(err,result_status_id){
+                if (err){
+                    return callback(err);
+                }
+                pool.getConn(function(err,conn){
+                    if (err){
+                        return callback(err);
+                    }
+                    var sql = "SELECT action_part_id as id, max(position) as max_pos FROM results r" +
+                        " WHERE status_id = ?" +
+                        " GROUP BY action_part_id";
+                    conn.query(sql,[result_status_id], function (err, res1) {
+                        if (err){
+                            return callback(err);
+                        }
+                        var parts_arr = res1;
+                        var parts = {};
+                        for (var i in res1) {
+                            var item = res1[i];
+                            parts[item] = {
+                                id: item.id,
+                                max_pos:item.max_pos,
+                                items:[]
+                            }
+                        }
+                        var arr = [];
+                        pool.getConn(function(err,conn){
+                            if (err){
+                                return callback(err);
+                            }
+                            var sql = "select r.id, concat(u.surname, ' ', u.firstname) as FIO, r.position, r.action_part_id, ap.title, r.concat_result from results r" +
+                                " LEFT JOIN users as u on r.user_id = u.id" +
+                                " LEFT JOIN action_parts as ap on r.action_part_id = ap.id" +
+                                " LEFT JOIN actions as a on ap.action_id = a.id" +
+                                " LEFT JOIN result_statuses as rs on r.status_id = rs.id" +
+                                " where a.id = ? and rs.sys_name = 'ACCEPTED'" +
+                                " ORDER BY r.action_part_id";
+
+                            conn.query(sql,[41],function(err, res2){
+                                if (err){
+                                    return callback(err);
+                                }
+                                var tbl = [];
+                                for (var i in res2) {
+                                    var item = res2[i];
+                                    var o = {
+                                        user_id:item.user_id
+                                    };
+                                    for (var j in parts_arr) {
+                                        o[parts_arr[j]] = {
+                                            pos:(item.pos)
+                                        }
+                                    }
+                                    arr.push({
+                                        user_id:item.user_id
+                                    })
+                                }
+                            })
+                        });
+                    });
+
+                });
+            });
+
+
+
+            var sql = "select r.id, concat(u.surname, ' ', u.firstname) as FIO, r.position, r.action_part_id, ap.title, r.concat_result from results r" +
+                " LEFT JOIN users as u on r.user_id = u.id" +
+                " LEFT JOIN action_parts as ap on r.action_part_id = ap.id" +
+                " LEFT JOIN actions as a on ap.action_id = a.id" +
+                " LEFT JOIN result_statuses as rs on r.status_id = rs.id" +
+                " where a.id = ? and rs.sys_name = 'ACCEPTED'" +
+                " ORDER BY r.action_part_id";
 
         };
         callback(results);
