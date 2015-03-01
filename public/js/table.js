@@ -122,6 +122,14 @@
             ];
             _t.columns = [
                 {
+                    title: '#',
+                    sort_id: ''
+                },
+                {
+                    title: 'user',
+                    sort_id: ''
+                },
+                {
                     title: 'part1',
                     sort_id: '1'
                 },
@@ -327,7 +335,7 @@
                         '{{#rows}}' +
                             '<tr data-id="{{id}}">' +
                                 '{{#tds}}' +
-                                    '<td>{{{value}}}</td>' +
+                                    '<td>{{value}}</td>' +
                                 '{{/tds}}' +
                             '</tr>' +
                         '{{/rows}}' +
@@ -337,20 +345,21 @@
         var rows = [];
         for(var i in _t.data){
             var it = _t.data[i];
-            rows.push([]);
-            for(var k in it){
-                rows[i].push({
-                    id: k,
-                    tds:[]
-                });
-            }
+            rows.push({
+                id: i,
+                tds:[]
+            });
         }
 
         for(var i in _t.data){
             var it = _t.data[i];
+            var idx = 0;
             for(var k in it){
-                console.log(rows[i]);
+                rows[i].tds.push({
+                    value: it[k]
+                });
             }
+            idx++;
         }
 
         console.log('ROWS', rows);
