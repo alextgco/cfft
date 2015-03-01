@@ -1,5 +1,6 @@
 extends layout
 block content
+    -var userData = items.data[0];
     .page-content
         .container
             h2
@@ -42,7 +43,7 @@ block content
                                         td
                                             | Пол
                                         td
-                                            | #{user.gender}
+                                            | #{userData.gender}
                                     tr
                                         td
                                             | Возраст
@@ -52,7 +53,7 @@ block content
                                         td
                                             | Город
                                         td
-                                            | #{user.city}
+                                            | #{userData.city}
             .row
                 .col-md-10
                     .col-md-12

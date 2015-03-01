@@ -1,5 +1,6 @@
 extends layout
 block content
+    -var userData = items.data[0];
     .page-content
         .container
             h2
@@ -46,14 +47,14 @@ block content
                                             input.form-control.maskedPhone.fc-field(type="text", data-server_name="phone", data-title="Телефон", data-editor="phone", placeholder="Телефон", value="#{user.phone}")
                                     tr
                                         td
-                                            | Пол
+                                            | Пол  #{user.gender}
                                         td
-                                            input.select2.form-control.fc-field(type="hidden", data-server_name="gender_id", data-editor="select" data-name="name", data-required="true", value="#{user.gender_id}", data-text="#{user.gender}", data-table="gender")
+                                            input.select2.form-control.fc-field(type="hidden", data-server_name="gender_id", data-editor="select" data-name="name", data-required="true", value="#{user.gender_id}", data-text="#{userData.gender}", data-table="gender")
                                     tr
                                         td
-                                            | Город
+                                            | Город #{user.city}
                                         td
-                                            input.select2.form-control.fc-field(type="hidden", data-server_name="city_id", data-editor="select", data-name="title", data-required="true", value="#{user.city_id}", data-text="#{user.city}", data-table="city")
+                                            input.select2.form-control.fc-field(type="hidden", data-server_name="city_id", data-editor="select", data-name="title", data-required="true", value="#{user.city_id}", data-text="#{userData.city}", data-table="city")
             .row
                 .col-md-10
                     .col-md-12
