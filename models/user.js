@@ -79,7 +79,7 @@ module.exports = function(callback){
                 if (err) {
                     callback(err)
                 } else {
-                    conn.queryRow("select id, email, salt, hashedPassword from users where email = ? and confirmed IS NOT NULL and (deleted IS NULL OR users.deleted >?) and isBanned = 0", [username,funcs.getDateTimeMySQL()], function (err, row) {
+                    conn.queryRow("select id, email, salt, hashedPassword from users where email = ? and confirmed IS NOT NULL and (deleted IS NULL OR deleted >?) and isBanned IS NULL", [username,funcs.getDateTimeMySQL()], function (err, row) {
                         conn.release();
                         if (err) {
                             return callback(err);
