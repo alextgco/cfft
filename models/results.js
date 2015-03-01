@@ -10,7 +10,7 @@ module.exports = function(callback){
         table_ru: 'Результат',
         ending:'',
         required_fields:['action_part_id','video_url','result_type_id','user_id'],
-        additionalColumns:['action_id'],
+        additionalColumns:['action_id','gender_id'],
         // var avaliable_fields = ['video_url','concat_result','result_min','result_sec','result_repeat','result_approach','isAff'].
         validation: {
             video_url:'url',
@@ -30,7 +30,6 @@ module.exports = function(callback){
         },*/
         join_objs:[
             {
-
                 action_part_id:{
                     table:"action_parts",
                     fields:[
@@ -103,6 +102,16 @@ module.exports = function(callback){
                         {
                             column:"surname",
                             alias:"user_surname"
+                        }
+                    ]
+                },
+                gender_id:{
+                    table:'gender',
+                    joinTable:'users',
+                    fields:[
+                        {
+                            column:'name',
+                            alias:'gender'
                         }
                     ]
                 }

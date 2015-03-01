@@ -24,26 +24,35 @@ $(document).ready(function(){
 
         switch(rangeWhere){
             case 'male':
+                whereObj['gender'] = {
+                    sys_name: 'MALE'
+                };
                 whereObj['users'] = {
-                    gender_sys_name: 'MALE',
                     age: '<=40'
                 };
                 break;
             case 'male40':
+                whereObj['gender'] = {
+                    sys_name: 'MALE'
+                };
                 whereObj['users'] = {
-                    gender_sys_name: 'MALE',
                     age: '>40'
                 };
                 break;
             case 'famale':
+                whereObj['gender'] = {
+                    sys_name: 'FAMALE'
+                };
                 whereObj['users'] = {
-                    gender_sys_name: 'FAMALE',
-                    age: '<40'
+                    age: '<=40'
                 };
                 break;
             case 'famale40':
+
+                whereObj['gender'] = {
+                    sys_name: 'FAMALE'
+                };
                 whereObj['users'] = {
-                    gender_sys_name: 'FAMALE',
                     age: '>40'
                 };
                 break;
