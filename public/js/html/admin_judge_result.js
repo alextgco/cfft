@@ -1,6 +1,7 @@
 $(document).ready(function(){
     var accept = $('.acceptResult');
     var reject = $('.rejectResult');
+    var action_part_id = accept.data('part_id');
 
     accept.off('click').on('click', function(){
         var id = $(this).data('id');
@@ -50,6 +51,7 @@ $(document).ready(function(){
                             params: {
                                 id: id,
                                 status: 'REJECTED',
+                                action_part_id: action_part_id,
                                 rejectReason: $('.rejectReason').val()
                             }
                         };

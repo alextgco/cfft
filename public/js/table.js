@@ -165,7 +165,7 @@
         var next = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" aria-label="Next" class="next"><span aria-hidden="true">&raquo;</span></a></li>' : '';
         var page = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" data-page="{{pageNo}}" class="page">{{pageNo}}</a></li>' : '';
 
-        var tpl = '<table class="table simpleView">' +
+        var tpl = '<div class="refresh_table fa fa-refresh"></div><table class="table simpleView">' +
                     '<thead>' +
                     '<tr>{{#columns}}' +
                     '<th data-column="{{column}}">{{column_ru}}</th>{{/columns}}' +
@@ -259,7 +259,7 @@
         _t.wrapper.find('tbody tr').off('click').on('click', function(){
             var id = $(this).data('id');
             if(_t.goToObject != ''){
-                document.location.href = _t.goToObject+'?'+_t.primaryKey+'='+id;
+                window.open(_t.goToObject+'?'+_t.primaryKey+'='+id , '_blank');
             }
 
         });

@@ -155,7 +155,6 @@ $(document).ready(function(){
         //type == false (EXPAND)
         function collapseBlock(wrapper, type, cb){
             var content = wrapper.find('.collapseContent');
-            console.log(content);
             if(type){
                 content.hide(0);
             }else{
@@ -179,6 +178,13 @@ $(document).ready(function(){
                     $self.html('<div class="fa fa-plus"></div> Развернуть').addClass('collapsed');
                 });
             }
+        });
+
+        $('.input-group-addon').off('click').on('click', function(){
+            var grp = $(this).parents('.input-group').eq(0);
+            var inp = grp.find('input').eq(0);
+            inp.trigger('click');
+            inp.focus();
         });
 
     }());

@@ -1206,3 +1206,44 @@ h4.darkHd{
 .mh450{
     min-height: 420px;
 }
+
+.collapseBtn{
+    float: right;
+    right: 0;
+    background-color: #f7f7f7;
+    top: 0;
+    cursor: pointer;
+    padding: 7px 14px;
+    position: absolute;
+    font-size: 11px;
+}
+.collapseBtn:hover{
+    background-color: #f0f0f0;
+}
+.collapseable{
+    position: relative;
+}
+.borBot1CCC{
+    border-bottom: 1px solid #ccc;
+}
+.padBot10{
+    padding-bottom: 10px;
+}
+.initMeTable{
+    position: relative;
+}
+.refresh_table{
+    position: absolute;
+    right: 0;
+    margin-top: 0;
+    height: 36px;
+    width: 36px;
+    background-color: rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-size: 14px;
+    padding-top: 11px;
+    padding-left: 1px;
+    cursor: pointer;
+    color: #FFF;
+    text-shadow: 0 0 8px #000, 0 0 18px #000;
+}

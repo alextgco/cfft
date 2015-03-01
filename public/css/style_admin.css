@@ -325,3 +325,22 @@ table.table.simpleView tr:nth-child(2n) td{
     padding-right: 130px;
     padding-left: 15px;
 }
+
+.initMeTable{
+    position: relative;
+}
+.refresh_table{
+    position: absolute;
+    right: 0;
+    margin-top: 0;
+    height: 36px;
+    width: 36px;
+    background-color: rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-size: 14px;
+    padding-top: 11px;
+    padding-left: 1px;
+    cursor: pointer;
+    color: #FFF;
+    text-shadow: 0 0 8px #000, 0 0 18px #000;
+}
