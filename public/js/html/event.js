@@ -19,6 +19,9 @@ $(document).ready(function(){
             action_parts: {
                 action_id: action_id,
                 id: part_id
+            },
+            result_statuses: {
+                sys_name: '<>IN_HISTORY'
             }
         };
 
@@ -28,7 +31,7 @@ $(document).ready(function(){
                     sys_name: 'MALE'
                 };
                 whereObj['users'] = {
-                    age: '<=40'
+                    age: '<40'
                 };
                 break;
             case 'male40':
@@ -36,7 +39,7 @@ $(document).ready(function(){
                     sys_name: 'MALE'
                 };
                 whereObj['users'] = {
-                    age: '>40'
+                    age: '>=40'
                 };
                 break;
             case 'famale':
@@ -44,7 +47,7 @@ $(document).ready(function(){
                     sys_name: 'FAMALE'
                 };
                 whereObj['users'] = {
-                    age: '<=40'
+                    age: '<40'
                 };
                 break;
             case 'famale40':
@@ -53,7 +56,7 @@ $(document).ready(function(){
                     sys_name: 'FAMALE'
                 };
                 whereObj['users'] = {
-                    age: '>40'
+                    age: '>=40'
                 };
                 break;
             default:
