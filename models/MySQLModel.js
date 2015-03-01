@@ -312,8 +312,6 @@ Model.prototype.get = function (params, callback) {
                         }
                     }
                     rows.count = count;
-                    console.log(rows);
-                    console.log('rows----------------------------------------------');
                     callback(null, rows);
                 });
             })
