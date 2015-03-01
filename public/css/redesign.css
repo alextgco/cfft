@@ -1196,3 +1196,13 @@ h4.darkHd{
 .select2-container.invalid{
     border-color: #e01b1a;
 }
+.p_404{
+    width: 424px;
+    height: 327px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.mh450{
+    min-height: 420px;
+}

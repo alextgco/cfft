@@ -1,6 +1,14 @@
 extends layout
 block content
-  h1 Ошибка:
-  h1= message
-  //h2= error.status
-  //pre #{error.stack}
+    .page-content
+        .container.posRel.mh450
+            h2
+                | Ой, что-то пошло не так...
+            hr
+            h4
+                | #{message}
+            .sBtn.green
+                a(href="/")
+                    .fa.fa-home
+                    | &nbsp;&nbsp;На главную
+            img.p_404(src="img/p_404.jpg")
