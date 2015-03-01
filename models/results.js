@@ -5,7 +5,7 @@ var funcs = require('../libs/functions');
 var async = require('async');
 module.exports = function(callback){
     var results = new Model({
-        allowedForUserCommand:['get','addOrder'],
+        allowedForUserCommand:['get','addOrder','actionLeaderBoard'],
         table: 'results',
         table_ru: 'Результат',
         ending:'',
@@ -366,6 +366,7 @@ module.exports = function(callback){
                         " WHERE status_id = ?" +
                         " GROUP BY action_part_id";
                     conn.query(sql,[result_status_id], function (err, res1) {
+                        conn.release();
                         if (err){
                             return callback(err);
                         }
@@ -373,10 +374,9 @@ module.exports = function(callback){
                         var parts = {};
                         for (var i in res1) {
                             var item = res1[i];
-                            parts[item] = {
+                            parts[item.id] = {
                                 id: item.id,
-                                max_pos:item.max_pos,
-                                items:[]
+                                max_pos:item.max_pos
                             }
                         }
                         var arr = [];
@@ -384,20 +384,39 @@ module.exports = function(callback){
                             if (err){
                                 return callback(err);
                             }
-                            var sql = "select r.id, concat(u.surname, ' ', u.firstname) as FIO, r.position, r.action_part_id, ap.title, r.concat_result from results r" +
-                                " LEFT JOIN users as u on r.user_id = u.id" +
+                            var sql = "select r.id, user_id, concat(u.surname, ' ', u.firstname) as FIO, r.position, r.action_part_id, ap.title, r.concat_result  from results r " +
+                                "LEFT JOIN users as u on r.user_id = u.id" +
                                 " LEFT JOIN action_parts as ap on r.action_part_id = ap.id" +
                                 " LEFT JOIN actions as a on ap.action_id = a.id" +
                                 " LEFT JOIN result_statuses as rs on r.status_id = rs.id" +
                                 " where a.id = ? and rs.sys_name = 'ACCEPTED'" +
-                                " ORDER BY r.action_part_id";
+                                " GROUP BY r.user_id, r.action_part_id";
 
                             conn.query(sql,[41],function(err, res2){
+                                conn.release();
                                 if (err){
                                     return callback(err);
                                 }
+                                //console.log(res2);
                                 var tbl = [];
+                                var usr_obj = {};
                                 for (var i in res2) {
+                                    var item = res2[i];
+                                    if (typeof  usr_obj[item.user_id]!=='object'){
+                                        usr_obj[item.user_id] = {};
+                                    }
+                                    if(typeof usr_obj[item.user_id][item.action_part_id]!=='object'){
+                                        usr_obj[item.user_id][item.action_part_id] = {};
+                                    }
+                                    //var curr_part = usr_obj[item.user_id][item.action_part_id];
+                                    usr_obj[item.user_id][item.action_part_id].pos = item.position;
+                                    usr_obj[item.user_id][item.action_part_id].concat_result = item.concat_result;
+                                }
+                                console.log('----------------------------------------------------------');
+                                console.dir(usr_obj);
+                                process.exit();
+
+                                /*for (var i in res2) {
                                     var item = res2[i];
                                     var o = {
                                         user_id:item.user_id
@@ -410,7 +429,7 @@ module.exports = function(callback){
                                     arr.push({
                                         user_id:item.user_id
                                     })
-                                }
+                                }*/
                             })
                         });
                     });

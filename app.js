@@ -114,6 +114,17 @@ app.use(function(err, req, res, next) {
 console.log('-------------------------------------------------');
 console.log('SERVER STARTED');
 module.exports = app;
+
+
+/*var api = require('./libs/userApi');
+api('actionLeaderBoard', 'results', {},function(err,result){
+    if (err){
+        console.log(err);
+    }else{
+
+    }
+});*/
+
     //git remote set-url origin https://github.com/alextgco/cfft
 //git remote set-url origin ssh://cfft1@dotcloudapp.com/repository.git
 //git commit -am 'note'
