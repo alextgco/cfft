@@ -1,3 +1,4 @@
+var funcs = require('../libs/functions');
 module.exports = function(command,object,params,callback){
     var exludeCommand = ['add','modify','remove'];
     if (exludeCommand.indexOf(command)!==-1){
@@ -14,7 +15,7 @@ module.exports = function(command,object,params,callback){
         if (allowedForUserCommand.indexOf(command)===-1 && command!='get'){
             return callback('Команда '+command+' запрещена.');
         }
-        var columns = params.columns || model.columns;
+        var columns = funcs.cloneObj(params.columns || model.columns);
         var excludeForUserColumns = model.excludeForUserColumns;
         if (excludeForUserColumns){
             for (var i in excludeForUserColumns) {
