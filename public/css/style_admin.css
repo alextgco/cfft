@@ -344,3 +344,6 @@ table.table.simpleView tr:nth-child(2n) td{
     color: #FFF;
     text-shadow: 0 0 8px #000, 0 0 18px #000;
 }
+.refresh_table:hover{
+    background-color: rgba(0, 0, 0, 0.7);
+}

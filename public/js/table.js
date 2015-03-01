@@ -264,6 +264,7 @@
 
         });
 
+        var refresh = _t.wrapper.find('.refresh_table');
         var paginationWrapper = _t.wrapper.find('.pagination');
         var pages = paginationWrapper.find('a.page');
         var prev = paginationWrapper.find('a.prev');
@@ -289,6 +290,14 @@
                 });
             });
 
+        });
+
+        refresh.off('click').on('click', function(){
+            _t.getData(function(){
+                _t.render(function(){
+                    _t.setHandlers();
+                });
+            });
         });
     };
 
