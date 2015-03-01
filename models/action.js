@@ -10,7 +10,9 @@ module.exports = function(callback){
         validation: {
             payment_type_id:'number',
             status_id:'number',
-            title:'notNull'
+            title:'notNull',
+            date_start:'isDate',
+            date_end:'isDate'
         },
         getFormating:{
             description1:"parseBlob",
