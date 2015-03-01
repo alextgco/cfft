@@ -11,8 +11,9 @@ var moment = require('moment');
 module.exports = function(callback){
     var user = new Model({
         allowedForUserCommand:['get','modifyProfile','authorize','registration','confirmEmail'],
+        excludeForUserColumns:[],
         table: 'users',
-        table_ru: 'ПользователЬ',
+        table_ru: 'Пользователь',
         ending:'',
         required_fields:['firstname','surname','email','birthday','gender_id','city_id'],
         getFormating:{
