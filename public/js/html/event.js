@@ -1,5 +1,18 @@
 $(document).ready(function(){
 
+    var lbTable = $('.leaderBoardTable');
+    var lb_action_id = lbTable.data('action_id');
+    var lb_getObj = lbTable.data('get_object');
+
+    var lb_table = new CF.Table({
+        getObject: lb_getObj,
+        wrapper: lbTable,
+        primaryKey: 'id',
+        isLeaderBoard: true
+    });
+    lb_table.init();
+
+
     var tableWrapper = $('.initMeTable');
 
     var action_id = tableWrapper.data('action_id');

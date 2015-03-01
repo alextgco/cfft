@@ -2,43 +2,11 @@
 
     CF = CF || {};
 
-    CF.directories = {
-        columnNames: {
-            action_id: 'ID Мероприятия',
-            action_part: "Этап",
-            action_part_id: "ID Этапа мероприятия",
-            action_title: "Мероприятие",
-            concat_result: "Результат",
-            created: "Дата создания",
-            deleted: "Удален",
-            id: "ID",
-            isAff: "Сдан в аффилиате",
-            judge_result_approach: "Судья: Подходы",
-            judge_result_min: "Судья: минут",
-            judge_result_repeat: "Судья: Повторы",
-            judge_result_sec: "Судья: Секунды",
-            published: "Опубликовано",
-            result_approach: "Подходы",
-            result_min: "Минут",
-            result_repeat: "Повторы",
-            result_sec: "Секунды",
-            result_type: "Тип результата",
-            result_type_id: "ID Типа результата",
-            status_id: "ID Статуса",
-            status_name: "Статус",
-            status_name_sys: "Статус SYS",
-            user_firstname: "Имя",
-            user_id: "ID Пользователя",
-            user_surname: "Фамилия",
-            video_url: "Ссылка на видео"
-        }
-    };
-
-    CF.Tables = function(){
+    CF.TablesL = function(){
         this.items = [];
     };
 
-    CF.Tables.prototype.getItem = function(id){
+    CF.TablesL.prototype.getItem = function(id){
         for(var i in this.items){
             if(this.items[i].id == id){
                 return id;
@@ -46,11 +14,11 @@
         }
     };
 
-    CF.Tables.prototype.addItem = function(item){
+    CF.TablesL.prototype.addItem = function(item){
         this.items.push(item);
     };
 
-    CF.Tables.prototype.removeItem = function(id){
+    CF.TablesL.prototype.removeItem = function(id){
         for(var i in this.items){
             if(this.items[i].id == id){
                 this.items.splice(i,1);
@@ -58,9 +26,9 @@
         }
     };
 
-    CF.TablesList = new CF.Tables();
+    CF.TablesListL = new CF.TablesL();
 
-    CF.Table = function(p){
+    CF.TableL = function(p){
         this.id =               p.id || CF.guid();
         this.wrapper =          p.wrapper || undefined;
         this.where =            p.where || {};
@@ -76,10 +44,9 @@
         this.filters =          p.filters || [];
         this.tempPage =         1;
         this.specialColumns =   p.specialColumns || [];
-        this.isLeaderBoard =    p.isLeaderBoard || false;
     };
 
-    CF.Table.prototype.init = function(){
+    CF.TableL.prototype.init = function(){
         var _t = this;
         _t.getData(function(){
             _t.render(function(){
@@ -92,55 +59,8 @@
         });
     };
 
-    CF.Table.prototype.getData = function(cb){
+    CF.TableL.prototype.getData = function(cb){
         var _t = this;
-
-        if(_t.isLeaderBoard){
-            _t.totalCount = 3;
-            _t.data = [
-                {
-                    position: 1,
-                    user: 'adsasd',
-                    part_1: '1(1(2:2))',
-                    part_2: '1(1(2:2))',
-                    part_3: '1(1(2:2))'
-                },
-                {
-                    position: 2,
-                    user: 'f fsd adsasd',
-                    part_1: '1(1(2:2))',
-                    part_2: '1(1(2:2))',
-                    part_3: '1(1(2:2))'
-                },
-                {
-                    position: 3,
-                    user: 'g gfp d[f',
-                    part_1: '1(1(2:2))',
-                    part_2: '1(1(2:2))',
-                    part_3: '1(1(2:2))'
-                }
-            ];
-            _t.columns = [
-                {
-                    title: 'part1',
-                    sort_id: '1'
-                },
-                {
-                    title: 'part2',
-                    sort_id: '2'
-                },
-                {
-                    title: 'part3',
-                    sort_id: '3'
-                }
-            ];
-
-            if(typeof cb == 'function'){
-                cb();
-            }
-            return;
-        }
-
         var o = {
             command: 'get',
             object: _t.getObject,
@@ -153,15 +73,8 @@
         };
 
         sendQuery(o, function(res){
-            if(_t.isLeaderBoard){
-                _t.totalCount = res.totalCount;
-                _t.data = res.data;
-                _t.columns = res.columns;
-            }else{
-                _t.totalCount = res.totalCount;
-                _t.data = res.data;
-            }
-
+            _t.totalCount = res.totalCount;
+            _t.data = res.data;
             if(typeof cb == 'function'){
                 cb();
             }
@@ -169,11 +82,11 @@
 
     };
 
-    CF.Table.prototype.getColumnName = function(column){
+    CF.TableL.prototype.getColumnName = function(column){
         return CF.directories.columnNames[column];
     };
 
-    CF.Table.prototype.checkSpecial = function(column){
+    CF.TableL.prototype.checkSpecial = function(column){
         var _t = this;
 
         for(var i in _t.specialColumns){
@@ -186,12 +99,12 @@
         //return _t.specialColumns.indexOf(column) >= 0;
     };
 
-    CF.Table.prototype.checkVisibility = function(column){
+    CF.TableL.prototype.checkVisibility = function(column){
         var _t = this;
         return _t.visible_columns.indexOf(column) >= 0;
     };
 
-    CF.Table.prototype.getPrimaryKey = function(row){
+    CF.TableL.prototype.getPrimaryKey = function(row){
         var _t = this;
         var pk = _t.primaryKey;
         for(var i in row){
@@ -201,7 +114,7 @@
         }
     };
 
-    CF.Table.prototype.renderFilters = function(){
+    CF.TableL.prototype.renderFilters = function(){
         var _t = this;
         _t.wrapper.find('.filterContainer').remove();
         if(_t.filters.length == 0){
@@ -211,16 +124,10 @@
         _t.wrapper.prepend(html);
     };
 
-    CF.Table.prototype.render = function(cb){
+    CF.TableL.prototype.render = function(cb){
         var _t = this;
 
-        if(_t.isLeaderBoard){
-            _t.renderLeaderBoard();
-            if(typeof cb == 'function'){
-                cb();
-            }
-            return;
-        }
+        console.log('view data', _t.data);
 
         var prev = (_t.tempPage > 1)? '<li><a href="#" aria-label="Previous" class="prev"><span aria-hidden="true">&laquo;</span></a></li>' : '';
         var next = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" aria-label="Next" class="next"><span aria-hidden="true">&raquo;</span></a></li>' : '';
@@ -315,54 +222,7 @@
         }
     };
 
-    CF.Table.prototype.renderLeaderBoard = function(){
-        var _t = this;
-        var tpl = '<div class="refresh_table fa fa-refresh"></div><table class="table simpleView">' +
-                    '<thead>' +
-                    '<tr>{{#columns}}' +
-                    '<th data-column="{{sort_id}}">{{title}}</th>{{/columns}}' +
-                    '</tr>' +
-                    '</thead>' +
-                    '<tbody>' +
-                        '{{#rows}}' +
-                            '<tr data-id="{{id}}">' +
-                                '{{#tds}}' +
-                                    '<td>{{{value}}}</td>' +
-                                '{{/tds}}' +
-                            '</tr>' +
-                        '{{/rows}}' +
-                    '</tbody>' +
-                    '</table>' ;
-
-        var rows = [];
-        for(var i in _t.data){
-            var it = _t.data[i];
-            rows.push([]);
-            for(var k in it){
-                rows[i].push({
-                    id: k,
-                    tds:[]
-                });
-            }
-        }
-
-        for(var i in _t.data){
-            var it = _t.data[i];
-            for(var k in it){
-                console.log(rows[i]);
-            }
-        }
-
-        console.log('ROWS', rows);
-        var mO = {
-            columns: _t.columns,
-            rows: rows
-        };
-
-        _t.wrapper.html(Mustache.to_html(tpl, mO));
-    };
-
-    CF.Table.prototype.setHandlers = function(){
+    CF.TableL.prototype.setHandlers = function(){
         var _t = this;
         _t.wrapper.find('tbody tr').off('click').on('click', function(){
             var id = $(this).data('id');
@@ -409,7 +269,7 @@
         });
     };
 
-    CF.Table.prototype.initFilters = function(){
+    CF.TableL.prototype.initFilters = function(){
         var _t = this;
         var filterWrapper = _t.wrapper.find('.filters-wrapper');
         for(var i in _t.filters){
@@ -511,6 +371,5 @@
             });
         });
     };
-
 
 }());
