@@ -250,6 +250,16 @@ module.exports = function(callback){
                 };
                 results.modify(o,function(err,result){
                     callback(err,result);
+                    // Переприсвоить позиции
+                    if (obj.action_part_id){
+                        results.rePosition({
+                            action_part_id:obj.action_part_id
+                        }, function(err,r){
+
+                        });
+                    }
+
+
                 })
             });
 
@@ -337,6 +347,9 @@ module.exports = function(callback){
             });
 
 
+
+        };
+        results.actionLeaderBoard = function(obj, callback){
 
         };
         callback(results);
