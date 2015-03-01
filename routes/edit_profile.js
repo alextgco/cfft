@@ -1,5 +1,5 @@
 var async = require('async');
-var api = require('../libs/api');
+var api = require('../libs/userApi');
 exports.get = function(req, res, next){
     var id = req.query.id;
     api('get', 'user', {where: {id: id}}, function(err,result){

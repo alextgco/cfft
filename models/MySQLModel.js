@@ -68,6 +68,7 @@ var Model = function (params, callback) {
         }
     };
     this.allowedForUserCommand = params.allowedForUserCommand || [];
+    this.excludeForUserColumns = params.excludeForUserColumns;
     this.getFormating = params.getFormating || {};
     this.table = params.table;
     this.table_ru = params.table_ru || 'Объект';
@@ -311,6 +312,8 @@ Model.prototype.get = function (params, callback) {
                         }
                     }
                     rows.count = count;
+                    console.log(rows);
+                    console.log('rows----------------------------------------------');
                     callback(null, rows);
                 });
             })
@@ -391,7 +394,7 @@ Model.prototype.modify = function (obj, callback) {
         if (!obj.id) {
             return callback(new MyError('Не передано ключевое поле. id'));
         }
-        console.log(conn.where(obj));
+        //console.log(conn.where(obj));
         conn.update(self.table, obj, function (err, affected) {
             if (err){
                 console.log(err);

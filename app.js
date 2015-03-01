@@ -36,17 +36,6 @@ require('dns').lookup(require('os').hostname(), function (err, add, fam) {
 });
 
 
-
-//var options = config.get('mysqlConnection');
-/*var options = {
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'aambfi5y',
-    database: 'cfft',
-    createDatabaseTable:true
-};*/
-
 var sessionStore = require('./libs/sessionStore');
 app.use(session({
     secret: config.get('session:secret'),

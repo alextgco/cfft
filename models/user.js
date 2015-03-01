@@ -10,8 +10,9 @@ var UserError = require('../error').UserError;
 var moment = require('moment');
 module.exports = function(callback){
     var user = new Model({
+        published:false,
         allowedForUserCommand:['get','modifyProfile','authorize','registration','confirmEmail'],
-        excludeForUserColumns:[],
+        excludeForUserColumns:['hashedPassword','salt','deleted','published','created','mailKey','isBanned','bannedToDate'],
         table: 'users',
         table_ru: 'Пользователь',
         ending:'',
