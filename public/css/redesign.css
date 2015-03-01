@@ -1236,14 +1236,17 @@ h4.darkHd{
     position: absolute;
     right: 0;
     margin-top: 0;
-    height: 36px;
-    width: 36px;
+    height: 41px;
+    width: 41px;
     background-color: rgba(0, 0, 0, 0.3);
     text-align: center;
     font-size: 14px;
-    padding-top: 11px;
+    padding-top: 14px;
     padding-left: 1px;
     cursor: pointer;
     color: #FFF;
     text-shadow: 0 0 8px #000, 0 0 18px #000;
+}
+.refresh_table:hover{
+    background-color: rgba(0, 0, 0, 0.7);
 }
