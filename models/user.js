@@ -11,8 +11,9 @@ var moment = require('moment');
 module.exports = function(callback){
     var user = new Model({
         allowedForUserCommand:['get','modifyProfile','authorize','registration','confirmEmail'],
+        excludeForUserColumns:[],
         table: 'users',
-        table_ru: 'ПользователЬ',
+        table_ru: 'Пользователь',
         ending:'',
         required_fields:['firstname','surname','email','birthday','gender_id','city_id'],
         getFormating:{
@@ -246,8 +247,45 @@ module.exports = function(callback){
             user.modify(obj,function(err,results){
                 callback(err,results);
             });
-        };
 
+        };
+        user.updateUserAges = function(obj,callback){
+            if (typeof obj!='object'){
+                obj = {};
+            }
+
+            var o = {
+                columns:['id','birthday','age']
+            };
+
+            user.get(o,function(err,res){
+                if (err){
+                    return callback(new MyError('Не удалось обновить возраст пользователей'));
+                }
+                var needUpdate = [];
+                res = res.data;
+                for (var i in res) {
+                    var realAge = funcs.age(res[i].birthday);
+                    var age = res[i].age;
+                    if (realAge!==age){
+                        needUpdate.push({
+                            id:res[i].id,
+                            age:realAge
+                        });
+                    }
+                }
+                async.each(needUpdate,function(item,callback){
+                    user.modify(item,function(err,affected){
+                        if (err){
+                            console.log(err);
+                        }
+                        callback(null,affected);
+                    })
+                },function(err,r){
+                    callback(err,needUpdate.length);
+                });
+            });
+        };
         callback(user);
     });
 };

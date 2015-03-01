@@ -35,8 +35,8 @@ require('dns').lookup(require('os').hostname(), function (err, add, fam) {
     console.log('addr: '+add);
 });
 
-var funcs = require('./libs/functions');
-console.log('AGE',funcs.age('1988-04-05'));
+
+
 //var options = config.get('mysqlConnection');
 /*var options = {
     host: 'localhost',
