@@ -4,24 +4,24 @@ block content
     .page-content
         .container
             h2
-                |#{user.firstname}
-                |#{user.surname}
+                |#{userData.firstname}
+                |#{userData.surname}
                 span.grey
-                    |  (#{user.email})
+                    |  (#{userData.email})
             hr
             .row
                 .col-md-12
                     form#form-profile(name="form-profile")
                         .col-md-4
                             .user-photo-wrapper
-                                - var photo = (!user.photo || user.photo == '' || user.photo == 'null')? (user.gender_id == 1)? 'img/user_default_m.jpg' : 'img/user_default_f.jpg' : 'upload/'+user.photo;
+                                - var photo = (!userData.photo || userData.photo == '' || userData.photo == 'null')? (userData.gender_id == 1)? 'img/user_default_m.jpg' : 'img/user_default_f.jpg' : 'upload/'+userData.photo;
                                 .user-photo-clear
                                     .fa.fa-trash
                                 img(src="#{photo}")
                             div.input-group.marTop10
                                 .input-group-addon
                                     i.fa.fa-image
-                                input.form-control.fc-field.userPhotoInput(type="text", value="#{user.photo}", data-server_name="photo", data-title="Фото", data-required="false", data-editor="text", placeholder="Выберите изображение")
+                                input.form-control.fc-field.userPhotoInput(type="text", value="#{userData.photo}", data-server_name="photo", data-title="Фото", data-required="false", data-editor="text", placeholder="Выберите изображение")
                         .col-md-6
                             table.table
                                 tbody
@@ -29,32 +29,32 @@ block content
                                         td
                                             | Имя
                                         td
-                                            input.form-control.fc-field(type="text", data-server_name="name", data-title="Имя", data-required="true", data-editor="text", placeholder="Имя", value="#{user.firstname}")
+                                            input.form-control.fc-field(type="text", data-server_name="name", data-title="Имя", data-required="true", data-editor="text", placeholder="Имя", value="#{userData.firstname}")
                                     tr
                                         td
                                             | Фамилия
                                         td
-                                            input.form-control.fc-field(type="text", data-server_name="surname", data-title="Фамилия", data-required="true", data-editor="text", placeholder="Фамилия", value="#{user.surname}")
+                                            input.form-control.fc-field(type="text", data-server_name="surname", data-title="Фамилия", data-required="true", data-editor="text", placeholder="Фамилия", value="#{userData.surname}")
                                     tr
                                         td
                                             | Почта
                                         td
-                                            input.form-control.fc-field(type="text", data-server_name="email", data-title="Почта", data-required="true", data-editor="email", placeholder="Почта", value="#{user.email}")
+                                            input.form-control.fc-field(type="text", data-server_name="email", data-title="Почта", data-required="true", data-editor="email", placeholder="Почта", value="#{userData.email}")
                                     tr
                                         td
                                             | Телефон
                                         td
-                                            input.form-control.maskedPhone.fc-field(type="text", data-server_name="phone", data-title="Телефон", data-editor="phone", placeholder="Телефон", value="#{user.phone}")
+                                            input.form-control.maskedPhone.fc-field(type="text", data-server_name="phone", data-title="Телефон", data-editor="phone", placeholder="Телефон", value="#{userData.phone}")
                                     tr
                                         td
-                                            | Пол  #{user.gender}
+                                            | Пол
                                         td
-                                            input.select2.form-control.fc-field(type="hidden", data-server_name="gender_id", data-editor="select" data-name="name", data-required="true", value="#{user.gender_id}", data-text="#{userData.gender}", data-table="gender")
+                                            input.select2.form-control.fc-field(type="hidden", data-server_name="gender_id", data-editor="select" data-name="name", data-required="true", value="#{userData.gender_id}", data-text="#{userData.gender}", data-table="gender")
                                     tr
                                         td
-                                            | Город #{user.city}
+                                            | Город
                                         td
-                                            input.select2.form-control.fc-field(type="hidden", data-server_name="city_id", data-editor="select", data-name="title", data-required="true", value="#{user.city_id}", data-text="#{userData.city}", data-table="city")
+                                            input.select2.form-control.fc-field(type="hidden", data-server_name="city_id", data-editor="select", data-name="title", data-required="true", value="#{userData.city_id}", data-text="#{userData.city}", data-table="city")
             .row
                 .col-md-10
                     .col-md-12

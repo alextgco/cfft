@@ -7,6 +7,12 @@ $(document).ready(function(){
         wrapper: tableWrapper,
         visible_columns: ['action_name', 'action_title', 'action_part', 'concat_result', 'status_name', 'video_url'],
         goToObject: '',
+        specialColumns: [
+            {
+                column: 'video_url',
+                type: 'link'
+            }
+        ],
         sort: {
             created: 'ASC'
         },

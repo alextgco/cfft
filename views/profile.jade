@@ -4,17 +4,17 @@ block content
     .page-content
         .container
             h2
-                |#{user.firstname}
-                |#{user.surname}
+                |#{userData.firstname}
+                |#{userData.surname}
                 span.grey
-                    |  (#{user.email})
+                    |  (#{userData.email})
             hr
             .row
                 .col-md-12
                     form#form-profile(name="form-profile")
                         .col-md-4
                             .user-photo
-                                - var photo = (!user.photo || user.photo == '' || user.photo == 'null')? (user.gender_id == 1)? 'img/user_default_m.jpg' : 'img/user_default_f.jpg' : 'upload/'+user.photo;
+                                - var photo = (!userData.photo || userData.photo == '' || userData.photo == 'null')? (userData.gender_id == 1)? 'img/user_default_m.jpg' : 'img/user_default_f.jpg' : 'upload/'+userData.photo;
                                 img(src="#{photo}")
                         .col-md-6
                             table.table
@@ -23,22 +23,22 @@ block content
                                         td
                                             | Имя
                                         td
-                                            | #{user.firstname}
+                                            | #{userData.firstname}
                                     tr
                                         td
                                             | Фамилия
                                         td
-                                            | #{user.surname}
+                                            | #{userData.surname}
                                     tr
                                         td
                                             | Почта
                                         td
-                                            | #{user.email}
+                                            | #{userData.email}
                                     tr
                                         td
                                             | Телефон
                                         td
-                                            | #{user.phone}
+                                            | #{userData.phone}
                                     tr
                                         td
                                             | Пол
@@ -48,7 +48,7 @@ block content
                                         td
                                             | Возраст
                                         td
-                                            | #{user.age}
+                                            | #{userData.age}
                                     tr
                                         td
                                             | Город
@@ -58,10 +58,13 @@ block content
                 .col-md-10
                     .col-md-12
                         .sBtn.flRight.green.save_profile
-                            a(href="edit_profile?id=#{user.id}")
+                            a(href="edit_profile?id=#{userData.id}")
                                 .fa.fa-edit
                                 | &nbsp;&nbsp;Редактировать
 
+            h2
+                | Заявки
+            hr
             .event-results-tabs
                 .initMeTable(data-get_object="results")
 

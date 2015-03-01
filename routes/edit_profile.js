@@ -7,9 +7,13 @@ exports.get = function(req, res, next){
             console.log(err, 'admin_events');
         }else{
             console.log(result);
-            res.render('edit_profile', {
-                items: result
-            });
+            if(result.data.length == 0){
+                res.render('page_404');
+            }else {
+                res.render('edit_profile', {
+                    items: result
+                });
+            }
         }
     });
 };
