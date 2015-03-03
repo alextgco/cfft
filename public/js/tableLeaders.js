@@ -75,6 +75,7 @@
         sendQuery(o, function(res){
             _t.totalCount = res.totalCount;
             _t.data = res.data;
+
             if(typeof cb == 'function'){
                 cb();
             }
