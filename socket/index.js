@@ -66,6 +66,9 @@ module.exports = function(server) {
         loadSession(sid, callback);
       },
       function(session, callback) {
+        if (!session) {
+          callback(new HttpError(403, "Anonymous session may not connect"));
+        }
         if (!session.user) {
           callback(new HttpError(403, "Anonymous session may not connect"));
         }

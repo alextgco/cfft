@@ -353,88 +353,90 @@ module.exports = function(callback){
 
         };
         results.actionLeaderBoard = function(obj, callback){
+            pool.getConn(function(err,conn){
+                if (err){
+                    return callback(err);
+                }
+                var sql = "SELECT r.action_part_id as id, max(r.position) as max_pos, ap.title FROM results r " +
+                    "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
+                    "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
+                    " WHERE rs.sys_name = 'ACCEPTED' " +
+                    "AND ap.action_id = ?" +
+                    " GROUP BY r.action_part_id ";
+                conn.query(sql,[41], function (err, res1) {
+                    conn.release();
+                    if (err){
+                        return callback(err);
+                    }
+                    var parts_arr = res1;
+                    var parts = {};
+                    for (var i in res1) {
+                        var item = res1[i];
+                        parts[item.id] = {
+                            id: item.id,
+                            max_pos:item.max_pos,
+                            title:item.title,
+                            sql:"SELECT r.position as pos " +
+                            "FROM results r " +
+                            "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
+                            "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
+                            "where rs.sys_name = 'ACCEPTED' " +
+                            "and r.user_id = u.id " +
+                            "and ap.id = "+ item.id
+                        }
+                    }
+                    //console.log(parts);
+                    var arr = [];
+                    pool.getConn(function(err,conn){
+                        if (err){
+                            return callback(err);
+                        }
+                        var sql = "SELECT u.firstname, u.surname ";
+                        for (var i in parts) {
+                            sql+= ', ('+parts[i].sql+') as ap' +parts[i].id;
+                        }
+                        sql += ' from users as u';
+                        console.log(sql);
+                        //return callback(null);
+                        conn.query(sql,[],function(err, res2){
+                            conn.release();
+                            if (err){
+                                return callback(err);
+                            }
+                            for (var i in res2) {
+                                var row = res2[i];
+                                var sum_pos = 0;
+                                for (var k in parts) {
+                                    if (row['ap'+parts[k].id] == null){
+                                        row['ap'+parts[k].id] = parts[k].max_pos;
+                                    }
+                                    sum_pos += row['ap'+parts[k].id];
+                                }
+                                row.sum_pos = sum_pos;
+                            }
+                            res2.sort(function(a, b){
+                                if (a.sum_pos>b.sum_pos){
+                                    return 1;
+                                }else if (a.sum_pos<b.sum_pos){
+                                    return -1;
+                                }else{
+                                    return 0;
+                                }
+                            });
+                            for (var j in res2) {
+                                res2[j].position = +j+1;
+                            }
+                            console.log(res2);
+                        })
+                    });
+                });
 
+            });
             results.getDirectoryId('result_statuses','ACCEPTED',function(err,result_status_id){
                 if (err){
                     return callback(err);
                 }
-                pool.getConn(function(err,conn){
-                    if (err){
-                        return callback(err);
-                    }
-                    var sql = "SELECT action_part_id as id, max(position) as max_pos FROM results r" +
-                        " WHERE status_id = ?" +
-                        " GROUP BY action_part_id";
-                    conn.query(sql,[result_status_id], function (err, res1) {
-                        conn.release();
-                        if (err){
-                            return callback(err);
-                        }
-                        var parts_arr = res1;
-                        var parts = {};
-                        for (var i in res1) {
-                            var item = res1[i];
-                            parts[item.id] = {
-                                id: item.id,
-                                max_pos:item.max_pos
-                            }
-                        }
-                        var arr = [];
-                        pool.getConn(function(err,conn){
-                            if (err){
-                                return callback(err);
-                            }
-                            var sql = "select r.id, user_id, concat(u.surname, ' ', u.firstname) as FIO, r.position, r.action_part_id, ap.title, r.concat_result  from results r " +
-                                "LEFT JOIN users as u on r.user_id = u.id" +
-                                " LEFT JOIN action_parts as ap on r.action_part_id = ap.id" +
-                                " LEFT JOIN actions as a on ap.action_id = a.id" +
-                                " LEFT JOIN result_statuses as rs on r.status_id = rs.id" +
-                                " where a.id = ? and rs.sys_name = 'ACCEPTED'" +
-                                " GROUP BY r.user_id, r.action_part_id";
 
-                            conn.query(sql,[41],function(err, res2){
-                                conn.release();
-                                if (err){
-                                    return callback(err);
-                                }
-                                //console.log(res2);
-                                var tbl = [];
-                                var usr_obj = {};
-                                for (var i in res2) {
-                                    var item = res2[i];
-                                    if (typeof  usr_obj[item.user_id]!=='object'){
-                                        usr_obj[item.user_id] = {};
-                                    }
-                                    if(typeof usr_obj[item.user_id][item.action_part_id]!=='object'){
-                                        usr_obj[item.user_id][item.action_part_id] = {};
-                                    }
-                                    //var curr_part = usr_obj[item.user_id][item.action_part_id];
-                                    usr_obj[item.user_id][item.action_part_id].pos = item.position;
-                                    usr_obj[item.user_id][item.action_part_id].concat_result = item.concat_result;
-                                }
-                                console.log('----------------------------------------------------------');
-                                console.dir(usr_obj);
-                                process.exit();
-
-                                /*for (var i in res2) {
-                                    var item = res2[i];
-                                    var o = {
-                                        user_id:item.user_id
-                                    };
-                                    for (var j in parts_arr) {
-                                        o[parts_arr[j]] = {
-                                            pos:(item.pos)
-                                        }
-                                    }
-                                    arr.push({
-                                        user_id:item.user_id
-                                    })
-                                }*/
-                            })
-                        });
-                    });
-
-                });
             });
 
 
