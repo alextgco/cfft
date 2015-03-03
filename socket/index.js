@@ -67,10 +67,10 @@ module.exports = function(server) {
       },
       function(session, callback) {
         if (!session) {
-          callback(new HttpError(403, "Anonymous session may not connect"));
+            return callback(new HttpError(403, "Anonymous session may not connect"));
         }
         if (!session.user) {
-          callback(new HttpError(403, "Anonymous session may not connect"));
+            return callback(new HttpError(403, "Anonymous session may not connect"));
         }
         handshake.session = session;
         handshake.user = session.user;
