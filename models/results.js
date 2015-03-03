@@ -368,11 +368,15 @@ module.exports = function(callback){
                     if (err){
                         return callback(err);
                     }
-                    var parts_arr = res1;
+                    var columns = [
+                        {title:'Горшок №:',name:'position'},
+                        {title:'Амлет',name:'fio'}
+                    ];
                     var parts = {};
                     for (var i in res1) {
                         var item = res1[i];
                         parts[item.id] = {
+
                             id: item.id,
                             max_pos:item.max_pos,
                             title:item.title,
@@ -383,7 +387,11 @@ module.exports = function(callback){
                             "where rs.sys_name = 'ACCEPTED' " +
                             "and r.user_id = u.id " +
                             "and ap.id = "+ item.id
-                        }
+                        };
+                        columns.push({
+                            title:item.title,
+                            name:'ap'+item.id
+                        });
                     }
                     //console.log(parts);
                     var arr = [];
@@ -391,7 +399,7 @@ module.exports = function(callback){
                         if (err){
                             return callback(err);
                         }
-                        var sql = "SELECT u.firstname, u.surname ";
+                        var sql = "SELECT 0 as position, concat(u.firstname, ' ',u.surname) as fio ";
                         for (var i in parts) {
                             sql+= ', ('+parts[i].sql+') as ap' +parts[i].id;
                         }
@@ -427,27 +435,17 @@ module.exports = function(callback){
                                 res2[j].position = +j+1;
                             }
                             console.log(res2);
+
+                            callback(null,{
+                                columns:columns,
+                                data: res2
+                            })
                         })
                     });
                 });
 
             });
-            results.getDirectoryId('result_statuses','ACCEPTED',function(err,result_status_id){
-                if (err){
-                    return callback(err);
-                }
 
-            });
-
-
-
-            var sql = "select r.id, concat(u.surname, ' ', u.firstname) as FIO, r.position, r.action_part_id, ap.title, r.concat_result from results r" +
-                " LEFT JOIN users as u on r.user_id = u.id" +
-                " LEFT JOIN action_parts as ap on r.action_part_id = ap.id" +
-                " LEFT JOIN actions as a on ap.action_id = a.id" +
-                " LEFT JOIN result_statuses as rs on r.status_id = rs.id" +
-                " where a.id = ? and rs.sys_name = 'ACCEPTED'" +
-                " ORDER BY r.action_part_id";
 
         };
         callback(results);
