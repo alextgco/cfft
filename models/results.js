@@ -357,7 +357,7 @@ module.exports = function(callback){
                 if (err){
                     return callback(err);
                 }
-                var sql = "SELECT r.action_part_id as id, max(r.position) as max_pos, ap.title FROM results r " +
+                var sql = "SELECT r.action_part_id as id, max(r.position+1) as max_pos, ap.title FROM results r " +
                     "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
                     "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
                     " WHERE rs.sys_name = 'ACCEPTED' " +
@@ -369,8 +369,8 @@ module.exports = function(callback){
                         return callback(err);
                     }
                     var columns = [
-                        {title:'Горшок №:',name:'position'},
-                        {title:'Амлет',name:'fio'}
+                        {title:'Место:',name:'position'},
+                        {title:'Атлет',name:'fio'}
                     ];
                     var parts = {};
                     for (var i in res1) {
@@ -380,7 +380,14 @@ module.exports = function(callback){
                             id: item.id,
                             max_pos:item.max_pos,
                             title:item.title,
-                            sql:"SELECT r.position as pos " +
+                            sqlPos:"SELECT r.position as pos " +
+                            "FROM results r " +
+                            "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
+                            "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
+                            "where rs.sys_name = 'ACCEPTED' " +
+                            "and r.user_id = u.id " +
+                            "and ap.id = "+ item.id,
+                            sqlRes:"SELECT CAST(concat(r.position,'(',r.concat_result,')') AS CHAR(10000) CHARACTER SET utf8) as res " +
                             "FROM results r " +
                             "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
                             "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
@@ -401,7 +408,8 @@ module.exports = function(callback){
                         }
                         var sql = "SELECT 0 as position, concat(u.firstname, ' ',u.surname) as fio ";
                         for (var i in parts) {
-                            sql+= ', ('+parts[i].sql+') as ap' +parts[i].id;
+                            sql+= ', ('+parts[i].sqlPos+') as ap' +parts[i].id;
+                            sql+= ', ('+parts[i].sqlRes+') as res' +parts[i].id;
                         }
                         sql += ' from users as u';
                         console.log(sql);
@@ -418,6 +426,7 @@ module.exports = function(callback){
                                     if (row['ap'+parts[k].id] == null){
                                         row['ap'+parts[k].id] = parts[k].max_pos;
                                     }
+
                                     sum_pos += row['ap'+parts[k].id];
                                 }
                                 row.sum_pos = sum_pos;
@@ -431,11 +440,25 @@ module.exports = function(callback){
                                     return 0;
                                 }
                             });
+                            var plusCounter = 0;
+                            var oldSum = 1;
+                            var pos = 0;
                             for (var j in res2) {
-                                res2[j].position = +j+1;
+                                if (res2[j].sum_pos == oldSum){
+                                    plusCounter++;
+                                }else{
+                                    oldSum = +res2[j].sum_pos;
+                                    pos += +1+plusCounter;
+                                    plusCounter = 0;
+                                }
+                                res2[j].position = pos;
                                 delete res2[j].sum_pos;
+                                for (var c in parts) {
+                                    res2[j]['ap'+parts[c].id] = res2[j]['res'+parts[c].id] || '-';
+                                    delete res2[j]['res'+parts[c].id];
+                                }
                             }
-                            console.log(res2);
+
 
                             callback(null,{
                                 columns:columns,
