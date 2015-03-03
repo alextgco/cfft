@@ -433,6 +433,7 @@ module.exports = function(callback){
                             });
                             for (var j in res2) {
                                 res2[j].position = +j+1;
+                                delete res2[j].sum_pos;
                             }
                             console.log(res2);
 
