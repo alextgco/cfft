@@ -96,52 +96,24 @@
         var _t = this;
 
         if(_t.isLeaderBoard){
-            _t.totalCount = 3;
-            _t.data = [
-                {
-                    position: 1,
-                    user: 'adsasd',
-                    part_1: '1(1(2:2))',
-                    part_2: '1(1(2:2))',
-                    part_3: '1(1(2:2))'
-                },
-                {
-                    position: 2,
-                    user: 'f fsd adsasd',
-                    part_1: '1(1(2:2))',
-                    part_2: '1(1(2:2))',
-                    part_3: '1(1(2:2))'
-                },
-                {
-                    position: 3,
-                    user: 'g gfp d[f',
-                    part_1: '1(1(2:2))',
-                    part_2: '1(1(2:2))',
-                    part_3: '1(1(2:2))'
+
+            var o = {
+                command: 'actionLeaderBoard',
+                object: 'results',
+                params: {
+
                 }
-            ];
-            _t.columns = [
-                {
-                    title: '#',
-                    sort_id: ''
-                },
-                {
-                    title: 'user',
-                    sort_id: ''
-                },
-                {
-                    title: 'part1',
-                    sort_id: '1'
-                },
-                {
-                    title: 'part2',
-                    sort_id: '2'
-                },
-                {
-                    title: 'part3',
-                    sort_id: '3'
+            };
+
+            sendQuery(o, function(res){
+                _t.totalCount = res.totalCount;
+                _t.data = res.data;
+                _t.columns = res.columns;
+                if(typeof cb == 'function'){
+                    cb();
                 }
-            ];
+                return;
+            });
 
             if(typeof cb == 'function'){
                 cb();
