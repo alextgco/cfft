@@ -353,122 +353,147 @@ module.exports = function(callback){
 
         };
         results.actionLeaderBoard = function(obj, callback){
-            pool.getConn(function(err,conn){
-                if (err){
+            pool.getConn(function(err,conn) {
+                if (err) {
                     return callback(err);
                 }
-                var sql = "SELECT r.action_part_id as id, max(r.position+1) as max_pos, ap.title FROM results r " +
-                    "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
-                    "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
-                    " WHERE rs.sys_name = 'ACCEPTED' " +
-                    "AND ap.action_id = ?" +
-                    " GROUP BY r.action_part_id ";
-                conn.query(sql,[41], function (err, res1) {
+                conn.query('SELECT r.user_id from results r ' +
+                'LEFT JOIN action_parts as ap on r.action_part_id = ap.id ' +
+                'LEFT JOIN actions as a on ap.action_id = a.id ' +
+                'LEFT JOIN result_statuses as rs on r.status_id = rs.id ' +
+                'where ap.action_id = ? ' +
+                'AND rs.sys_name = "ACCEPTED" ' +
+                'GROUP BY user_id',[41],function(err, rows){
                     conn.release();
-                    if (err){
+                    if (err) {
                         return callback(err);
                     }
-                    var columns = [
-                        {title:'Место:',name:'position'},
-                        {title:'Атлет',name:'fio'}
-                    ];
-                    var parts = {};
-                    for (var i in res1) {
-                        var item = res1[i];
-                        parts[item.id] = {
-
-                            id: item.id,
-                            max_pos:item.max_pos,
-                            title:item.title,
-                            sqlPos:"SELECT r.position as pos " +
-                            "FROM results r " +
-                            "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
-                            "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
-                            "where rs.sys_name = 'ACCEPTED' " +
-                            "and r.user_id = u.id " +
-                            "and ap.id = "+ item.id,
-                            sqlRes:"SELECT CAST(concat(r.position,'(',r.concat_result,')') AS CHAR(10000) CHARACTER SET utf8) as res " +
-                            "FROM results r " +
-                            "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
-                            "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
-                            "where rs.sys_name = 'ACCEPTED' " +
-                            "and r.user_id = u.id " +
-                            "and ap.id = "+ item.id
-                        };
-                        columns.push({
-                            title:item.title,
-                            name:'ap'+item.id
-                        });
+                    var user_ids = [];
+                    for (var i in rows) {
+                        user_ids.push(rows[i].user_id);
                     }
-                    //console.log(parts);
-                    var arr = [];
+
                     pool.getConn(function(err,conn){
                         if (err){
                             return callback(err);
                         }
-                        var sql = "SELECT 0 as position, concat(u.firstname, ' ',u.surname) as fio ";
-                        for (var i in parts) {
-                            sql+= ', ('+parts[i].sqlPos+') as ap' +parts[i].id;
-                            sql+= ', ('+parts[i].sqlRes+') as res' +parts[i].id;
-                        }
-                        sql += ' from users as u';
-                        console.log(sql);
-                        //return callback(null);
-                        conn.query(sql,[],function(err, res2){
+                        var sql = "SELECT r.action_part_id as id, max(r.position+1) as max_pos, ap.title FROM results r " +
+                            "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
+                            "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
+                            " WHERE rs.sys_name = 'ACCEPTED' " +
+                            "AND ap.action_id = ?" +
+                            " GROUP BY r.action_part_id ";
+                        conn.query(sql,[41], function (err, res1) {
                             conn.release();
                             if (err){
                                 return callback(err);
                             }
-                            for (var i in res2) {
-                                var row = res2[i];
-                                var sum_pos = 0;
-                                for (var k in parts) {
-                                    if (row['ap'+parts[k].id] == null){
-                                        row['ap'+parts[k].id] = parts[k].max_pos;
+                            var columns = [
+                                {title:'Место:',name:'position'},
+                                {title:'Атлет',name:'fio'}
+                            ];
+                            var parts = {};
+                            for (var i in res1) {
+                                var item = res1[i];
+                                parts[item.id] = {
+
+                                    id: item.id,
+                                    max_pos:item.max_pos,
+                                    title:item.title,
+                                    sqlPos:"SELECT r.position as pos " +
+                                    "FROM results r " +
+                                    "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
+                                    "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
+                                    "where rs.sys_name = 'ACCEPTED' " +
+                                    "and r.user_id = u.id " +
+                                    "and ap.id = "+ item.id,
+                                    sqlRes:"SELECT CAST(concat(r.position,'(',r.concat_result,')') AS CHAR(10000) CHARACTER SET utf8) as res " +
+                                    "FROM results r " +
+                                    "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
+                                    "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
+                                    "where rs.sys_name = 'ACCEPTED' " +
+                                    "and r.user_id = u.id " +
+                                    "and ap.id = "+ item.id
+                                };
+                                columns.push({
+                                    title:item.title,
+                                    name:'ap'+item.id
+                                });
+                            }
+                            //console.log(parts);
+                            var arr = [];
+                            pool.getConn(function(err,conn){
+                                if (err){
+                                    return callback(err);
+                                }
+                                var sql = "SELECT 0 as position, concat(u.firstname, ' ',u.surname) as fio ";
+                                for (var i in parts) {
+                                    sql+= ', ('+parts[i].sqlPos+') as ap' +parts[i].id;
+                                    sql+= ', ('+parts[i].sqlRes+') as res' +parts[i].id;
+                                }
+                                sql += ' from users as u where u.id in ('+user_ids.join(',')+')';
+                                console.log(sql);
+                                //return callback(null);
+                                conn.query(sql,[],function(err, res2){
+                                    conn.release();
+                                    if (err){
+                                        return callback(err);
+                                    }
+                                    for (var i in res2) {
+                                        var row = res2[i];
+                                        var sum_pos = 0;
+                                        for (var k in parts) {
+                                            if (row['ap'+parts[k].id] == null){
+                                                row['ap'+parts[k].id] = parts[k].max_pos;
+                                            }
+
+                                            sum_pos += row['ap'+parts[k].id];
+                                        }
+                                        row.sum_pos = sum_pos;
+                                    }
+                                    res2.sort(function(a, b){
+                                        if (a.sum_pos>b.sum_pos){
+                                            return 1;
+                                        }else if (a.sum_pos<b.sum_pos){
+                                            return -1;
+                                        }else{
+                                            return 0;
+                                        }
+                                    });
+                                    var plusCounter = 0;
+                                    var oldSum = 1;
+                                    var pos = 0;
+                                    for (var j in res2) {
+                                        if (res2[j].sum_pos == oldSum){
+                                            plusCounter++;
+                                        }else{
+                                            oldSum = +res2[j].sum_pos;
+                                            pos += +1+plusCounter;
+                                            plusCounter = 0;
+                                        }
+                                        res2[j].position = pos;
+                                        delete res2[j].sum_pos;
+                                        for (var c in parts) {
+                                            res2[j]['ap'+parts[c].id] = res2[j]['res'+parts[c].id] || '-';
+                                            delete res2[j]['res'+parts[c].id];
+                                        }
                                     }
 
-                                    sum_pos += row['ap'+parts[k].id];
-                                }
-                                row.sum_pos = sum_pos;
-                            }
-                            res2.sort(function(a, b){
-                                if (a.sum_pos>b.sum_pos){
-                                    return 1;
-                                }else if (a.sum_pos<b.sum_pos){
-                                    return -1;
-                                }else{
-                                    return 0;
-                                }
+
+                                    callback(null,{
+                                        columns:columns,
+                                        data: res2
+                                    })
+                                })
                             });
-                            var plusCounter = 0;
-                            var oldSum = 1;
-                            var pos = 0;
-                            for (var j in res2) {
-                                if (res2[j].sum_pos == oldSum){
-                                    plusCounter++;
-                                }else{
-                                    oldSum = +res2[j].sum_pos;
-                                    pos += +1+plusCounter;
-                                    plusCounter = 0;
-                                }
-                                res2[j].position = pos;
-                                delete res2[j].sum_pos;
-                                for (var c in parts) {
-                                    res2[j]['ap'+parts[c].id] = res2[j]['res'+parts[c].id] || '-';
-                                    delete res2[j]['res'+parts[c].id];
-                                }
-                            }
+                        });
 
-
-                            callback(null,{
-                                columns:columns,
-                                data: res2
-                            })
-                        })
                     });
                 });
 
             });
+
+
 
 
         };
