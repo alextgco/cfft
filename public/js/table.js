@@ -316,7 +316,7 @@
         var tpl = '<div class="refresh_table fa fa-refresh"></div><table class="table simpleView leaderBoardTable">' +
                     '<thead>' +
                     '<tr>{{#columns}}' +
-                    '<th data-column="{{sort_id}}">{{title}}</th>{{/columns}}' +
+                    '<th data-column="{{name}}">{{title}}</th>{{/columns}}' +
                     '</tr>' +
                     '</thead>' +
                     '<tbody>' +
@@ -404,6 +404,20 @@
                 });
             });
         });
+
+
+        if(_t.isLeaderBoard){
+            _t.wrapper.find('th').off('click').on('click', function(){
+                _t.sort = {};
+                _t.sort[$(this).data('column')] = 'ASC';
+                _t.getData(function(){
+                    _t.render(function(){
+                        _t.setHandlers();
+                    });
+                });
+            });
+        }
+
     };
 
     CF.Table.prototype.initFilters = function(){
