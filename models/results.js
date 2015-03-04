@@ -391,7 +391,7 @@ module.exports = function(callback){
                             return callback(err);
                         }
                         if (rows.length==0){
-                            return callback(new UserError(funcs.formatResponse(-1, 'error', 'Результатов нет.')));
+                            return callback(new UserError(funcs.formatResponse(-10, 'error', 'Результатов нет.')));
                         }
                         var user_ids = [];
                         for (var i in rows) {
