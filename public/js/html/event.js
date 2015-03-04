@@ -3,10 +3,52 @@ $(document).ready(function(){
     var lbTable = $('.leaderBoardTable');
     var lb_action_id = lbTable.data('action_id');
     var lb_getObj = lbTable.data('get_object');
+    var lb_rangeWhere = lbTable.data('range_where');
+    var lb_whereObj = {};
+    switch(rangeWhere){
+        case 'male':
+            lb_whereObj['gender'] = {
+                sys_name: 'MALE'
+            };
+            lb_whereObj['users'] = {
+                age: '<40'
+            };
+            break;
+        case 'male40':
+            lb_whereObj['gender'] = {
+                sys_name: 'MALE'
+            };
+            lb_whereObj['users'] = {
+                age: '>=40'
+            };
+            break;
+        case 'famale':
+            lb_whereObj['gender'] = {
+                sys_name: 'FAMALE'
+            };
+            lb_whereObj['users'] = {
+                age: '<40'
+            };
+            break;
+        case 'famale40':
+
+            lb_whereObj['gender'] = {
+                sys_name: 'FAMALE'
+            };
+            lb_whereObj['users'] = {
+                age: '>=40'
+            };
+            break;
+        default:
+
+            break;
+    }
 
     var lb_table = new CF.Table({
         getObject: lb_getObj,
         wrapper: lbTable,
+        defaultWhere: whereObj,
+        where: whereObj,
         primaryKey: 'id',
         isLeaderBoard: true
     });

@@ -101,7 +101,10 @@
                 command: 'actionLeaderBoard',
                 object: 'results',
                 params: {
-
+                    where: _t.where,
+                    limit: _t.limit,
+                    sort: _t.sort,
+                    columns: _t.columns
                 }
             };
 
@@ -297,7 +300,7 @@
 
     CF.Table.prototype.renderLeaderBoard = function(){
         var _t = this;
-        var tpl = '<div class="refresh_table fa fa-refresh"></div><table class="table simpleView">' +
+        var tpl = '<div class="refresh_table fa fa-refresh"></div><table class="table simpleView leaderBoardTable">' +
                     '<thead>' +
                     '<tr>{{#columns}}' +
                     '<th data-column="{{sort_id}}">{{title}}</th>{{/columns}}' +

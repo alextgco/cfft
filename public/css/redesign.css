@@ -1250,3 +1250,8 @@ h4.darkHd{
 .refresh_table:hover{
     background-color: rgba(0, 0, 0, 0.7);
 }
+.leaderBoardTable th{
+    background-color: #002a80;
+    color: #fff;
+    padding: 11px!important;
+}
