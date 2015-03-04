@@ -79,6 +79,7 @@
         this.isLeaderBoard =    p.isLeaderBoard || false;
         this.gender_sys_name =  p.gender_sys_name || '';
         this.age =              p.age || '';
+        this.action_id =        p.action_id || '';
     };
 
     CF.Table.prototype.init = function(){
@@ -105,6 +106,7 @@
                 params: {
                     gender_sys_name: _t.gender_sys_name,
                     age: _t.age,
+                    action_id: _t.action_id,
                     where: _t.where,
                     limit: _t.limit,
                     sort: _t.sort,
@@ -141,9 +143,16 @@
 
         sendQuery(o, function(res){
             if(_t.isLeaderBoard){
-                _t.totalCount = res.totalCount;
-                _t.data = res.data;
-                _t.columns = res.columns;
+                if(res.code == -10){
+                    _t.totalCount = res.totalCount;
+                    _t.data = res.data;
+                    _t.columns = res.columns;
+                }else if(res.code == 0){
+                    _t.totalCount = res.totalCount;
+                    _t.data = res.data;
+                    _t.columns = res.columns;
+                }
+
             }else{
                 _t.totalCount = res.totalCount;
                 _t.data = res.data;
