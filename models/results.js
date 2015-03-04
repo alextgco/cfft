@@ -372,6 +372,12 @@ module.exports = function(callback){
             }
             var gender_sys_name = obj.gender_sys_name;
             var age = (obj.age=='40')? ' <= 40 ' : ' > 40 ';
+
+            var columns = [
+                {title:'Место:',name:'position'},
+                {title:'Атлет',name:'fio'}
+            ];
+
             results.getDirectoryId('gender',gender_sys_name, function (err,gender_id) {
                 pool.getConn(function(err,conn) {
                     if (err) {
@@ -391,7 +397,26 @@ module.exports = function(callback){
                             return callback(err);
                         }
                         if (rows.length==0){
-                            return callback(new UserError(funcs.formatResponse(-10, 'error', 'Результатов нет.')));
+                            return pool.getConn(function (err, conn) {
+                               conn.query('select ap.id, ap.title from action_parts ap LEFT JOIN actions as a on ap.action_id = a.id where a.id = ?',[41], function (err, rows) {
+                                   conn.release();
+                                   if (err){
+                                       return callback(err);
+                                   }
+                                   for (var i in rows) {
+
+                                       columns.push({
+                                           title:rows[i].title,
+                                           name:'ap'+rows[i].id
+                                       });
+                                   }
+                                   return callback(null,{
+                                       columns:columns,
+                                       data: []
+                                   })
+                               })
+                            });
+
                         }
                         var user_ids = [];
                         for (var i in rows) {
@@ -412,10 +437,7 @@ module.exports = function(callback){
                                 if (err){
                                     return callback(err);
                                 }
-                                var columns = [
-                                    {title:'Место:',name:'position'},
-                                    {title:'Атлет',name:'fio'}
-                                ];
+
                                 var parts = {};
                                 for (var i in res1) {
                                     var item = res1[i];
@@ -505,7 +527,7 @@ module.exports = function(callback){
                                         callback(null,{
                                             columns:columns,
                                             data: res2
-                                        })
+                                        });
                                     })
                                 });
                             });
