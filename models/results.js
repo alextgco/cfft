@@ -390,11 +390,13 @@ module.exports = function(callback){
                         if (err) {
                             return callback(err);
                         }
+                        if (rows.length==0){
+                            return callback(null,[]);
+                        }
                         var user_ids = [];
                         for (var i in rows) {
                             user_ids.push(rows[i].user_id);
                         }
-
                         pool.getConn(function(err,conn){
                             if (err){
                                 return callback(err);
@@ -500,8 +502,6 @@ module.exports = function(callback){
                                                 delete res2[j]['res'+parts[c].id];
                                             }
                                         }
-
-
                                         callback(null,{
                                             columns:columns,
                                             data: res2
