@@ -19,7 +19,7 @@ $(document).ready(function(){
                 //    age: '<40'
                 //};
                 lb_gender = 'MALE';
-                lb_age = '<40';
+                lb_age = '40';
                 break;
             case 'male40':
                 //lb_whereObj['gender'] = {
@@ -29,7 +29,7 @@ $(document).ready(function(){
                 //    age: '<40'
                 //};
                 lb_gender = 'MALE';
-                lb_age = '<40';
+                lb_age = '>40';
                 break;
             case 'famale':
                 //lb_whereObj['gender'] = {
@@ -39,7 +39,7 @@ $(document).ready(function(){
                 //    age: '>=40'
                 //};
                 lb_gender = 'FAMALE';
-                lb_age = '>=40';
+                lb_age = '40';
                 break;
             case 'famale40':
 
@@ -50,7 +50,7 @@ $(document).ready(function(){
                 //    age: '<40'
                 //};
                 lb_gender = 'FAMALE';
-                lb_age = '<40';
+                lb_age = '>40';
                 break;
             default:
 
