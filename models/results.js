@@ -25,9 +25,9 @@ module.exports = function(callback){
         /*concatFields:[{
             result:['result_min',':','result_sec']
         }],*/
-        /*getFormating:{
-            description1:"parseBlob"
-        },*/
+        getFormating:{
+            video_url:"parseBlob"
+        },
         join_objs:[
             {
                 action_part_id:{
@@ -184,61 +184,72 @@ module.exports = function(callback){
                 return callback(new MyError('Не переданы (или переданы не корректно) обязательные поля. ' + notFinded.join(', ')));
             }
             obj.isAff = +obj.isAff || 0;
+            pool.getConn(function(err,conn){
+               conn.queryRow('select gender_id, age from users where id = ?',[obj.user_id], function (err, row) {
+                   conn.release();
+                   if (err){
+                       return callback(err);
+                   }
+                   var gender_id = row.gender_id;
+                   var age = row.age;
+                   results.getDirectoryId('action_statuses','OPENED',function(err,action_status_id){
+                       results.getDirectoryId('statuses_of_action_parts','OPENED',function(err,action_part_status_id){
+                           pool.getConn(function(err,conn){
+                               if (err){
+                                   return callback(err);
+                               }
+                               conn.queryValue("select count(*) from action_parts ap left join actions as a on ap.action_id = a.id where a.status_id=? and ap.status_id=? and ap.id = ?",
+                                   [action_part_status_id, action_status_id, obj.action_part_id],
+                                   function (err, v) {
+                                       conn.release();
+                                       if (err){
+                                           return callback(err);
+                                       }
+                                       if (v==0){
+                                           return callback(null, funcs.formatResponse(1, 'error', 'Регистрация закрыта.'));
+                                       }
+                                       results.getDirectoryId('result_statuses','IN_QUEUE',function(err,id){
+                                           if (err){
+                                               return callback(new MyError('Нет подходящего статуса'));
+                                           }
+                                           obj.status_id = id;
+                                           results.getDirectoryId('result_statuses','IN_HISTORY',function(err,result_status_id){
+                                               if (err){
+                                                   return callback(new MyError('Нет такого статуса'));
+                                               }
+                                               results.add(obj, function(err,result){
+                                                   //{"code":0,"toastr":{"type":"success","message":"Результат успешно добавлен."},"data":{"id":36}}
+                                                   if(err){
+                                                       return callback(err,result);
+                                                   }
+                                                   if (result.code!=0){
+                                                       return callback(err,result);
+                                                   }
+                                                   var id = result.data.id;
 
-            results.getDirectoryId('action_statuses','OPENED',function(err,action_status_id){
-                results.getDirectoryId('statuses_of_action_parts','OPENED',function(err,action_part_status_id){
-                    pool.getConn(function(err,conn){
-                        if (err){
-                            return callback(err);
-                        }
-                        conn.queryValue("select count(*) from action_parts ap left join actions as a on ap.action_id = a.id where a.status_id=? and ap.status_id=? and ap.id = ?",
-                            [action_part_status_id, action_status_id, obj.action_part_id],
-                            function (err, v) {
-                                conn.release();
-                                if (err){
-                                    return callback(err);
-                                }
-                                if (v==0){
-                                    return callback(null, funcs.formatResponse(1, 'error', 'Регистрация закрыта.'));
-                                }
-                                results.getDirectoryId('result_statuses','IN_QUEUE',function(err,id){
-                                    if (err){
-                                        return callback(new MyError('Нет подходящего статуса'));
-                                    }
-                                    obj.status_id = id;
-                                    results.getDirectoryId('result_statuses','IN_HISTORY',function(err,result_status_id){
-                                        if (err){
-                                            return callback(new MyError('Нет такого статуса'));
-                                        }
-                                        results.add(obj, function(err,result){
-                                            //{"code":0,"toastr":{"type":"success","message":"Результат успешно добавлен."},"data":{"id":36}}
-                                            if(err){
-                                                return callback(err,result);
-                                            }
-                                            if (result.code!=0){
-                                                return callback(err,result);
-                                            }
-                                            var id = result.data.id;
+                                                   pool.getConn(function(err,conn){
+                                                       var sql = 'update results set published = NULL, status_id = ?, gender_id = ?, age = ?, where user_id = ? AND action_part_id = ? AND published IS NOT NULL AND id <> ?';
+                                                       conn.query(sql,[result_status_id, gender_id, age, obj.user_id,obj.action_part_id,id],function(err,affected){
+                                                           conn.release();
+                                                           callback(null,funcs.formatResponse(0, 'success', 'Заявка принята.'));
+                                                           results.rePosition({
+                                                               action_part_id:obj.action_part_id
+                                                           }, function(err,r){
 
-                                            pool.getConn(function(err,conn){
-                                                var sql = 'update results set published = NULL, status_id = ? where user_id = ? AND action_part_id = ? AND published IS NOT NULL AND id <> ?';
-                                                conn.query(sql,[result_status_id, obj.user_id,obj.action_part_id,id],function(err,affected){
-                                                    conn.release();
-                                                    callback(null,funcs.formatResponse(0, 'success', 'Заявка принята.'));
-                                                    results.rePosition({
-                                                        action_part_id:obj.action_part_id
-                                                    }, function(err,r){
+                                                           });
+                                                       })
+                                                   });
+                                               });
+                                           });
+                                       });
+                                   })
+                           });
+                       });
+                   });
 
-                                                    });
-                                                })
-                                            });
-                                        });
-                                    });
-                                });
-                            })
-                    });
-                });
+               })
             });
+
 
         };
         results.approve = function(obj,callback){
@@ -353,145 +364,158 @@ module.exports = function(callback){
 
         };
         results.actionLeaderBoard = function(obj, callback){
-            pool.getConn(function(err,conn) {
-                if (err) {
-                    return callback(err);
-                }
-                conn.query('SELECT r.user_id from results r ' +
-                'LEFT JOIN action_parts as ap on r.action_part_id = ap.id ' +
-                'LEFT JOIN actions as a on ap.action_id = a.id ' +
-                'LEFT JOIN result_statuses as rs on r.status_id = rs.id ' +
-                'where ap.action_id = ? ' +
-                'AND rs.sys_name = "ACCEPTED" ' +
-                'GROUP BY user_id',[41],function(err, rows){
-                    conn.release();
+            if (typeof obj!=='object'){
+                return callback(new MyError('Не переданы обязательные параметры'));
+            }
+            if (!obj.gender_sys_name || !obj.age){
+                return callback(new MyError('Не переданы параметры пола и возраста'));
+            }
+            var gender_sys_name = obj.gender_sys_name;
+            var age = (obj.age=='40')? ' <= 40 ' : ' > 40 ';
+            results.getDirectoryId('gender',gender_sys_name, function (err,gender_id) {
+                pool.getConn(function(err,conn) {
                     if (err) {
                         return callback(err);
                     }
-                    var user_ids = [];
-                    for (var i in rows) {
-                        user_ids.push(rows[i].user_id);
-                    }
-
-                    pool.getConn(function(err,conn){
-                        if (err){
+                    conn.query('SELECT r.user_id from results r ' +
+                    'LEFT JOIN action_parts as ap on r.action_part_id = ap.id ' +
+                    'LEFT JOIN actions as a on ap.action_id = a.id ' +
+                    'LEFT JOIN result_statuses as rs on r.status_id = rs.id ' +
+                    'where ap.action_id = ? ' +
+                    'AND rs.sys_name = "ACCEPTED" ' +
+                    'AND r.age' + age +
+                    'AND r.gender_id = ' + gender_id +
+                    'GROUP BY user_id',[41],function(err, rows){
+                        conn.release();
+                        if (err) {
                             return callback(err);
                         }
-                        var sql = "SELECT r.action_part_id as id, max(r.position+1) as max_pos, ap.title FROM results r " +
-                            "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
-                            "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
-                            " WHERE rs.sys_name = 'ACCEPTED' " +
-                            "AND ap.action_id = ?" +
-                            " GROUP BY r.action_part_id ";
-                        conn.query(sql,[41], function (err, res1) {
-                            conn.release();
+                        var user_ids = [];
+                        for (var i in rows) {
+                            user_ids.push(rows[i].user_id);
+                        }
+
+                        pool.getConn(function(err,conn){
                             if (err){
                                 return callback(err);
                             }
-                            var columns = [
-                                {title:'Место:',name:'position'},
-                                {title:'Атлет',name:'fio'}
-                            ];
-                            var parts = {};
-                            for (var i in res1) {
-                                var item = res1[i];
-                                parts[item.id] = {
-
-                                    id: item.id,
-                                    max_pos:item.max_pos,
-                                    title:item.title,
-                                    sqlPos:"SELECT r.position as pos " +
-                                    "FROM results r " +
-                                    "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
-                                    "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
-                                    "where rs.sys_name = 'ACCEPTED' " +
-                                    "and r.user_id = u.id " +
-                                    "and ap.id = "+ item.id,
-                                    sqlRes:"SELECT CAST(concat(r.position,'(',r.concat_result,')') AS CHAR(10000) CHARACTER SET utf8) as res " +
-                                    "FROM results r " +
-                                    "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
-                                    "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
-                                    "where rs.sys_name = 'ACCEPTED' " +
-                                    "and r.user_id = u.id " +
-                                    "and ap.id = "+ item.id
-                                };
-                                columns.push({
-                                    title:item.title,
-                                    name:'ap'+item.id
-                                });
-                            }
-                            //console.log(parts);
-                            var arr = [];
-                            pool.getConn(function(err,conn){
+                            var sql = "SELECT r.action_part_id as id, max(r.position+1) as max_pos, ap.title FROM results r " +
+                                "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
+                                "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
+                                " WHERE rs.sys_name = 'ACCEPTED' " +
+                                "AND ap.action_id = ?" +
+                                " GROUP BY r.action_part_id ";
+                            conn.query(sql,[41], function (err, res1) {
+                                conn.release();
                                 if (err){
                                     return callback(err);
                                 }
-                                var sql = "SELECT 0 as position, concat(u.firstname, ' ',u.surname) as fio ";
-                                for (var i in parts) {
-                                    sql+= ', ('+parts[i].sqlPos+') as ap' +parts[i].id;
-                                    sql+= ', ('+parts[i].sqlRes+') as res' +parts[i].id;
+                                var columns = [
+                                    {title:'Место:',name:'position'},
+                                    {title:'Атлет',name:'fio'}
+                                ];
+                                var parts = {};
+                                for (var i in res1) {
+                                    var item = res1[i];
+                                    parts[item.id] = {
+
+                                        id: item.id,
+                                        max_pos:item.max_pos,
+                                        title:item.title,
+                                        sqlPos:"SELECT r.position as pos " +
+                                        "FROM results r " +
+                                        "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
+                                        "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
+                                        "where rs.sys_name = 'ACCEPTED' " +
+                                        "and r.user_id = u.id " +
+                                        "and ap.id = "+ item.id,
+                                        sqlRes:"SELECT CAST(concat(r.position,'(',r.concat_result,')') AS CHAR(10000) CHARACTER SET utf8) as res " +
+                                        "FROM results r " +
+                                        "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
+                                        "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
+                                        "where rs.sys_name = 'ACCEPTED' " +
+                                        "and r.user_id = u.id " +
+                                        "and ap.id = "+ item.id
+                                    };
+                                    columns.push({
+                                        title:item.title,
+                                        name:'ap'+item.id
+                                    });
                                 }
-                                sql += ' from users as u where u.id in ('+user_ids.join(',')+')';
-                                console.log(sql);
-                                //return callback(null);
-                                conn.query(sql,[],function(err, res2){
-                                    conn.release();
+                                //console.log(parts);
+                                var arr = [];
+                                pool.getConn(function(err,conn){
                                     if (err){
                                         return callback(err);
                                     }
-                                    for (var i in res2) {
-                                        var row = res2[i];
-                                        var sum_pos = 0;
-                                        for (var k in parts) {
-                                            if (row['ap'+parts[k].id] == null){
-                                                row['ap'+parts[k].id] = parts[k].max_pos;
+                                    var sql = "SELECT 0 as position, concat(u.firstname, ' ',u.surname) as fio ";
+                                    for (var i in parts) {
+                                        sql+= ', ('+parts[i].sqlPos+') as ap' +parts[i].id;
+                                        sql+= ', ('+parts[i].sqlRes+') as res' +parts[i].id;
+                                    }
+                                    sql += ' from users as u where u.id in ('+user_ids.join(',')+')';
+                                    console.log(sql);
+                                    //return callback(null);
+                                    conn.query(sql,[],function(err, res2){
+                                        conn.release();
+                                        if (err){
+                                            return callback(err);
+                                        }
+                                        for (var i in res2) {
+                                            var row = res2[i];
+                                            var sum_pos = 0;
+                                            for (var k in parts) {
+                                                if (row['ap'+parts[k].id] == null){
+                                                    row['ap'+parts[k].id] = parts[k].max_pos;
+                                                }
+
+                                                sum_pos += row['ap'+parts[k].id];
                                             }
-
-                                            sum_pos += row['ap'+parts[k].id];
+                                            row.sum_pos = sum_pos;
                                         }
-                                        row.sum_pos = sum_pos;
-                                    }
-                                    res2.sort(function(a, b){
-                                        if (a.sum_pos>b.sum_pos){
-                                            return 1;
-                                        }else if (a.sum_pos<b.sum_pos){
-                                            return -1;
-                                        }else{
-                                            return 0;
+                                        res2.sort(function(a, b){
+                                            if (a.sum_pos>b.sum_pos){
+                                                return 1;
+                                            }else if (a.sum_pos<b.sum_pos){
+                                                return -1;
+                                            }else{
+                                                return 0;
+                                            }
+                                        });
+                                        var plusCounter = 0;
+                                        var oldSum = 1;
+                                        var pos = 0;
+                                        for (var j in res2) {
+                                            if (res2[j].sum_pos == oldSum){
+                                                plusCounter++;
+                                            }else{
+                                                oldSum = +res2[j].sum_pos;
+                                                pos += +1+plusCounter;
+                                                plusCounter = 0;
+                                            }
+                                            res2[j].position = pos;
+                                            delete res2[j].sum_pos;
+                                            for (var c in parts) {
+                                                res2[j]['ap'+parts[c].id] = res2[j]['res'+parts[c].id] || '-';
+                                                delete res2[j]['res'+parts[c].id];
+                                            }
                                         }
-                                    });
-                                    var plusCounter = 0;
-                                    var oldSum = 1;
-                                    var pos = 0;
-                                    for (var j in res2) {
-                                        if (res2[j].sum_pos == oldSum){
-                                            plusCounter++;
-                                        }else{
-                                            oldSum = +res2[j].sum_pos;
-                                            pos += +1+plusCounter;
-                                            plusCounter = 0;
-                                        }
-                                        res2[j].position = pos;
-                                        delete res2[j].sum_pos;
-                                        for (var c in parts) {
-                                            res2[j]['ap'+parts[c].id] = res2[j]['res'+parts[c].id] || '-';
-                                            delete res2[j]['res'+parts[c].id];
-                                        }
-                                    }
 
 
-                                    callback(null,{
-                                        columns:columns,
-                                        data: res2
+                                        callback(null,{
+                                            columns:columns,
+                                            data: res2
+                                        })
                                     })
-                                })
+                                });
                             });
+
                         });
-
                     });
-                });
 
+                });
             });
+
 
 
 
