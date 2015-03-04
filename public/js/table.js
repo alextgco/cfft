@@ -77,6 +77,8 @@
         this.tempPage =         1;
         this.specialColumns =   p.specialColumns || [];
         this.isLeaderBoard =    p.isLeaderBoard || false;
+        this.gender_sys_name =  p.gender_sys_name || '';
+        this.age =              p.age || '';
     };
 
     CF.Table.prototype.init = function(){
@@ -100,6 +102,8 @@
             var o = {
                 command: 'actionLeaderBoard',
                 object: 'results',
+                gender_sys_name: _t.gender_sys_name,
+                age: _t.age,
                 params: {
                     where: _t.where,
                     limit: _t.limit,

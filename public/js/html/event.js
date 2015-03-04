@@ -4,8 +4,10 @@ $(document).ready(function(){
     var lb_action_id = lbTable.data('action_id');
     var lb_getObj = lbTable.data('get_object');
     var lb_rangeWhere = lbTable.data('range_where');
+    var lb_gender = '';
+    var lb_age = '';
     var lb_whereObj = {};
-    switch(rangeWhere){
+    switch(lb_rangeWhere){
         case 'male':
             lb_whereObj['gender'] = {
                 sys_name: 'MALE'
@@ -13,6 +15,8 @@ $(document).ready(function(){
             lb_whereObj['users'] = {
                 age: '<40'
             };
+            lb_gender = 'MALE';
+            lb_age = '<40';
             break;
         case 'male40':
             lb_whereObj['gender'] = {
@@ -21,6 +25,8 @@ $(document).ready(function(){
             lb_whereObj['users'] = {
                 age: '>=40'
             };
+            lb_gender = 'MALE';
+            lb_age = '>=40';
             break;
         case 'famale':
             lb_whereObj['gender'] = {
@@ -29,6 +35,8 @@ $(document).ready(function(){
             lb_whereObj['users'] = {
                 age: '<40'
             };
+            lb_gender = 'FAMALE';
+            lb_age = '<40';
             break;
         case 'famale40':
 
@@ -38,6 +46,8 @@ $(document).ready(function(){
             lb_whereObj['users'] = {
                 age: '>=40'
             };
+            lb_gender = 'FAMALE';
+            lb_age = '>=40';
             break;
         default:
 
@@ -47,8 +57,10 @@ $(document).ready(function(){
     var lb_table = new CF.Table({
         getObject: lb_getObj,
         wrapper: lbTable,
-        defaultWhere: whereObj,
-        where: whereObj,
+        gender_sys_name: lb_gender,
+        age: lb_age,
+        defaultWhere: lb_whereObj,
+        where: lb_whereObj,
         primaryKey: 'id',
         isLeaderBoard: true
     });
