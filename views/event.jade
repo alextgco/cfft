@@ -19,6 +19,37 @@ block content
             .col-md-12
                 !{event.description1}
         hr
+        .collapseable
+            h4.padBot10.borBot1CCC Таблица лидеров
+            .collapseBtn
+                .fa.fa-minus
+                |  Свернуть
+            .collapseContent
+
+                div.event-results-tabs(role="tabpanel")
+                    ul.nav.nav-pills(role="tablist")
+                        li.active(role="event_leaderboard")
+                            a(href="#male_#{event.id}", aria-controls="male_#{event.id}", role="tab", data-toggle="tab") Мужчины
+                        li(role="event_leaderboard")
+                            a(href="#male40_#{event.id}", aria-controls="male40_#{event.id}", role="tab", data-toggle="tab") Мужчины 40+
+                        li(role="event_leaderboard")
+                            a(href="#famale_#{event.id}", aria-controls="famale_#{event.id}", role="tab", data-toggle="tab") Женщины
+                        li(role="event_leaderboard")
+                            a(href="#famale40_#{event.id}", aria-controls="famale40_#{event.id}", role="tab", data-toggle="tab") Женщины 40+
+                    .tab-content
+                        .tab-pane.active(role="tabpanel", id="male_#{event.id}")
+                            .leaderBoardTable(data-get_object="results", data-action_id="#{event.id}",  data-range_where="male")
+                        .tab-pane(role="tabpanel", id="male40_#{event.id}")
+                            .leaderBoardTable(data-get_object="results", data-action_id="#{event.id}", data-range_where="male40")
+                        .tab-pane(role="tabpanel", id="famale_#{event.id}")
+                            .leaderBoardTable(data-get_object="results", data-action_id="#{event.id}", data-range_where="famale")
+                        .tab-pane(role="tabpanel", id="famale40_#{event.id}")
+                            .leaderBoardTable(data-get_object="results", data-action_id="#{event.id}", data-range_where="famale40")
+    .container
+        .row.padTop30
+            .col-md-12
+                !{event.description1}
+        hr
         div(role='tabpanel')
             ul.nav.nav-tabs(role='tablist')
                 each part, idx in parts
