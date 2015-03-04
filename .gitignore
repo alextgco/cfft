@@ -92,7 +92,7 @@ node_modules
 
 
 
-#.idea
+.idea
 
 config/config.json
 
