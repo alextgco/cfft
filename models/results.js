@@ -367,14 +367,18 @@ module.exports = function(callback){
             if (typeof obj!=='object'){
                 return callback(new MyError('Не переданы обязательные параметры'));
             }
+            if (!obj.action_id){
+                return callback(new MyError('Не указано мероприятие.'));
+            }
             if (!obj.gender_sys_name || !obj.age){
                 return callback(new MyError('Не переданы параметры пола и возраста'));
             }
+            var action_id = obj.action_id;
             var gender_sys_name = obj.gender_sys_name;
             var age = (obj.age=='40')? ' <= 40 ' : ' > 40 ';
 
             var columns = [
-                {title:'Место:',name:'position'},
+                {title:'Место',name:'position'},
                 {title:'Атлет',name:'fio'}
             ];
 
@@ -391,14 +395,14 @@ module.exports = function(callback){
                     'AND rs.sys_name = "ACCEPTED" ' +
                     'AND r.age' + age +
                     'AND r.gender_id = ' + gender_id + ' '+
-                    'GROUP BY user_id',[41],function(err, rows){
+                    'GROUP BY user_id',[action_id],function(err, rows){
                         conn.release();
                         if (err) {
                             return callback(err);
                         }
                         if (rows.length==0){
                             return pool.getConn(function (err, conn) {
-                               conn.query('select ap.id, ap.title from action_parts ap LEFT JOIN actions as a on ap.action_id = a.id where a.id = ?',[41], function (err, rows) {
+                               conn.query('select ap.id, ap.title from action_parts ap LEFT JOIN actions as a on ap.action_id = a.id where a.id = ?',[action_id], function (err, rows) {
                                    conn.release();
                                    if (err){
                                        return callback(err);
@@ -432,7 +436,7 @@ module.exports = function(callback){
                                 " WHERE rs.sys_name = 'ACCEPTED' " +
                                 "AND ap.action_id = ?" +
                                 " GROUP BY r.action_part_id ";
-                            conn.query(sql,[41], function (err, res1) {
+                            conn.query(sql,[action_id], function (err, res1) {
                                 conn.release();
                                 if (err){
                                     return callback(err);
