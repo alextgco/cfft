@@ -117,7 +117,7 @@ module.exports = app;
 
 
 var api = require('./libs/userApi');
-api('actionLeaderBoard', 'results', {},function(err,result){
+api('actionLeaderBoard', 'results', {age:'40',gender_sys_name:'MALE'},function(err,result){
     if (err){
         console.log(err);
     }else{

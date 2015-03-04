@@ -384,17 +384,19 @@ module.exports = function(callback){
                     'where ap.action_id = ? ' +
                     'AND rs.sys_name = "ACCEPTED" ' +
                     'AND r.age' + age +
-                    'AND r.gender_id = ' + gender_id +
+                    'AND r.gender_id = ' + gender_id + ' '+
                     'GROUP BY user_id',[41],function(err, rows){
                         conn.release();
                         if (err) {
                             return callback(err);
                         }
+                        if (rows.length==0){
+                            return callback(null,[]);
+                        }
                         var user_ids = [];
                         for (var i in rows) {
                             user_ids.push(rows[i].user_id);
                         }
-
                         pool.getConn(function(err,conn){
                             if (err){
                                 return callback(err);
@@ -500,8 +502,6 @@ module.exports = function(callback){
                                                 delete res2[j]['res'+parts[c].id];
                                             }
                                         }
-
-
                                         callback(null,{
                                             columns:columns,
                                             data: res2
