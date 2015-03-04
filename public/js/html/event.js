@@ -9,45 +9,45 @@ $(document).ready(function(){
     var lb_whereObj = {};
     switch(lb_rangeWhere){
         case 'male':
-            lb_whereObj['gender'] = {
-                sys_name: 'MALE'
-            };
-            lb_whereObj['users'] = {
-                age: '<40'
-            };
+            //lb_whereObj['gender'] = {
+            //    sys_name: 'MALE'
+            //};
+            //lb_whereObj['users'] = {
+            //    age: '<40'
+            //};
             lb_gender = 'MALE';
             lb_age = '<40';
             break;
         case 'male40':
-            lb_whereObj['gender'] = {
-                sys_name: 'MALE'
-            };
-            lb_whereObj['users'] = {
-                age: '>=40'
-            };
+            //lb_whereObj['gender'] = {
+            //    sys_name: 'MALE'
+            //};
+            //lb_whereObj['users'] = {
+            //    age: '<40'
+            //};
             lb_gender = 'MALE';
-            lb_age = '>=40';
+            lb_age = '<40';
             break;
         case 'famale':
-            lb_whereObj['gender'] = {
-                sys_name: 'FAMALE'
-            };
-            lb_whereObj['users'] = {
-                age: '<40'
-            };
+            //lb_whereObj['gender'] = {
+            //    sys_name: 'FAMALE'
+            //};
+            //lb_whereObj['users'] = {
+            //    age: '>=40'
+            //};
             lb_gender = 'FAMALE';
-            lb_age = '<40';
+            lb_age = '>=40';
             break;
         case 'famale40':
 
-            lb_whereObj['gender'] = {
-                sys_name: 'FAMALE'
-            };
-            lb_whereObj['users'] = {
-                age: '>=40'
-            };
+            //lb_whereObj['gender'] = {
+            //    sys_name: 'FAMALE'
+            //};
+            //lb_whereObj['users'] = {
+            //    age: '<40'
+            //};
             lb_gender = 'FAMALE';
-            lb_age = '>=40';
+            lb_age = '<40';
             break;
         default:
 
