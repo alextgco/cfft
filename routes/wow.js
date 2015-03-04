@@ -2,7 +2,10 @@ var async = require('async');
 var api = require('../libs/userApi');
 var MyError = require('../error').MyError;
 exports.get = function(req, res, next){
-    var id;
+    var id = req.query.id;
+    if (!id){
+        return res.render('no_wow', {});
+    }
     var loadActionRewards = function(callback){
         api('get', 'action_rewards', {where: {action_id: id}},function(err,result){
             if (err){
@@ -17,19 +20,20 @@ exports.get = function(req, res, next){
         api('get', 'action', {
 
             where: {
+                id:id,
                 action_types: {
                     sys_name: "WOD_OF_WEEK"
-                },
+                }/*,
                 action_statuses:{
                     sys_name: 'OPENED'
-                }
+                }*/
 
             }
 
         },function(err,result){
 
             if (err){
-                console.log(err, 'admin_event');
+                console.log(err, 'WOD_OF_WEEK',id);
                 return callback(err);
             }
 
@@ -47,11 +51,6 @@ exports.get = function(req, res, next){
                 result.data[i]['date_start_text'] = (s_date.length > 0)? textDate : '';
             }
 
-
-
-
-            id = result.data[0].id;
-
             callback(null,result);
         });
     };
@@ -63,7 +62,7 @@ exports.get = function(req, res, next){
             }
             console.log('PARTS', result);
             if(result.data.length == 0){
-
+                return res.render('no_wow', {});
             }
             async.each(result.data,function(item,callback){
                 api('get', 'results', {where: {action_part_id: item.id}, sort: 'position', user_id:req.user}, function(err, resultsRes){
