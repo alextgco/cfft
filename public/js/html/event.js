@@ -1,7 +1,9 @@
 $(document).ready(function(){
 
-    for(var l=0; l<$('.leaderBoardTable').length; l++){
-        var lbTable = $('.leaderBoardTable').eq(l);
+    var lbTables = $('.leaderBoardTable');
+
+    for(var l=0; l<lbTables.length; l++){
+        var lbTable = lbTables.eq(l);
         var lb_action_id = lbTable.data('action_id');
         var lb_getObj = lbTable.data('get_object');
         var lb_rangeWhere = lbTable.data('range_where');
@@ -67,6 +69,7 @@ $(document).ready(function(){
             isLeaderBoard: true
         });
         lb_table.init();
+        console.log(lbTables.length);
     }
 
 
