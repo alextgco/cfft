@@ -54,8 +54,10 @@ module.exports = function(server) {
   io.set('origins', 'localhost:*');
   //io.set('logger', log);
 
-  io.set('authorization', function(handshake, callback) {
-    console.log('authorization');
+/*  io.set('authorization', function(handshake, callback) {
+
+      return callback(null);
+      console.log('authorization');
     async.waterfall([
       function(callback) {
         // сделать handshakeData.cookies - объектом с cookie
@@ -87,7 +89,7 @@ module.exports = function(server) {
       }
       callback(err);
     });
-  });
+  });*/
 
   io.sockets.on('session:reload', function(sid) {
     var clients = io.sockets.clients();

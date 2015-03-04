@@ -13,6 +13,7 @@ exports.get = function(req, res, next){
         });
     };
     var getAction = function(callback){
+
         api('get', 'action', {
 
             where: {
@@ -31,6 +32,7 @@ exports.get = function(req, res, next){
                 console.log(err, 'admin_event');
                 return callback(err);
             }
+
             if(result.data.length == 0){
                 return res.render('no_wow', {});
             }
@@ -49,6 +51,7 @@ exports.get = function(req, res, next){
 
 
             id = result.data[0].id;
+
             callback(null,result);
         });
     };
@@ -80,7 +83,7 @@ exports.get = function(req, res, next){
 
         });
     };
-
+    var d1 = new Date();
     async.series([
         loadActionRewards,
         getAction,
@@ -89,6 +92,7 @@ exports.get = function(req, res, next){
         if (err){
             return next(err);
         }
+        console.log('DATA LOADED',new Date()-d1);
         res.render('wow', {
             data: {
                 rewards: results[0],
