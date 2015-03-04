@@ -384,7 +384,7 @@ module.exports = function(callback){
                     'where ap.action_id = ? ' +
                     'AND rs.sys_name = "ACCEPTED" ' +
                     'AND r.age' + age +
-                    'AND r.gender_id = ' + gender_id +
+                    'AND r.gender_id = ' + gender_id + ' '+
                     'GROUP BY user_id',[41],function(err, rows){
                         conn.release();
                         if (err) {
