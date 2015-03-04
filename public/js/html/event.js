@@ -59,6 +59,7 @@ $(document).ready(function(){
         wrapper: lbTable,
         gender_sys_name: lb_gender,
         age: lb_age,
+        action_id: lb_action_id,
         defaultWhere: lb_whereObj,
         where: lb_whereObj,
         primaryKey: 'id',
