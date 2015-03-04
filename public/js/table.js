@@ -102,9 +102,9 @@
             var o = {
                 command: 'actionLeaderBoard',
                 object: 'results',
-                gender_sys_name: _t.gender_sys_name,
-                age: _t.age,
                 params: {
+                    gender_sys_name: _t.gender_sys_name,
+                    age: _t.age,
                     where: _t.where,
                     limit: _t.limit,
                     sort: _t.sort,
