@@ -22,6 +22,7 @@ exports.post = function(req, res, next){
         return res.json(403, {message:'Не указан пароль'});
     }
     var guid = Guid.create().value;
+    var guid2 = Guid.create().value;
     /*
     * id
      firstname
@@ -50,7 +51,7 @@ exports.post = function(req, res, next){
      age
 
      */
-
+    var unsubscribe_key = (req.body.email+'_'+guid2).substr(0,254);
     var obj = {
         firstname:req.body.name,
         surname:req.body.surname,
@@ -61,6 +62,7 @@ exports.post = function(req, res, next){
         city_id:req.body.city_id,
         age:funcs.age(req.body.birthday),
         isAgree:(req.body.isAgree)?1:0,
+        unsubscribe_key:unsubscribe_key,
         password:req.body.password,
         mailKey:guid,
         phone:req.body.phone,

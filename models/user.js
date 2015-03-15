@@ -11,8 +11,8 @@ var moment = require('moment');
 module.exports = function(callback){
     var user = new Model({
         published:false,
-        allowedForUserCommand:['get','modifyProfile','authorize','registration','confirmEmail'],
-        excludeForUserColumns:['hashedPassword','salt','deleted','published','created','mailKey','isBanned','bannedToDate'],
+        allowedForUserCommand:['get','modifyProfile','authorize','registration','confirmEmail','unsubscribe'],
+        excludeForUserColumns:['hashedPassword','salt','deleted','published','created','mailKey','unsubscribe_key','isBanned','bannedToDate'],
         table: 'users',
         table_ru: 'Пользователь',
         ending:'',
@@ -286,6 +286,52 @@ module.exports = function(callback){
                     callback(err,needUpdate.length);
                 });
             });
+        };
+        user.unsubscribe = function(obj,callback){
+            if (typeof obj!=='object'){
+                return callback(new MyError('Не корректно переданы параметры.'));
+            }
+            var key = obj.key;
+            if (key.length==0){
+                return callback(new MyError('Не корректно передан ключ.'));
+            }
+            pool.getConn(function(err, conn){
+                if (err){
+                    return callback(err);
+                }
+                var sql = 'select email from users where unsubscribe_key = ?';
+                conn.queryValue(sql,[key],function(err, email){
+                    conn.release();
+                    if (err){
+                        return callback(err);
+                    }
+
+                    if (!email){
+                        return callback(new UserError('Пользователь не найден.'));
+                    }
+                    pool.getConn(function(err, conn){
+                        if (err){
+                            return callback(err);
+                        }
+                        var sql = 'update users set isAgree = 0 where unsubscribe_key = ?';
+                        conn.query(sql,[key],function(err, affected){
+                            conn.release();
+                            if (err){
+                                return callback(err);
+                            }
+                            if (affected==0){
+                                return callback(new UserError('Пользователь не найден.'));
+                            }
+                            callback(null,email);
+                        });
+                    });
+                });
+            });
+
+
+
+
+
         };
         callback(user);
     });

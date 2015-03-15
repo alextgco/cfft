@@ -2,9 +2,12 @@ var Model = require('./MySQLModel');
 module.exports = function(callback){
     var action_types = new Model({
         table: 'action_types',
-        table_ru: 'Типы мероприятия',
-        ending:'ы',
-        required_fields:['name']
+        table_ru: 'Тип мероприятия',
+        ending:'',
+        required_fields:['name'],
+        getFormating:{
+            regulations:"parseBlob"
+        }
     },function(err){
         if (err){
             console.log(err);

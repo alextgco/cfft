@@ -39,6 +39,21 @@ var sendSuccessConfirm = function(obj, callback){
 
     });
 };
+var sendSuccessUnsubscribe = function(obj, callback){
+    if (typeof obj!='object'){
+        return callback(new MyError(''));
+    }
+    var o = {
+        email: obj.email,
+        subject: 'Отказ от рассылки',
+        html: 'Вы успешно отписались от рассылки.'
+    };
+    sendMail(o, function (err) {
+        callback(err);
+    });
+};
+
 
 module.exports.sendConfirm = sendConfirm;
 module.exports.sendSuccessConfirm = sendSuccessConfirm;
+module.exports.sendSuccessUnsubscribe = sendSuccessUnsubscribe;

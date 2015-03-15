@@ -19,6 +19,7 @@ module.exports = function (app) {
   app.get('/registration', require('./registration').get);
   app.post('/registration', require('./registration').post);
   app.get('/reqConfirm', require('./reqConfirm').get);
+  app.get('/unsubscribe', require('./unsubscribe').get);
 
   app.get('/events', require('./events').get);
 
@@ -33,9 +34,7 @@ module.exports = function (app) {
   app.get('/profile', checkAuth, require('./profile').get);
 
 
-  //function(req, res, next){
-  //  res.render('profile');
-  //});
+
 
   app.get('/for_athlets', function(req, res, next){
     res.render('for_athlets');

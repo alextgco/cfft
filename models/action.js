@@ -16,7 +16,8 @@ module.exports = function(callback){
         },
         getFormating:{
             description1:"parseBlob",
-            description2:"parseBlob"
+            description2:"parseBlob",
+            diary:"parseBlob"
         },
         join_objs:[
             {

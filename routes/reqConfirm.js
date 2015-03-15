@@ -1,16 +1,15 @@
 var sendSuccessConfirm = require('../modules/regMailer').sendSuccessConfirm;
-
 var apiAdmin = require('../libs/api');
-
-var finish = function(err, res){
-    if (err){
-        return res.redirect('./registration_error');
-    }else{
-        return res.redirect('./registration_success');
-    }
-};
-
 exports.get = function(req, res, next){
+
+    var finish = function(err, res){
+        if (err){
+            return res.redirect('./registration_error');
+        }else{
+            return res.redirect('./registration_success');
+        }
+    };
+
     var email = req.query.email;
     var p = req.query.p;
     if (p=='done'){
