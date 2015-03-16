@@ -1,5 +1,6 @@
 var async = require('async');
 var moment = require('moment');
+var jobs = require('./backgroundJobs');
 
 var getMinStart = function(callback){
     var t1 = setTimeout(function(){
@@ -38,7 +39,7 @@ var hourlyTimer = function (callbcak) {
     }, 60000);
 };
 var daily = function (callback) {
-    var t1 = setTimeout(function () {
+    var func = function(){
         var m1 = moment().format('hh');
         if (m1 == '03') {
             var m2 = moment().format('hh-mm-ss');
@@ -46,9 +47,24 @@ var daily = function (callback) {
                 callback(m2);
             }
         }
-        daily(callback);
-    }, 3600000);
+        var t1 = setTimeout(function () {
+            daily(callback);
+        //}, 10000);
+        }, 3600000);
+    };
+    func();
+
 };
  daily(function(res){
-     console.log(res);
+     var dailyJobs = jobs.daily;
+     if (typeof dailyJobs !== 'object'){
+        return;
+    }
+     //var m1 = moment().format('hh-mm-ss');
+     for (var i in  dailyJobs) {
+         if (typeof dailyJobs[i]==='function'){
+             console.log(i,'started:');
+             dailyJobs[i]();
+         }
+     }
  });

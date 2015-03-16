@@ -7,7 +7,9 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var config = require('./config');
 var app = express();
-var backgrounds = require('./modules/background_process');
+setTimeout(function () {
+    var backgrounds = require('./modules/background_process');
+},30000);
 global.pool = require('./libs/mysqlConnect');
 global.models = [];
 process.on('exit', function(code) {

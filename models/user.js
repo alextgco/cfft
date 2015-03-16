@@ -24,8 +24,24 @@ module.exports = function(callback){
             birthday:'isDate',
             gender:'number'
         },
+        concatFields:[{
+            title:['firstname',' ','surname',' Василич!']
+        }],
         join_objs:[
             {
+                /*firstname:{
+                    table:"user",
+                    fields:[
+                        {
+                            column:"firstname",
+                            alias:"firstname"
+                        },
+                        {
+                            column:"title",
+                            alias:"gender"
+                        }
+                    ]
+                },*/
                 gender_id:{
                     table:"gender",
                     fields:[
