@@ -84,7 +84,7 @@ $(document).ready(function(){
         console.log('btn4 clicked');
         var o = {
             command:"get",
-            object:"results",
+            object:"club",
             params:{}
         };
         sendQuery(o,function(r){console.log(r);});
