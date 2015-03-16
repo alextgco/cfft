@@ -173,19 +173,19 @@ $(document).ready(function(){
                 },
                 {
                     label: 'Город',
-                    column: 'city_id',
+                    column: 'id',
                     type: 'select',
-                    tableName: 'cities',
+                    tableName: 'city',
                     returnId: 'id',
                     returnName: 'name',
                     whereType: 'external',
-                    whereTable: 'city'
+                    whereTable: 'cities'
                 },
                 {
                     label: 'Клуб',
-                    column: 'club_id',
+                    column: 'id',
                     type: 'select',
-                    tableName: 'clubs',
+                    tableName: 'club',
                     returnId: 'id',
                     returnName: 'name',
                     whereType: 'external',
