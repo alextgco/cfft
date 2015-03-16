@@ -49,6 +49,10 @@ module.exports = function(callback){
         if (err){
             console.log(err);
         }
+        /*club.beforeFunction.add = function(obj, callback){
+            obj.isAffiliate = (obj.isAffiliate)?1:0;
+            return callback(null,obj);
+        };*/
         callback(club);
     });
 };
