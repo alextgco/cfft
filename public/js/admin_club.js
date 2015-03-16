@@ -87,6 +87,7 @@ $(document).ready(function(){
             object: 'club',
             params: params
         };
+        o.params.id = form_wrapper.data('id');
 
         sendQuery(o, function(res){
             console.log(res);

@@ -2,7 +2,7 @@ extends admin_layout
 block content
     - var isNew = data.isNew;
     if(!isNew)
-        - var club = data.data;
+        - var club = data.data[0];
     .container.posRel
         if(isNew)
             h2 Создание клуба
@@ -66,7 +66,7 @@ block content
                                 i.fa.fa-check
                                 | &nbsp;&nbsp;Сохранить
         else
-            form#form-registration(name="form-registration")
+            form#form-registration(name="form-registration", data-id="#{club.id}")
                 .row
                     .col-md-6
                         .col-md-12
@@ -114,7 +114,7 @@ block content
                             .user-photo-wrapper
                                 .user-photo-clear
                                     .fa.fa-trash
-                                    img(src="upload/#{club.photo}")
+                                img(src="upload/#{club.photo}")
                                 //if(club.photo.length > 0)
 
                                 //else
