@@ -227,6 +227,10 @@ module.exports = function(callback){
                                                return callback(new MyError('Нет подходящего статуса'));
                                            }
                                            obj.status_id = id;
+                                           obj.gender_id = gender_id;
+                                           obj.age = age;
+                                           obj.club_id = club_id;
+
                                            results.getDirectoryId('result_statuses','IN_HISTORY',function(err,result_status_id){
                                                if (err){
                                                    return callback(new MyError('Нет такого статуса'));
@@ -242,8 +246,8 @@ module.exports = function(callback){
                                                    var id = result.data.id;
 
                                                    pool.getConn(function(err,conn){
-                                                       var sql = 'update results set published = NULL, status_id = ?, gender_id = ?, age = ?, club_id = ? where user_id = ? AND action_part_id = ? AND published IS NOT NULL AND id <> ?';
-                                                       conn.query(sql,[result_status_id, gender_id, age, club_id, obj.user_id,obj.action_part_id,id],function(err,affected){
+                                                       var sql = 'update results set published = NULL, status_id = ? where user_id = ? AND action_part_id = ? AND published IS NOT NULL AND id <> ?';
+                                                       conn.query(sql,[result_status_id, obj.user_id,obj.action_part_id,id],function(err,affected){
                                                            if (err){
                                                                console.log(err);
                                                            }

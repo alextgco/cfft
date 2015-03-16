@@ -16,7 +16,7 @@ module.exports = function(callback){
         table: 'users',
         table_ru: 'Пользователь',
         ending:'',
-        required_fields:['firstname','surname','email','birthday','gender_id','city_id'],
+        required_fields:['firstname','surname','email','birthday','gender_id'],
         getFormating:{
             /*birthday:'age'*/
         },
@@ -272,6 +272,9 @@ module.exports = function(callback){
             }
             if (obj.isAgree){
                 obj.isAgree = (obj.isAgree)?1:0;
+            }
+            if (obj.city_id==''){
+                delete obj.city_id;
             }
 
             user.modify(obj,function(err,results){
