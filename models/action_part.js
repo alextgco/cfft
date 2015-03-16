@@ -61,7 +61,20 @@ module.exports = function(callback){
                             alias:"status_sys_name"
                         }
                     ]
-                }
+                },
+                city_id:{
+                    table:"cities",
+                    fields:[
+                        {
+                            column:"id",
+                            alias:"city_id"
+                        },
+                        {
+                            column:"title",
+                            alias:"city"
+                        }
+                    ]
+                },
             }
         ]
     },function(err){
