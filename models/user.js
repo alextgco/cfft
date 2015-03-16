@@ -25,8 +25,7 @@ module.exports = function(callback){
             gender:'number'
         },
         concatFields:[{
-            //title:['firstname',' ','surname',' Василич!']
-            title:['Миша',' ','Доховор']
+            title:['firstname',' ','surname']
         }],
         join_objs:[
             {
