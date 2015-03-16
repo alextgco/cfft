@@ -68,7 +68,8 @@ exports.post = function(req, res, next){
         phone:req.body.phone,
         weight:req.body.weight,
         height:req.body.height,
-        photo:req.body.photo
+        photo:req.body.photo,
+        club_id:req.body.club_id
 
     };
 
