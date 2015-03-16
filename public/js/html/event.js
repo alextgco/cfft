@@ -189,7 +189,7 @@ $(document).ready(function(){
                     returnId: 'id',
                     returnName: 'name',
                     whereType: 'external',
-                    whereTable: 'club'
+                    whereTable: 'clubs'
                 }
             ]
         });
