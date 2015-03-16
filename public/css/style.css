@@ -782,5 +782,10 @@ input[type="number"].invalid{
     padding: 0 5px 0 5px;
 }
 .page-content{
+    width: 100%;
     float: left;
+}
+
+.admin_layout .page-content{
+    float: none;
 }

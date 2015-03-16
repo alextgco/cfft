@@ -104,7 +104,42 @@ $(document).ready(function(){
     });
 
 
+        var userPhotoWrapper = $('.user-photo-wrapper');
+        var userPhotoImg = userPhotoWrapper.find('img');
 
+        $(document).on('delivery.connect', function(e, delivery){
+            var fileLoader = new FileLoader({delivery:delivery});
+            $('.userPhotoInput').off('click').on('click', function(){
+                var inp = $(this);
+                if (!fileLoader){
+                    toastr['error']('fileLoader еще не готов');
+                    return;
+                }
+                fileLoader.start({
+                    success:function(fileUID){
+                        inp.val(fileUID.name);
+                        console.log(fileUID);
+                        userPhotoImg.attr('src', 'upload/'+fileUID.name);
+                    }
+                });
+            });
+        });
 
+        $('.user-photo-clear').off('click').on('click', function(){
+            var userPhotoInput = $('input.fc-field[data-server_name="photo"]');
+            if(userPhotoInput.val().length > 0){
+                userPhotoInput.val('');
+                var val = $('[data-server_name="gender_id"]').select2('data').id;
 
+                console.log(val);
+
+                if(val == 1){
+                    userPhotoImg.attr('src', 'img/user_default_m.jpg');
+                }else if(val == 2){
+                    userPhotoImg.attr('src', 'img/user_default_f.jpg');
+                }else{
+                    userPhotoImg.attr('src', 'img/user_default_m.jpg');
+                }
+            }
+        });
 });

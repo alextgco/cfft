@@ -298,9 +298,9 @@ a.open-calendar.opened{
     font-family: opensanssemibold, arial, sans-serif;
 }
 body{
-    background-image: url("../img/bg.jpg");
+    /*background-image: url("../img/bg.jpg");*/
     background-repeat: repeat;
-    background-color: #171717;
+    /*background-color: #171717;*/
     font-size: 14px;
 }
 .bot_bg{
