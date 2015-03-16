@@ -247,7 +247,7 @@ module.exports = function(callback){
                 obj.firstname = obj.name;
             }
             var required_fields = [].concat(user.required_fields);
-            var avaliable_fields = ['id','firstname','surname','secondname','phone','city_id','gender_id','weight','birthday','height','photo','isAgree'];//.concat(required_fields);
+            var avaliable_fields = ['id','firstname','surname','secondname','phone','city_id','gender_id','weight','birthday','height','photo','isAgree','club_id'];//.concat(required_fields);
             for (var i0 in obj) {
                 if (avaliable_fields.indexOf(i0)==-1) {
                     delete obj[i0];
