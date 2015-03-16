@@ -141,7 +141,7 @@ $(document).ready(function(){
         var table = new CF.Table({
             getObject: getObj,
             wrapper: tbl,
-            visible_columns: ['user_surname', 'concat_result', 'status_name', 'video_url', 'user_firstname'],
+            visible_columns: ['user_surname', 'concat_result', 'status_name', 'video_url', 'user_firstname', 'club'],
             sort: 'position',
             specialColumns: [
                 {
@@ -170,6 +170,26 @@ $(document).ready(function(){
                     returnName: 'name',
                     whereType: 'internal',
                     whereTable: ''
+                },
+                {
+                    label: 'Город',
+                    column: 'city_id',
+                    type: 'select',
+                    tableName: 'cities',
+                    returnId: 'id',
+                    returnName: 'name',
+                    whereType: 'external',
+                    whereTable: 'city'
+                },
+                {
+                    label: 'Клуб',
+                    column: 'club_id',
+                    type: 'select',
+                    tableName: 'clubs',
+                    returnId: 'id',
+                    returnName: 'name',
+                    whereType: 'external',
+                    whereTable: 'club'
                 }
             ]
         });
