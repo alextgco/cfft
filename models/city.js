@@ -10,6 +10,9 @@ module.exports = function(callback){
         columns:['id','title','country_id'],
         required_fields:['country_id','title'],
         sort:' important DESC, title',
+        where:{
+            important:'>0'
+        },
         validation: {
             country_id:'number',
             title:'notNull'

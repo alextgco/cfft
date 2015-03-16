@@ -82,6 +82,7 @@ var Model = function (params, callback) {
     this.defaults = (typeof params.defaults === 'object') ? params.blob_fields : [];
     this.join_objs = (typeof params.join_objs === 'object') ? params.join_objs : false;
     this.concatFields = params.concatFields || [];
+    this.where = params.where;
     this.sort = params.sort;
     this.validation = params.validation;
     this.distinct = params.distinct;
@@ -132,7 +133,7 @@ Model.prototype.get = function (params, callback) {
     var self = this;
 
     var getRows = function (conn, callback) {
-        var where = params.where || {};
+        var where = params.where || self.where || {};
         var limit = params.limit || 1000;
         var sort = params.sort || (self.sort) ? funcs.cloneObj(self.sort) : {column:'id',direction:'ASC'};
         var deleted = !!params.deleted;
@@ -248,7 +249,7 @@ Model.prototype.get = function (params, callback) {
                 if (sort.length) {
                     for (var i in sort) {
                         if (typeof sort[i] == 'object') {
-                            prepareSort(sort(i));
+                            prepareSort(sort[i]);
                         } else {
                             prepareSort({column: sort});
                         }

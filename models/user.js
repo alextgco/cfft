@@ -51,6 +51,19 @@ module.exports = function(callback){
                             alias:"city"
                         }
                     ]
+                },
+                club_id:{
+                    table:"clubs",
+                    fields:[
+                        {
+                            column:"id",
+                            alias:"club_id"
+                        },
+                        {
+                            column:"name",
+                            alias:"club"
+                        }
+                    ]
                 }
             }
         ]
@@ -300,15 +313,17 @@ module.exports = function(callback){
                     return callback(err);
                 }
                 var sql = 'select email from users where unsubscribe_key = ?';
-                conn.queryValue(sql,[key],function(err, email){
+                conn.queryRow(sql,[key],function(err, row){
                     conn.release();
                     if (err){
                         return callback(err);
                     }
-
-                    if (!email){
+                    if (!row){
                         return callback(new UserError('Пользователь не найден.'));
                     }
+                    var email = row.email;
+
+
                     pool.getConn(function(err, conn){
                         if (err){
                             return callback(err);
