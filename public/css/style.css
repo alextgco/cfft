@@ -6,7 +6,7 @@
     /*box-shadow: 0 0 10px #000, 0 0 15px #000, 0 0 15px #000;*/
 }
 .page-header>.container{
-    background-image: url('../img/mid_bg.jpg');
+    /*background-image: url('../img/mid_bg.jpg');*/
     background-size: cover;
 }
 .logo{
@@ -60,7 +60,8 @@
 .main-slider-view{
     width: 100%;
     overflow: hidden;
-    height: 320px;
+    /*height: 500px;*/
+    /*background-color: #000;*/
     position: relative;
 }
 
@@ -70,7 +71,7 @@
     padding: 0;
 }
 .main-slider li img{
-    height: 320px;
+    width: 100%;
     margin-top: -20px;
 }
 .main-slider-wrapper{
@@ -779,4 +780,7 @@ input[type="number"].invalid{
     width: 50%;
     float: left;
     padding: 0 5px 0 5px;
+}
+.page-content{
+    float: left;
 }

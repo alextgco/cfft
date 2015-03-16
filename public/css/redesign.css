@@ -1,5 +1,5 @@
 .preheader{
-    /*background-color: #FF6B00;*/
+    background-color: #000!important;
     /*margin-top: 20px;*/
     position: relative;
 }
@@ -36,8 +36,8 @@
 }
 
 .page-header>.container{
-    background-color: rgb(76,76,76);
-    background-image: url(../img/partners_header_bg.png);
+    /*background-color: rgb(76,76,76);*/
+    /*background-image: url(../img/partners_header_bg.png);*/
     background-size: inherit;
 }
 .page-header{
@@ -58,9 +58,10 @@
 }
 #logo {
     float: left;
-    height: 63px;
+    height: 100px;
     width: 167px;
     margin: 0;
+    padding-top: 21px;
     margin-left: -15px;
     /*background-image: url(../img/logo.png);*/
 }
@@ -71,15 +72,17 @@
     float: right;
     padding: 0;
     margin: 0;
-    margin-right: -15px;
 }
 
 .main-menu-wrapper li a{
     color: #fff;
-    /*padding: 31px 24px 32px 24px;*/
-    padding: 23px 24px 20px 24px;;
+    font-family: "Helvetica Neue Light", openSans, arial, sans-serif;
+    letter-spacing: 0.9px;
+    /* padding: 31px 24px 32px 24px; */
+    padding: 43px 34px 37px 34px;
     text-decoration: none;
     float: left;
+    font-size: 18px;
 
 }
 #top-main-menu{
@@ -313,8 +316,8 @@ body{
     margin-left: -15px;
 }
 .page-wrapper.container.noPad{
-    background-color: #fff;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5), 0 0 30px rgba(0,0,0,0.5), 0 0 30px rgba(0,0,0,0.5);
+    /*background-color: #fff;*/
+    /*box-shadow: 0 0 30px rgba(0,0,0,0.5), 0 0 30px rgba(0,0,0,0.5), 0 0 30px rgba(0,0,0,0.5);*/
 }
 
 .col-md-3.noPad{
@@ -463,6 +466,11 @@ body{
     box-shadow: 0 0 4px #000;
     z-index: 100;
     position: relative;
+    background-image: url(../img/headerBg.jpg);
+    background-size: inherit;
+    float: left;
+    width: 100%;
+
 }
 .nearrest-wow-from-to-date{
     position: absolute;
@@ -651,7 +659,7 @@ body{
      float: left;
      position: relative;
      margin: 0;
-     margin-left: 15px;
+     /*margin-left: 15px;*/
 }
 #bot-main-menu li:hover{
     background-color: transparent;
@@ -1254,4 +1262,43 @@ h4.darkHd{
     background-color: #002a80;
     color: #fff;
     padding: 11px!important;
+}
+
+.wide-bg{
+    position: absolute;
+    width: 100%;
+
+}
+
+.mPage-block{
+    background-color: rgba(225,225,225,0.45);
+    border-radius: 10px;
+    display: inline-block;
+    width: 100%;
+    padding: 15px;
+}
+
+.main-wide-bg{
+    background-image: url(../img/main_bg.jpg);
+    min-height: 948px;
+    background-size: cover;
+}
+.coming-wow-wrapper-new{
+
+}
+
+.wow-header{
+    font-family: "Helvetica Neue Light", openSans, arial, sans-serif;
+    font-size: 24px;
+    color: #000000;
+    text-align: center;
+
+}
+
+.fullWidthRatingBg{
+    width: 100%;
+    background-image: url("../img/rating_bg.png");
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    height: 33px;
 }

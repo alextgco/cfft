@@ -1,3 +1,18 @@
+@font-face
+{
+    font-family: "Helvetica Neue Light";
+    src: url(../fonts/HelveticaNeueCyr-Light.otf);
+}
+@font-face
+{
+    font-family: "Helvetica Neue Medium";
+    src: url(../fonts/HelveticaNeueCyr-Medium.otf);
+}
+@font-face
+{
+    font-family: "Helvetica Neue Roman";
+    src: url(../fonts/HelveticaNeueCyr-Roman.otf);
+}
 
 @font-face
 {
@@ -240,4 +255,10 @@ h1,h2,h3,h4,h5,h6, label{
 }
 .marTop10{
     margin-top: 10px;
+}
+.marTop100{
+    margin-top: 100px;
+}
+.marBot35{
+    margin-bottom: 35px;
 }

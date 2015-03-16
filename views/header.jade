@@ -1,49 +1,48 @@
 block header
     .page-header.preheader
-        .container
-            .contact-us
-                i.fa.fa-phone &nbsp;&nbsp;
-                | cfft_info@gmail.com | +7 (499) 984-55-44
-            .preheaderButtons-wrapper
-                if !user
-                    .preheaderBtn.goToLogin(data-view="login")
-                        a(href="#")
-                            i.fa.fa-key
-                            | &nbsp;&nbsp;Войти
-                    .preheaderBtn(data-view="login")
-                        a(href="registration")
-                            i.fa.fa-key
-                            | &nbsp;&nbsp;&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1103;
-                else
-                    .preheaderBtn(data-view="login")
-                        a(href="profile")
-                            i.fa.fa-user &nbsp;&nbsp;
-                            | #{user.firstname}
-                            | #{user.surname}
-                    .preheaderBtn#userLogout(data-view="login")
-                        a(href="#")
-                            i.fa.fa-sign-out
+
+        .contact-us
+            i.fa.fa-phone &nbsp;&nbsp;
+            | cfft_info@gmail.com | +7 (499) 984-55-44
+        .preheaderButtons-wrapper
+            if !user
+                .preheaderBtn.goToLogin(data-view="login")
+                    a(href="#")
+                        i.fa.fa-key
+                        | &nbsp;&nbsp;Войти
+                .preheaderBtn(data-view="login")
+                    a(href="registration")
+                        i.fa.fa-key
+                        | &nbsp;&nbsp;&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1103;
+            else
+                .preheaderBtn(data-view="login")
+                    a(href="profile")
+                        i.fa.fa-user &nbsp;&nbsp;
+                        | #{user.firstname}
+                        | #{user.surname}
+                .preheaderBtn#userLogout(data-view="login")
+                    a(href="#")
+                        i.fa.fa-sign-out
 
     .page-header.main-header
-        .container
-            #logo.logo
-                img(src="img/logo2.png")
-            .main-menu-wrapper
-                ul#top-main-menu.main-menu
-                    li
-                        a(href="for_athlets")
-                            i.fa.fa-info-circle &nbsp;&nbsp;
-                            | УЧАСТНИКАМ
-                    li
-                        a(href="wows")
-                            i.fa.fa-gavel &nbsp;&nbsp;
-                            | WOD OF WEEK
-                    li
-                        a(href="events")
-                            i.fa.fa-flag-o &nbsp;&nbsp;
-                            | GAMES
+        #logo.logo
+            img(src="img/logo2.png")
+        .main-menu-wrapper
+            ul#top-main-menu.main-menu
+                li
+                    a(href="for_athlets")
+                        //i.fa.fa-info-circle &nbsp;&nbsp;
+                        | Участникам
+                li
+                    a(href="wows")
+                        //i.fa.fa-gavel &nbsp;&nbsp;
+                        | WOD
+                li
+                    a(href="events")
+                        //i.fa.fa-flag-o &nbsp;&nbsp;
+                        | Games
 
-                //li
-                //   a(href="#").open-calendar
-                //      i.fa.fa-calendar
-                //.calendar-wrapper
+            //li
+            //   a(href="#").open-calendar
+            //      i.fa.fa-calendar
+            //.calendar-wrapper
