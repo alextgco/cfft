@@ -198,13 +198,14 @@ module.exports = function(callback){
             }
             obj.isAff = +obj.isAff || 0;
             pool.getConn(function(err,conn){
-               conn.queryRow('select gender_id, age from users where id = ?',[obj.user_id], function (err, row) {
+               conn.queryRow('select gender_id, age, club_id from users where id = ?',[obj.user_id], function (err, row) {
                    conn.release();
                    if (err){
                        return callback(err);
                    }
                    var gender_id = row.gender_id;
                    var age = row.age;
+                   var club_id = row.club_id;
                    results.getDirectoryId('action_statuses','OPENED',function(err,action_status_id){
                        results.getDirectoryId('statuses_of_action_parts','OPENED',function(err,action_part_status_id){
                            pool.getConn(function(err,conn){
@@ -241,8 +242,11 @@ module.exports = function(callback){
                                                    var id = result.data.id;
 
                                                    pool.getConn(function(err,conn){
-                                                       var sql = 'update results set published = NULL, status_id = ?, gender_id = ?, age = ?, where user_id = ? AND action_part_id = ? AND published IS NOT NULL AND id <> ?';
-                                                       conn.query(sql,[result_status_id, gender_id, age, obj.user_id,obj.action_part_id,id],function(err,affected){
+                                                       var sql = 'update results set published = NULL, status_id = ?, gender_id = ?, age = ?, club_id = ? where user_id = ? AND action_part_id = ? AND published IS NOT NULL AND id <> ?';
+                                                       conn.query(sql,[result_status_id, gender_id, age, club_id, obj.user_id,obj.action_part_id,id],function(err,affected){
+                                                           if (err){
+                                                               console.log(err);
+                                                           }
                                                            conn.release();
                                                            callback(null,funcs.formatResponse(0, 'success', 'Заявка принята.'));
                                                            results.rePosition({
