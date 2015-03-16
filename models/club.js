@@ -15,6 +15,10 @@ module.exports = function(callback){
         getFormating:{
             description:"parseBlob"
         },
+        concatFields:[{
+            title:['name'],
+            name:['name']
+        }],
         join_objs:[
             {
                 city_id:{
