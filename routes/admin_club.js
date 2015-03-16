@@ -14,11 +14,11 @@ exports.get = function(req, res, next){
                 console.log(err, 'club');
                 return callback(err);
             }
+
+            console.log('FIND ME', result);
             res.render('admin_club', {
-                data: {
-                    data: result,
-                    isNew: false
-                }
+                data: result,
+                isNew: false
             });
         });
     }
