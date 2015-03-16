@@ -1,182 +1,56 @@
 extends layout
 block content
     .page-content
-        .row
-            .col-md-12
-                .main-slider-wrapper-new.col-md-9.container.noPad
-                    .main-slider-view
-                        .main-slider-controls
-                            .main-slider-slide-left
-                                i.fa.fa-angle-left
-                            .main-slider-dots-wrapper
-                                ul.dots
-                                    li
-                                        i.fa.fa-circle
-                                    li
-                                        i.fa.fa-circle
-                                    li
-                                        i.fa.fa-circle
-                            .main-slider-slide-right
-                                i.fa.fa-angle-right
-                        ul.main-slider(data-shift="0")
-                            li.slide
-                                img(src="img/slide1.jpg")
-                                //.slide-text Lorem ipsum dolor sit!
-                            li.slide
-                                img(src="img/slide2.jpg")
-                                //.slide-text Lorem ipsum dolor sit!
-                            li.slide
-                                img(src="img/slide3.jpg")
-                                //.slide-text Lorem ipsum dolor sit!
-                .nearrest-wow-event-wrapper.noPad.col-md-3(data-to_date="")
-                    .nearrest-wow-header
-                        .nearrest-wow-title
-                            | Wod of week
-                        .nearrest-wow-from-to-date
-                            span.date-start
-                            |  -
-                            span.date-end
-                    .nearrest-wow-content
-                        .nearrest-wow-timer.row
-                            .nearrest-wow-timer-row.col-md-12
-                                .nearresr-wow-timer-init
-                                //.t_tblc.pr25
-                                //    |дня
-                                //.t_tblc.hours.pr25
-                                //    |час
-                                //.t_tblc.mins.pr25
-                                //    |мин
-                                //.t_tblc.secs.pr25
-                                //    |сек
-                        .nearrest-wow-exercises
-                            | 3 rounds for time
-                            br
-                            | 10 pull-ups
-                            br
-                            | 10 burpees
-                    a.nearrest-wow-order(href="wow")
-                         | Принять участие!
-        .container
-            .row
-                .col-md-3.noPad
-                    .calendar-title
-                        | Календарь событий
-                    .calendar-wrapper
-                .col-md-9.noPad
-                    .leaderboard-wrapper
-                        .col-md-12.noPad
-                            .leaderboard-title.ta-center
-                                | Таблица лидеров
-                        .col-xs-6.noPad
-                            div.genderLabel.male
-                                | Мужчины
-                            ul.leaderboard-content
+        .col-md-12.noPad
+            .main-slider-wrapper-new.col-md-12.container.noPad
+                .main-slider-view
+                    .main-slider-controls
+                        .main-slider-slide-left
+                            i.fa.fa-angle-left
+                        .main-slider-dots-wrapper
+                            ul.dots
                                 li
-                                    .leader-photo
-                                        img(src="img/user_m_1.jpg")
-                                    .leader-name
-                                        | Андрей Ганин
-                                    .leader-rating
-                                        | 259
+                                    i.fa.fa-circle
                                 li
-                                    .leader-photo
-                                        img(src="img/user_m_2.jpg")
-                                    .leader-name
-                                        | Юрий Казаков
-                                    .leader-rating
-                                        | 213
+                                    i.fa.fa-circle
                                 li
-                                    .leader-photo
-                                        img(src="img/user_m_3.jpg")
-                                    .leader-name
-                                        | Владимир Сайдашев
-                                    .leader-rating
-                                        | 188
-                                li
-                                    .leader-photo
-                                        img(src="img/user_m_4.jpg")
-                                    .leader-name
-                                        | Николай Петров
-                                    .leader-rating
-                                        | 170
-                                li
-                                    .leader-photo
-                                        img(src="img/user_m_5.jpg")
-                                    .leader-name
-                                        | Сергей Ватутенко
-                                    .leader-rating
-                                        | 151
-                        .col-xs-6.noPad
-                            div.genderLabel.famale
-                                | Женщины
-                            ul.leaderboard-content
-                                li
-                                    .leader-photo
-                                        img(src="img/user_f_1.jpg")
-                                    .leader-name
-                                        | Оксана Пикмулова
-                                    .leader-rating
-                                        | 311
-                                li
-                                    .leader-photo
-                                        img(src="img/user_f_2.jpg")
-                                    .leader-name
-                                        | Анна Алмазова
-                                    .leader-rating
-                                        | 223
-                                li
-                                    .leader-photo
-                                        img(src="img/user_f_3.jpg")
-                                    .leader-name
-                                        | Ульяна Гребенщикова
-                                    .leader-rating
-                                        | 197
-                                li
-                                    .leader-photo
-                                        img(src="img/user_f_4.jpg")
-                                    .leader-name
-                                        | Елена Кожухова
-                                    .leader-rating
-                                        | 162
-                                li
-                                    .leader-photo
-                                        img(src="img/user_f_5.jpg")
-                                    .leader-name
-                                        | Ольга Орлова
-                                    .leader-rating
-                                        | 157
-                        //.col-md-4.noPad
-                        //    .leaderboard-title
-                        //        | Чемпионы
-                        //    ul.leaderboard-content
-        //.container.partners.marBot30.noPad
-        //    h3.fullDarkHeader
-        //        span.fullDarkHeader-inner
-        //            | Че осталось
-            //.row
-            //    .col-md-12
-            //        .col-md-12
-            //            .col-md-12
-            //                h4 Доверстать статику для учатников, пример тут http://cfft.ru/opens/5/crossfit_for_competitors
-            //                h4 Вставить отредактированый текст о нас
-            //                h4 Вставить реальных партнеров
-            //                h4 Придумать временное решение, че сделать с календарем??
-            //                h4 Причесать Профайл
-            //                h4 Статика контакты
-            //                h4 Вставить реальные слайды в слайдер
-            //                h4 Вставить реальных чуваков в лидерборд
-            //                h4 скрыть подписку на рассылки
-            //                h4 вставить реальные данные в WOW backtimer
-            //                h4 Форма подачи заявки на участие, синхонизовать с моделью
-            //                h4 подфуфлить вывод мероприятия с единственным этапом
-            //                h4 Регистрашка, ВСЕ поля
-            //                h4 Реализовать механизм подачи, отображение и взаимодействие(в админке) с результатами, вывод их в мероприятие
-            //                h4 ДОПИЛИТЬ РЕГИСТРАШКУ
-            //                h4 Скрыть пока филтры
-            //                h4 Картинка для мероприятия
-            //                h4 Украшательство меропритятия
-            //                h4 Хостинг нах
+                                    i.fa.fa-circle
+                        .main-slider-slide-right
+                            i.fa.fa-angle-right
+                    ul.main-slider(data-shift="0")
+                        li.slide
+                            img(src="img/slide1.jpg")
+                            //.slide-text Lorem ipsum dolor sit!
+                        li.slide
+                            img(src="img/slide2.jpg")
+                            //.slide-text Lorem ipsum dolor sit!
+                        li.slide
+                            img(src="img/slide3.jpg")
 
+    .page-content.wid100pr.main-wide-bg
+        .container.marTop100.marBot35
+            .row
+                .col-md-4
+                    .mPage-block.calendar-wrapper-new
+                        | calendar
+                .col-md-8
+                    .mPage-block.coming-wow-wrapper-new
+                        .wow-header
+                            | Wod of week
+                        .wow-content
+                            .col-md-8
+                                ul
+                                    li asdasd
+                                    li asdasd
+                                    li asdasd
+                                    li asdasd
+                                    li asdasd
+                                    li asdasd
+                            .col-md-4
+        .fullWidthRatingBg
+        .container
+            |asdasd
+    .page-content.wid100pr.whiteBg
         .container.partners.marBot30.noPad
             h3.fullDarkHeader
                 span.fullDarkHeader-inner
@@ -223,6 +97,157 @@ block content
                                     | любим Спорт и Здоровый Образ Жизни (ЗОЖ)! В общем, Мы уважаем любую Двигательную
                                     | Активность!
                                     | Тренируйся! Соревнуйся! Выигрывай!
+                            //.slide-text Lorem ipsum dolor sit!
+                //.nearrest-wow-event-wrapper.noPad.col-md-3(data-to_date="")
+                //    .nearrest-wow-header
+                //        .nearrest-wow-title
+                //            | Wod of week
+                //        .nearrest-wow-from-to-date
+                //            span.date-start
+                //            |  -
+                //            span.date-end
+                //    .nearrest-wow-content
+                //        .nearrest-wow-timer.row
+                //            .nearrest-wow-timer-row.col-md-12
+                //                .nearresr-wow-timer-init
+                //                //.t_tblc.pr25
+                //                //    |дня
+                //                //.t_tblc.hours.pr25
+                //                //    |час
+                //                //.t_tblc.mins.pr25
+                //                //    |мин
+                //                //.t_tblc.secs.pr25
+                //                //    |сек
+                //        .nearrest-wow-exercises
+                //            | 3 rounds for time
+                //            br
+                //            | 10 pull-ups
+                //            br
+                //            | 10 burpees
+                //    a.nearrest-wow-order(href="wow")
+                //         | Принять участие!
+        //.container
+        //    .row
+        //        .col-md-3.noPad
+        //            .calendar-title
+        //                | Календарь событий
+        //            .calendar-wrapper
+        //        .col-md-9.noPad
+        //            .leaderboard-wrapper
+        //                .col-md-12.noPad
+        //                    .leaderboard-title.ta-center
+        //                        | Таблица лидеров
+        //                .col-xs-6.noPad
+        //                    div.genderLabel.male
+        //                        | Мужчины
+        //                    ul.leaderboard-content
+        //                        li
+        //                            .leader-photo
+        //                                img(src="img/user_m_1.jpg")
+        //                            .leader-name
+        //                                | Андрей Ганин
+        //                            .leader-rating
+        //                                | 259
+        //                        li
+        //                            .leader-photo
+        //                                img(src="img/user_m_2.jpg")
+        //                            .leader-name
+        //                                | Юрий Казаков
+        //                            .leader-rating
+        //                                | 213
+        //                        li
+        //                            .leader-photo
+        //                                img(src="img/user_m_3.jpg")
+        //                            .leader-name
+        //                                | Владимир Сайдашев
+        //                            .leader-rating
+        //                                | 188
+        //                        li
+        //                            .leader-photo
+        //                                img(src="img/user_m_4.jpg")
+        //                            .leader-name
+        //                                | Николай Петров
+        //                            .leader-rating
+        //                                | 170
+        //                        li
+        //                            .leader-photo
+        //                                img(src="img/user_m_5.jpg")
+        //                            .leader-name
+        //                                | Сергей Ватутенко
+        //                            .leader-rating
+        //                                | 151
+        //                .col-xs-6.noPad
+        //                    div.genderLabel.famale
+        //                        | Женщины
+        //                    ul.leaderboard-content
+        //                        li
+        //                            .leader-photo
+        //                                img(src="img/user_f_1.jpg")
+        //                            .leader-name
+        //                                | Оксана Пикмулова
+        //                            .leader-rating
+        //                                | 311
+        //                        li
+        //                            .leader-photo
+        //                                img(src="img/user_f_2.jpg")
+        //                            .leader-name
+        //                                | Анна Алмазова
+        //                            .leader-rating
+        //                                | 223
+        //                        li
+        //                            .leader-photo
+        //                                img(src="img/user_f_3.jpg")
+        //                            .leader-name
+        //                                | Ульяна Гребенщикова
+        //                            .leader-rating
+        //                                | 197
+        //                        li
+        //                            .leader-photo
+        //                                img(src="img/user_f_4.jpg")
+        //                            .leader-name
+        //                                | Елена Кожухова
+        //                            .leader-rating
+        //                                | 162
+        //                        li
+        //                            .leader-photo
+        //                                img(src="img/user_f_5.jpg")
+        //                            .leader-name
+        //                                | Ольга Орлова
+        //                            .leader-rating
+        //                                | 157
+                        //.col-md-4.noPad
+                        //    .leaderboard-title
+                        //        | Чемпионы
+                        //    ul.leaderboard-content
+        //.container.partners.marBot30.noPad
+        //    h3.fullDarkHeader
+        //        span.fullDarkHeader-inner
+        //            | Че осталось
+            //.row
+            //    .col-md-12
+            //        .col-md-12
+            //            .col-md-12
+            //                h4 Доверстать статику для учатников, пример тут http://cfft.ru/opens/5/crossfit_for_competitors
+            //                h4 Вставить отредактированый текст о нас
+            //                h4 Вставить реальных партнеров
+            //                h4 Придумать временное решение, че сделать с календарем??
+            //                h4 Причесать Профайл
+            //                h4 Статика контакты
+            //                h4 Вставить реальные слайды в слайдер
+            //                h4 Вставить реальных чуваков в лидерборд
+            //                h4 скрыть подписку на рассылки
+            //                h4 вставить реальные данные в WOW backtimer
+            //                h4 Форма подачи заявки на участие, синхонизовать с моделью
+            //                h4 подфуфлить вывод мероприятия с единственным этапом
+            //                h4 Регистрашка, ВСЕ поля
+            //                h4 Реализовать механизм подачи, отображение и взаимодействие(в админке) с результатами, вывод их в мероприятие
+            //                h4 ДОПИЛИТЬ РЕГИСТРАШКУ
+            //                h4 Скрыть пока филтры
+            //                h4 Картинка для мероприятия
+            //                h4 Украшательство меропритятия
+            //                h4 Хостинг нах
+
+
 
         //.adv-block-wrapper
         //    div
