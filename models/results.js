@@ -114,6 +114,19 @@ module.exports = function(callback){
                             alias:'gender'
                         }
                     ]
+                },
+                club_id:{
+                    table:"clubs",
+                    fields:[
+                        {
+                            column:"id",
+                            alias:"club_id"
+                        },
+                        {
+                            column:"name",
+                            alias:"club"
+                        }
+                    ]
                 }
             }
         ]
