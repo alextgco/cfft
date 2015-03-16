@@ -16,8 +16,7 @@ module.exports = function(callback){
             description:"parseBlob"
         },
         concatFields:[{
-            title:['name'],
-            name:['name']
+            title:['name']
         }],
         join_objs:[
             {
