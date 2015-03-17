@@ -1,5 +1,7 @@
 extends layout
 block content
+    - var articles = articles;
+    - var articlesStr = JSON.stringify(articles);
     .page-content
         .col-md-12.noPad
             .main-slider-wrapper-new.col-md-12.container.noPad
@@ -44,17 +46,18 @@ block content
                         .wow-content
                             .nearrest-wow-event-wrapper.noPad(data-to_date="")
                                 .nearrest-wow-content
-                                    .nearrest-wow-timer.row
+                                    .col-md-8
+                                        .nearrest-wow-exercises
                                         .nearrest-wow-timer-row.col-md-12
-                                            .nearresr-wow-timer-init
-                                    .nearrest-wow-exercises
-                                        | 3 rounds for time
-                                        br
-                                        | 10 pull-ups
-                                        br
-                                        | 10 burpees
-                                a.nearrest-wow-order(href="wow")
-                                    | Принять участие!
+                                            .nearresr-wow-timer-label
+                                                | Осталось:
+                                            .nearresr-wow-timer-init-wrapper
+                                                .nearresr-wow-timer-init
+                                    .col-md-4
+                                        .nearrest-wow-photo
+                                            img(src="")
+                                        a.nearrest-wow-order(href="wow")
+                                            | Учавствовать
         .fullWidthRatingBg
         .container
             |asdasd
@@ -66,7 +69,8 @@ block content
             .row
                 .col-md-12
                     .col-md-12
-                        .col-md-12
+                        .col-md-4
+                        .col-md-8
                             h4.ta-center
                                 | Приветствуем тебя Атлет, Тренер, Владелец зала!
                             br
@@ -105,6 +109,18 @@ block content
                                     | любим Спорт и Здоровый Образ Жизни (ЗОЖ)! В общем, Мы уважаем любую Двигательную
                                     | Активность!
                                     | Тренируйся! Соревнуйся! Выигрывай!
+    .page-content.wid100pr.whiteBg
+        .container.partners.marBot30.noPad
+            h3.fullDarkHeader
+                span.fullDarkHeader-inner
+                    | Новости
+            .row
+                | #{articlesStr}
+                .col-md-12
+                    .col-md-12
+                        .col-md-4
+                        .col-md-8
+                            h4.ta-center
                             //.slide-text Lorem ipsum dolor sit!
 
         //.container

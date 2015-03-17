@@ -185,7 +185,9 @@ $(document).ready(function(){
             for(var g in games.data){
                 var game = games.data[g];
                 calEvents.push({
-                    title  : 'G',
+                    title  : '',
+                    className: 'games_event',
+                    url: 'event?id='+game.id,
                     start  : CF.toCalendarString(game.date_start) //'2015-03-18',
                 });
             }
@@ -193,7 +195,9 @@ $(document).ready(function(){
             for(var w in wows.data){
                 var wow = wows.data[w];
                 calEvents.push({
-                    title  : 'WoW',
+                    title  : '',
+                    className: 'wow_event',
+                    url: 'wow?id='+wow.id,
                     start  : CF.toCalendarString(wow.date_start) //'2015-03-18',
                 });
             }
@@ -205,6 +209,11 @@ $(document).ready(function(){
                 events: calEvents,
                 eventColor: '#282828'
             });
+
+            for(var i = 0; i < $('.calendar-wrapper').find('.games_event').length; i++){
+                var e = $('.calendar-wrapper').find('.games_event').eq(i);
+                //if(e.parents('.fc-widget-content').eq(0)){}
+            }
 
         });
 
@@ -763,6 +772,8 @@ $(document).ready(function(){
         var start = wowWrapper.find('.date-start');
         var end = wowWrapper.find('.date-end');
         var short = wowWrapper.find('.nearrest-wow-exercises');
+        var photo = wowWrapper.find('.nearrest-wow-photo img');
+
 
         sendQuery(o, function(res){
             var data = res.data;
@@ -775,6 +786,8 @@ $(document).ready(function(){
                 wowWrapper.data('to_date', data.date_start);
                 header.html(data.title);
                 short.html(data.description2);
+                console.log(photo, 'upload/'+data.thumb);
+                photo.attr('src', 'upload/'+data.thumb);
                 CF.initBackTimer();
             }
             console.log(data);

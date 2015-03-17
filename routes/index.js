@@ -3,11 +3,7 @@ var checkAuthApi = require('../middleware/checkAuthApi');
 var checkAdmin = require('../middleware/checkAdmin');
 module.exports = function (app) {
 
-  app.get('/', function(req, res, next){
-    res.render('mainPage',{
-      title:""
-    });
-  });
+  app.get('/', require('./mainPage').get);
   app.get('/admin', checkAdmin, require('./admin').get);
   app.post('/admin/api', checkAdmin, require('./adminApi').post);
   app.post('/api', require('./userApi').post);

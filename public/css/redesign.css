@@ -439,12 +439,9 @@ body{
     /*background-color: #222;*/
 }
 .nearrest-wow-order{
-
-    position: absolute;
     bottom: 0;
     height: 47px;
     text-align: center;
-    width: 100%;
     color: #252525;
     font-family: opensanssemibold,arial, sans-serif;
     padding-top: 14px;
@@ -453,6 +450,10 @@ body{
     font-size: 14px;
     text-decoration: none;
     text-transform: uppercase;
+    padding-bottom: 13px;
+    width: 100%;
+    display: block;
+    margin-top: 10px;
 }
 .nearrest-wow-order:hover{
     background-color: #FF7706;
@@ -480,11 +481,11 @@ body{
     font-size: 16px;
 }
 .nearrest-wow-exercises{
-    text-align: left;
-    color: #b8b7b7;
-    margin-top: 27px;
-    border-top: 1px solid #626262;
-    padding-top: 15px;
+    /*text-align: left;*/
+    /*color: #b8b7b7;*/
+    /*margin-top: 27px;*/
+    /*border-top: 1px solid #626262;*/
+    /*padding-top: 15px;*/
     font-size: 13px;
     font-family: arial, sans-serif;
 }
@@ -497,6 +498,11 @@ body{
     /*box-shadow: inset 1px 1px 1px rgba(0,0,0,0.3);*/
     /*margin-top: 4px;*/
     /*margin-bottom: 10px;*/
+    /*width: 250px;*/
+    float: right;
+    margin-top: 20px;
+    padding: 0;
+    margin-right: -70px;
 }
 .nearrest-wow-timer-row .tblc{
     float: left;
@@ -861,7 +867,7 @@ h4.darkHd{
 }
 
 .countdown-amount{
-    color: #fff;
+    color: #333;
     display: block;
     float: left;
     width: 25%;
@@ -917,7 +923,7 @@ h4.darkHd{
 
 
 .countdown-section:last-child .countdown-amount{
-    color: #ff8a06;
+    color: #333;
 }
 
 .event-main-image-wrapper img{
@@ -1284,7 +1290,7 @@ h4.darkHd{
     background-size: cover;
 }
 .coming-wow-wrapper-new{
-
+    min-height: 349px;
 }
 
 .wow-header{
@@ -1314,4 +1320,41 @@ h4.darkHd{
 }
 .nearrest-wow-timer{
     width: 230px;
+}
+
+.nearrest-wow-photo{
+    width: 100%;
+}
+.nearrest-wow-photo img{
+    width: 100%;
+}
+
+.nearresr-wow-timer-label{
+    display: inline-block;
+}
+
+.nearresr-wow-timer-init-wrapper{
+    width: 200px;
+    display: inline-block;
+}
+.wow_event{
+    background-color: #0044cc!important;
+    border-color: #0044cc!important;
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    padding: 0;
+}
+.games_event{
+    background-color: #128e18!important;
+    border-color: #128e18!important;
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    padding: 0;
+    margin-left: 17px;
 }
