@@ -3,6 +3,7 @@ var MyError = require('../error').MyError;
 var UserError = require('../error').UserError;
 var funcs = require('../libs/functions');
 var async = require('async');
+var api = require('../libs/api');
 module.exports = function(callback){
     var results = new Model({
         allowedForUserCommand:['get','addOrder','actionLeaderBoard'],
@@ -498,7 +499,7 @@ module.exports = function(callback){
                                     if (err){
                                         return callback(err);
                                     }
-                                    var sql = "SELECT 0 as position, concat(u.firstname, ' ',u.surname) as fio ";
+                                    var sql = "SELECT 0 as position, concat(u.firstname, ' ',u.surname) as fio, u.id as user_id, u.gender_id as gender_id, u.age as age ";
                                     for (var i in parts) {
                                         sql+= ', ('+parts[i].sqlPos+') as ap' +parts[i].id;
                                         sql+= ', ('+parts[i].sqlRes+') as res' +parts[i].id;
@@ -535,6 +536,7 @@ module.exports = function(callback){
                                         var plusCounter = 0;
                                         var oldSum = 1;
                                         var pos = 0;
+                                        var action_resS = [];
                                         for (var j in res2) {
                                             if (res2[j].sum_pos == oldSum){
                                                 plusCounter++;
@@ -549,7 +551,31 @@ module.exports = function(callback){
                                                 res2[j]['ap'+parts[c].id] = res2[j]['res'+parts[c].id] || '-';
                                                 delete res2[j]['res'+parts[c].id];
                                             }
+                                            var action_res = {
+                                                action_id: action_id,
+                                                user_id: res2[j].user_id,
+                                                position: res2[j].position,
+                                                age: res2[j].age,
+                                                gender_id: res2[j].gender_id
+                                            };
+                                            action_resS.push(action_res);
+                                            delete res2[j].user_id;
+                                            delete res2[j].age;
+                                            delete res2[j].gender_id;
                                         }
+                                        console.log('///////////////////////////////////////////////////////////////////////////////////////');
+                                        console.log(action_resS);
+                                        console.log('------/////////////////////////////////////////////////////////////////////////////////');
+                                        async.each(action_resS, function (item, callback) {
+                                            api('updateRealResults', 'action', item,function(err,result){
+                                                if (err){
+                                                    console.log(err);
+                                                }else{
+                                                    console.log(result);
+                                                }
+                                            });
+                                        });
+
                                         callback(null,{
                                             columns:columns,
                                             data: res2

@@ -2,6 +2,7 @@ var Model = require('./MySQLModel');
 var MyError = require('../error').MyError;
 var funcs = require('../libs/functions');
 var async = require('async');
+var sendMail = require('../libs/sendMail');
 module.exports = function(callback){
     var action = new Model({
         table: 'actions',
@@ -172,6 +173,64 @@ module.exports = function(callback){
                     });
                 });
             });
+        };
+        action.doSubscribe = function(obj,callback){
+            if (typeof obj!=='object'){
+                return callback(new MyError('Не корректный объект'));
+            }
+            /*if(!obj.user_id){
+                callback(null, funcs.formatResponse(1, 'error', 'Для отправки заявки необходимо авторизоваться..'));
+            }*/
+            pool.getConn(function(err, conn){
+                if (err){
+                    return callback(err);
+                }
+                var sql = 'select email from users where email is not null and isAgree = 1';
+                conn.query(sql,[],function(err, res){
+                    conn.release();
+                    if (err){
+                        return callback(err);
+                    }
+                    async.each(res, function (item, callback) {
+                        var o = {
+                            email: item.email,
+                            subject: 'Тест рассылки мероприятия',
+                            html: obj.html || 'Тест рассылки мероприятия.'
+                        };
+                        sendMail(o, function (err) {
+                            callback(err);
+                        });
+                    }, function (err,r) {
+                        callback(err,r);
+                    })
+                });
+            });
+
+            /*var o = {
+                email: obj.email,
+                subject: 'Отказ от рассылки',
+                html: 'Вы успешно отписались от рассылки.'
+            };
+            sendMail(o, function (err) {
+                callback(err);
+            });*/
+
+        };
+        action.updateRealResults = function(obj,callback){
+            if (typeof obj!='object'){
+                return callback(new MyError('Не передан параметр obj в updateRealResults'));
+            }
+            pool.getConn(function (err, conn) {
+                if (err){
+                    console.log(err);
+                    return callback(new MyError('Не удалось установить подключение updateRealResults'));
+                }
+                conn.upsert('real_action_results',obj, function (err, affected) {
+                    if (err){
+                        return callback(err,affected);
+                    }
+                })
+            })
         };
 
         callback(action);

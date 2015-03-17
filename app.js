@@ -118,6 +118,12 @@ console.log('-------------------------------------------------');
 console.log('SERVER STARTED');
 module.exports = app;
 
+/*
+var api = require('./libs/api');
+
+api('doSubscribe','action',{html:'<b>ТЕСТ РАСССЫЛКИ</b>'},function(err,result){
+    console.log(err, result);
+});*/
 
 /*var api = require('./libs/userApi');
 api('actionLeaderBoard', 'results', {age:'40',gender_sys_name:'MALE'},function(err,result){

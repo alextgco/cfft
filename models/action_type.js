@@ -1,6 +1,6 @@
 var Model = require('./MySQLModel');
 module.exports = function(callback){
-    var action_types = new Model({
+    var action_type = new Model({
         table: 'action_types',
         table_ru: 'Тип мероприятия',
         ending:'',
@@ -12,7 +12,7 @@ module.exports = function(callback){
         if (err){
             console.log(err);
         }
-        callback(action_types);
+        callback(action_type);
     });
 };
 
