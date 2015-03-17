@@ -20,6 +20,15 @@ module.exports = function(callback){
         if (err){
             console.log(err);
         }
+        article.beforeFunction.modify = function (obj, callback) {
+            if (obj.published===true){
+                obj.published = funcs.getDateTimeMySQL();
+            }else if (obj.published===false){
+                obj.published = '5015-02-25 22:41:27';
+            }
+
+            callback(null, obj);
+        };
 
 
         callback(article);

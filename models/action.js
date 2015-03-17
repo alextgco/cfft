@@ -1,6 +1,7 @@
 var Model = require('./MySQLModel');
 var MyError = require('../error').MyError;
 var funcs = require('../libs/functions');
+var async = require('async');
 module.exports = function(callback){
     var action = new Model({
         table: 'actions',
@@ -119,6 +120,58 @@ module.exports = function(callback){
                     callback(null, obj);
                 });
             }
+        };
+        action.autoFinish = function(obj,callback){
+            if (typeof obj!='object'){
+                obj = {};
+            }
+            action.getDirectoryId('action_statuses','OPENED',function(err,id){
+                if (err){
+                    return callback(new MyError('Нет такого статуса'));
+                }
+                var status_id = id;
+                var o = {
+                    columns:['id','date_end'],
+                    where:{
+                        status_id:status_id
+                    }
+                };
+
+                action.get(o,function(err,res){
+                    if (err){
+                        return callback(new MyError('Не удалось обновить мероприятия.'));
+                    }
+                    var needUpdate = [];
+                    res = res.data;
+                    action.getDirectoryId('action_statuses','FINISHED',function(err,id) {
+                        if (err) {
+                            return callback(new MyError('Нет такого статуса'));
+                        }
+                        var status_id = id;
+                        for (var i in res) {
+                            var date_end = res[i].date_end;
+
+                            var dateMySQL = funcs.getDateMySQL();
+                            if (date_end == dateMySQL) {
+                                needUpdate.push({
+                                    id: res[i].id,
+                                    status_id: status_id
+                                });
+                            }
+                        }
+                        async.each(needUpdate, function (item, callback) {
+                            action.modify(item, function (err, affected) {
+                                if (err) {
+                                    console.log(err);
+                                }
+                                callback(null, affected);
+                            })
+                        }, function (err, r) {
+                            callback(err, needUpdate.length);
+                        });
+                    });
+                });
+            });
         };
 
         callback(action);

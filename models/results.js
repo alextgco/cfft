@@ -454,8 +454,9 @@ module.exports = function(callback){
                             var sql = "SELECT r.action_part_id as id, max(r.position+1) as max_pos, ap.title FROM results r " +
                                 "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
                                 "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
-                                " WHERE rs.sys_name = 'ACCEPTED' " +
-                                "AND ap.action_id = ?" +
+                                " WHERE " +
+                                "(rs.sys_name = 'ACCEPTED'  or rs.sys_name = 'IN_QUEUE') AND" +
+                                " ap.action_id = ?" +
                                 " GROUP BY r.action_part_id ";
                             conn.query(sql,[action_id], function (err, res1) {
                                 conn.release();
@@ -475,14 +476,14 @@ module.exports = function(callback){
                                         "FROM results r " +
                                         "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
                                         "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
-                                        "where rs.sys_name = 'ACCEPTED' " +
+                                        "where (rs.sys_name = 'ACCEPTED'  or rs.sys_name = 'IN_QUEUE')  " +
                                         "and r.user_id = u.id " +
                                         "and ap.id = "+ item.id,
                                         sqlRes:"SELECT CAST(concat(r.position,'(',r.concat_result,')') AS CHAR(10000) CHARACTER SET utf8) as res " +
                                         "FROM results r " +
                                         "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
                                         "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
-                                        "where rs.sys_name = 'ACCEPTED' " +
+                                        "where (rs.sys_name = 'ACCEPTED'  or rs.sys_name = 'IN_QUEUE') " +
                                         "and r.user_id = u.id " +
                                         "and ap.id = "+ item.id
                                     };
