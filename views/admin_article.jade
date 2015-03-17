@@ -1,0 +1,46 @@
+extends admin_layout
+block content
+    - var isNew = data.isNew;
+    if(!isNew)
+        - var article = data.data[0];
+    .container.posRel
+        if(isNew)
+            h2 Создание статьи
+        else
+            h2 Редактирование статьи
+        if(isNew)
+            form#edit-article.marTop22(data-id="new")
+                .row
+                    .col-md-12
+                        .form-group
+                            label Наименование:
+                            input.fc-field.form-control(type='text', data-server_name="title", value="", data-name="title")
+                .row
+                    .col-md-12
+                        .form-group
+                            label Текст:
+                            textarea.fc-field.form-control.cf_text_editor(data-name="body", data-server_name="body", id="new-body", value="")
+        else
+            form#edit-article.marTop22(data-id="#{article.id}")
+                .row
+                    .col-md-12
+                        .form-group
+                            label Наименование:
+                            input.fc-field.form-control(type='text', data-server_name="title", value="#{article.title}", data-name="title")
+                .row
+                    .col-md-12
+                        .form-group
+                            label Текст:
+                            textarea.fc-field.form-control.cf_text_editor(data-name="body", data-server_name="body", id="#{article.id}-body", value="#{article.body}")
+        .col-md-12
+            hr
+            .col-md-12
+                #confirm_edit_article.sBtn.green.marL1.flRight
+                    i.fa.fa-check
+                    | &nbsp;&nbsp;Сохранить
+                if(!isNew)
+                    #publicate_article.sBtn.blue.marL1.flRight
+                        i.fa.fa-users
+                        | &nbsp;&nbsp;Опубликовать
+
+    script(src="js/admin_article.js")
