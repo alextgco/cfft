@@ -260,6 +260,37 @@ $(document).ready(function(){
     }());
 
 
+    (function(){
+        var regLink = $('.event-reglament-link');
+        regLink.off('click').on('click', function(){
+            var html = '';
+            var self = this;
+            sendQuery({
+                command: 'get',
+                object: 'action_type',
+                params: {
+                    where: {
+                        sys_name: $(self).data('sys_name')
+                    }
+                }
+            }, function(res){
+                console.log('REGLAMENT', res);
+                bootbox.dialog({
+                    title: 'Регламент',
+                    message: res.data[0].regulations,
+                    buttons: {
+                        success: {
+                            label: 'Закрыть',
+                            callback: function(){
+
+                            }
+                        }
+                    }
+                })
+            });
+        });
+    }());
+
     CF.initMainSlider();
     CF.initUserObject();
     CF.initRegistration();

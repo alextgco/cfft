@@ -241,41 +241,41 @@ a.open-calendar.opened{
 .main-slider-wrapper-new{
 
 }
-.modal-header{
-    border-bottom: 1px solid #121212;
-    background-color: #FF6B00;
-    color: #fff;
-}
-.modal-body{
-    position: relative;
-    padding: 15px;
-    color: #fff;
-    text-shadow: 0 0 0 transparent;
-    background-color: #444;
-}
+/*.modal-header{*/
+    /*border-bottom: 1px solid #121212;*/
+    /*background-color: #FF6B00;*/
+    /*color: #fff;*/
+/*}*/
+/*.modal-body{*/
+    /*position: relative;*/
+    /*padding: 15px;*/
+    /*color: #fff;*/
+    /*text-shadow: 0 0 0 transparent;*/
+    /*background-color: #444;*/
+/*}*/
 
-.modal-body input{
-    background-color: #222;
-    border-color: #000;
-    color: #ccc;
-}
+/*.modal-body input{*/
+    /*background-color: #222;*/
+    /*border-color: #000;*/
+    /*color: #ccc;*/
+/*}*/
 
-.modal-body label{
-    font-weight: normal;
-}
+/*.modal-body label{*/
+    /*font-weight: normal;*/
+/*}*/
 
-.modal-body .input-group-addon:first-child{
-    background-color: #000;
-    color: #FF6B00;
-    border-color: #000;
-}
-.modal-footer {
-    padding: 15px;
-    text-align: right;
-    border-top: 1px solid #222;
-    background-color: #333;
+/*.modal-body .input-group-addon:first-child{*/
+    /*background-color: #000;*/
+    /*color: #FF6B00;*/
+    /*border-color: #000;*/
+/*}*/
+/*.modal-footer {*/
+    /*padding: 15px;*/
+    /*text-align: right;*/
+    /*border-top: 1px solid #222;*/
+    /*background-color: #333;*/
 
-}
+/*}*/
 /*.modal-footer .btn {*/
     /*margin-bottom: 0;*/
     /*margin-left: 5px;*/
@@ -748,9 +748,9 @@ body{
     padding-top: 10px;
 }
 .input-group-addon {
-    color: #ccc;
-    background-color: #000;
-    border: 1px solid #000;
+    /*color: #ccc;*/
+    /*background-color: #000;*/
+    /*border: 1px solid #000;*/
 }
 .wide-img{
     position: relative;
@@ -810,7 +810,7 @@ h4.darkHd{
     border-radius: 3px;
 }
 .modal-body label {
-    color: #fff;
+    /*color: #fff;*/
 
 }
 .modal-order-content{
@@ -1201,6 +1201,8 @@ h4.darkHd{
     border-radius: 3px;
     font-family: openSans, arial, sans-serif;
     text-shadow: 0 0 0;
+    display: inline;
+    cursor: pointer;
 }
 .event-reglament-link:hover{
     text-decoration: none;

@@ -9,7 +9,7 @@ exports.get = function(req, res, next){
             }
         });
     }else{
-        api('get', 'action_types', {where: {id: id}},function(err,result){
+        api('get', 'action_type', {where: {id: id}},function(err,result){
             if (err){
                 console.log(err, 'action_types');
                 return callback(err);
