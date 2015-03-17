@@ -177,7 +177,7 @@ $(document).ready(function(){
                     type: 'select',
                     tableName: 'city',
                     returnId: 'id',
-                    returnName: 'name',
+                    returnName: 'title',
                     whereType: 'external',
                     whereTable: 'cities'
                 },
