@@ -33,21 +33,12 @@ $(document).ready(function(){
             }
         });
 
-        //$('.cf_datepicker').datepicker({
-        //    format: "yyyy-mm-dd",
-        //    todayBtn: "linked",
-        //    language: "ru",
-        //    autoclose: true
-        //});
-
         $('.fc_datepicker').datepicker({
             format: "yyyy-mm-dd",
             todayBtn: "linked",
             language: "ru",
             autoclose: true
         });
-
-
 
         $('.maskedPhone').mask('(999) 999-99-99');
         $('.maskTime').mask('99:99');
@@ -146,11 +137,80 @@ $(document).ready(function(){
             }
         });
 
-        $('.calendar-wrapper').fullCalendar({
-            lang: 'ru',
-            aspectRatio: 1,
-            contentHeight: 'auto'
+
+        var games;
+        var wows;
+        function getEvents(cb){
+            sendQuery({
+                command: 'get',
+                object: 'action',
+                params: {
+                    where: {
+                        action_types:{
+                            sys_name:'GAMES'
+                        },
+                        action_statuses: {
+                            sys_name: 'OPENED'
+                        }
+                    }
+                }
+            }, function(res){
+                games = res;
+
+                sendQuery({
+                    command: 'get',
+                    object: 'action',
+                    params: {
+                        where: {
+                            action_types:{
+                                sys_name:'WOD_OF_WEEK'
+                            },
+                            action_statuses: {
+                                sys_name: 'OPENED'
+                            }
+                        }
+                    }
+                }, function(res){
+                    wows = res;
+                    if(typeof cb == 'function'){
+                        cb();
+                    }
+                });
+            });
+        }
+
+        getEvents(function(){
+            console.log('EVENTS', games, wows);
+            var calEvents = [];
+            for(var g in games.data){
+                var game = games.data[g];
+                calEvents.push({
+                    title  : 'G',
+                    start  : CF.toCalendarString(game.date_start) //'2015-03-18',
+                });
+            }
+
+            for(var w in wows.data){
+                var wow = wows.data[w];
+                calEvents.push({
+                    title  : 'WoW',
+                    start  : CF.toCalendarString(wow.date_start) //'2015-03-18',
+                });
+            }
+
+            $('.calendar-wrapper').fullCalendar({
+                lang: 'ru',
+                aspectRatio: 1,
+                contentHeight: 'auto',
+                events: calEvents,
+                eventColor: '#282828'
+            });
+
         });
+
+
+
+
 
         //type == true (COLLAPSE)
         //type == false (EXPAND)

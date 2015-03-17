@@ -121,7 +121,7 @@ a.open-calendar.opened{
 /*}*/
 .calendar-wrapper{
     z-index: 10;
-    background-color: #f7f7f7;
+    /*background-color: #f7f7f7;*/
 }
 
 .fc-today-button{
@@ -408,8 +408,8 @@ body{
 }
 
 .nearrest-wow-event-wrapper{
-    height: 320px;
-    background-color: #282828;
+    /*height: 320px;*/
+    /*background-color: #282828;*/
     position: relative;
 }
 
@@ -1301,4 +1301,17 @@ h4.darkHd{
     background-repeat: no-repeat;
     background-position: 50% 0;
     height: 33px;
+}
+.fc-event-container{
+    /*display: block;*/
+    /*float: left;*/
+    /*width: 10px;*/
+    /*height: 10px;*/
+}
+
+.fc-day-grid-event>.fc-content {
+    text-align: center;
+}
+.nearrest-wow-timer{
+    width: 230px;
 }
