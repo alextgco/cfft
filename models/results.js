@@ -551,30 +551,23 @@ module.exports = function(callback){
                                                 res2[j]['ap'+parts[c].id] = res2[j]['res'+parts[c].id] || '-';
                                                 delete res2[j]['res'+parts[c].id];
                                             }
-                                            var action_res = {
+                                            api('updateRealResults', 'action', {
                                                 action_id: action_id,
                                                 user_id: res2[j].user_id,
                                                 position: res2[j].position,
                                                 age: res2[j].age,
                                                 gender_id: res2[j].gender_id
-                                            };
-                                            action_resS.push(action_res);
+                                            }, function (err, result) {
+                                                if (err) {
+                                                    console.log(err);
+                                                }
+                                                callback();
+                                            });
+
                                             delete res2[j].user_id;
                                             delete res2[j].age;
                                             delete res2[j].gender_id;
                                         }
-                                        console.log('///////////////////////////////////////////////////////////////////////////////////////');
-                                        console.log(action_resS);
-                                        console.log('------/////////////////////////////////////////////////////////////////////////////////');
-                                        async.each(action_resS, function (item, callback) {
-                                            api('updateRealResults', 'action', item,function(err,result){
-                                                if (err){
-                                                    console.log(err);
-                                                }else{
-                                                    console.log(result);
-                                                }
-                                            });
-                                        });
 
                                         callback(null,{
                                             columns:columns,
@@ -594,6 +587,34 @@ module.exports = function(callback){
 
 
 
+        };
+        results.allActionLeaderBoard = function(obj, callback){
+            if (typeof obj!=='object'){
+                return callback(new MyError('Не переданы обязательные параметры'));
+            }
+            if (!obj.action_id){
+                return callback(new MyError('Не указано мероприятие.'));
+            }
+            if (!obj.gender_sys_name || !obj.age){
+                return callback(new MyError('Не переданы параметры пола и возраста'));
+            }
+            var action_id = obj.action_id;
+            var gender_sys_name = obj.gender_sys_name;
+            var age = (obj.age=='40')? ' <= 40 ' : ' > 40 ';
+
+            var columns = [
+                {title:'Место',name:'position'},
+                {title:'Атлет',name:'fio'}
+            ];
+
+            results.getDirectoryId('gender',gender_sys_name, function (err,gender_id) {
+                pool.getConn(function(err,conn) {
+                    if (err) {
+                        return callback(err);
+                    }
+                    conn.release();
+                });
+            });
         };
         callback(results);
     });
