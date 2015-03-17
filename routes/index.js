@@ -36,6 +36,9 @@ module.exports = function (app) {
     res.render('for_athlets');
   });
 
+  app.get('/article', require('./article').get);
+
+
   app.get('/for_partners', function(req, res, next){
     res.render('for_partners');
   });
@@ -77,6 +80,9 @@ module.exports = function (app) {
 
   app.get('/admin_articles', checkAdmin, require('./admin_articles').get);
   app.get('/admin_article', checkAdmin, require('./admin_article').get);
+
+  app.get('/admin_event_types', checkAdmin, require('./admin_event_types').get);
+  app.get('/admin_event_type', checkAdmin, require('./admin_event_type').get);
   /*app.get('/users', function (req, res, next) {ss
     User.find({}, function (err, users) {
       if (err) return next(err);

@@ -1358,3 +1358,33 @@ h4.darkHd{
     padding: 0;
     margin-left: 17px;
 }
+
+.article-image-wrapper{
+    max-height: 200px;
+    overflow: hidden;
+}
+.article-image-wrapper img{
+    width: 100%;
+}
+
+.article-item{
+    margin-bottom: 10px;
+}
+.art-header{
+    margin-bottom: 10px;
+}
+a.art-title{
+    cursor: pointer;
+
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 10px;
+}
+.art-body{
+    height: 130px;
+    overflow: hidden;
+}
+.readMore{
+    margin-top: 15px;
+    float: left;
+}

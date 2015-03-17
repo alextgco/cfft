@@ -110,20 +110,25 @@ block content
                                     | Активность!
                                     | Тренируйся! Соревнуйся! Выигрывай!
     .page-content.wid100pr.whiteBg
-        .container.partners.marBot30.noPad
+        .container.marBot30.noPad
             h3.fullDarkHeader
                 span.fullDarkHeader-inner
                     | Новости
             for a in articles
-                .row(data-id="#{a.id}")
+                .row.article-item(data-id="#{a.id}")
                     .col-md-12
-                        .col-md-4
-                            img(src="#{a.photo}")
+                        .col-md-4.article-image-wrapper
+                            img(src="upload/#{a.photo}")
                         .col-md-8
                             .art-header
-                                | #{a.title}
+                                a.art-title(href="article?id=#{a.id}")
+                                    | #{a.title}
+                                //.art-date
+                                //    | #{a.published}
                             .art-body
-                                | #{a.body}
+                                | !{a.body}
+                            a.readMore(href="article?id=#{a.id}")
+                                | Читать далее...
         //.container
         //    .row
         //        .col-md-3.noPad
