@@ -1,0 +1,13 @@
+extends layout
+block content
+    - var article = data.data[0];
+    .page-content
+        .container.marBot30.noPad
+            h3.fullDarkHeader
+                span.fullDarkHeader-inner
+                    | #{article.title}
+            .row
+                .col-md-4.article-image-wrapper
+                    img(src="upload/#{article.photo}")
+                .col-md-8
+                    | !{article.body}

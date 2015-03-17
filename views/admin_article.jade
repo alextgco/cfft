@@ -16,7 +16,21 @@ block content
                             label Наименование:
                             input.fc-field.form-control(type='text', data-server_name="title", value="", data-name="title")
                 .row
-                    .col-md-12
+                    .col-md-3
+                        .col-md-12
+                            .form-group
+                                label.control-label
+                                    | Картинка
+                                div.input-group
+                                    .input-group-addon
+                                        i.fa.fa-image
+                                    input.form-control.fc-field.userPhotoInput(type="text", data-server_name="photo", data-title="Фото", data-required="false", data-editor="text", placeholder="Выберите изображение")
+                        .col-md-12
+                            .user-photo-wrapper
+                                .user-photo-clear
+                                    .fa.fa-trash
+                                img(src="img/user_default_m.jpg")
+                    .col-md-9
                         .form-group
                             label Текст:
                             textarea.fc-field.form-control.cf_text_editor(data-name="body", data-server_name="body", id="new-body", value="")
@@ -28,7 +42,21 @@ block content
                             label Наименование:
                             input.fc-field.form-control(type='text', data-server_name="title", value="#{article.title}", data-name="title")
                 .row
-                    .col-md-12
+                    .col-md-3
+                        .col-md-12
+                            .form-group
+                                label.control-label
+                                    | Фото
+                                div.input-group
+                                    .input-group-addon
+                                        i.fa.fa-image
+                                    input.form-control.fc-field.userPhotoInput(type="text", data-server_name="photo", data-title="Фото", data-required="false", data-editor="text", placeholder="Выберите изображение", value="#{article.photo}")
+                        .col-md-12
+                            .user-photo-wrapper
+                                .user-photo-clear
+                                    .fa.fa-trash
+                                img(src="upload/#{article.photo}")
+                    .col-md-9
                         .form-group
                             label Текст:
                             textarea.fc-field.form-control.cf_text_editor(data-name="body", data-server_name="body", id="#{article.id}-body", value="#{article.body}")
