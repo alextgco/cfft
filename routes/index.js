@@ -78,6 +78,9 @@ module.exports = function (app) {
 
   app.get('/admin_clubs', checkAdmin, require('./admin_clubs').get);
   app.get('/admin_club', checkAdmin, require('./admin_club').get);
+
+  app.get('/admin_articles', checkAdmin, require('./admin_articles').get);
+  app.get('/admin_article', checkAdmin, require('./admin_article').get);
   /*app.get('/users', function (req, res, next) {ss
     User.find({}, function (err, users) {
       if (err) return next(err);

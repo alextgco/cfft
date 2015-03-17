@@ -30,7 +30,9 @@
             user_firstname: "Имя",
             user_id: "ID Пользователя",
             user_surname: "Фамилия",
-            video_url: "Ссылка на видео"
+            video_url: "Ссылка на видео",
+            title: "Наименование",
+            club: "Клуб"
         }
     };
 
@@ -331,6 +333,9 @@
                     '</table>' ;
 
         var rows = [];
+
+        console.log('LEADERBOARD', _t.data);
+
         for(var i in _t.data){
             var it = _t.data[i];
             rows.push({
@@ -509,9 +514,8 @@
         });
 
         _t.wrapper.find('.clear-filter').off('click').on('click', function(){
-            _t.where = CF.cloneObj(_t.defaultWhere);
 
-            console.log(_t.where);
+            _t.where = CF.cloneObj(_t.defaultWhere);
 
             _t.getData(function(){
                 _t.render(function(){
