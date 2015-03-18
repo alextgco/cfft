@@ -291,6 +291,41 @@ $(document).ready(function(){
         });
     }());
 
+    (function(){
+        var pTabs = $('.select_part li');
+        var contents = $('.part-item');
+
+        pTabs.off('click').on('click', function(){
+            if($(this).hasClass('active')){return;}
+            var idx = $(this).data('index');
+            contents.removeClass('active');
+            $('.part-item[data-index="'+idx+'"]').addClass('active');
+            pTabs.removeClass('active');
+            $('.select_part li[data-index="'+idx+'"]').addClass('active');
+        });
+
+        var rulesBtn = $('.show_rules');
+        rulesBtn.off('click').on('click', function(){
+
+            console.log($(this));
+
+            var event = $(this).data('event');
+            var _t = this;
+            bootbox.dialog({
+                title: 'Правила',
+                message: $(_t).find('.modal_rules_content').html(),
+                buttons:{
+                    error: {
+                        label: 'Закрыть',
+                        callback: function(){
+
+                        }
+                    }
+                }
+            });
+        });
+    }());
+
     CF.initMainSlider();
     CF.initUserObject();
     CF.initRegistration();
@@ -653,8 +688,6 @@ $(document).ready(function(){
     //order avent part
     function initOrderEventPart(){
         var orderBtn = $('.order-event-part');
-
-
         orderBtn.off('click').on('click', function(){
             var event = $(this).data('event');
             var event_part = $(this).data('event_part');
@@ -745,6 +778,8 @@ $(document).ready(function(){
                 }
             });
         });
+
+
     }
     CF.initOrderEventPart = initOrderEventPart;
 

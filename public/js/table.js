@@ -388,13 +388,13 @@
         var page = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" data-page="{{pageNo}}" class="page">{{pageNo}}</a></li>' : '';
 
         var tpl =  '<div class="part-table-template">' +
-                        '<div class="col-md-4 part-filters-parent">' +
+                        '<div class="col-md-4 part-filters-parent"><div class="filters_block">Фильтры временно недоступны</div>' +
                             '<div class="filter-title"><div class="col-md-12">Фильтровать резутлтаты</div></div>' +
                             '<div class="filters-list">' +
                             '</div>' +
                         '</div>' +
-                        '<div class="col-md-8">' +
-                                '<div class="refresh_table fa fa-refresh"></div><table class="table simpleView">' +
+                        '<div class="col-md-8 part-table-parent">' +
+                                '<table class="table simpleView">' + //<div class="refresh_table fa fa-refresh"></div>
                                 '<thead>' +
                                 '<tr>{{#columns}}' +
                                 '<th data-column="{{column}}">{{column_ru}}</th>{{/columns}}' +
@@ -475,8 +475,12 @@
 
             idx++;
         }
+        _t.wrapper.find('table.table.simpleView').remove();
+        _t.wrapper.find('nav').remove();
+        _t.wrapper.find('.no_results').remove();
 
         _t.wrapper.append(Mustache.to_html(tpl, mO));
+        _t.wrapper.find('.part-filters-parent').eq(1).remove();
 
         if(typeof cb == 'function'){
             cb();
