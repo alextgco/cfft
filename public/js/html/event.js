@@ -79,6 +79,7 @@ $(document).ready(function(){
     var part_id = tableWrapper.data('part_id');
     var getObj = tableWrapper.data('get_object');
     var rangeWhere = tableWrapper.data('range_where');
+    var type = tableWrapper.data('type');
 
     for(var i=0; i< tableWrapper.length; i++){
         var tbl = tableWrapper.eq(i);
@@ -87,6 +88,7 @@ $(document).ready(function(){
         part_id = tbl.data('part_id');
         getObj = tbl.data('get_object');
         rangeWhere = tbl.data('range_where');
+        type = tableWrapper.data('type');
 
         var whereObj = {
             action_parts: {
@@ -149,6 +151,7 @@ $(document).ready(function(){
                     type: 'link'
                 }
             ],
+            type: type,
             defaultWhere: whereObj,
             where: whereObj,
             goToObject: '',

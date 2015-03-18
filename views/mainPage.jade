@@ -2,32 +2,7 @@ extends layout
 block content
     - var articles = data.data;
     - var articlesStr = JSON.stringify(articles);
-    .page-content
-        .col-md-12.noPad
-            .main-slider-wrapper-new.col-md-12.container.noPad
-                .main-slider-view
-                    .main-slider-controls
-                        .main-slider-slide-left
-                            i.fa.fa-angle-left
-                        .main-slider-dots-wrapper
-                            ul.dots
-                                li
-                                    i.fa.fa-circle
-                                li
-                                    i.fa.fa-circle
-                                li
-                                    i.fa.fa-circle
-                        .main-slider-slide-right
-                            i.fa.fa-angle-right
-                    ul.main-slider(data-shift="0")
-                        li.slide
-                            img(src="img/slide1.jpg")
-                            //.slide-text Lorem ipsum dolor sit!
-                        li.slide
-                            img(src="img/slide2.jpg")
-                            //.slide-text Lorem ipsum dolor sit!
-                        li.slide
-                            img(src="img/slide3.jpg")
+
 
     .page-content.wid100pr.main-wide-bg
         .container.marTop100.marBot35
