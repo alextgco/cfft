@@ -63,6 +63,7 @@
     /*height: 500px;*/
     /*background-color: #000;*/
     position: relative;
+    z-index: 1;
 }
 
 .main-slider{

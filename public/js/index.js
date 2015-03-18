@@ -804,6 +804,7 @@ $(document).ready(function(){
         var end = wowWrapper.find('.date-end');
         var short = wowWrapper.find('.nearrest-wow-exercises');
         var photo = wowWrapper.find('.nearrest-wow-photo img');
+        var link = wowWrapper.find('a.nearrest-wow-order');
 
 
         sendQuery(o, function(res){
@@ -819,6 +820,7 @@ $(document).ready(function(){
                 short.html(data.description2);
                 console.log(photo, 'upload/'+data.thumb);
                 photo.attr('src', 'upload/'+data.thumb);
+                link.attr('href', 'wow?id='+data.id);
                 CF.initBackTimer();
             }
             console.log(data);

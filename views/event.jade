@@ -4,6 +4,73 @@ block content
     - var event = data.actions.data[0];
     - var rewards = data.rewards.data[0];
 
+    .wide-block.lightBg
+        .container
+            .h2.event-title
+                | #{event.title}
+    .wide-block.regularBg
+        .container
+            each p, pKey in parts
+                - var activeClass = (pKey == 0)? 'active': '';
+                .row(data-index="#{pKey}" class="part-item #{activeClass}")
+                    .col-md-8
+                        h3
+                            | #{p.title}
+                        p
+                            | #{p.start_date} - #{p.end_date}
+                        p
+                            | !{p.desc_complex}
+                        ul.select_part
+                            - var index = 0
+                            each val, key in parts
+                                if key == 0
+                                    li.active
+                                        | #{val.title}
+                                else
+                                    li
+                                        | #{val.title}
+                    .col-md-4
+                        p
+                            div(class="status_color #{p.status_sys_name}")
+                                | #{p.status}
+                        p
+                            img(src="img/standarts.jpg")
+    .wide-block.lightBg
+        .container
+            each p, pKey in parts
+                - var activeClass = (pKey == 0)? 'active': '';
+                .row(data-index="#{pKey}" class="part-item #{activeClass}")
+                    .h2
+                        | Предварительные результаты
+                    .part-buttons-wrapper
+                        a.cBtn.orange
+                            | Учавствовать!
+                        a.cBtn.grey
+                            | Регламент
+                    div.event-results-tabs(role="tabpanel")
+                        ul.nav.nav-pills(role="tablist")
+                            li.active(role="results_by_range_#{p.id}")
+                                a(href="#male_#{p.id}", aria-controls="male_#{p.id}", role="tab", data-toggle="tab") Мужчины
+                            li(role="results_by_range_#{p.id}")
+                                a(href="#male40_#{p.id}", aria-controls="male40_#{p.id}", role="tab", data-toggle="tab") Мужчины 40+
+                            li(role="results_by_range_#{p.id}")
+                                a(href="#famale_#{p.id}", aria-controls="famale_#{p.id}", role="tab", data-toggle="tab") Женщины
+                            li(role="results_by_range_#{p.id}")
+                                a(href="#famale40_#{p.id}", aria-controls="famale40_#{p.id}", role="tab", data-toggle="tab") Женщины 40+
+                        .tab-content
+                            .tab-pane.active(role="tabpanel", id="male_#{p.id}")
+                                .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="male")
+                            .tab-pane(role="tabpanel", id="male40_#{p.id}")
+                                .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="male40")
+                            .tab-pane(role="tabpanel", id="famale_#{p.id}")
+                                .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="famale")
+                            .tab-pane(role="tabpanel", id="famale40_#{p.id}")
+                                .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="famale40")
+                //<input type="text" data-where_type="external" data-where_table="users" class="tableFilter form-control" data-filter_type="like" data-column="surname">
+    h4
+        | OLD
+
+
     .adv-block-wrapper.big-content-wrapper
         .event-main-image-wrapper
             img(src="upload/#{event.image}")

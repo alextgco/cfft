@@ -84,6 +84,7 @@
         this.gender_sys_name =  p.gender_sys_name || '';
         this.age =              p.age || '';
         this.action_id =        p.action_id || '';
+        this.type =             p.type || '';
     };
 
     CF.Table.prototype.init = function(){
@@ -207,13 +208,26 @@
         if(_t.filters.length == 0){
             return;
         }
-        var html = '<div class="filterContainer"><div class="row"><div class="filters-wrapper row"></div><div class=""><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div></div></div>';
-        _t.wrapper.prepend(html);
+        if(_t.type == 'part_table'){
+            var html = '<div class="part-filters-wrapper filters-wrapper"></div><div class=""><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div>';
+            _t.wrapper.find('.part-filters-parent .filters-list').prepend(html);
+        }else{
+            var html = '<div class="filterContainer"><div class="row"><div class="filters-wrapper row"></div><div class=""><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div></div></div>';
+            _t.wrapper.prepend(html);
+        }
+
+
     };
 
     CF.Table.prototype.render = function(cb){
         var _t = this;
-
+        if(_t.type == 'part_table'){
+            _t.renderPartTable();
+            if(typeof cb == 'function'){
+                cb();
+            }
+            return;
+        }
         if(_t.isLeaderBoard){
             _t.renderLeaderBoard();
             if(typeof cb == 'function'){
@@ -366,6 +380,109 @@
         _t.wrapper.html(Mustache.to_html(tpl, mO));
     };
 
+    CF.Table.prototype.renderPartTable = function(){
+        var _t = this;
+
+        var prev = (_t.tempPage > 1)? '<li><a href="#" aria-label="Previous" class="prev"><span aria-hidden="true">&laquo;</span></a></li>' : '';
+        var next = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" aria-label="Next" class="next"><span aria-hidden="true">&raquo;</span></a></li>' : '';
+        var page = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" data-page="{{pageNo}}" class="page">{{pageNo}}</a></li>' : '';
+
+        var tpl =  '<div class="part-table-template">' +
+                        '<div class="col-md-4 part-filters-parent">' +
+                            '<div class="filter-title"><div class="col-md-12">Фильтровать резутлтаты</div></div>' +
+                            '<div class="filters-list">' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="col-md-8">' +
+                                '<div class="refresh_table fa fa-refresh"></div><table class="table simpleView">' +
+                                '<thead>' +
+                                '<tr>{{#columns}}' +
+                                '<th data-column="{{column}}">{{column_ru}}</th>{{/columns}}' +
+                                '</tr>' +
+                                '</thead>' +
+                                '<tbody>{{#rows}}' +
+                                '<tr data-id="{{id}}">{{#tds}}' +
+                                '<td>{{{value}}}</td>{{/tds}}' +
+                                '</tr>{{/rows}}' +
+                                '</tbody>' +
+                                '</table>' +
+                                '<nav>'+
+                                '<ul class="pagination">'+
+                                prev+
+                                '{{#pages}}'+
+                                page +
+                                '{{/pages}}'+
+                                next+
+                                '</ul>'+
+                                '</nav>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+
+        var mO = {
+            columns: [
+                {
+                    column: '#',
+                    column_ru: '#'
+                }
+            ],
+            rows: [],
+            pages: [
+                {
+                    pageNo: _t.tempPage
+                }
+            ],
+            filters: []
+        };
+
+        for(var i in _t.data[0]){
+            var item = _t.data[0][i];
+            if(_t.checkVisibility(i)){
+                mO.columns.push({
+                    column: i,
+                    column_ru: _t.getColumnName(i)
+                });
+            }
+        }
+
+        var idx = 0;
+        for(var k in _t.data){
+            var item = _t.data[k];
+            mO.rows.push({
+                tds: [
+                    {
+                        value: idx+1
+                    }
+                ]
+            });
+
+            for(var j in item){
+                var jtem = item[j];
+                if(_t.checkVisibility(j)) {
+                    if(_t.checkSpecial(j)){
+                        mO.rows[idx].id = _t.getPrimaryKey(item);
+                        mO.rows[idx].tds.push({
+                            value: '<a target="_blank" href="'+jtem+'"><i class="fa fa-video-camera"></i></a>'
+                        });
+                    }else{
+                        mO.rows[idx].id = _t.getPrimaryKey(item);
+                        mO.rows[idx].tds.push({
+                            value: jtem
+                        });
+                    }
+                }
+            }
+
+            idx++;
+        }
+
+        _t.wrapper.append(Mustache.to_html(tpl, mO));
+
+        if(typeof cb == 'function'){
+            cb();
+        }
+    };
+
     CF.Table.prototype.setHandlers = function(){
         var _t = this;
         _t.wrapper.find('tbody tr').off('click').on('click', function(){
@@ -433,10 +550,11 @@
         for(var i in _t.filters){
             var filter = _t.filters[i];
             var html = '';
+            var colClass = (_t.type == 'part_table')? 'col-md-12': 'col-md-3';
             if(filter.type == 'like'){
-                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="text" data-where_type="'+filter.whereType+'" data-where_table="'+filter.whereTable+'" class="tableFilter form-control" data-filter_type="like" data-column="'+filter.column+'"/></div>';
+                html = '<div class="'+colClass+'"><label>'+filter.label+'</label><input type="text" data-where_type="'+filter.whereType+'" data-where_table="'+filter.whereTable+'" class="tableFilter form-control" data-filter_type="like" data-column="'+filter.column+'"/></div>';
             }else if(filter.type == 'select'){
-                html = '<div class="col-md-3"><label>'+filter.label+'</label><input type="hidden" data-where_type="'+filter.whereType+'" data-where_table="'+filter.whereTable+'" data-return_id="'+filter.returnId+'" data-return_name="'+filter.returnName+'" class="tableFilter form-control select2" data-text="" data-filter_type="select" data-name="'+filter.column+'" data-server_name="'+filter.returnName+'" data-table="'+filter.tableName+'" data-column="'+filter.column+'"/></div>';
+                html = '<div class="'+colClass+'"><label>'+filter.label+'</label><input type="hidden" data-where_type="'+filter.whereType+'" data-where_table="'+filter.whereTable+'" data-return_id="'+filter.returnId+'" data-return_name="'+filter.returnName+'" class="tableFilter form-control select2" data-text="" data-filter_type="select" data-name="'+filter.column+'" data-server_name="'+filter.returnName+'" data-table="'+filter.tableName+'" data-column="'+filter.column+'"/></div>';
             }
             filterWrapper.append(html);
         }
