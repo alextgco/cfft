@@ -2,11 +2,12 @@ var Model = require('./MySQLModel');
 var MyError = require('../error').MyError;
 var UserError = require('../error').UserError;
 var funcs = require('../libs/functions');
+var moment = require('moment');
 var async = require('async');
 var api = require('../libs/api');
 module.exports = function(callback){
     var results = new Model({
-        allowedForUserCommand:['get','addOrder','actionLeaderBoard'],
+        allowedForUserCommand:['get','addOrder','actionLeaderBoard','allActionLeaderBoard'],
         table: 'results',
         table_ru: 'Результат',
         ending:'',
@@ -24,8 +25,8 @@ module.exports = function(callback){
             isAff:'number'
         },
         /*concatFields:[{
-            result:['result_min',':','result_sec']
-        }],*/
+         result:['result_min',':','result_sec']
+         }],*/
         getFormating:{
             video_url:"parseBlob"
         },
@@ -199,77 +200,77 @@ module.exports = function(callback){
             }
             obj.isAff = +obj.isAff || 0;
             pool.getConn(function(err,conn){
-               conn.queryRow('select gender_id, age, club_id from users where id = ?',[obj.user_id], function (err, row) {
-                   conn.release();
-                   if (err){
-                       return callback(err);
-                   }
-                   var gender_id = row.gender_id;
-                   var age = row.age;
-                   var club_id = row.club_id;
-                   results.getDirectoryId('action_statuses','OPENED',function(err,action_status_id){
-                       results.getDirectoryId('statuses_of_action_parts','OPENED',function(err,action_part_status_id){
-                           pool.getConn(function(err,conn){
-                               if (err){
-                                   return callback(err);
-                               }
-                               conn.queryValue("select count(*) from action_parts ap left join actions as a on ap.action_id = a.id where a.status_id=? and ap.status_id=? and ap.id = ?",
-                                   [action_part_status_id, action_status_id, obj.action_part_id],
-                                   function (err, v) {
-                                       conn.release();
-                                       if (err){
-                                           return callback(err);
-                                       }
-                                       if (v==0){
-                                           return callback(null, funcs.formatResponse(1, 'error', 'Регистрация закрыта.'));
-                                       }
-                                       results.getDirectoryId('result_statuses','IN_QUEUE',function(err,id){
-                                           if (err){
-                                               return callback(new MyError('Нет подходящего статуса'));
-                                           }
-                                           obj.status_id = id;
-                                           obj.gender_id = gender_id;
-                                           obj.age = age;
-                                           obj.club_id = club_id;
+                conn.queryRow('select gender_id, age, club_id from users where id = ?',[obj.user_id], function (err, row) {
+                    conn.release();
+                    if (err){
+                        return callback(err);
+                    }
+                    var gender_id = row.gender_id;
+                    var age = row.age;
+                    var club_id = row.club_id;
+                    results.getDirectoryId('action_statuses','OPENED',function(err,action_status_id){
+                        results.getDirectoryId('statuses_of_action_parts','OPENED',function(err,action_part_status_id){
+                            pool.getConn(function(err,conn){
+                                if (err){
+                                    return callback(err);
+                                }
+                                conn.queryValue("select count(*) from action_parts ap left join actions as a on ap.action_id = a.id where a.status_id=? and ap.status_id=? and ap.id = ?",
+                                    [action_part_status_id, action_status_id, obj.action_part_id],
+                                    function (err, v) {
+                                        conn.release();
+                                        if (err){
+                                            return callback(err);
+                                        }
+                                        if (v==0){
+                                            return callback(null, funcs.formatResponse(1, 'error', 'Регистрация закрыта.'));
+                                        }
+                                        results.getDirectoryId('result_statuses','IN_QUEUE',function(err,id){
+                                            if (err){
+                                                return callback(new MyError('Нет подходящего статуса'));
+                                            }
+                                            obj.status_id = id;
+                                            obj.gender_id = gender_id;
+                                            obj.age = age;
+                                            obj.club_id = club_id;
 
-                                           results.getDirectoryId('result_statuses','IN_HISTORY',function(err,result_status_id){
-                                               if (err){
-                                                   return callback(new MyError('Нет такого статуса'));
-                                               }
-                                               results.add(obj, function(err,result){
-                                                   //{"code":0,"toastr":{"type":"success","message":"Результат успешно добавлен."},"data":{"id":36}}
-                                                   if(err){
-                                                       return callback(err,result);
-                                                   }
-                                                   if (result.code!=0){
-                                                       return callback(err,result);
-                                                   }
-                                                   var id = result.data.id;
+                                            results.getDirectoryId('result_statuses','IN_HISTORY',function(err,result_status_id){
+                                                if (err){
+                                                    return callback(new MyError('Нет такого статуса'));
+                                                }
+                                                results.add(obj, function(err,result){
+                                                    //{"code":0,"toastr":{"type":"success","message":"Результат успешно добавлен."},"data":{"id":36}}
+                                                    if(err){
+                                                        return callback(err,result);
+                                                    }
+                                                    if (result.code!=0){
+                                                        return callback(err,result);
+                                                    }
+                                                    var id = result.data.id;
 
-                                                   pool.getConn(function(err,conn){
-                                                       var sql = 'update results set published = NULL, status_id = ? where user_id = ? AND action_part_id = ? AND published IS NOT NULL AND id <> ?';
-                                                       conn.query(sql,[result_status_id, obj.user_id,obj.action_part_id,id],function(err,affected){
-                                                           if (err){
-                                                               console.log(err);
-                                                           }
-                                                           conn.release();
-                                                           callback(null,funcs.formatResponse(0, 'success', 'Заявка принята.'));
-                                                           results.rePosition({
-                                                               action_part_id:obj.action_part_id
-                                                           }, function(err,r){
+                                                    pool.getConn(function(err,conn){
+                                                        var sql = 'update results set published = NULL, status_id = ? where user_id = ? AND action_part_id = ? AND published IS NOT NULL AND id <> ?';
+                                                        conn.query(sql,[result_status_id, obj.user_id,obj.action_part_id,id],function(err,affected){
+                                                            if (err){
+                                                                console.log(err);
+                                                            }
+                                                            conn.release();
+                                                            callback(null,funcs.formatResponse(0, 'success', 'Заявка принята.'));
+                                                            results.rePosition({
+                                                                action_part_id:obj.action_part_id
+                                                            }, function(err,r){
 
-                                                           });
-                                                       })
-                                                   });
-                                               });
-                                           });
-                                       });
-                                   })
-                           });
-                       });
-                   });
+                                                            });
+                                                        })
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    })
+                            });
+                        });
+                    });
 
-               })
+                })
             });
 
 
@@ -409,7 +410,7 @@ module.exports = function(callback){
                     if (err) {
                         return callback(err);
                     }
-                    conn.query('SELECT r.user_id from results r ' +
+                    conn.query('SELECT r.user_id, a.date_end from results r ' +
                     'LEFT JOIN action_parts as ap on r.action_part_id = ap.id ' +
                     'LEFT JOIN actions as a on ap.action_id = a.id ' +
                     'LEFT JOIN result_statuses as rs on r.status_id = rs.id ' +
@@ -424,29 +425,33 @@ module.exports = function(callback){
                         }
                         if (rows.length==0){
                             return pool.getConn(function (err, conn) {
-                               conn.query('select ap.id, ap.title from action_parts ap LEFT JOIN actions as a on ap.action_id = a.id where a.id = ?',[action_id], function (err, rows) {
-                                   conn.release();
-                                   if (err){
-                                       return callback(err);
-                                   }
-                                   for (var i in rows) {
+                                conn.query('select ap.id, ap.title from action_parts ap LEFT JOIN actions as a on ap.action_id = a.id where a.id = ?',[action_id], function (err, rows) {
+                                    conn.release();
+                                    if (err){
+                                        return callback(err);
+                                    }
+                                    for (var i in rows) {
 
-                                       columns.push({
-                                           title:rows[i].title,
-                                           name:'ap'+rows[i].id
-                                       });
-                                   }
-                                   return callback(null,{
-                                       columns:columns,
-                                       data: []
-                                   })
-                               })
+                                        columns.push({
+                                            title:rows[i].title,
+                                            name:'ap'+rows[i].id
+                                        });
+                                    }
+                                    return callback(null,{
+                                        columns:columns,
+                                        data: []
+                                    })
+                                })
                             });
 
                         }
                         var user_ids = [];
+                        var action_finish_date;
                         for (var i in rows) {
                             user_ids.push(rows[i].user_id);
+                            if (!action_finish_date) {
+                                action_finish_date = rows[i].date_end;
+                            }
                         }
                         pool.getConn(function(err,conn){
                             if (err){
@@ -505,13 +510,14 @@ module.exports = function(callback){
                                         sql+= ', ('+parts[i].sqlRes+') as res' +parts[i].id;
                                     }
                                     sql += ' from users as u where u.id in ('+user_ids.join(',')+')';
-                                    console.log(sql);
+                                    //console.log(sql);
                                     //return callback(null);
                                     conn.query(sql,[],function(err, res2){
                                         conn.release();
                                         if (err){
                                             return callback(err);
                                         }
+                                        var action_population = res2.length;
                                         for (var i in res2) {
                                             var row = res2[i];
                                             var sum_pos = 0;
@@ -554,6 +560,9 @@ module.exports = function(callback){
                                             api('updateRealResults', 'action', {
                                                 action_id: action_id,
                                                 user_id: res2[j].user_id,
+                                                user_fio: res2[j].fio,
+                                                action_finish_date: action_finish_date,
+                                                action_population: action_population,
                                                 position: res2[j].position,
                                                 age: res2[j].age,
                                                 gender_id: res2[j].gender_id
@@ -592,9 +601,6 @@ module.exports = function(callback){
             if (typeof obj!=='object'){
                 return callback(new MyError('Не переданы обязательные параметры'));
             }
-            if (!obj.action_id){
-                return callback(new MyError('Не указано мероприятие.'));
-            }
             if (!obj.gender_sys_name || !obj.age){
                 return callback(new MyError('Не переданы параметры пола и возраста'));
             }
@@ -612,9 +618,82 @@ module.exports = function(callback){
                     if (err) {
                         return callback(err);
                     }
-                    conn.release();
+
+                    var m1 = moment();
+                    var m2 = moment.duration(2, 'years');
+                    var now = funcs.getDateMySQL();
+                    var twoYearsBefore = moment(m1-m2).format('YYYY-MM-DD');
+                    var sql ='SELECT user_id from real_action_results' +
+                        ' where action_finish_date between ? and ?' +
+                        ' AND age' + age +
+                        ' AND gender_id = ' + gender_id +
+                        ' GROUP BY user_id';
+
+                    conn.query(sql,[twoYearsBefore,now],function(err, rows){
+                        conn.release();
+                        if (err) {
+                            return callback(err);
+                        }
+                        var users = rows;
+
+/*
+                        user_id
+                        action_id
+                        action_finish_date
+                        position
+                        age
+                        gender_id
+                        concat_results
+                        action_population
+*/
+
+                        pool.getConn(function(err,conn){
+                            if (err){
+                                return callback(err);
+                            }
+                            var sql = 'select * from real_action_results' +
+                                ' where action_finish_date between ? and ?' +
+                                ' AND age' + age +
+                                ' AND gender_id = ' + gender_id + ' '+
+                                ' GROUP BY action_id';
+
+
+                            conn.query(sql,[twoYearsBefore, now], function (err, rows2) {
+                                conn.release();
+                                if (err){
+                                    return callback(err);
+                                }
+                                var actions = rows2;
+                                var board = [];
+                                for (var i in users) {
+                                    var one_res_user = users[i];
+                                    for (var j in actions) {
+                                        var one_res = actions[j];
+                                        if (one_res.user_id!==one_res_user.user_id){
+                                            continue;
+                                        }
+                                        console.log(one_res.user_fio);
+                                        console.log('//////////asdsadasdasdasdas////////////////////////////////');
+                                        var o = {
+                                            fio:one_res.user_fio,
+                                            position:one_res.user_fio
+                                        }
+                                    }
+
+                                }
+
+                            })
+
+                        });
+                    });
+
                 });
             });
+
+
+
+
+
         };
         callback(results);
     });
