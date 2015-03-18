@@ -654,8 +654,7 @@ module.exports = function(callback){
                             var sql = 'select * from real_action_results' +
                                 ' where action_finish_date between ? and ?' +
                                 ' AND age' + age +
-                                ' AND gender_id = ' + gender_id + ' '+
-                                ' GROUP BY action_id';
+                                ' AND gender_id = ' + gender_id;
 
 
                             conn.query(sql,[twoYearsBefore, now], function (err, rows2) {
@@ -665,22 +664,59 @@ module.exports = function(callback){
                                 }
                                 var actions = rows2;
                                 var board = [];
+                                var action_RAITING = 1;
                                 for (var i in users) {
                                     var one_res_user = users[i];
+                                    var sum_pos = 0;
+                                    var action_count = 0;
                                     for (var j in actions) {
-                                        var one_res = actions[j];
-                                        if (one_res.user_id!==one_res_user.user_id){
+
+                                        if (actions[j].user_id!==one_res_user.user_id){
                                             continue;
                                         }
-                                        console.log(one_res.user_fio);
-                                        console.log('//////////asdsadasdasdasdas////////////////////////////////');
-                                        var o = {
-                                            fio:one_res.user_fio,
-                                            position:one_res.user_fio
+                                        var one_res = actions[j];
+                                        var action_population_coeff = 0.1;
+                                        var action_time_coeff = 1;
+                                        var timeAgo = moment().diff(moment(one_res.action_finish_date));
+                                        switch (true){
+                                            case (timeAgo<=moment.duration(3, 'months')):
+                                                action_population_coeff = 1;
+                                                break;
+                                            case (timeAgo<=moment.duration(6, 'months')):
+                                                action_population_coeff = 0.75;
+                                                break;
+                                            case (timeAgo<=moment.duration(9, 'months')):
+                                                action_population_coeff = 0.5;
+                                                break;
+                                            case (timeAgo<=moment.duration(12, 'months')):
+                                                action_population_coeff = 0.25;
+                                                break;
                                         }
+                                        switch (true){
+                                            case (one_res.action_population>0 && one_res.action_population<=10):
+                                                action_population_coeff = 0.5;
+                                                break;
+                                            case (one_res.action_population>10 && one_res.action_population<=20):
+                                                action_population_coeff = 0.75;
+                                                break;
+                                        }
+                                        sum_pos += (one_res.action_population+1-one_res.position)/(action_RAITING*action_time_coeff*action_population_coeff);
+                                        action_count++;
+                                    }
+                                    console.log('======> RAITING',one_res.user_fio, ':', sum_pos);
+                                    var o = {
+                                        fio:one_res.user_fio,
+                                        position:sum_pos
+
                                     }
 
                                 }
+                              /*  console.log('======> RAITING',one_res.user_fio, ':', sum_pos);
+                                console.log();
+                                var o = {
+                                    fio:one_res.user_fio,
+                                    position:one_res.user_fio
+                                }*/
 
                             })
 

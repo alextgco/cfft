@@ -119,10 +119,14 @@ console.log('SERVER STARTED');
 module.exports = app;
 
 
-
-/*var moment = require('moment');
+/*
+var moment = require('moment');
 var funcs = require('./libs/functions');
-var m1 = moment();
+var timeAgo = moment().diff(moment('2014-12-18'));
+var p = (timeAgo<=moment.duration(3, 'months'));
+console.log('timeAgo',timeAgo, p);*/
+
+/*var m1 = moment();
 var m2 = moment.duration(2, 'years');
 console.log(moment(m1-m2).format('YYYY-MM-DD'));*/
 /*
