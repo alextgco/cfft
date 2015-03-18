@@ -216,7 +216,7 @@ module.exports = function(callback){
             });*/
 
         };
-        action.updateRealResults = function(obj,callback){
+        action.updateRealResults2 = function(obj,callback){
             if (typeof obj!='object'){
                 return callback(new MyError('Не передан параметр obj в updateRealResults'));
             }
