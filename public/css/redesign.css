@@ -1583,3 +1583,7 @@ a.art-title{
     border-top: 1px solid #cbcbcb;
     border-bottom: 1px solid #e7e7e7;
 }
+.partnersBlock{
+    display: inline-block;
+    width: 100%;
+}
