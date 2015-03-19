@@ -55,7 +55,7 @@ exports.get = function(req, res, next){
         });
     };
     var getActionParts = function(callback){
-        api('get', 'action_part', {where: {action_id: id, statuses_of_action_parts: {sys_name: '<>DRAFT'}}, sort: {direction: 'ASC'}},function(err,result){
+        api('get', 'action_part', {where: {action_id: id, statuses_of_action_parts: {sys_name: '<>DRAFT'}}, sort: {direction: 'DESC'}},function(err,result){
             if (err){
                 console.log(err, 'admin_event');
                 return callback(err);
