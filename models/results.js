@@ -11,7 +11,7 @@ module.exports = function(callback){
         table: 'results',
         table_ru: 'Результат',
         ending:'',
-        required_fields:['action_part_id','video_url','result_type_id','user_id'],
+        required_fields:['action_part_id','result_type_id','user_id'],
         additionalColumns:['action_id','gender_id'],
         // var avaliable_fields = ['video_url','concat_result','result_min','result_sec','result_repeat','result_approach','isAff'].
         validation: {
