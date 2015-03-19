@@ -68,7 +68,10 @@ block content
                 - var activeClass = (pKey == 0)? 'active': '';
                 .row(data-index="#{pKey}" class="part-item #{activeClass}")
                     .h2
-                        | Предварительные результаты
+                        if(p.status_sys_name == 'OPENED')
+                            | Предварительные результаты
+                        else
+                            | Результаты этапа
                     .part-buttons-wrapper
                         - var buttonClass = (user)? 'order-event-part' : 'goToLogin'
                         if(event.status_sys_name == 'OPENED' && p.status_sys_name == 'OPENED')
