@@ -72,6 +72,7 @@ block content
                     .part-buttons-wrapper
                         - var buttonClass = (user)? 'order-event-part' : 'goToLogin'
                         if(event.status_sys_name == 'OPENED' && p.status_sys_name == 'OPENED')
+
                             a.cBtn.orange(data-event='#{event.title}', data-event_id='#{event.id}', data-event_part='#{p.title}', data-event_part_id='#{p.id}', class="#{buttonClass}")
                                 if(user)
                                     |   Учавствовать!
