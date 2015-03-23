@@ -20,13 +20,14 @@
   },
   "mail":{
     "mailTransport":{
-      "service": "Gmail",
+      "host ": "smtp.cm.hc.ru",
+
       "auth": {
-        "user": "alextgco@gmail.com",
-        "pass": "AAmbfi89793y"
+        "user": "info@cfft.ru",
+        "pass": "0xd2skQv"
       }
     },
-    "from":"ivantgco@gmail.com"
+    "from":"info@cfft.ru"
   }
 
 }

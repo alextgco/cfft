@@ -136,13 +136,24 @@ api('doSubscribe','action',{html:'<b>ТЕСТ РАСССЫЛКИ</b>'},function(
     console.log(err, result);
 });*/
 
-var api = require('./libs/userApi');
+/*var api = require('./libs/userApi');
 api('allActionLeaderBoard', 'results', {age:'40',gender_sys_name:'MALE'},function(err,result){
     if (err){
         console.log(err);
     }else{
         console.log(result);
     }
+});*/
+var sendMail = require('./libs/sendMail');
+
+var o = {
+    email: 'ivantgco@gmail.com',
+    subject: 'ТЕСТ от рассылки',
+    html: 'Вы успешно отписались от рассылки.'
+};
+sendMail(o, function (err) {
+    console.log(err);
+    //  callback(err);
 });
 
     //git remote set-url origin https://github.com/alextgco/cfft
