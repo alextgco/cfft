@@ -36,6 +36,10 @@ module.exports = function (app) {
     res.render('for_athlets');
   });
 
+  app.get('/clubs', require('./clubs').get);
+  app.get('/club', require('./club').get);
+
+  app.get('/articles', require('./articles').get);
   app.get('/article', require('./article').get);
 
 

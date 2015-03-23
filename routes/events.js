@@ -30,6 +30,5 @@ exports.get = function(req, res, next){
                 items: result
             });
         }
-
     });
 };

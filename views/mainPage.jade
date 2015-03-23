@@ -38,7 +38,7 @@ block content
             p.white.marTop10
                 | Лидерборд временно недоступен.
     .page-content.wid100pr.whiteBg
-        .container.partners.marBot30.noPad
+        .container.marBot30.noPad
             h3.fullDarkHeader
                 span.fullDarkHeader-inner
                     | О нас
@@ -46,6 +46,7 @@ block content
                 .col-md-12
                     .col-md-12
                         .col-md-4
+                            img.wid100pr(src="img/about.jpg")
                         .col-md-8
                             h4.ta-center
                                 | Приветствуем тебя Атлет, Тренер, Владелец зала!
@@ -94,13 +95,12 @@ block content
                 .row.article-item(data-id="#{a.id}")
                     .col-md-12
                         .col-md-4.article-image-wrapper
-                            img(src="upload/#{a.photo}")
+                            div(class="art_img" style="background-image: url(upload/#{a.photo})")
+                            //img(src="upload/#{a.photo}")
                         .col-md-8
                             .art-header
                                 a.art-title(href="article?id=#{a.id}")
                                     | #{a.title}
-                                //.art-date
-                                //    | #{a.published}
                             .art-body
                                 | !{a.body}
                             a.readMore(href="article?id=#{a.id}")

@@ -34,6 +34,10 @@ block content
                                 input.form-control.fc-field(type="text", data-server_name="phones", data-title="Телефоны", data-editor="text", placeholder="Телефоны")
                         .col-md-12
                             .form-group
+                                label.control-label Адрес
+                                input.form-control.fc-field(type="text", data-server_name="address", data-title="Адрес", data-editor="text", placeholder="Адрес")
+                        .col-md-12
+                            .form-group
                                 label.control-label
                                     | Город
                                 input.select2.form-control.fc-field(type="hidden", data-server_name="city_id", data-editor="select", data-name="title", data-required="true", value="", data-text="", data-table="city")
@@ -88,6 +92,10 @@ block content
                             .form-group
                                 label.control-label Телефоны (через запятую)
                                 input.form-control.fc-field(type="text", data-server_name="phones", data-title="Телефоны", data-editor="text", placeholder="Телефоны", value="#{club.phones}")
+                        .col-md-12
+                            .form-group
+                                label.control-label Адрес
+                                input.form-control.fc-field(type="text", data-server_name="address", data-title="Адрес", data-editor="text", placeholder="Адрес", value="#{club.address}")
                         .col-md-12
                             .form-group
                                 label.control-label

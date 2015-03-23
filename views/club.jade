@@ -1,0 +1,39 @@
+extends layout
+block content
+    -var club = items.data[0];
+    .page-content
+        .container
+            h2
+                | #{club.title}
+            hr
+            .row
+                .col-md-12
+                    form#form-profile(name="form-profile")
+                        .col-md-4
+                            .user-photo
+                                - var photo = (!club.photo || club.photo == '' || club.photo == 'null')? (club.gender_id == 1)? 'img/user_default_m.jpg' : 'img/user_default_f.jpg' : 'upload/'+club.photo;
+                                img(src="#{photo}")
+                        .col-md-6
+                            table.table
+                                tbody
+                                    tr
+                                        td
+                                            | Город
+                                        td
+                                            | #{club.city}
+                                    tr
+                                        td
+                                            | Адрес
+                                        td
+                                            | #{club.address}
+                                    tr
+                                        td
+                                            | Почта
+                                        td
+                                            | #{club.emails}
+                                    tr
+                                        td
+                                            | Телефон
+                                        td
+                                            | #{club.phones}
+

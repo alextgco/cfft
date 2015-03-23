@@ -1,0 +1,17 @@
+extends layout
+block content
+    .container
+        h2 Клубы
+            hr
+            .row
+                .col-md-12.wows-list-wrapper
+                    for a in items.data
+                        .col-md-3
+                            .wow-item-inner
+                                .wow-image
+                                    a.wow-item-img(href="club?id=#{a.id}")
+                                        div.cover.wid100pr.h100pr(style='background-image: url(upload/#{a.photo})')
+                                .club-information
+                                    | #{a.title}
+                    else
+                        li Нет Клубов.

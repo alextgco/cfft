@@ -8,17 +8,21 @@ block content
                     for a in items.data
                         .col-md-3
                             .wow-item-inner
-                                a.wow-item-img(href="wow?id=#{a.id}")
-                                    img(src='upload/#{a.thumb}')
-                                .wow-item-info
-                                    .wow-item-title
-                                        .titleInner
-                                            a(href='wow?id=#{a.id}') #{a.title}
-                                        .wow-item-desc
-                                            !{a.description2}
-                                .wow-item-bottom
-                                    .action-status(class="#{a.status_sys_name}")
-                                        | #{a.status}
-                                    .dateInner #{a.date_start_text}
+                                .wow-image
+                                    a.wow-item-img(href="wow?id=#{a.id}")
+                                        div.cover.wid100pr.h100pr(style='background-image: url(upload/#{a.thumb})')
+                                .wow-information
+                                    div(class="wow-status-dot #{a.status_sys_name}")
+                                    | #{a.title}
+                                //.wow-item-info
+                                //    .wow-item-title
+                                //        .titleInner
+                                //            a(href='wow?id=#{a.id}') #{a.title}
+                                //        .wow-item-desc
+                                //            !{a.description2}
+                                //.wow-item-bottom
+                                //    .action-status(class="#{a.status_sys_name}")
+                                //        | #{a.status}
+                                //    .dateInner #{a.date_start_text}
                     else
                         li Нет водовиков.

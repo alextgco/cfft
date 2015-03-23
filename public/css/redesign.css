@@ -1375,7 +1375,7 @@ h4.darkHd{
 }
 
 .article-image-wrapper{
-    max-height: 200px;
+    max-height: 210px;
     overflow: hidden;
 }
 .article-image-wrapper img{
@@ -1586,4 +1586,58 @@ a.art-title{
 .partnersBlock{
     display: inline-block;
     width: 100%;
+}
+
+.club-information{
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-top: 3px;
+    margin-bottom: 10px;
+}
+
+.wow-information{
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 10px;
+    padding-left: 40px;
+    padding-top: 3px;
+}
+.wow-image{
+    height: 210px;
+    overflow: hidden;
+}
+
+.wow-status-dot{
+    position: absolute;
+    height: 15px;
+    left: 10px;
+    width: 15px;
+    border-radius: 50%;
+    /*margin-top: 3px;*/
+}
+.wow-status-dot.OPENED{
+    background-color: #128e18;
+}
+.wow-status-dot.CLOSED{
+    background-color: #3f5ccc;
+}
+.wow-status-dot.FINISHED{
+    background-color: #666;
+}
+.cover{
+    background-size: cover;
+}
+.h100pr{
+    height: 100%;
+}
+.art_img{
+    width: 210px;
+    height: 210px;
+    background-size: cover;
+    float: right;
+    border-radius: 50%;
 }
