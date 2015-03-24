@@ -178,7 +178,7 @@ module.exports = function(callback){
 
 
             var required_fields = [].concat(results.required_fields);
-            var avaliable_fields = ['published','video_url','concat_result','result_min','result_sec','result_repeat','result_approach','isAff'].concat(required_fields);
+            var avaliable_fields = ['published','video_url','concat_result','result_min','result_sec','result_repeat','result_approach','isAff','club_id'].concat(required_fields);
             for (var i0 in obj) {
                 if (avaliable_fields.indexOf(i0)==-1) {
                     delete obj[i0];
@@ -200,14 +200,14 @@ module.exports = function(callback){
             }
             obj.isAff = +obj.isAff || 0;
             pool.getConn(function(err,conn){
-                conn.queryRow('select gender_id, age, club_id from users where id = ?',[obj.user_id], function (err, row) {
+                conn.queryRow('select gender_id, age from users where id = ?',[obj.user_id], function (err, row) {
                     conn.release();
                     if (err){
                         return callback(err);
                     }
                     var gender_id = row.gender_id;
                     var age = row.age;
-                    var club_id = row.club_id;
+
                     results.getDirectoryId('action_statuses','OPENED',function(err,action_status_id){
                         results.getDirectoryId('statuses_of_action_parts','OPENED',function(err,action_part_status_id){
                             pool.getConn(function(err,conn){
