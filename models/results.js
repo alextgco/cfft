@@ -231,7 +231,7 @@ module.exports = function(callback){
                                             obj.status_id = id;
                                             obj.gender_id = gender_id;
                                             obj.age = age;
-                                            obj.club_id = club_id;
+
 
                                             results.getDirectoryId('result_statuses','IN_HISTORY',function(err,result_status_id){
                                                 if (err){
