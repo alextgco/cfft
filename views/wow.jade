@@ -101,7 +101,7 @@ block content
                                                         input.form-control(type="text", data-id="video", data-part="#{p.id}")
                                                 .form-group.col-md-12
                                                     label.control-label Клуб
-                                                    input.select2.form-control.fc-field(type="hidden", data-server_name="club_id", data-editor="select", data-name="title", data-required="true", value="-1", data-text="Сдавал(а) не в клубе", data-table="club", data-part="#{p.id}")
+                                                    input.select2.form-control.fc-field(type="hidden", data-server_name="club_id", data-editor="select", data-name="title", data-required="true", value="-1", data-text="-", data-table="club", data-part="#{p.id}")
                                                 .form-group.col-md-12.results(data-res_type_id="#{p.result_type_id}", data-res_type="#{p.result_type_sys}")
                                                     label Результат
                                                     if(p.result_type_sys == 'TIME')

@@ -51,8 +51,9 @@ $(document).ready(function(){
             if($elem.parents('.filterWrapper').length > 0){
                 return;
             }
+
             var name = $elem.data('name');
-            $elem.select2({
+            var inst = $elem.select2({
                 query: function(query){
                     var data = {results: []};
 
@@ -85,6 +86,7 @@ $(document).ready(function(){
                     });
                 },
                 initSelection: function(element, callback){
+
                     var data = {id: element.val(), text: $(element).data('text')};
                     callback(data);
                 }
