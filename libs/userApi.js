@@ -9,7 +9,8 @@ module.exports = function(command,object,params,callback){
             return callback('Нет такой команды')
         }
         if (command == 'get'){
-            params.published = (typeof model.published==='undefined')? model.published : true;
+            params.published = (typeof model.published !=='undefined')? model.published : true;
+            //params.published = (typeof model.published==='undefined')? model.published : true;
         }
         var allowedForUserCommand = model.allowedForUserCommand || [];
         if (allowedForUserCommand.indexOf(command)===-1 && command!='get'){

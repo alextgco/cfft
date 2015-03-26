@@ -6,6 +6,7 @@ module.exports = function(callback){
         table: 'articles',
         table_ru: 'Статья',
         ending:'а',
+        published:true,
         required_fields:['title'],
         validation: {
             title:'notNull'
