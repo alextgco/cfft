@@ -3,6 +3,19 @@ $(document).ready(function(){
     var form_wrapper = $('#edit-article');
     var confirm_edit_article = $('#confirm_edit_article');
     var publicate = $('#publicate_article');
+    var deleteArticle = $('#delete_article');
+
+    deleteArticle.off('click').on('click', function(){
+        sendQuery({
+            command: 'remove',
+            object: 'article',
+            params: {
+                id: form_wrapper.data('id')
+            }
+        }, function(res){
+            toastr[res.toastr.type](res.toastr.message);
+        });
+    });
 
     publicate.off('click').on('click', function(){
         sendQuery({

@@ -1,4 +1,4 @@
-var api = require('../libs/api');
+var api = require('../libs/userApi');
 exports.get = function(req, res, next){
     var id = req.query.id;
     api('get', 'article', {},function(err,result){
