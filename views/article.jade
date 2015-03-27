@@ -11,14 +11,21 @@ block content
                     .article-image-wrapper
                         img(src="upload/#{article.photo}")
                     .article-other-info
-                        h4 Автор:
-                        div #{article.author}
-                        h4 Переводчик:
-                        div #{article.translator}
-                        h4 Оригинал:
-                        a(href="#{article.original_url}") #{article.original_url}
-                        h4 Лицензия:
-                        div #{article.license}
+                        if(article.author.length > 0)
+                            h4 Автор:
+                            div #{article.author}
+                        if(article.translator.length > 0)
+                            h4 Переводчик:
+                            div #{article.translator}
+                        if(article.original_url.length > 0)
+                            h4 Оригинал:
+                            a(href="#{article.original_url}") #{article.original_url}
+                        if(article.license.length > 0)
+                            h4 Лицензия:
+                            div #{article.license}
                 .col-md-8
                     | !{article.body}
+                    p
+                        .ta-right
+                            | #{article.published}
 
