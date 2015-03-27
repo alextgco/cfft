@@ -7,7 +7,18 @@ block content
                 span.fullDarkHeader-inner
                     | #{article.title}
             .row
-                .col-md-4.article-image-wrapper
-                    img(src="upload/#{article.photo}")
+                .col-md-4
+                    .article-image-wrapper
+                        img(src="upload/#{article.photo}")
+                    .article-other-info
+                        h4 Автор:
+                        div #{article.author}
+                        h4 Переводчик:
+                        div #{article.translator}
+                        h4 Оригинал:
+                        a(href="#{article.original_url}") #{article.original_url}
+                        h4 Лицензия:
+                        div #{article.license}
                 .col-md-8
                     | !{article.body}
+

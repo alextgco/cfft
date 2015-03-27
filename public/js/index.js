@@ -854,6 +854,7 @@ $(document).ready(function(){
         //console.log(y, m-1, d, h, min, new Date(y, m-1, d, h, min));
 
         if(new Date(y,m-1,d) < new Date()){
+            $('.nearresr-wow-timer-label').html('');
             $('.nearresr-wow-timer-init').html('<div class="white">Wod of week проходит прямо сейчас, спешите принять участие!</div>');
             $('.t_tblc').remove();
         }else{
