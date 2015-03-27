@@ -9,7 +9,8 @@ block content
             .row
                 .col-md-4
                     .article-image-wrapper
-                        img(src="upload/#{article.photo}")
+                        .art_img(style="background-image: url(upload/#{article.photo})")
+                        //img(src="upload/#{article.photo}")
                     .article-other-info
                         if(article.author.length > 0)
                             h4 Автор:

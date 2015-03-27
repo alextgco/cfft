@@ -1652,9 +1652,10 @@ a.art-title{
 }
 .article-other-info{
     margin-top: 15px;
-    /*border-top: 1px solid #ddd;*/
+    /* border-top: 1px solid #ddd; */
     padding-top: 10px;
-    /*padding-left: 20px;*/
+    padding-right: 20px;
+    text-align: right;
 }
 .article-other-info h4{
     font-size: 14px;
