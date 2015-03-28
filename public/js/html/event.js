@@ -152,7 +152,7 @@ $(document).ready(function(){
                 }
             ],
             type: type,
-            defaultWhere: whereObj,
+            defaultWhere: CF.cloneObj(whereObj),
             where: whereObj,
             goToObject: '',
             primaryKey: 'id',

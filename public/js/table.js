@@ -716,7 +716,7 @@
             }else{
                 _t.where[$(this).data('column')] = '*'+$(this).val()+'*';
             }
-
+            console.log(_t.defaultWhere);
 
         });
 
@@ -734,6 +734,14 @@
         });
 
         _t.wrapper.find('.clear-filter').off('click').on('click', function(){
+
+            filterWrapper.find('input.select2[type="hidden"]').each(function(idx, elem){
+                var $elem = $(elem);
+                $elem.select2('val', '-1');
+            });
+            filterWrapper.find('input.tableFilter[type="text"][data-filter_type="like"]').val('');
+
+            _t.where = {};
             if(_t.type == 'part_table'){
                 _t.where = CF.cloneObj(_t.defaultWhere);
                 _t.reload();

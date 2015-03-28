@@ -1016,6 +1016,7 @@ h4.darkHd{
     text-align: center;
     position: absolute;
     margin: 0;
+    bottom: 10px;
     cursor: pointer;
     color: #fff;
     height: 50px;
@@ -1032,6 +1033,16 @@ h4.darkHd{
     background-color: #444;
     right: 15px;
 }
+.event-results-tabs .confirm-filter:hover{
+    color: #128e18;
+}
+.event-results-tabs .clear-filter:hover{
+    color: #d72f2e;
+}
+.part-filters-wrapper .col-md-12{
+    margin-bottom: 10px;
+}
+
 .no_results{
     width: 100%;
     text-align: center;
@@ -1054,7 +1065,7 @@ h4.darkHd{
     background-color: transparent!important;
 }
 .event-results-tabs .filterBtn:hover{
-    background-color: rgba(0,0,0,0.1)!important;
+    /*background-color: rgba(0,0,0,0.1)!important;*/
 }
 .user-photo-wrapper{
     position: relative;
@@ -1521,7 +1532,7 @@ a.art-title{
     margin-top: 20px;
     border-radius: 5px;
     padding: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 60px;
     margin-bottom: 20px;
 }
 .filter-title{
