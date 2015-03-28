@@ -1100,7 +1100,7 @@ h4.darkHd{
     /*padding: 0;*/
     padding-top: 15px;
     padding-bottom: 15px;
-    height: 280px;
+    /*height: 280px;*/
     overflow: hidden;
     position: relative;
 }
@@ -1204,7 +1204,7 @@ h4.darkHd{
     width: 100%;
     position: relative;
     height: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
@@ -1616,6 +1616,7 @@ a.art-title{
     margin-top: 10px;
     padding-left: 40px;
     padding-top: 3px;
+    padding-bottom: 10px;
 }
 .wow-image{
     height: 210px;
