@@ -210,6 +210,7 @@
         }
         if(_t.type == 'part_table'){
             var html = '<div class="part-filters-wrapper filters-wrapper"></div><div class=""><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div>';
+            //_t.wrapper.prev().html(html);
             _t.wrapper.find('.part-filters-parent .filters-list').prepend(html);
         }else{
             var html = '<div class="filterContainer"><div class="row"><div class="filters-wrapper row"></div><div class=""><div class="confirm-filter filterBtn fa fa-check"></div><div class="clear-filter filterBtn fa fa-ban"></div></div></div></div>';
@@ -380,6 +381,96 @@
         _t.wrapper.html(Mustache.to_html(tpl, mO));
     };
 
+    CF.Table.prototype.reload = function(){
+        var _t = this;
+
+        _t.getData(function() {
+            var prev = (_t.tempPage > 1)? '<li><a href="#" aria-label="Previous" class="prev"><span aria-hidden="true">&laquo;</span></a></li>' : '';
+            var next = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" aria-label="Next" class="next"><span aria-hidden="true">&raquo;</span></a></li>' : '';
+            var page = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" data-page="{{pageNo}}" class="page">{{pageNo}}</a></li>' : '';
+            var tpl = '<div class="col-md-8 part-table-parent">' +
+                            '<table class="table simpleView">' + //<div class="refresh_table fa fa-refresh"></div>
+                            '<thead>' +
+                            '<tr>{{#columns}}' +
+                            '<th data-column="{{column}}">{{column_ru}}</th>{{/columns}}' +
+                            '</tr>' +
+                            '</thead>' +
+                            '<tbody>{{#rows}}' +
+                            '<tr data-id="{{id}}">{{#tds}}' +
+                            '<td>{{{value}}}</td>{{/tds}}' +
+                            '</tr>{{/rows}}' +
+                            '</tbody>' +
+                            '</table>' +
+                            '<nav>'+
+                            '<ul class="pagination">'+
+                            prev+
+                            '{{#pages}}'+
+                            page +
+                            '{{/pages}}'+
+                            next+
+                            '</ul>'+
+                            '</nav>' +
+                            '</div>' +
+                            '</div>';
+            var mO = {
+                columns: [
+                    {
+                        column: '#',
+                        column_ru: '#'
+                    }
+                ],
+                rows: [],
+                pages: [
+                    {
+                        pageNo: _t.tempPage
+                    }
+                ]
+            };
+            for(var i in _t.data[0]){
+                var item = _t.data[0][i];
+                if(_t.checkVisibility(i)){
+                    mO.columns.push({
+                        column: i,
+                        column_ru: _t.getColumnName(i)
+                    });
+                }
+            }
+
+            var idx = 0;
+            for(var k in _t.data){
+                var item = _t.data[k];
+                mO.rows.push({
+                    tds: [
+                        {
+                            value: idx+1
+                        }
+                    ]
+                });
+
+                for(var j in item){
+                    var jtem = item[j];
+                    if(_t.checkVisibility(j)) {
+                        if(_t.checkSpecial(j)){
+                            mO.rows[idx].id = _t.getPrimaryKey(item);
+                            mO.rows[idx].tds.push({
+                                value: '<a target="_blank" href="'+jtem+'"><i class="fa fa-video-camera"></i></a>'
+                            });
+                        }else{
+                            mO.rows[idx].id = _t.getPrimaryKey(item);
+                            mO.rows[idx].tds.push({
+                                value: jtem
+                            });
+                        }
+                    }
+                }
+
+                idx++;
+            }
+            _t.wrapper.find('.part-table-parent').after(Mustache.to_html(tpl, mO));
+            _t.wrapper.find('.part-table-parent').eq(0).remove();
+        });
+    };
+
     CF.Table.prototype.renderPartTable = function(){
         var _t = this;
 
@@ -388,7 +479,7 @@
         var page = (_t.totalCount > _t.tempPage * _t.perPage)? '<li><a href="#" data-page="{{pageNo}}" class="page">{{pageNo}}</a></li>' : '';
 
         var tpl =  '<div class="part-table-template">' +
-                        '<div class="col-md-4 part-filters-parent"><div class="filters_block">Фильтры временно недоступны</div>' +
+                        '<div class="col-md-4 part-filters-parent"><div class="filters_block_2"></div>' + //Фильтры временно недоступны
                             '<div class="filter-title"><div class="col-md-12">Фильтровать резутлтаты</div></div>' +
                             '<div class="filters-list">' +
                             '</div>' +
@@ -630,24 +721,34 @@
         });
 
         _t.wrapper.find('.confirm-filter').off('click').on('click', function(){
-            _t.getData(function(){
-                _t.render(function(){
-                    _t.setHandlers();
+            if(_t.type == 'part_table'){
+                _t.reload();
+            }else{
+                _t.getData(function(){
+                    _t.render(function(){
+                        _t.setHandlers();
+                    });
                 });
-            });
+            }
+
         });
 
         _t.wrapper.find('.clear-filter').off('click').on('click', function(){
+            if(_t.type == 'part_table'){
+                _t.where = CF.cloneObj(_t.defaultWhere);
+                _t.reload();
+            }else{
+                _t.where = CF.cloneObj(_t.defaultWhere);
 
-            _t.where = CF.cloneObj(_t.defaultWhere);
-
-            _t.getData(function(){
-                _t.render(function(){
-                    _t.setHandlers();
-                    _t.renderFilters();
-                    _t.initFilters();
+                _t.getData(function(){
+                    _t.render(function(){
+                        _t.setHandlers();
+                        _t.renderFilters();
+                        _t.initFilters();
+                    });
                 });
-            });
+            }
+
         });
     };
 
