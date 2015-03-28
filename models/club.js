@@ -7,6 +7,7 @@ module.exports = function(callback){
         table_ru: 'Клуб',
         ending:'',
         required_fields:['name','city_id'],
+        published: false,
         validation: {
             name:'notNull',
             city_id:'number',

@@ -73,6 +73,7 @@ var Model = function (params, callback) {
     this.table = params.table;
     this.table_ru = params.table_ru || 'Объект';
     this.ending = params.ending || ''; // 'о' 'а'
+    this.published = params.published;
     this.required_fields = (typeof params.required_fields === 'object') ? params.required_fields : [];
     this.not_editable = (typeof params.not_editable === 'object') ? params.not_editable : ['created'];
     if (this.not_editable.indexOf('created') == -1) {
@@ -138,6 +139,7 @@ Model.prototype.get = function (params, callback) {
         var sort = params.sort || (self.sort) ? funcs.cloneObj(self.sort) : {column:'id',direction:'ASC'};
         var deleted = !!params.deleted;
         var published = params.published;
+        debugger;
         var distinct = (self.distinct)? ' DISTINCT ' : '';
         var columns = params.columns || funcs.cloneObj(self.columns);
         var sqlStart = "SELECT " +distinct+ columns.join(', ') + " FROM " + self.table;
