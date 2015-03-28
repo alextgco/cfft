@@ -9,7 +9,10 @@ block content
             each a, key in articles
                 .row.marBot10
                     .col-md-4.article-image-wrapper
-                        .art_img(style="background-image: url(upload/#{a.photo})")
+                        if(a.photo.length > 0)
+                            .art_img(style="background-image: url(upload/#{a.photo})")
+                        else
+                            .art_img()
                     .col-md-8
                         .art-header
                             a.art-title(href="article?id=#{a.id}")
