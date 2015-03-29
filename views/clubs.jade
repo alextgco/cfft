@@ -10,7 +10,8 @@ block content
                             .wow-item-inner
                                 .wow-image
                                     a.wow-item-img(href="club?id=#{a.id}")
-                                        div.cover.wid100pr.h100pr(style='background-image: url(upload/#{a.photo})')
+                                        -var path = (a.photo)? 'upload/'+a.photo: 'img/def_club.jpg';
+                                        img.wid100pr(src="#{path}")
                                 .club-information
                                     | #{a.title}
                     else

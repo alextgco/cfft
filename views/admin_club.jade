@@ -21,6 +21,11 @@ block content
                         .col-md-12
                             .form-group
                                 label.control-label
+                                    | Сайт
+                                input.form-control.fc-field(type="text", data-server_name="url", data-title="Сайт", data-required="false", data-editor="text", placeholder="Сайт", value="")
+                        .col-md-12
+                            .form-group
+                                label.control-label
                                     | Ответственный
                                 input.select2.form-control.fc-field(type="hidden", data-server_name="user_id", data-editor="select", data-name="title", data-required="true", value="", data-text="", data-table="user")
                         .col-md-12
@@ -78,6 +83,11 @@ block content
                                 label.control-label
                                     | Наименование
                                 input.form-control.fc-field(type="text", data-server_name="name", data-title="Имя", data-required="true", data-editor="text", placeholder="Наименование", value="#{club.name}")
+                        .col-md-12
+                            .form-group
+                                label.control-label
+                                    | Сайт
+                                input.form-control.fc-field(type="text", data-server_name="url", data-title="Сайт", data-required="false", data-editor="text", placeholder="Сайт", value="#{club.url}")
                         .col-md-12
                             .form-group
                                 label.control-label

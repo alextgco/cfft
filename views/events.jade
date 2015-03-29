@@ -10,7 +10,8 @@ block content
                             .wow-item-inner
                                 .wow-image
                                     a.wow-item-img(href="event?id=#{a.id}")
-                                        div.cover.wid100pr.h100pr(style='background-image: url(upload/#{a.thumb})')
+                                        -var path = (a.thumb)? 'upload/'+a.thumb: 'img/def_game.jpg';
+                                        img.wid100pr(src="#{path}")
                                 .wow-information
                                     div(class="wow-status-dot #{a.status_sys_name}")
                                     | #{a.title}

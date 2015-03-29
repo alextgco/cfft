@@ -45,7 +45,7 @@ block content
             .row
                 .col-md-12
                     .col-md-12
-                        .col-md-4
+                        .col-md-4.marTop14
                             img.wid100pr(src="img/about.jpg")
                         .col-md-8
                             h4
@@ -92,8 +92,8 @@ block content
                 .row.article-item(data-id="#{a.id}")
                     .col-md-12
                         .col-md-4.article-image-wrapper
-                            div(class="art_img" style="background-image: url(upload/#{a.photo})")
-                            //img(src="upload/#{a.photo}")
+                            -var path = (a.photo)? 'upload/'+a.photo: 'img/def_article.jpg';
+                            .art_img(style="background-image: url(#{path})")
                         .col-md-8
                             .art-header
                                 a.art-title(href="article?id=#{a.id}")

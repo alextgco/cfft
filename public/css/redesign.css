@@ -1375,6 +1375,7 @@ h4.darkHd{
     height: 10px;
     border-radius: 50%;
     padding: 0;
+    margin-left: 17px;
 }
 .games_event{
     background-color: #128e18!important;
@@ -1410,6 +1411,7 @@ a.art-title{
     margin-bottom: 10px;
 }
 .art-body{
+    -webkit-column-width: 420px;
     height: 130px;
     overflow: hidden;
 }
@@ -1622,7 +1624,7 @@ a.art-title{
     padding-bottom: 10px;
 }
 .wow-image{
-    height: 210px;
+    /*height: 210px;*/
     overflow: hidden;
 }
 
@@ -1682,4 +1684,7 @@ a.art-title{
 }
 .feedback-open:hover{
     color: #fff;
+}
+.marTop14{
+    margin-top: 14px;
 }
