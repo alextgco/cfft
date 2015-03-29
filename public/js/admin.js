@@ -102,6 +102,11 @@ $(document).ready(function(){
             }
         });
     });
+    $("#btn6").off('click').on('click',function(){
+        $.post('/sendFeedback',{html:"<b>Test sending feedback</b>"},function(r){
+           console.log(r);
+        });
+    });
 
 
         var userPhotoWrapper = $('.user-photo-wrapper');

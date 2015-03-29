@@ -707,7 +707,6 @@ module.exports = function(callback){
                                     var o = {
                                         fio:one_res.user_fio,
                                         position:sum_pos
-
                                     }
 
                                 }
