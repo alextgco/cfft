@@ -29,11 +29,23 @@ block content
                             .user-photo-wrapper
                                 .user-photo-clear
                                     .fa.fa-trash
-                                img(src="img/user_default_m.jpg")
+                                img(src="img/def_artilce.jpg")
                     .col-md-9
                         .form-group
                             label Текст:
                             textarea.fc-field.form-control.cf_text_editor(data-name="body", data-server_name="body", id="new-body", value="")
+                        .form-group
+                            label Автор:
+                            input.fc-field.form-control(type='text', data-server_name="author", value="", data-name="author")
+                        .form-group
+                            label Перевод:
+                            input.fc-field.form-control(type='text', data-server_name="translator", value="", data-name="translator")
+                        .form-group
+                            label Оригинал:
+                            input.fc-field.form-control(type='text', data-server_name="original_url", value="", data-name="original_url")
+                        .form-group
+                            label Лицензия:
+                            input.fc-field.form-control(type='text', data-server_name="license", value="", data-name="license")
         else
             form#edit-article.marTop22(data-id="#{article.id}")
                 .row
