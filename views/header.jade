@@ -2,8 +2,9 @@ block header
     .page-header.preheader
 
         .contact-us
-            i.fa.fa-phone &nbsp;&nbsp;
-            | info@cfft.ru | обратная связь
+            .feedback-open
+                i.fa.fa-phone &nbsp;&nbsp;
+                | info@cfft.ru | обратная связь
         .preheaderButtons-wrapper
             if !user
                 .preheaderBtn.goToLogin(data-view="login")

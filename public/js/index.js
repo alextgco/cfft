@@ -311,7 +311,6 @@ $(document).ready(function(){
 
     }());
 
-
     (function(){
         var regLink = $('.event-reglament-link');
         regLink.off('click').on('click', function(){
@@ -369,6 +368,29 @@ $(document).ready(function(){
                 buttons:{
                     error: {
                         label: 'Закрыть',
+                        callback: function(){
+
+                        }
+                    }
+                }
+            });
+        });
+    }());
+
+    (function(){
+        $('.feedback-open').off('click').on('click', function(){
+            bootbox.dialog({
+                title: '',
+                message: '',
+                buttons: {
+                    success: {
+                        label:'Отправить',
+                        callback: function(){
+
+                        }
+                    },
+                    error: {
+                        label:'Отмена',
                         callback: function(){
 
                         }

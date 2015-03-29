@@ -3,6 +3,23 @@ $(document).ready(function(){
     var confirm_reg = $('#confirm_registration');
     var form_wrapper = $('#form-registration');
     var confirm_edit_club = $('#confirm_edit_club');
+    var delete_club = $('#delete_club');
+
+    delete_club.off('click').on('click', function(){
+        var o = {
+            command: 'remove',
+            object: 'club',
+            params: {
+                id: form_wrapper.data('id')
+            }
+        };
+        o.params.id = form_wrapper.data('id');
+
+        sendQuery(o, function(res){
+            console.log(res);
+            toastr[res.toastr.type](res.toastr.message);
+        });
+    });
 
     confirm_edit_club.off('click').on('click', function(){
         var toSendArr = {};

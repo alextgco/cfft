@@ -55,6 +55,9 @@
     color: #9d9d9d;
     font-size: 13px;
     font-family: opensanssemibold, arial, sans-serif;
+    float: left;
+    width: 100%;
+    background-color: #000;
 }
 #logo {
     float: left;
@@ -1672,4 +1675,11 @@ a.art-title{
 .article-other-info h4{
     font-size: 14px;
     font-weight: bold;
+}
+.feedback-open{
+    float: left;
+    cursor: pointer;
+}
+.feedback-open:hover{
+    color: #fff;
 }

@@ -134,5 +134,9 @@ block content
                             #confirm_edit_club.sBtn.green.marL1.flRight
                                 i.fa.fa-check
                                 | &nbsp;&nbsp;Сохранить
+                            if(!isNew)
+                                #delete_club.sBtn.red.marL1.flRight
+                                    i.fa.fa-trash-o
+                                    | &nbsp;&nbsp;Удалить
 
     script(src="js/admin_club.js")
