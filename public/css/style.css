@@ -434,6 +434,10 @@ input[type="password"].invalid,
 input[type="number"].invalid{
     border-color: #e01b1a;
 }
+textarea.invalid{
+    border-color: #e01b1a;
+}
+
 .red-star{
     color: #e01b1a;
 
