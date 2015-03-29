@@ -50,7 +50,6 @@ module.exports = function (app) {
   app.get('/articles', require('./articles').get);
   app.get('/article', require('./article').get);
 
-
   app.get('/for_partners', function(req, res, next){
     res.render('for_partners');
   });
@@ -92,6 +91,9 @@ module.exports = function (app) {
 
   app.get('/admin_articles', checkAdmin, require('./admin_articles').get);
   app.get('/admin_article', checkAdmin, require('./admin_article').get);
+
+  app.get('/admin_partners', checkAdmin, require('./admin_partners').get);
+  app.get('/admin_partner', checkAdmin, require('./admin_partner').get);
 
   app.get('/admin_event_types', checkAdmin, require('./admin_event_types').get);
   app.get('/admin_event_type', checkAdmin, require('./admin_event_type').get);

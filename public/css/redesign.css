@@ -1451,6 +1451,7 @@ a.art-title{
     float: left;
     padding: 0;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .select_part li{
@@ -1687,4 +1688,7 @@ a.art-title{
 }
 .marTop14{
     margin-top: 14px;
+}
+.show_rules img{
+    width: 100%;
 }
