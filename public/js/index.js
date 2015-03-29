@@ -69,10 +69,18 @@ function initModalSelect(elem){
 }
 $(document).ready(function(){
 
-    var aU_firstname = $('#auth-user-firstname');
-    var aU_surname = $('auth-user-surname');
-    var aU_phonename = $('auth-user-phone');
-    var aU_emailname = $('auth-user-email');
+    var aU_firstname = '';
+    var aU_surname = '';
+    var aU_phone = '';
+    var aU_email = '';
+
+    if($('#auth-user-firstname').length > 0){
+        aU_firstname = $('#auth-user-firstname').val();
+        aU_surname = $('#auth-user-surname').val();
+        aU_phone = $('#auth-user-phone').val();
+        aU_email = $('#auth-user-email').val();
+    }
+
 
     (function(){
         $('#logo').off('click').on('click', function(){
@@ -384,19 +392,18 @@ $(document).ready(function(){
 
     (function(){
         $('.feedback-open').off('click').on('click', function(){
-            //var
             var html = '<div class="feedback-form-wraper">' +
                             '<div class="form-group">' +
                                 '<label>ФИО:</label>' +
-                                '<input type="text" data-name="name" class="form-control fb-ctrl"/>' +
+                                '<input type="text" value="'+aU_surname+' '+aU_firstname+'" data-name="name" class="form-control fb-ctrl"/>' +
                             '</div>' +
                             '<div class="form-group">' +
                                 '<label>Телефон:</label>' +
-                                '<input type="text" data-name="phone" class="form-control fb-ctrl"/>' +
+                                '<input type="text" value="'+aU_phone+'" data-name="phone" class="form-control fb-ctrl"/>' +
                             '</div>' +
                             '<div class="form-group">' +
                                 '<label>Почта:</label>' +
-                                '<input type="text" data-name="email" class="form-control fb-ctrl"/>' +
+                                '<input type="text" value="'+aU_email+'" data-name="email" class="form-control fb-ctrl"/>' +
                             '</div>' +
                             '<div class="form-group">' +
                                 '<label>Сообщение:</label>' +
