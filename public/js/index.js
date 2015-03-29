@@ -453,7 +453,10 @@ $(document).ready(function(){
                                                   '<div><label>Почта: </label><span>'+resObj.email+'</span></div><br/>'+
                                                   '<div><label>Сообщение: </label><span>'+resObj.message+'</span></div><br/>';
 
-                                console.log(messageHtml);
+                                $.post('/sendFeedback',{html:messageHtml},function(r){
+                                    console.log(r);
+                                    toastr[r.toastr.type](r.toastr.message);
+                                });
                             }else{
                                 return false;
                             }
