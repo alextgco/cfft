@@ -51,9 +51,12 @@ app.use(session({
 
 app.use(require('./middleware/sendHttpError'));
 app.use(require('./middleware/loadUser'));
+app.use(require('./middleware/loadPartners'));
 app.use(require('./middleware/globalFuncs'));
 
 require('./routes')(app);
+
+/**/
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -136,14 +139,14 @@ api('doSubscribe','action',{html:'<b>ТЕСТ РАСССЫЛКИ</b>'},function(
     console.log(err, result);
 });*/
 
-/*var api = require('./libs/userApi');
+var api = require('./libs/userApi');
 api('allActionLeaderBoard', 'results', {age:'40',gender_sys_name:'MALE'},function(err,result){
     if (err){
         console.log(err);
     }else{
         console.log(result);
     }
-});*/
+});
 /*var sendMail = require('./libs/sendMail');
 
 var o = {
