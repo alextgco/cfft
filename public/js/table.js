@@ -669,11 +669,11 @@
                         command: 'get',
                         object: $elem.data('table'),
                         params: {
-                            where: {},
                             limit: 100
                         }
                     };
                     if(query.term.length > 0){
+                        o.params.where = {};
                         o.params.where[name] = '*'+query.term+'*';
                     }
 
