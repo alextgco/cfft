@@ -20,8 +20,10 @@
   },
   "mail":{
     "mailTransport":{
-      "host ": "smtp.cm.hc.ru",
-
+      "host": "smtp.hc.ru",
+      "port": 465,
+      "debug":true,
+      "secure":true,
       "auth": {
         "user": "info@cfft.ru",
         "pass": "0xd2skQv"

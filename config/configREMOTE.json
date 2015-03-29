@@ -1,5 +1,5 @@
 {
-  "host":"104.131.178.191",
+  "host":"178.62.142.227",
   "port":80,
   "session":{
     "secret":"secret123",
@@ -21,13 +21,16 @@
   },
   "mail":{
     "mailTransport":{
-      "service": "Gmail",
+      "host": "smtp.hc.ru",
+      "port": "465",
+      "secure":"true",
       "auth": {
-        "user": "alextgco@gmail.com",
-        "pass": "AAmbfi89793y"
+        "user": "info@cfft.ru",
+        "pass": "0xd2skQv"
       }
     },
-    "from":"ivantgco@gmail.com"
+    "from":"info@cfft.ru"
   }
+
 
 }
