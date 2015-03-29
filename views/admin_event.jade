@@ -208,6 +208,12 @@ block content
                                                                         .form-group.col-md-4
                                                                             label Статус:
                                                                             input.fc-event-part-field.select2.form-control.fc_control(value='#{parts.status_id}', data-server_name="status_id", data-text="#{parts.status}", data-name='name', type="hidden", data-table="statuses_of_action_parts")
+                                                                        .form-group.col-md-4
+                                                                            label Картинка для правил:
+                                                                            if(isNew)
+                                                                                input.autoUpload.fc-event-field.form-control(type='text', data-server_name="complex_image", value="", data-name="complex_image")
+                                                                            else
+                                                                                input.autoUpload.fc-event-field.form-control(type='text', data-server_name="complex_image", value="#{event.complex_image}", data-name="complex_image")
                                                                     .collapseable
                                                                         .collapseBtn
                                                                             .fa.fa-minus
@@ -307,6 +313,12 @@ block content
                                                                             .form-group.col-md-4
                                                                                 label Статус:
                                                                                 input.fc-event-part-field.select2.form-control.fc_control(value='#{part.status_id}',data-server_name="status_id",  data-text="#{part.status}", data-name='name', type="hidden", data-table="statuses_of_action_parts")
+                                                                            .form-group.col-md-4
+                                                                                label Картинка для правил:
+                                                                                if(isNew)
+                                                                                    input.autoUpload.fc-event-field.form-control(type='text', data-server_name="complex_image", value="", data-name="complex_image")
+                                                                                else
+                                                                                    input.autoUpload.fc-event-field.form-control(type='text', data-server_name="complex_image", value="#{event.complex_image}", data-name="complex_image")
                                                                         .collapseable
                                                                             h4.padBot10.borBot1CCC Описание этапа
                                                                             .collapseBtn

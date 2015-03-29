@@ -35,7 +35,8 @@ block content
                                 | #{p.status}
                         p
                             .show_rules
-                                img(src="img/standarts.jpg")
+                                -var complex_path = (p.complex_image)? 'upload/'+p.complex_image : 'img/def_complex_image.jpg';
+                                img(src="#{complex_path}")
                                 .modal_rules_content
                                     if(p.desc_complex.length == 0 && p.note.length == 0 && p.desc_scoring.length == 0 && p.desc_inventory.length == 0 && p.desc_video_std.length == 0 && p.desc_move_std.length == 0)
                                         .col-md-12
