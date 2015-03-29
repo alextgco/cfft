@@ -35,7 +35,7 @@ $(document).ready(function(){
             },
             {
                 label: 'Город',
-                column: 'city_id',
+                column: 'id',
                 type: 'select',
                 tableName: 'city',
                 returnId: 'id',

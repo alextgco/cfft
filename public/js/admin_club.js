@@ -204,7 +204,7 @@ $(document).ready(function(){
         sendQuery(o, function(res){
             console.log(res);
             toastr[res.toastr.type](res.toastr.message);
-            document.location.href = "/admin/admin_clubs";
+            document.location.href = "/admin_clubs";
         });
 
     });
