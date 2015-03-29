@@ -342,6 +342,7 @@ $(document).ready(function(){
                 bootbox.dialog({
                     title: 'Регламент',
                     message: res.data[0].regulations,
+                    size: 'large',
                     buttons: {
                         success: {
                             label: 'Закрыть',
@@ -350,7 +351,9 @@ $(document).ready(function(){
                             }
                         }
                     }
-                })
+                });
+                $('.modal').animate({'scrollTop': 0}, 1500);
+
             });
         });
     }());
