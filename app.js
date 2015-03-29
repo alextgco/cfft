@@ -144,7 +144,7 @@ api('allActionLeaderBoard', 'results', {age:'40',gender_sys_name:'MALE'},functio
         console.log(result);
     }
 });*/
-var sendMail = require('./libs/sendMail');
+/*var sendMail = require('./libs/sendMail');
 
 var o = {
     email: 'ivantgco@gmail.com',
@@ -154,7 +154,7 @@ var o = {
 sendMail(o, function (err) {
     console.log(err);
     //  callback(err);
-});
+});*/
 
     //git remote set-url origin https://github.com/alextgco/cfft
 //git remote set-url origin ssh://cfft1@dotcloudapp.com/repository.git
