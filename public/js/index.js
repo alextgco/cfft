@@ -69,6 +69,11 @@ function initModalSelect(elem){
 }
 $(document).ready(function(){
 
+    var aU_firstname = $('#auth-user-firstname');
+    var aU_surname = $('auth-user-surname');
+    var aU_phonename = $('auth-user-phone');
+    var aU_emailname = $('auth-user-email');
+
     (function(){
         $('#logo').off('click').on('click', function(){
             if($(this).hasClass('adminHome')){
@@ -379,22 +384,82 @@ $(document).ready(function(){
 
     (function(){
         $('.feedback-open').off('click').on('click', function(){
+            //var
+            var html = '<div class="feedback-form-wraper">' +
+                            '<div class="form-group">' +
+                                '<label>ФИО:</label>' +
+                                '<input type="text" data-name="name" class="form-control fb-ctrl"/>' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                                '<label>Телефон:</label>' +
+                                '<input type="text" data-name="phone" class="form-control fb-ctrl"/>' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                                '<label>Почта:</label>' +
+                                '<input type="text" data-name="email" class="form-control fb-ctrl"/>' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                                '<label>Сообщение:</label>' +
+                                '<textarea rows="5" data-name="message" class="form-control fb-ctrl"></textarea>' +
+                            '</div>' +
+                        '</div>';
             bootbox.dialog({
-                title: '',
-                message: '',
+                title: 'Обратная связь',
+                message: html,
                 buttons: {
                     success: {
                         label:'Отправить',
                         callback: function(){
+                            var wrap = $('.feedback-form-wraper');
+                            var flds = wrap.find('.fb-ctrl');
+                            var totalValid = 0;
+                            var resObj = {};
 
-                        }
-                    },
-                    error: {
-                        label:'Отмена',
-                        callback: function(){
+                            for(var i=0; i<flds.length; i++){
+                                var fld = flds.eq(i);
+                                var val = fld.val();
+                                var fldName = fld.data('name');
+
+                                CF.validField(fld);
+                                console.log(fld);
+
+                                if(fldName == 'email'){
+                                    if(!CF.validator.email(val)){
+                                        CF.invalidField(fld);
+                                        totalValid++;
+                                    }else{
+                                        resObj[fldName] = val;
+                                    }
+                                }else{
+                                    if(!CF.validator.text(val)){
+                                        CF.invalidField(fld);
+                                        totalValid++;
+                                    }else{
+                                        resObj[fldName] = val;
+                                    }
+                                }
+                            }
+
+                            if(totalValid == 0){
+                                var messageHtml = '<div><label>ФИО: </label><span>'+resObj['name'] +'</span></div><br/>'+
+                                                  '<div><label>Телефон: </label><span>'+resObj.phone+'</span></div><br/>'+
+                                                  '<div><label>Почта: </label><span>'+resObj.email+'</span></div><br/>'+
+                                                  '<div><label>Сообщение: </label><span>'+resObj.message+'</span></div><br/>';
+
+                                console.log(messageHtml);
+                            }else{
+                                return false;
+                            }
 
                         }
                     }
+                    //,
+                    //error: {
+                    //    label:'Отмена',
+                    //    callback: function(){
+                    //
+                    //    }
+                    //}
                 }
             });
         });
