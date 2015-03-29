@@ -53,7 +53,6 @@ var daily = function (callback) {
         }, 3600000);
     };
     func();
-
 };
  daily(function(res){
      var dailyJobs = jobs.daily;
