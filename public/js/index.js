@@ -428,7 +428,7 @@ $(document).ready(function(){
                                 var fldName = fld.data('name');
 
                                 CF.validField(fld);
-                                console.log(fld);
+                                //console.log(fld);
 
                                 if(fldName == 'email'){
                                     if(!CF.validator.email(val)){
@@ -454,7 +454,7 @@ $(document).ready(function(){
                                                   '<div><label>Сообщение: </label><span>'+resObj.message+'</span></div><br/>';
 
                                 $.post('/sendFeedback',{html:messageHtml},function(r){
-                                    console.log(r);
+                                    //console.log(r);
                                     toastr[r.toastr.type](r.toastr.message);
                                 });
                             }else{
