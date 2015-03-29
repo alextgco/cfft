@@ -9,7 +9,7 @@ var sendFeedback = function(obj, callback){
 
     var html = obj.html;
     var o = {
-        email:config.get('mail:from'),
+        email:config.get('feedbackEmail'),
         subject:'Форма обратной связи CFFT.',
         html:html
     };
