@@ -54,8 +54,8 @@ block header
                         //i.fa.fa-flag-o &nbsp;&nbsp;
                         | Games
     .page-content
-        .col-md-12.noPad
-            .main-slider-wrapper-new.col-md-12.container.noPad
+        .noPad
+            .main-slider-wrapper-new.noPad
                 .main-slider-view
                     //.main-slider-controls
                     //    .main-slider-slide-left
@@ -73,7 +73,8 @@ block header
                     ul.main-slider(data-shift="0")
                         li.slide
                             a(href="wows")
-                                img(src="img/slide1.jpg")
+                                .cover.wide50.h100pr.wid100pr(style="background-image: url(img/slide1.jpg)")
+                                //img(src="img/slide1.jpg")
                             //.slide-text Lorem ipsum dolor sit!
                         //li.slide
                         //    img(src="img/slide2.jpg")

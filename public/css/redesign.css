@@ -1703,3 +1703,57 @@ a.art-title{
 input[type="text"].filter-ctrl{
     margin-top: 3px;
 }
+
+@media(max-width: 1024px){
+    .main-menu-wrapper li {
+        width: 100%;
+        text-align: center;
+    }
+    .main-menu-wrapper li a {
+        padding: 10px 15px;
+        width: 100%;
+    }
+    .slide a{
+        height: 300px;
+    }
+    #logo{
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+    }
+    .main-menu-wrapper{
+        width: 100%;
+        float: left;
+    }
+    #top-main-menu{
+        width: 100%;
+    }
+    .calendar-wrapper-new{
+        margin-bottom: 20px;
+    }
+    .art_img{
+        float: none;
+        margin: 0 auto;
+    }
+    .part-item .status_color{
+        float: left;
+        margin-bottom: 20px;
+    }
+    .show_rules {
+        float: left;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+.wide50{
+    background-position-x: 50%;
+}
+.slide a{
+    width: 100%;
+    display: block;
+    float: left;
+    height: 550px;
+}
+.slide {
+    list-style: none;
+}
