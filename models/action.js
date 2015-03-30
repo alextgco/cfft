@@ -19,7 +19,13 @@ module.exports = function(callback){
         getFormating:{
             description1:"parseBlob",
             description2:"parseBlob",
-            diary:"parseBlob"
+            diary:"parseBlob",
+            date_start:'userFriendlyDate',
+            date_end:'userFriendlyDate'
+        },
+        setFormating:{
+            date_start:'getDateTimeMySQL',
+            date_end:'getDateTimeMySQL'
         },
         join_objs:[
             {

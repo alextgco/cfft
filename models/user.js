@@ -17,11 +17,11 @@ module.exports = function(callback){
         table_ru: 'Пользователь',
         ending:'',
         required_fields:['firstname','surname','email','birthday','gender_id'],
-        setFormating:{
-            birthday:'getDateTimeMySQL'
-        },
         getFormating:{
             birthday:'userFriendlyDate'
+        },
+        setFormating:{
+            birthday:'getDateTimeMySQL'
         },
         validation: {
             birthday:'isDate',

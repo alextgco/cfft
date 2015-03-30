@@ -9,7 +9,13 @@ module.exports = function(callback){
         ending:'',
         required_fields:['action_id','title'],
         getFormating:{
-            description1:"parseBlob"
+            description1:"parseBlob",
+            start_date:'userFriendlyDate',
+            end_date:'userFriendlyDate'
+        },
+        setFormating:{
+            start_date:'getDateTimeMySQL',
+            end_date:'getDateTimeMySQL'
         },
         validation: {
             status_id:'number',
