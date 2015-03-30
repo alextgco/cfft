@@ -64,7 +64,7 @@ $(document).ready(function(){
             });
             partsWrapper.find('.fc_datepicker').each(function(idx, elem){
                 $(elem).datepicker({
-                    format: "dd/mm/yyyy",
+                    format: "dd.mm.yyyy",
                     todayBtn: "linked",
                     language: "ru",
                     autoclose: true

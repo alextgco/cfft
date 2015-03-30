@@ -3,6 +3,23 @@ block content
     .container
         h2 Клубы
             hr
+            .row.filter-list(data-object="club")
+                .col-md-4.form-group.filter-list-item
+                    label
+                        | Назване
+                    input.form-control.filter-ctrl(type="text", data-name="name", data-editor="select")
+                .col-md-4.form-group.filter-list-item
+                    label
+                        | Город
+                    input.select2.form-control.filter-ctrl(type="hidden", data-server_name="city_id", data-editor="select", data-name="title", data-required="true", value="", data-text="", data-table="city")
+                .sBtn.blue.filter-list-btn.filter-list-clear
+                    .fa.fa-ban
+                    | &nbsp;&nbsp;
+                    | Очистить
+                .sBtn.green.filter-list-btn.filter-list-confirm
+                    .fa.fa-filter
+                    | &nbsp;&nbsp;
+                    | Поиск
             .row
                 .col-md-12.wows-list-wrapper
                     for a in items.data

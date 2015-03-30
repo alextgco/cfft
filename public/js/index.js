@@ -92,7 +92,7 @@ $(document).ready(function(){
         });
 
         $('.fc_datepicker').datepicker({
-            format: "yyyy-mm-dd",
+            format: "dd.mm.yyyy",
             todayBtn: "linked",
             language: "ru",
             autoclose: true
@@ -136,6 +136,13 @@ $(document).ready(function(){
 
 
                     sendQuery(o, function(res){
+
+                        if($elem.hasClass('.filter-ctrl')){
+                            data.results.push({
+                                id: '-10',
+                                text: '-'
+                            });
+                        }
                         for(var i in res.data){
                             var item = res.data[i];
                             data.results.push({
@@ -476,6 +483,33 @@ $(document).ready(function(){
                 }
             });
         });
+    }());
+
+    (function(){
+        var filtersWrapper = $('.filter-list').eq(0);
+        var filters = $('.filter-ctrl');
+        var whereObj = {};
+        var getObj = filtersWrapper.data('object');
+        for(var i=0; i < filters.length; i++){
+            var f = filters.eq(i);
+            var ed = f.data('editor');
+            var val;
+            if(ed == 'select'){
+                val = f.select2('data').id;
+            }else{
+                val = f.val();
+            }
+            if(val == '' || !val || val == '-10'){
+                continue;
+            }
+            sendQuery({
+                command: 'get',
+                object: ''
+            }, function(res){
+
+            });
+
+        }
     }());
 
     CF.initMainSlider();
