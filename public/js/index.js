@@ -486,30 +486,66 @@ $(document).ready(function(){
     }());
 
     (function(){
-        var filtersWrapper = $('.filter-list').eq(0);
-        var filters = $('.filter-ctrl');
-        var whereObj = {};
-        var getObj = filtersWrapper.data('object');
-        for(var i=0; i < filters.length; i++){
-            var f = filters.eq(i);
-            var ed = f.data('editor');
-            var val;
-            if(ed == 'select'){
-                val = f.select2('data').id;
-            }else{
-                val = f.val();
+
+        $('.filter-list-confirm').off('click').on('click', function(){
+            var filtersWrapper = $(this).parents('.filter-list').eq(0);
+            var filters = filtersWrapper.find('.filter-ctrl');
+            var whereObj = {};
+            var getObj = filtersWrapper.data('object');
+            for(var i=0; i < filters.length; i++){
+                var f = filters.eq(i);
+                var ed = f.data('editor');
+                var val;
+
+
+                if(ed == 'select'){
+                    val = f.select2('data').id;
+                }else{
+                    val = f.val();
+                }
+                if(val == '' || !val || val == '-10'){
+                    continue;
+                }
+                if(ed == 'select'){
+                    whereObj[f.data('server_name')] = val;
+                }else{
+                    whereObj[f.data('name')] = '*' + val + '*';
+                }
             }
-            if(val == '' || !val || val == '-10'){
-                continue;
-            }
-            sendQuery({
+
+            var o = {
                 command: 'get',
-                object: ''
-            }, function(res){
+                object: getObj,
+                params: {
+                    where: whereObj
+                }
+            };
+
+            console.log(o);
+
+            sendQuery(o, function(res){
+
+                var items = $('.filter-me');
+                items.show(0);
+                var flatIds = [];
+                for(var i in res.data){
+                    flatIds.push(res.data[i].id);
+                }
+
+                for(var j=0; j<items.length; j++){
+                    var it = items.eq(j);
+                    var itId = it.data('id');
+                    if(flatIds.indexOf(itId) == '-1'){
+                        it.hide(0);
+                    }
+                }
+
+                console.log(res);
 
             });
+        });
 
-        }
+
     }());
 
     CF.initMainSlider();
