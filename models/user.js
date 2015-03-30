@@ -17,6 +17,9 @@ module.exports = function(callback){
         table_ru: 'Пользователь',
         ending:'',
         required_fields:['firstname','surname','email','birthday','gender_id'],
+        setFormating:{
+            birthday:'getDateTimeMySQL'
+        },
         getFormating:{
             birthday:'userFriendlyDate'
         },
@@ -246,6 +249,14 @@ module.exports = function(callback){
             if (obj.name){
                 obj.firstname = obj.name;
             }
+            for (var i0 in user.setFormating) {
+                if (typeof funcs[user.setFormating[i0]]=='function'){
+                    if (obj[i0]){
+                        obj[i0] = funcs[user.setFormating[i0]](obj[i0]);
+                    }
+                }
+            }
+
             var required_fields = [].concat(user.required_fields);
             var avaliable_fields = ['id','firstname','surname','secondname','phone','city_id','gender_id','weight','birthday','height','photo','isAgree','club_id'];//.concat(required_fields);
             for (var i0 in obj) {
