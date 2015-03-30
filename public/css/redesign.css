@@ -1700,3 +1700,6 @@ a.art-title{
     margin-left: 5px;
     float: right;
 }
+input[type="text"].filter-ctrl{
+    margin-top: 3px;
+}
