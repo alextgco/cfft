@@ -20,7 +20,14 @@ var funcs = {
 
         return o;
     },
-    getDateTimeMySQL: function () {
+    getDateTimeMySQL: function (d) {
+        if (d){
+            if (moment(d,'DD.MM.YYYY').isValid()){
+                return moment(d,'DD.MM.YYYY').format('YYYY-MM-DD HH:mm:ss');
+            }else{
+                return d;
+            }
+        }
         return moment().format('YYYY-MM-DD HH:mm:ss');
     },
     getDateMySQL: function () {
