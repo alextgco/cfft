@@ -137,7 +137,7 @@ $(document).ready(function(){
 
                     sendQuery(o, function(res){
 
-                        if($elem.hasClass('.filter-ctrl')){
+                        if($elem.hasClass('filter-ctrl')){
                             data.results.push({
                                 id: '-10',
                                 text: '-'
@@ -487,6 +487,25 @@ $(document).ready(function(){
 
     (function(){
 
+        $('.filter-list-clear').off('click').on('click', function(){
+            var filtersWrapper = $(this).parents('.filter-list').eq(0);
+            var filters = filtersWrapper.find('.filter-ctrl');
+            for(var i=0; i < filters.length; i++){
+                var f = filters.eq(i);
+                var ed = f.data('editor');
+                var val;
+                if(ed == 'select'){
+                    f.select2('val', '-10');
+                }else{
+                    f.val('');
+                }
+            }
+            var items = $('.filter-me');
+            items.show(0);
+
+        });
+
+
         $('.filter-list-confirm').off('click').on('click', function(){
             var filtersWrapper = $(this).parents('.filter-list').eq(0);
             var filters = filtersWrapper.find('.filter-ctrl');
@@ -521,8 +540,6 @@ $(document).ready(function(){
                 }
             };
 
-            console.log(o);
-
             sendQuery(o, function(res){
 
                 var items = $('.filter-me');
@@ -539,9 +556,6 @@ $(document).ready(function(){
                         it.hide(0);
                     }
                 }
-
-                console.log(res);
-
             });
         });
 
