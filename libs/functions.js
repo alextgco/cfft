@@ -58,6 +58,13 @@ var funcs = {
         var b = moment();
         return b.diff(a,'years');
     },
+    userFriendlyDate: function(val){
+        if (!moment(val).isValid()){
+            return val;
+        }
+        var a = moment(val).format('DD.MM.YYYY');
+        return a;
+    },
     clearEmpty: function(arr) {
         if (typeof arr!=='object'){
             return arr;

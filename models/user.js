@@ -18,7 +18,7 @@ module.exports = function(callback){
         ending:'',
         required_fields:['firstname','surname','email','birthday','gender_id'],
         getFormating:{
-            /*birthday:'age'*/
+            birthday:'userFriendlyDate'
         },
         validation: {
             birthday:'isDate',
