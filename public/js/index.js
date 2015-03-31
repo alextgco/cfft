@@ -1029,9 +1029,9 @@ $(document).ready(function(){
             return;
         }
         var toDate = $('.nearrest-wow-event-wrapper').data('to_date'); //2015-03-08 19:30
-        var y = parseInt(toDate.substr(0,4));
-        var m = parseInt(toDate.substr(5,2));
-        var d = parseInt(toDate.substr(8,2));
+        var d = toDate.substr(0,2);
+        var m = toDate.substr(3,2);
+        var y = toDate.substr(6,4);
 
         var h = 0;//parseInt(toDate.substr(11,2));
         var min = 0;//parseInt(toDate.substr(14,2));
@@ -1057,9 +1057,10 @@ $(document).ready(function(){
             console.log('getDayMth', date);
 
             var tempDate = date;
-            var y = tempDate.substr(0,4);
-            var m = tempDate.substr(5,2);
-            var d = tempDate.substr(8,2);
+            var d = tempDate.substr(0,2);
+            var m = tempDate.substr(3,2);
+            var y = tempDate.substr(6,4);
+
             return d+'.'+m;
         }
 

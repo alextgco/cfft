@@ -132,7 +132,8 @@ block content
                             .user-photo-wrapper
                                 .user-photo-clear
                                     .fa.fa-trash
-                                img(src="upload/#{club.photo}")
+                                -var path = (club.photo)? 'upload/'+club.photo : 'img/def_club.jpg';
+                                img(src="#{path}")
                                 //if(club.photo.length > 0)
 
                                 //else
