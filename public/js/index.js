@@ -1032,8 +1032,9 @@ $(document).ready(function(){
         var y = parseInt(toDate.substr(0,4));
         var m = parseInt(toDate.substr(5,2));
         var d = parseInt(toDate.substr(8,2));
-        var h = parseInt(toDate.substr(11,2));
-        var min = parseInt(toDate.substr(14,2));
+
+        var h = 0;//parseInt(toDate.substr(11,2));
+        var min = 0;//parseInt(toDate.substr(14,2));
 
         //console.log(y, m-1, d, h, min, new Date(y, m-1, d, h, min));
 
@@ -1052,9 +1053,13 @@ $(document).ready(function(){
 
     function initMainWow(){
         function getDayMth(date){
-            var y = date.substr(0,4);
-            var m = date.substr(5,2);
-            var d = date.substr(8,2);
+
+            console.log('getDayMth', date);
+
+            var tempDate = date;
+            var y = tempDate.substr(0,4);
+            var m = tempDate.substr(5,2);
+            var d = tempDate.substr(8,2);
             return d+'.'+m;
         }
 
@@ -1086,10 +1091,10 @@ $(document).ready(function(){
 
         sendQuery(o, function(res){
             var data = res.data;
+
             if(data.length > 0){
                 data = data[0];
                 console.log('DDDDD', data.date_start);
-
                 start.html(getDayMth(data.date_start));
                 end.html(getDayMth(data.date_end));
                 wowWrapper.data('to_date', data.date_start);
