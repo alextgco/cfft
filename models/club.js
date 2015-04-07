@@ -54,7 +54,9 @@ module.exports = function(callback){
             console.log(err);
         }
         club.beforeFunction.modify = function(obj, callback){
-            obj.default = (obj.default)?1:0;
+            obj.is_default = (obj.is_default)?1:0;
+            obj.isAffiliate = (obj.isAffiliate)?1:0;
+            if (obj.url=='') delete obj.url;
             return callback(null,obj);
         };
         callback(club);
