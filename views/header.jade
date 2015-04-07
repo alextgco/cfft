@@ -8,8 +8,9 @@ block header
 
         .contact-us
             .feedback-open
-                i.fa.fa-phone &nbsp;&nbsp;
-                | info@cfft.ru | обратная связь
+                i.fa.fa-envelope-o &nbsp;&nbsp;
+                | info@cfft.ru
+                //| обратная связь
         .preheaderButtons-wrapper
             if !user
                 .preheaderBtn.goToLogin(data-view="login")
@@ -57,24 +58,26 @@ block header
         .noPad
             .main-slider-wrapper-new.noPad
                 .main-slider-view
-                    //.main-slider-controls
-                    //    .main-slider-slide-left
-                    //        i.fa.fa-angle-left
-                    //    .main-slider-dots-wrapper
-                    //        ul.dots
-                    //            li
-                    //                i.fa.fa-circle
-                    //            li
-                    //                i.fa.fa-circle
-                    //            li
-                    //                i.fa.fa-circle
-                    //    .main-slider-slide-right
-                    //        i.fa.fa-angle-right
+                    .main-slider-controls
+                        .main-slider-slide-left
+                            i.fa.fa-angle-left
+                        .main-slider-dots-wrapper
+                            //ul.dots
+                            //    li
+                            //        i.fa.fa-circle
+                            //    li
+                            //        i.fa.fa-circle
+                            //    li
+                            //        i.fa.fa-circle
+                        .main-slider-slide-right
+                            i.fa.fa-angle-right
                     ul.main-slider(data-shift="0")
                         li.slide
                             a(href="wows")
-                                //.cover.wide50.h100pr.wid100pr(style="background-image: url(img/slide1.jpg)")
                                 img(src="img/slide1.jpg")
+                        li.slide
+                            a(href="wows")
+                                img(src="img/slide2.jpg")
                             //.slide-text Lorem ipsum dolor sit!
                         //li.slide
                         //    img(src="img/slide2.jpg")
