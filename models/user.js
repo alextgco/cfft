@@ -167,10 +167,19 @@ module.exports = function(callback){
                 return callback(new MyError('Не указан пароль.'));
             }
 
+
             var passObj = user.encryptPassword(obj.password);
             obj.hashedPassword = passObj.hashedPassword;
             obj.salt = passObj.salt;
             delete obj.password;
+
+            for (var i0 in user.setFormating) {
+                if (typeof funcs[user.setFormating[i0]]=='function'){
+                    if (obj[i0]){
+                        obj[i0] = funcs[user.setFormating[i0]](obj[i0]);
+                    }
+                }
+            }
 
             for (var i in user.required_fields) {
                 var finded = false;
@@ -279,7 +288,7 @@ module.exports = function(callback){
                 return callback(new MyError('Не переданы (или переданы не корректно) обязательные поля. ' + notFinded.join(', ')));
             }
             if (obj.birthday){
-                obj.age = funcs.age(obj.birthday);
+                obj.age = funcs.age(obj.birthday,'DD.MM.YYYY');
             }
             if (obj.isAgree){
                 obj.isAgree = (obj.isAgree)?1:0;
@@ -309,7 +318,8 @@ module.exports = function(callback){
                 var needUpdate = [];
                 res = res.data;
                 for (var i in res) {
-                    var realAge = funcs.age(res[i].birthday);
+                    var realAge = funcs.age(res[i].birthday,'DD.MM.YYYY');
+                    console.log(res[i].birthday, realAge);
                     var age = res[i].age;
                     if (realAge!==age){
                         needUpdate.push({

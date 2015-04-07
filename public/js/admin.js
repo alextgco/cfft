@@ -107,6 +107,12 @@ $(document).ready(function(){
            console.log(r);
         });
     });
+    $("#btn7").off('click').on('click',function(){
+        $.post('/updateUserAges',{},function(r){
+            alert(r);
+            console.log(r);
+        });
+    });
 
 
         var userPhotoWrapper = $('.user-photo-wrapper');

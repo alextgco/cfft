@@ -364,8 +364,8 @@ Model.prototype.add = function (obj, callback) {
         function(callback){
             for (var i in self.setFormating) {
                 if (typeof funcs[self.setFormating[i]]=='function'){
-                    if (params[i]){
-                        params[i] = funcs[self.setFormating[i]](params[i]);
+                    if (obj[i]){
+                        obj[i] = funcs[self.setFormating[i]](obj[i]);
                     }
                 }
             }
@@ -422,8 +422,8 @@ Model.prototype.modify = function (obj, callback) {
         function(callback){
             for (var i in self.setFormating) {
                 if (typeof funcs[self.setFormating[i]]=='function'){
-                    if (params[i]){
-                        params[i] = funcs[self.setFormating[i]](params[i]);
+                    if (obj[i]){
+                        obj[i] = funcs[self.setFormating[i]](obj[i]);
                     }
                 }
             }
@@ -469,8 +469,8 @@ Model.prototype.remove = function (obj, callback) {
         function(callback){
             for (var i in self.setFormating) {
                 if (typeof funcs[self.setFormating[i]]=='function'){
-                    if (params[i]){
-                        params[i] = funcs[self.setFormating[i]](params[i]);
+                    if (obj[i]){
+                        obj[i] = funcs[self.setFormating[i]](obj[i]);
                     }
                 }
             }

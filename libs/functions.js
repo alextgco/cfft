@@ -57,11 +57,12 @@ var funcs = {
         }
         return arr.toString();
     },
-    age: function(val){
-        if (!moment(val).isValid()){
+    age: function(val,f){
+        f = f || "YYYY-MM-DD";
+        if (!moment(val, f).isValid()){
             return val;
         }
-        var a = moment(val);
+        var a = moment(val,f);
         var b = moment();
         return b.diff(a,'years');
     },
