@@ -196,26 +196,34 @@ a.open-calendar.opened{
     text-align: center;
 }
 
+.main-slider-slide-left{
+    top:50%;
+    left: 0;
+}
+.main-slider-slide-right{
+    top:50%;
+    right: 0;
+}
 
 .main-slider-slide-left,
 .main-slider-slide-right {
-    position: relative;
+    position: absolute;
     height: 40px;
+    margin-top: -20px;
     float: left;
     width: 40px;
     background-color: #333;
     color: #fff;
-    font-size: 30px;
-    margin-top: 0;
+    font-size: 27px;
     cursor: pointer;
     z-index: 11;
     padding-top: 0;
     text-align: center;
 }
 .main-slider-controls{
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
 }
 .main-slider-dots-wrapper{
     float: left;
