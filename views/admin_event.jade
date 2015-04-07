@@ -44,10 +44,10 @@ block content
                                 .form-group
                                     if(isNew)
                                         label Тип мероприятия:
-                                        input.select2.fc-event-field.form-control(type="hidden", data-server_name="type_id", data-name="name", value="", data-text="", data-table="action_types")
+                                        input.select2.fc-event-field.form-control(type="hidden", data-server_name="type_id", data-name="name", value="", data-text="", data-table="action_type")
                                     else
                                         label Тип мероприятия:
-                                        input.select2.fc-event-field.form-control(type="hidden", data-server_name="type_id", data-name="name", value="#{event.type_id}", data-text="#{event.action_type}", data-table="action_types")
+                                        input.select2.fc-event-field.form-control(type="hidden", data-server_name="type_id", data-name="name", value="#{event.type_id}", data-text="#{event.action_type}", data-table="action_type")
                             .col-md-3
                                 .form-group
                                     if(isNew)
