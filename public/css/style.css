@@ -73,7 +73,7 @@
 }
 .main-slider li img{
     width: 100%;
-    margin-top: -20px;
+    /*margin-top: -20px;*/
 }
 .main-slider-wrapper{
     background-color: #000;

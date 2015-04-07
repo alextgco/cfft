@@ -1714,7 +1714,7 @@ input[type="text"].filter-ctrl{
         width: 100%;
     }
     .slide a{
-        height: 300px;
+        /*height: 300px;*/
     }
     #logo{
         width: 100%;
@@ -1752,7 +1752,7 @@ input[type="text"].filter-ctrl{
     width: 100%;
     display: block;
     float: left;
-    height: 550px;
+    /*height: 550px;*/
 }
 .slide {
     list-style: none;
