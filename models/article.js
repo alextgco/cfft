@@ -16,7 +16,11 @@ module.exports = function(callback){
         },
         join_objs:[
 
-        ]
+        ],
+        sort:{
+            column:'id',
+            direction:'DESC'
+        }
     },function(err){
         if (err){
             console.log(err);

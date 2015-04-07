@@ -137,8 +137,12 @@ Model.prototype.get = function (params, callback) {
     var getRows = function (conn, callback) {
         var where = params.where || self.where || {};
         var limit = params.limit || 1000;
-        var sort = params.sort || (self.sort) ? funcs.cloneObj(self.sort) : {column:'id',direction:'ASC'};
+        console.log('params',params);
+        console.log('params.sort',params['sort']);
+        var sort = params.sort;// || (self.sort) ? funcs.cloneObj(self.sort) : {column:'id',direction:'ASC'};
+        console.log('sort',sort);
         var deleted = !!params.deleted;
+
         var published = params.published;
         var distinct = (self.distinct)? ' DISTINCT ' : '';
         var columns = params.columns || funcs.cloneObj(self.columns);
