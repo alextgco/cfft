@@ -178,13 +178,9 @@ $(document).ready(function(){
                             label: 'Отправить',
                             callback: function(){
                                 var subject = $('.mailing-subject');
-                                var message = $('#mailing-html');
 
-                                console.log(subject, message);
-
-                                $.post('/sendSubscribe',{subject:subject , html: editorInst.getData() },function(r){
-                                    alert(r);
-                                    console.log(r);
+                                $.post('/sendSubscribe',{subject:subject.val() , html: editorInst.getData() },function(r){
+                                    toastr[r.toastr.type](r.toastr.message);
                                 });
                             }
                         }
