@@ -627,22 +627,41 @@ $(document).ready(function(){
             });
         };
 
+
+        var wasInited = false;
+
         goL.on('click', function(){
             if($(this).hasClass('disabled')){return;}
+            wasInited = true;
             slideRight(function(){
+                window.setTimeout(function(){
+                    wasInited = false;
+                }, 4000);
 
             });
         });
         goR.on('click', function(){
             if($(this).hasClass('disabled')){return;}
+            wasInited = true;
             slideLeft(function(){
-
+                window.setTimeout(function(){
+                    wasInited = false;
+                }, 4000);
             });
         });
 
         sl_ul.width(sl_lis.length * 100 +'%');
         sl_lis.width(100 / sl_lis.length +'%');
         enableButtons();
+
+        window.setInterval(function(){
+            if(wasInited){return;}
+            if(goL.hasClass('disabled')){
+                slideLeft(function(){});
+            }else{
+                slideRight(function(){});
+            }
+        }, 8000);
     }
     CF.initMainSlider = initMainSlider;
 
