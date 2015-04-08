@@ -1,6 +1,6 @@
 var Model = require('./MySQLModel');
 var funcs = require('../libs/functions');
-
+var sendMail = require('../libs/sendMail');
 var crypto = require('crypto');
 var async = require('async');
 var AuthError = require('../error').AuthError;
@@ -389,6 +389,38 @@ module.exports = function(callback){
 
 
 
+        };
+        user.doSubscribe = function(obj,callback){
+            if (typeof obj!=='object'){
+                return callback(new MyError('Не корректный объект'));
+            }
+            /*if(!obj.user_id){
+             callback(null, funcs.formatResponse(1, 'error', 'Для отправки заявки необходимо авторизоваться..'));
+             }*/
+            pool.getConn(function(err, conn){
+                if (err){
+                    return callback(err);
+                }
+                var sql = 'select email from users where email is not null and isAgree = 1';
+                conn.query(sql,[],function(err, res){
+                    conn.release();
+                    if (err){
+                        return callback(err);
+                    }
+                    async.each(res, function (item, callback) {
+                        var o = {
+                            email: item.email,
+                            subject: obj.subject || 'Рассылка с CFFT.RU',
+                            html: obj.html || 'Рассылка с CFFT.RU.'
+                        };
+                        sendMail(o, function (err) {
+                            callback(err);
+                        });
+                    }, function (err,r) {
+                        callback(err,r);
+                    })
+                });
+            });
         };
         callback(user);
     });

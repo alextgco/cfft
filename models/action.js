@@ -200,7 +200,7 @@ module.exports = function(callback){
                     async.each(res, function (item, callback) {
                         var o = {
                             email: item.email,
-                            subject: 'Тест рассылки мероприятия',
+                            subject: obj.subject || 'Тест рассылки мероприятия',
                             html: obj.html || 'Тест рассылки мероприятия.'
                         };
                         sendMail(o, function (err) {
