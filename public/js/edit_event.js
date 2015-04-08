@@ -167,6 +167,8 @@ $(document).ready(function(){
                 var html = '' +
                     '<div class="form-group"><label>Тема письма:</label><input value="Приглашение с сайта cfft.ru" type="text" class="form-control mailing-subject" /></div>'+
                     '<div class="form-group"><label>Сообщение:</label><textarea rows="5" id="mailing-html" class="form-control"></textarea></div>';
+                var editorInst;
+
                 bootbox.dialog({
                     title: "Разослать мероприятие",
                     message: html,
@@ -180,8 +182,10 @@ $(document).ready(function(){
 
                                 console.log(subject, message);
 
-//                                api(user,doSubscribe
-//                                {html:'',subject:''}
+                                $.post('/sendSubscribe',{subject:subject , html: editorInst.getData() },function(r){
+                                    alert(r);
+                                    console.log(r);
+                                });
                             }
                         }
                     }
@@ -190,7 +194,8 @@ $(document).ready(function(){
                 var are = $('#mailing-html')[0];
                 CKEDITOR.replace(are);
                 var planeText = Mustache.to_html(tpl, action);
-                CKEDITOR.instances['mailing-html'].setData(planeText);
+                editorInst = CKEDITOR.instances['mailing-html'];
+                editorInst.setData(planeText);
             }
         });
     });

@@ -103,21 +103,21 @@ $(document).ready(function(){
         });
     });
     $("#btn6").off('click').on('click',function(){
-        $.post('/sendFeedback',{html:"<b>Test sending feedback</b>"},function(r){
-           console.log(r);
-        });
+//        $.post('/sendFeedback',{html:"<b>Test sending feedback</b>"},function(r){
+//           console.log(r);
+//        });
     });
     $("#btn7").off('click').on('click',function(){
-        $.post('/updateUserAges',{},function(r){
-            alert(r);
-            console.log(r);
-        });
+//        $.post('/updateUserAges',{},function(r){
+//            alert(r);
+//            console.log(r);
+//        });
     });
     $("#btn8").off('click').on('click',function(){
-        $.post('/sendSubscribe',{subject:'Тема', html:'Тест'},function(r){
-            alert(r);
-            console.log(r);
-        });
+//        $.post('/sendSubscribe',{subject:'Тема', html:'Тест'},function(r){
+//            alert(r);
+//            console.log(r);
+//        });
     });
 
 
