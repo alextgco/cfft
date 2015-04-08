@@ -140,6 +140,61 @@ $(document).ready(function(){
         });
     });
 
+    var eventMailing = $('.event-mailing');
+
+    eventMailing.off('click').on('click', function(){
+        var id = $(this).data('action_id');
+
+        var action;
+        sendQuery({
+            command:'get',
+            object: 'action',
+            params: {
+                where: {
+                    id: id
+                }
+            }
+        }, function(res){
+            if(res.code == 0){
+                action = res.data[0];
+                var tpl = 'Доброго времени суток!<br/>' +
+                          'Приглашаем вас принять участие в нашем мероприятии {{title}}, открытие которого намечено на {{date_start}}.<br/>' +
+                          'Кратко о мероприятии:<br/>' +
+                          '{{{description1}}}<br/>' +
+                          '<a href="http://cfft.ru/wow?id='+id+'">Принять участие!</a><br/><br/><br/>' +
+                          'С уважением, администрация сайта <a href="http://cfft.ru">cfft.ru</a>';
+
+                var html = '' +
+                    '<div class="form-group"><label>Тема письма:</label><input value="Приглашение с сайта cfft.ru" type="text" class="form-control mailing-subject" /></div>'+
+                    '<div class="form-group"><label>Сообщение:</label><textarea rows="5" id="mailing-html" class="form-control"></textarea></div>';
+                bootbox.dialog({
+                    title: "Разослать мероприятие",
+                    message: html,
+                    className: "largeBB",
+                    buttons: {
+                        success: {
+                            label: 'Отправить',
+                            callback: function(){
+                                var subject = $('.mailing-subject');
+                                var message = $('#mailing-html');
+
+                                console.log(subject, message);
+
+//                                api(user,doSubscribe
+//                                {html:'',subject:''}
+                            }
+                        }
+                    }
+                });
+
+                var are = $('#mailing-html')[0];
+                CKEDITOR.replace(are);
+                var planeText = Mustache.to_html(tpl, action);
+                CKEDITOR.instances['mailing-html'].setData(planeText);
+            }
+        });
+    });
+
     var removeEvent = $('.remove-event');
 
     removeEvent.off('click').on('click', function(){

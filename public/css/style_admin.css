@@ -100,7 +100,7 @@
 .admin_layout .event-item-date{
     position: absolute;
     top: 18px;
-    right: 70px;
+    right: 100px;
 }
 .addEventButton{
     position: absolute;
@@ -156,6 +156,24 @@
 }
 .remove-event:hover{
     background-color: rgb(215, 47, 46);
+}
+
+.event-mailing{
+    position: absolute;
+    background-color: rgb(113, 147, 215);
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    padding-top: 7px;
+    top: 7px;
+    right: 50px;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.event-mailing:hover{
+    background-color: rgb(64, 98, 215);
 }
 
 .watch-result{
@@ -375,4 +393,9 @@ table.table.simpleView tr:nth-child(2n) td{
 }
 .user-photo-clear:hover{
     background-color: #fff;
+}
+.largeBB .modal-dialog{
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 30px;
 }

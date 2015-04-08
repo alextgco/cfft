@@ -37,5 +37,7 @@ block content
                                 .event-item-desc #{a.description}
                         .remove-event(data-action_id="#{a.id}")
                             .fa.fa-trash-o
+                        .event-mailing(data-action_id="#{a.id}")
+                            .fa.fa-envelope-o
                 else
                     li sorry, no events!
