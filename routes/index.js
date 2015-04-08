@@ -15,7 +15,7 @@ module.exports = function (app) {
   app.post('/admin/api', checkAdmin, require('./adminApi').post);
   app.post('/api', require('./userApi').post);
   app.post('/sendFeedback', require('./sendFeedback').post);
-  app.post('/sendSubscribe', require('./sendSubscribe').post);
+  app.post('/sendSubscribe', checkAdmin, require('./sendSubscribe').post);
   app.post('/updateUserAges', require('./updateUserAges').post);
 
   //app.get('/login', require('./login').get);
