@@ -38,27 +38,27 @@ block content
                                 -var complex_path = (p.complex_image)? 'upload/'+p.complex_image : 'img/def_complex_image.jpg';
                                 img(src="#{complex_path}")
                                 .modal_rules_content
-                                    if(p.desc_complex.length == 0 && p.note.length == 0 && p.desc_scoring.length == 0 && p.desc_inventory.length == 0 && p.desc_video_std.length == 0 && p.desc_move_std.length == 0)
+                                    if(!p.desc_complex && !p.note && !p.desc_scoring && !p.desc_inventory && !p.desc_video_std && !p.desc_move_std)
                                         .col-md-12
                                             h4 Нет информации
                                     else
                                         .wid100pr
-                                            if(p.desc_complex.length > 0)
+                                            if(p.desc_complex && p.desc_complex.length > 0)
                                                 h4.darkHd Комплекс
                                                 !{p.desc_complex}
-                                            if(p.note.length > 0)
+                                            if(p.note && p.note.length > 0)
                                                 h4.darkHd Примечание
                                                 !{p.note}
-                                            if(p.desc_scoring.length > 0)
+                                            if(p.desc_scoring && p.desc_scoring.length > 0)
                                                 h4.darkHd Подсчет очков
                                                 !{p.desc_scoring}
-                                            if(p.desc_inventory.length > 0)
+                                            if(p.desc_inventory && p.desc_inventory.length > 0)
                                                 h4.darkHd Оборудование
                                                 !{p.desc_inventory}
-                                            if(p.desc_video_std.length > 0)
+                                            if(p.desc_video_std && p.desc_video_std.length > 0)
                                                 h4.darkHd Стандарты видеосъкемки
                                                 !{p.desc_video_std}
-                                            if(p.desc_move_std.length > 0)
+                                            if(p.desc_move_std && p.desc_move_std.length > 0)
                                                 h4.darkHd Стандарты движений
                                                 !{p.desc_move_std}
 
