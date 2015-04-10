@@ -1,6 +1,6 @@
 extends layout
 block content
-    - var parts = (data.parts.data.length)? data.parts.data: [data.parts.data];
+    - var parts = (data.parts.data.length)? data.parts.data: false;
     - var event = data.actions.data[0];
     - var rewards = data.rewards.data[0];
 
@@ -10,175 +10,178 @@ block content
                 | #{event.title}
     .wide-block.regularBg
         .container
-            each p, pKey in parts
-                - var activeClass = (pKey == 0)? 'active': '';
-                .row(data-index="#{pKey}" class="part-item #{activeClass}")
-                    .col-md-8
-                        h3
-                            | #{p.title}
-                        p
-                            | #{p.start_date} - #{p.end_date}
-                        p
-                            | !{p.desc_complex}
-                        ul.select_part
-                            - var index = 0
-                            each val, key in parts
-                                if key == 0
-                                    li.active(data-index="#{key}")
-                                        | #{val.title}
-                                else
-                                    li(data-index="#{key}")
-                                        | #{val.title}
-                    .col-md-4
-                        p
-                            div(class="status_color #{p.status_sys_name}")
-                                | #{p.status}
-                        p
-                            .show_rules
-                                -var complex_path = (p.complex_image)? 'upload/'+p.complex_image : 'img/def_complex_image.jpg';
-                                img(src="#{complex_path}")
-                                .modal_rules_content
-                                    if(!p.desc_complex && !p.note && !p.desc_scoring && !p.desc_inventory && !p.desc_video_std && !p.desc_move_std)
-                                        .col-md-12
-                                            h4 Нет информации
+            if(!parts)
+                h3 Нет открытых этапов
+            else
+                each p, pKey in parts
+                    - var activeClass = (pKey == 0)? 'active': '';
+                    .row(data-index="#{pKey}" class="part-item #{activeClass}")
+                        .col-md-8
+                            h3
+                                | #{p.title}
+                            p
+                                | #{p.start_date} - #{p.end_date}
+                            p
+                                | !{p.desc_complex}
+                            ul.select_part
+                                - var index = 0
+                                each val, key in parts
+                                    if key == 0
+                                        li.active(data-index="#{key}")
+                                            | #{val.title}
                                     else
-                                        .wid100pr
-                                            if(p.desc_complex && p.desc_complex.length > 0)
-                                                h4.darkHd Комплекс
-                                                !{p.desc_complex}
-                                            if(p.note && p.note.length > 0)
-                                                h4.darkHd Примечание
-                                                !{p.note}
-                                            if(p.desc_scoring && p.desc_scoring.length > 0)
-                                                h4.darkHd Подсчет очков
-                                                !{p.desc_scoring}
-                                            if(p.desc_inventory && p.desc_inventory.length > 0)
-                                                h4.darkHd Оборудование
-                                                !{p.desc_inventory}
-                                            if(p.desc_video_std && p.desc_video_std.length > 0)
-                                                h4.darkHd Стандарты видеосъкемки
-                                                !{p.desc_video_std}
-                                            if(p.desc_move_std && p.desc_move_std.length > 0)
-                                                h4.darkHd Стандарты движений
-                                                !{p.desc_move_std}
+                                        li(data-index="#{key}")
+                                            | #{val.title}
+                        .col-md-4
+                            p
+                                div(class="status_color #{p.status_sys_name}")
+                                    | #{p.status}
+                            p
+                                .show_rules
+                                    -var complex_path = (p.complex_image)? 'upload/'+p.complex_image : 'img/def_complex_image.jpg';
+                                    img(src="#{complex_path}")
+                                    .modal_rules_content
+                                        if(!p.desc_complex && !p.note && !p.desc_scoring && !p.desc_inventory && !p.desc_video_std && !p.desc_move_std)
+                                            .col-md-12
+                                                h4 Нет информации
+                                        else
+                                            .wid100pr
+                                                if(p.desc_complex && p.desc_complex.length > 0)
+                                                    h4.darkHd Комплекс
+                                                    !{p.desc_complex}
+                                                if(p.note && p.note.length > 0)
+                                                    h4.darkHd Примечание
+                                                    !{p.note}
+                                                if(p.desc_scoring && p.desc_scoring.length > 0)
+                                                    h4.darkHd Подсчет очков
+                                                    !{p.desc_scoring}
+                                                if(p.desc_inventory && p.desc_inventory.length > 0)
+                                                    h4.darkHd Оборудование
+                                                    !{p.desc_inventory}
+                                                if(p.desc_video_std && p.desc_video_std.length > 0)
+                                                    h4.darkHd Стандарты видеосъкемки
+                                                    !{p.desc_video_std}
+                                                if(p.desc_move_std && p.desc_move_std.length > 0)
+                                                    h4.darkHd Стандарты движений
+                                                    !{p.desc_move_std}
 
+    if(parts)
+        .wide-block.lightBg
+            .container
+                each p, pKey in parts
+                    - var activeClass = (pKey == 0)? 'active': '';
+                    .row(data-index="#{pKey}" class="part-item #{activeClass}")
+                        .h2
+                            if(p.status_sys_name == 'OPENED')
+                                | Предварительные результаты
+                            else
+                                | Результаты этапа
+                        .part-buttons-wrapper
+                            - var buttonClass = (user)? 'order-event-part' : 'goToLogin'
+                            if(event.status_sys_name == 'OPENED' && p.status_sys_name == 'OPENED')
+                                a.cBtn.orange(data-event='#{event.title}', data-event_id='#{event.id}', data-event_part='#{p.title}', data-event_part_id='#{p.id}', class="#{buttonClass}")
+                                    if(user)
+                                        |   Отправить результат!
+                                    else
+                                        |   Авторизируйтесь для участия
+                                    .modal-order-content
+                                        form.form-horizontal
+                                            .row
+                                                .col-md-12
+                                                    .pr50.flLeft
+                                                        .form-group.col-md-12
+                                                            | #{event.title}
+                                                    .pr50.flLeft
+                                                        .form-group.col-md-12
+                                                            | #{p.title}
+                                            .row.order-event-part-result-row(data-part="#{p.id}")
+                                                .col-md-12
+                                                    .form-group.col-md-12
+                                                        label Ссылка на видео:
+                                                        .input-group
+                                                            .input-group-addon
+                                                                i.fa.fa-video-camera
+                                                            input.form-control(type="text", data-id="video", data-part="#{p.id}")
+                                                    .form-group.col-md-12
+                                                        label.control-label Клуб
+                                                        input.select2InModal.form-control.fc-field(type="hidden", tabindex="1", data-server_name="club_id", data-editor="select", data-name="name", data-required="true", value="", data-text="", data-table="club")
+                                                    .form-group.col-md-12.results(data-res_type_id="#{p.result_type_id}", data-res_type="#{p.result_type_sys}")
+                                                        label Результат
+                                                        if(p.result_type_sys == 'TIME')
+                                                            //input.form-control.time-mm.maskTime(type="text", placeholder="мм:cc")
+                                                            .input-group
+                                                                input.form-control.mm(type='text', placeholder="мм", data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="mm")
+                                                                .input-group-addon :
+                                                                input.form-control.ss(type='text', placeholder="cc", data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="ss")
 
-    .wide-block.lightBg
-        .container
-            each p, pKey in parts
-                - var activeClass = (pKey == 0)? 'active': '';
-                .row(data-index="#{pKey}" class="part-item #{activeClass}")
+                                                        else if(p.result_type_sys == 'REPEAT')
+
+                                                            input.form-control(type="number", data-editor_id="", data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="repeat")
+
+                                                        else if(p.result_type_sys == 'TIE_BREAK')
+                                                            .input-group
+                                                                input.form-control.tieBreak1(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tb1")
+                                                                .input-group-addon (
+                                                                input.form-control.tieBreak2(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tb2")
+                                                                .input-group-addon (
+                                                                input.form-control.tieBreak3(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tb3")
+                                                                .input-group-addon :
+                                                                input.form-control.tieBreak4(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tb4")
+                                                                .input-group-addon ))
+
+                                                        else if(p.result_type_sys == 'TIE_BREAK_SHORT')
+                                                            .input-group
+                                                                input.form-control.tieBreak1(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tbs1")
+                                                                .input-group-addon (
+                                                                input.form-control.tieBreak3(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tbs2")
+                                                                .input-group-addon :
+                                                                input.form-control.tieBreak4(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tbs3")
+                                                                .input-group-addon )
+                            a.cBtn.grey.event-reglament-link(data-sys_name="WOD_OF_WEEK")
+                                | Регламент
+
+                        div.event-results-tabs(role="tabpanel")
+                            ul.nav.nav-pills(role="tablist")
+                                li.active(role="results_by_range_#{p.id}")
+                                    a(href="#male_#{p.id}", aria-controls="male_#{p.id}", role="tab", data-toggle="tab") Мужчины
+                                li(role="results_by_range_#{p.id}")
+                                    a(href="#male40_#{p.id}", aria-controls="male40_#{p.id}", role="tab", data-toggle="tab") Мужчины 40+
+                                li(role="results_by_range_#{p.id}")
+                                    a(href="#famale_#{p.id}", aria-controls="famale_#{p.id}", role="tab", data-toggle="tab") Женщины
+                                li(role="results_by_range_#{p.id}")
+                                    a(href="#famale40_#{p.id}", aria-controls="famale40_#{p.id}", role="tab", data-toggle="tab") Женщины 40+
+                            .tab-content
+                                .tab-pane.active(role="tabpanel", id="male_#{p.id}")
+                                    .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="male")
+                                .tab-pane(role="tabpanel", id="male40_#{p.id}")
+                                    .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="male40")
+                                .tab-pane(role="tabpanel", id="famale_#{p.id}")
+                                    .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="famale")
+                                .tab-pane(role="tabpanel", id="famale40_#{p.id}")
+                                    .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="famale40")
+                    //<input type="text" data-where_type="external" data-where_table="users" class="tableFilter form-control" data-filter_type="like" data-column="surname">
+                .row
                     .h2
-                        if(p.status_sys_name == 'OPENED')
-                            | Предварительные результаты
-                        else
-                            | Результаты этапа
-                    .part-buttons-wrapper
-                        - var buttonClass = (user)? 'order-event-part' : 'goToLogin'
-                        if(event.status_sys_name == 'OPENED' && p.status_sys_name == 'OPENED')
-                            a.cBtn.orange(data-event='#{event.title}', data-event_id='#{event.id}', data-event_part='#{p.title}', data-event_part_id='#{p.id}', class="#{buttonClass}")
-                                if(user)
-                                    |   Отправить результат!
-                                else
-                                    |   Авторизируйтесь для участия
-                                .modal-order-content
-                                    form.form-horizontal
-                                        .row
-                                            .col-md-12
-                                                .pr50.flLeft
-                                                    .form-group.col-md-12
-                                                        | #{event.title}
-                                                .pr50.flLeft
-                                                    .form-group.col-md-12
-                                                        | #{p.title}
-                                        .row.order-event-part-result-row(data-part="#{p.id}")
-                                            .col-md-12
-                                                .form-group.col-md-12
-                                                    label Ссылка на видео:
-                                                    .input-group
-                                                        .input-group-addon
-                                                            i.fa.fa-video-camera
-                                                        input.form-control(type="text", data-id="video", data-part="#{p.id}")
-                                                .form-group.col-md-12
-                                                    label.control-label Клуб
-                                                    input.select2InModal.form-control.fc-field(type="hidden", tabindex="1", data-server_name="club_id", data-editor="select", data-name="name", data-required="true", value="", data-text="", data-table="club")
-                                                .form-group.col-md-12.results(data-res_type_id="#{p.result_type_id}", data-res_type="#{p.result_type_sys}")
-                                                    label Результат
-                                                    if(p.result_type_sys == 'TIME')
-                                                        //input.form-control.time-mm.maskTime(type="text", placeholder="мм:cc")
-                                                        .input-group
-                                                            input.form-control.mm(type='text', placeholder="мм", data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="mm")
-                                                            .input-group-addon :
-                                                            input.form-control.ss(type='text', placeholder="cc", data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="ss")
-
-                                                    else if(p.result_type_sys == 'REPEAT')
-
-                                                        input.form-control(type="number", data-editor_id="", data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="repeat")
-
-                                                    else if(p.result_type_sys == 'TIE_BREAK')
-                                                        .input-group
-                                                            input.form-control.tieBreak1(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tb1")
-                                                            .input-group-addon (
-                                                            input.form-control.tieBreak2(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tb2")
-                                                            .input-group-addon (
-                                                            input.form-control.tieBreak3(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tb3")
-                                                            .input-group-addon :
-                                                            input.form-control.tieBreak4(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tb4")
-                                                            .input-group-addon ))
-
-                                                    else if(p.result_type_sys == 'TIE_BREAK_SHORT')
-                                                        .input-group
-                                                            input.form-control.tieBreak1(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tbs1")
-                                                            .input-group-addon (
-                                                            input.form-control.tieBreak3(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tbs2")
-                                                            .input-group-addon :
-                                                            input.form-control.tieBreak4(type='text', data-res_type="#{p.result_type_sys}", data-part="#{p.id}", data-id="tbs3")
-                                                            .input-group-addon )
-                        a.cBtn.grey.event-reglament-link(data-sys_name="WOD_OF_WEEK")
-                            | Регламент
-
+                        | Лидерборд мероприятия
                     div.event-results-tabs(role="tabpanel")
                         ul.nav.nav-pills(role="tablist")
-                            li.active(role="results_by_range_#{p.id}")
-                                a(href="#male_#{p.id}", aria-controls="male_#{p.id}", role="tab", data-toggle="tab") Мужчины
-                            li(role="results_by_range_#{p.id}")
-                                a(href="#male40_#{p.id}", aria-controls="male40_#{p.id}", role="tab", data-toggle="tab") Мужчины 40+
-                            li(role="results_by_range_#{p.id}")
-                                a(href="#famale_#{p.id}", aria-controls="famale_#{p.id}", role="tab", data-toggle="tab") Женщины
-                            li(role="results_by_range_#{p.id}")
-                                a(href="#famale40_#{p.id}", aria-controls="famale40_#{p.id}", role="tab", data-toggle="tab") Женщины 40+
+                            li.active(role="event_leaderboard")
+                                a(href="#male_#{event.id}", aria-controls="male_#{event.id}", role="tab", data-toggle="tab") Мужчины
+                            li(role="event_leaderboard")
+                                a(href="#male40_#{event.id}", aria-controls="male40_#{event.id}", role="tab", data-toggle="tab") Мужчины 40+
+                            li(role="event_leaderboard")
+                                a(href="#famale_#{event.id}", aria-controls="famale_#{event.id}", role="tab", data-toggle="tab") Женщины
+                            li(role="event_leaderboard")
+                                a(href="#famale40_#{event.id}", aria-controls="famale40_#{event.id}", role="tab", data-toggle="tab") Женщины 40+
                         .tab-content
-                            .tab-pane.active(role="tabpanel", id="male_#{p.id}")
-                                .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="male")
-                            .tab-pane(role="tabpanel", id="male40_#{p.id}")
-                                .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="male40")
-                            .tab-pane(role="tabpanel", id="famale_#{p.id}")
-                                .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="famale")
-                            .tab-pane(role="tabpanel", id="famale40_#{p.id}")
-                                .initMeTable(data-type="part_table" data-get_object="results", data-action_id="#{event.id}", data-part_id="#{p.id}", data-range_where="famale40")
-                //<input type="text" data-where_type="external" data-where_table="users" class="tableFilter form-control" data-filter_type="like" data-column="surname">
-            .row
-                .h2
-                    | Лидерборд мероприятия
-                div.event-results-tabs(role="tabpanel")
-                    ul.nav.nav-pills(role="tablist")
-                        li.active(role="event_leaderboard")
-                            a(href="#male_#{event.id}", aria-controls="male_#{event.id}", role="tab", data-toggle="tab") Мужчины
-                        li(role="event_leaderboard")
-                            a(href="#male40_#{event.id}", aria-controls="male40_#{event.id}", role="tab", data-toggle="tab") Мужчины 40+
-                        li(role="event_leaderboard")
-                            a(href="#famale_#{event.id}", aria-controls="famale_#{event.id}", role="tab", data-toggle="tab") Женщины
-                        li(role="event_leaderboard")
-                            a(href="#famale40_#{event.id}", aria-controls="famale40_#{event.id}", role="tab", data-toggle="tab") Женщины 40+
-                    .tab-content
-                        .tab-pane.active(role="tabpanel", id="male_#{event.id}")
-                            .leaderBoardTable.posRel(data-get_object="results", data-action_id="#{event.id}",  data-range_where="male")
-                        .tab-pane(role="tabpanel", id="male40_#{event.id}")
-                            .leaderBoardTable.posRel(data-get_object="results", data-action_id="#{event.id}", data-range_where="male40")
-                        .tab-pane(role="tabpanel", id="famale_#{event.id}")
-                            .leaderBoardTable.posRel(data-get_object="results", data-action_id="#{event.id}", data-range_where="famale")
-                        .tab-pane(role="tabpanel", id="famale40_#{event.id}")
-                            .leaderBoardTable.posRel(data-get_object="results", data-action_id="#{event.id}", data-range_where="famale40")
+                            .tab-pane.active(role="tabpanel", id="male_#{event.id}")
+                                .leaderBoardTable.posRel(data-get_object="results", data-action_id="#{event.id}",  data-range_where="male")
+                            .tab-pane(role="tabpanel", id="male40_#{event.id}")
+                                .leaderBoardTable.posRel(data-get_object="results", data-action_id="#{event.id}", data-range_where="male40")
+                            .tab-pane(role="tabpanel", id="famale_#{event.id}")
+                                .leaderBoardTable.posRel(data-get_object="results", data-action_id="#{event.id}", data-range_where="famale")
+                            .tab-pane(role="tabpanel", id="famale40_#{event.id}")
+                                .leaderBoardTable.posRel(data-get_object="results", data-action_id="#{event.id}", data-range_where="famale40")
 
     //-------------------------
     //.adv-block-wrapper.big-content-wrapper
