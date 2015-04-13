@@ -274,6 +274,8 @@ $(document).ready(function(){
                 });
             }
 
+            //console.log('AAAAAAAA calEvents', calEvents);
+
             $('.calendar-wrapper').fullCalendar({
                 lang: 'ru',
                 aspectRatio: 1,

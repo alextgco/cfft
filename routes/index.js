@@ -94,6 +94,9 @@ module.exports = function (app) {
   app.get('/admin_articles', checkAdmin, require('./admin_articles').get);
   app.get('/admin_article', checkAdmin, require('./admin_article').get);
 
+  app.get('/admin_main_slides', checkAdmin, require('./admin_main_slides').get);
+  app.get('/admin_main_slide', checkAdmin, require('./admin_main_slide').get);
+
   app.get('/admin_partners', checkAdmin, require('./admin_partners').get);
   app.get('/admin_partner', checkAdmin, require('./admin_partner').get);
 

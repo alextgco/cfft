@@ -40,9 +40,13 @@ block content
                         .form-group
                             label Перевод:
                             input.fc-field.form-control(type='text', data-server_name="translator", value="", data-name="translator")
-                        .form-group
-                            label Оригинал:
-                            input.fc-field.form-control(type='text', data-server_name="original_url", value="", data-name="original_url")
+                        .row
+                            .form-group.col-md-6
+                                label Оригинал:
+                                input.fc-field.form-control(type='text', data-server_name="original", value="", data-name="original")
+                            .form-group.col-md-6
+                                label Оригинал ссылка:
+                                input.fc-field.form-control(type='text', data-server_name="original_url", value="", data-name="original_url")
                         .form-group
                             label Лицензия:
                             input.fc-field.form-control(type='text', data-server_name="license", value="", data-name="license")
@@ -78,9 +82,13 @@ block content
                         .form-group
                             label Перевод:
                             input.fc-field.form-control(type='text', data-server_name="translator", value="#{article.translator}", data-name="translator")
-                        .form-group
-                            label Оригинал:
-                            input.fc-field.form-control(type='text', data-server_name="original_url", value="#{article.original_url}", data-name="original_url")
+                        .row
+                            .form-group.col-md-6
+                                label Оригинал:
+                                input.fc-field.form-control(type='text', data-server_name="original", value="", data-name="original")
+                            .form-group.col-md-6
+                                label Оригинал ссылка:
+                                input.fc-field.form-control(type='text', data-server_name="original_url", value="#{article.original_url}", data-name="original_url")
                         .form-group
                             label Лицензия:
                             input.fc-field.form-control(type='text', data-server_name="license", value="#{article.license}", data-name="license")
