@@ -1714,6 +1714,15 @@ input[type="text"].filter-ctrl{
 }
 
 @media(max-width: 1024px){
+    .art-footer{
+        margin-right: 20px;
+        float: left;
+    }
+    .art-addit-wrapper{
+        float: left;
+        width: 100%;
+        margin-top: 20px;
+    }
     .main-menu-wrapper li {
         width: 100%;
         text-align: center;
