@@ -201,11 +201,12 @@ var CF = {};
     };
 
     CF.toCalendarString = function(str){
+        console.log(str);
         if(!str || str.length == 0){return;}
         var localStr = str;
-        var y = localStr.substr(0,4);
-        var m = localStr.substr(5,2);
-        var d = localStr.substr(8,2);
+        var d = localStr.substr(0,2);
+        var m = localStr.substr(3,2);
+        var y = localStr.substr(6,4);
         return y +'-'+ m +'-'+ d;
     };
 
