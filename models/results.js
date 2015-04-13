@@ -13,9 +13,10 @@ module.exports = function(callback){
         ending:'',
         required_fields:['action_part_id','result_type_id','user_id'],
         additionalColumns:['action_id','gender_id'],
+        sort:'position',
         // var avaliable_fields = ['video_url','concat_result','result_min','result_sec','result_repeat','result_approach','isAff'].
         validation: {
-            video_url:'url',
+            /*video_url:'url',*/
             result_type_id:'number',
             action_part_id:'number',
             result_min:'number',
@@ -148,7 +149,15 @@ module.exports = function(callback){
             }
             //columns = funcs.clearEmpty(columns);
             obj.columns = columns;
-            return callback(null,obj);
+            results.getDirectoryId('result_statuses','REJECTED',function(err,result_status_id){
+
+                if (typeof obj.where !== 'object'){
+                    obj.where = {};
+                }
+                obj.where.status_id = '<>'+result_status_id;
+                return callback(null,obj);
+            });
+
         };
         results.addOrder = function(obj,callback){
             if (typeof obj!=='object'){
@@ -256,7 +265,9 @@ module.exports = function(callback){
                                                             conn.release();
                                                             callback(null,funcs.formatResponse(0, 'success', 'Заявка принята.'));
                                                             results.rePosition({
-                                                                action_part_id:obj.action_part_id
+                                                                action_part_id:obj.action_part_id,
+                                                                gender_id:gender_id,
+                                                                age:age
                                                             }, function(err,r){
 
                                                             });
@@ -285,19 +296,36 @@ module.exports = function(callback){
                     status_id:id,
                     reject_reason:obj.reject_reason || ''
                 };
-                results.modify(o,function(err,result){
-                    callback(err,result);
-                    // Переприсвоить позиции
-                    if (obj.action_part_id){
-                        results.rePosition({
-                            action_part_id:obj.action_part_id
-                        }, function(err,r){
-
-                        });
+                pool.getConn(function(err, conn) {
+                    if (err) {
+                        return callback(err);
                     }
+                    conn.queryRow('select gender_id, age, action_part_id from results where id = ?',[obj.id],function(err,row){
+                        conn.release();
+                        if (err){
+                            return callback(null, funcs.formatResponse(1, 'error', 'Не удалось найти заявку'));
+                        }
+                        var gender_id = row.gender_id;
+                        var age = row.age;
+                        var action_part_id = row.action_part_id;
+                        results.modify(o,function(err,result){
+                            callback(err,result);
+                            // Переприсвоить позиции
+                            if (action_part_id){
+                                results.rePosition({
+                                    action_part_id:action_part_id,
+                                    gender_id:gender_id,
+                                    age:age
+                                }, function(err,r){
+
+                                });
+                            }
 
 
-                })
+                        })
+                    });
+                });
+
             });
 
         };
@@ -311,6 +339,11 @@ module.exports = function(callback){
                 console.log('Не корректно передан action_part_id параметры. rePosition');
                 return callback(new MyError('Не корректно передан action_part_id параметры. rePosition'));
             }
+
+            var gender_id = obj.gender_id;
+            var age = (+obj.age<=40)? ' <= 40 ' : ' > 40 ';
+
+
             // Получим тип (формат) результата
             pool.getConn(function(err, conn){
                 if (err){
@@ -346,14 +379,16 @@ module.exports = function(callback){
                     }
                     var sql = "SELECT r.id, r.result_type_id, r.result_repeat, r.result_min, r.result_sec, r.result_approach from results r " +
                         "left join result_statuses as rs on r.status_id = rs.id " +
-                        "where r.action_part_id = ? and r.result_type_id = ? and r.published is not null and rs.sys_name in ('IN_QUEUE','IN_PROGERSS','ACCEPTED')";
+                        "where r.action_part_id = ? and r.result_type_id = ? and r.published is not null and rs.sys_name in ('IN_QUEUE','IN_PROGERSS','ACCEPTED') " +
+                        //"where r.action_part_id = ? and r.result_type_id = ? and r.published is not null and rs.sys_name in ('ACCEPTED') " +
+                        "and r.gender_id = ? and r.age "+age;
                     sql += sort;
                     console.log(sql);
                     pool.getConn(function(err,conn){
                         if (err){
                             return callback(err);
                         }
-                        conn.query(sql,[action_part_id,result_type_id],function(err, r2){
+                        conn.query(sql,[action_part_id,result_type_id,gender_id],function(err, r2){
                             conn.release();
                             if (err){
                                 console.log(err);
@@ -372,6 +407,8 @@ module.exports = function(callback){
                                     }
                                     callback(null,affected);
                                 })
+                            },function(err){
+                                callback(err, null);
                             })
 
                         });
@@ -386,7 +423,55 @@ module.exports = function(callback){
 
 
         };
-        results.actionLeaderBoard = function(obj, callback){
+
+        results.rePositionAll = function (obj, callback) {
+            pool.getConn(function (err, conn) {
+                if (err) {
+                    return callback(err);
+                }
+
+                console.log('test');
+                conn.query('select id from action_parts',[], function (err, rows) {
+                    if (err) {
+                        return callback(err);
+                    }
+                    async.series([
+                        function (callback) {
+                            async.eachSeries(rows,function(item,callback){
+                                results.rePosition({action_part_id:item.id,age:26,gender_id:1},callback);
+                            },function(err){
+                                callback(err,null);
+                            });
+                        },
+                        function (callback) {
+                            async.eachSeries(rows,function(item,callback){
+                                results.rePosition({action_part_id:item.id,age:26,gender_id:2},callback);
+                            },function(err){
+                                callback(err,null);
+                            });
+                        },
+                        function (callback) {
+                            async.eachSeries(rows,function(item,callback){
+                                results.rePosition({action_part_id:item.id,age:50,gender_id:1},callback);
+                            },function(err){
+                                callback(err,null);
+                            });
+                        },
+                        function (callback) {
+                            async.eachSeries(rows,function(item,callback){
+                                results.rePosition({action_part_id:item.id,age:50,gender_id:2},callback);
+                            },function(err){
+                                callback(err,null);
+                            });
+                        }
+                    ],function(err){
+                        callback(err,null);
+                    });
+
+                });
+            });
+        };
+            results.actionLeaderBoard = function(obj, callback){
             if (typeof obj!=='object'){
                 return callback(new MyError('Не переданы обязательные параметры'));
             }
@@ -415,7 +500,7 @@ module.exports = function(callback){
                     'LEFT JOIN actions as a on ap.action_id = a.id ' +
                     'LEFT JOIN result_statuses as rs on r.status_id = rs.id ' +
                     'where ap.action_id = ? ' +
-                    'AND rs.sys_name = "ACCEPTED" ' +
+                    'AND rs.sys_name in ("IN_QUEUE","IN_PROGERSS","ACCEPTED") ' +
                     'AND r.age' + age +
                     'AND r.gender_id = ' + gender_id + ' '+
                     'GROUP BY user_id',[action_id],function(err, rows){
@@ -461,8 +546,10 @@ module.exports = function(callback){
                                 "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
                                 "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
                                 " WHERE " +
-                                "(rs.sys_name = 'ACCEPTED'  or rs.sys_name = 'IN_QUEUE') AND" +
-                                " ap.action_id = ?" +
+                                "rs.sys_name in ('IN_QUEUE','IN_PROGERSS','ACCEPTED') AND" +
+                                " ap.action_id = ? " +
+                                'AND r.age' + age +
+                                'AND r.gender_id = ' + gender_id + ' '+
                                 " GROUP BY r.action_part_id ";
                             conn.query(sql,[action_id], function (err, res1) {
                                 conn.release();
@@ -482,15 +569,17 @@ module.exports = function(callback){
                                         "FROM results r " +
                                         "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
                                         "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
-                                        "where (rs.sys_name = 'ACCEPTED'  or rs.sys_name = 'IN_QUEUE')  " +
+                                        "where rs.sys_name in ('IN_QUEUE','IN_PROGERSS','ACCEPTED')  " +
                                         "and r.user_id = u.id " +
                                         "and ap.id = "+ item.id,
                                         sqlRes:"SELECT CAST(concat(r.position,'(',r.concat_result,')') AS CHAR(10000) CHARACTER SET utf8) as res " +
                                         "FROM results r " +
                                         "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
                                         "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
-                                        "where (rs.sys_name = 'ACCEPTED'  or rs.sys_name = 'IN_QUEUE') " +
+                                        "where rs.sys_name in ('IN_QUEUE','IN_PROGERSS','ACCEPTED') " +
                                         "and r.user_id = u.id " +
+                                        'AND r.age' + age +
+                                        'AND r.gender_id = ' + gender_id + ' '+
                                         "and ap.id = "+ item.id
                                     };
                                     columns.push({
@@ -498,7 +587,7 @@ module.exports = function(callback){
                                         name:'ap'+item.id
                                     });
                                 }
-                                //console.log(parts);
+                                console.log(parts);
                                 var arr = [];
                                 pool.getConn(function(err,conn){
                                     if (err){
@@ -540,7 +629,7 @@ module.exports = function(callback){
                                             }
                                         });
                                         var plusCounter = 0;
-                                        var oldSum = 1;
+                                        var oldSum = 0;
                                         var pos = 0;
                                         var action_resS = [];
                                         for (var j in res2) {
@@ -548,7 +637,7 @@ module.exports = function(callback){
                                                 plusCounter++;
                                             }else{
                                                 oldSum = +res2[j].sum_pos;
-                                                pos += +1+plusCounter;
+                                                pos += plusCounter + 1;
                                                 plusCounter = 0;
                                             }
                                             res2[j].position = pos;
@@ -610,7 +699,9 @@ module.exports = function(callback){
 
             var columns = [
                 {title:'Место',name:'position'},
-                {title:'Атлет',name:'fio'}
+                {title:'Атлет',name:'fio'},
+                {title:'Фото',name:'photo'},
+                {title:'Рейтинг',name:'raiting'}
             ];
 
             results.getDirectoryId('gender',gender_sys_name, function (err,gender_id) {
@@ -623,11 +714,12 @@ module.exports = function(callback){
                     var m2 = moment.duration(2, 'years');
                     var now = funcs.getDateMySQL();
                     var twoYearsBefore = moment(m1-m2).format('YYYY-MM-DD');
-                    var sql ='SELECT user_id from real_action_results' +
-                        ' where action_finish_date between ? and ?' +
-                        ' AND age' + age +
-                        ' AND gender_id = ' + gender_id +
-                        ' GROUP BY user_id';
+                    var sql ='SELECT r.user_id, u.photo from real_action_results r' +
+                        ' left join users as u on r.user_id = u.id' +
+                        ' where r.action_finish_date between ? and ?' +
+                        ' AND r.age' + age +
+                        ' AND r.gender_id = ' + gender_id +
+                        ' GROUP BY r.user_id';
 
                     conn.query(sql,[twoYearsBefore,now],function(err, rows){
                         conn.release();
@@ -703,22 +795,36 @@ module.exports = function(callback){
                                         sum_pos += (one_res.action_population+1-one_res.position)/(action_RAITING*action_time_coeff*action_population_coeff);
                                         action_count++;
                                     }
-                                    console.log('======> RAITING',one_res.user_fio, ':', sum_pos);
                                     var o = {
                                         fio:one_res.user_fio,
-                                        position:sum_pos
-                                    }
+                                        photo:users[i].photo,
+                                        raiting:sum_pos
+                                    };
+                                    board.push(o);
 
                                 }
-                              /*  console.log('======> RAITING',one_res.user_fio, ':', sum_pos);
-                                console.log();
-                                var o = {
-                                    fio:one_res.user_fio,
-                                    position:one_res.user_fio
-                                }*/
+                                board.sort(function(a,b){
+                                    if (a.raiting < b.raiting) return 1;
+                                    else if (a.raiting > b.raiting) return -1;
+                                    else return 0;
+                                });
 
+                                var placeCounter = 0;
+                                var currentPos = 1;
+                                var prevRes;
+                                for (var b in board) {
+                                    placeCounter++;
+                                    if (prevRes != board[b].raiting){
+                                        currentPos = placeCounter;
+                                    }
+                                    prevRes = board[b].raiting;
+                                    board[b].position = currentPos;
+                                }
+                                callback(null,{
+                                    columns:columns,
+                                    data: board
+                                });
                             })
-
                         });
                     });
 
