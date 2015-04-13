@@ -7,11 +7,12 @@ $(document).ready(function(){
         var id = $(this).data('id');
         bootbox.dialog({
             title: 'Подтверждение',
-            message: 'Вы уверены, что хотите подтвердить данный результат?',
+            message: '<div class="control-group"><label>Укажите результат, сколько вы насчитали?</label><input type="text" class="form-control judge-approved-result" /><label>Если насчитали столько же, сколько заявлено, оставьте поле пустым.</label></div>',
             buttons: {
                 success: {
                     label: 'Подтвердить',
                     callback: function(){
+                        var jar = $('.judge-approved-result');
                         var o = {
                             command: 'approve',
                             object: 'results',
@@ -20,6 +21,10 @@ $(document).ready(function(){
                                 status: 'ACCEPTED'
                             }
                         };
+                        if(jar.val()){
+                            o.params['approved_result'] = jar.val();
+                        }
+
                         sendQuery(o, function(res){
                             toastr[res.toastr.type](res.toastr.message);
                             document.location.reload();

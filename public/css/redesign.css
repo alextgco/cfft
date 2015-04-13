@@ -513,7 +513,8 @@ body{
     float: right;
     margin-top: 20px;
     padding: 0;
-    margin-right: -70px;
+    /*margin-right: -70px;*/
+    margin-bottom: 20px;
 }
 .nearrest-wow-timer-row .tblc{
     float: left;
@@ -1371,7 +1372,7 @@ h4.darkHd{
 }
 
 .nearresr-wow-timer-init-wrapper{
-    width: 200px;
+    min-width: 200px;
     display: inline-block;
 }
 .wow_event{
@@ -1764,4 +1765,107 @@ input[type="text"].filter-ctrl{
 }
 .slide {
     list-style: none;
+}
+.big-header{
+    font-size: 30px;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.art-features-wrapper{
+    float: left;
+    width: 100%;
+    color: #a8a8a8;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.article-wrapper{
+    margin-top: 50px;
+}
+.art-feature{
+    float: left;
+    margin-right: 15px;
+}
+.art_img_2{
+    float: left;
+    width: 100%;
+    margin-bottom: 25px;
+    background-size: cover;
+}
+.art-body{
+    margin-bottom: 30px;
+}
+.art-footer{
+    background-color: #e1e1e1;
+    border-radius: 10px;
+    padding: 20px;
+    padding-bottom: 10px;
+
+}
+.art-footer-list-item{
+    width: 100%;
+    margin-bottom: 10px;
+    color: #484848;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.art-addit-headline{
+    color: #000;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+.art-item-wrapper{
+    float: left;
+    width: 100%;
+    margin-bottom: 17px;
+}
+.art-item-image{
+    display: inline-block;
+    vertical-align: middle;
+    width: 58px;
+    height: 58px;
+    margin-right: 20px;
+    overflow: hidden;
+}
+
+.art-item-wrapper:hover .art-item-title{
+    text-decoration: underline;
+}
+.art-item-title{
+    vertical-align: middle;
+    font-size: 16px;
+    display: inline-block;
+    font-family: "Helvetica Neue Light", openSans, arial, sans-serif;
+    color: #505050;
+}
+
+.art-body-2{
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: #000;
+}
+.art-item-image img{
+    height: 100%;
+}
+
+.art-soc-icon{
+    width: 27px;
+    height: 27px;
+    background-color: #fc8c44;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 7px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.art-soc-icon:hover{
+    color: #fff;
+    background-color: #dc7a3b;
+    text-decoration: none;
 }
