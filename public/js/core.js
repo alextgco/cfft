@@ -201,7 +201,7 @@ var CF = {};
     };
 
     CF.toCalendarString = function(str){
-        console.log(str);
+        //console.log(str);
         if(!str || str.length == 0){return;}
         var localStr = str;
         var d = localStr.substr(0,2);
