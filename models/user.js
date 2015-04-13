@@ -173,7 +173,7 @@ module.exports = function(callback){
             obj.salt = passObj.salt;
 
             delete obj.password;
-
+            obj.age = funcs.age(obj.birthday,'DD.MM.YYYY');
             for (var i0 in user.setFormating) {
                 if (typeof funcs[user.setFormating[i0]]=='function'){
                     if (obj[i0]){
@@ -194,7 +194,7 @@ module.exports = function(callback){
                     return callback(new MyError('Не переданы обязательные поля. ' + user.required_fields.join(', ')));
                 }
             }
-            obj.age = funcs.age(obj.birthday,'DD.MM.YYYY');
+
             var valid = user.validate(obj);
             if (typeof valid=='object'){
                 return callback(new UserError(funcs.formatResponse(-1, 'error', valid.message, valid.fields)));

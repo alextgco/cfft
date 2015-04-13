@@ -108,17 +108,18 @@ $(document).ready(function(){
 //        });
     });
     $("#btn7").off('click').on('click',function(){
-//        $.post('/updateUserAges',{},function(r){
-//            alert(r);
-//            console.log(r);
-//        });
+        $.post('/updateUserAges',{},function(r){
+            alert(r);
+            console.log(r);
+        });
     });
-    $("#btn8").off('click').on('click',function(){
-//        $.post('/sendSubscribe',{subject:'Тема', html:'Тест'},function(r){
-//            alert(r);
-//            console.log(r);
-//        });
-    });
+    /*$("#btn8").off('click').on('click',function(){
+        $.post('/rePosition',{},function(r){
+            alert(r);
+            console.log(r);
+        });
+    });*/
+
 
 
         var userPhotoWrapper = $('.user-photo-wrapper');
