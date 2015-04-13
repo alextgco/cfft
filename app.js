@@ -139,6 +139,14 @@ api('doSubscribe','action',{html:'<b>ТЕСТ РАСССЫЛКИ</b>'},function(
     console.log(err, result);
 });*/
 
+/*var api = require('./libs/api');
+api('rePositionAll', 'results', {},function(err,result){
+    if (err){
+        console.log(err);
+    }else{
+        console.log(result);
+    }
+});*/
 /*var api = require('./libs/userApi');
 api('allActionLeaderBoard', 'results', {age:'40',gender_sys_name:'MALE'},function(err,result){
     if (err){
