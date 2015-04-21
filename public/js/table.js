@@ -113,7 +113,7 @@
                     age: _t.age,
                     action_id: _t.action_id,
                     where: _t.where,
-                    limit: 2,
+                    limit: 5,
                     sort: _t.sort,
                     columns: _t.columns
                 }
@@ -398,18 +398,18 @@
                     '<div class="allLB-list">' +
                         '{{#leaders}}' +
                             '<div class="row allLB-item">' +
-                                '<div class="col-md-1">' +
+                                '<div class="col-md-1 col-xs-1">' +
                                     '<div class="allLB-user-pos-wrapper">' +
                                         '{{position}}' +
                                     '</div>' +
                                 '</div>' +
-                                '<div class="col-md-9">' +
+                                '<div class="col-md-9 col-xs-9">' +
                                     '<div class="allLB-user-img-wrapper" style="background-image: url(upload/{{photo}})">' +
                                         //'<img src="upload/{{photo}}" />' +
                                     '</div>' +
                                     '<div class="allLB-user-fio-wrapper">{{fio}}</div>' +
                                 '</div>' +
-                                '<div class="col-md-2">' +
+                                '<div class="col-md-2 col-xs-2">' +
                                     '<div class="allLB-user-rat-wrapper">' +
                                         '{{raiting}}' +
                                     '</div>' +
@@ -423,7 +423,7 @@
 
         for(var i in _t.data){
             var item = _t.data[i];
-            if(item.photo.length == 0){
+            if(item.photo.length == 0 || item.photo == 'null'){
                 _t.data[i].photo = 'user_default_m.jpg';
             }
         }
@@ -431,6 +431,17 @@
         var mO = {
             leaders: _t.data
         };
+
+        if(_t.data.length == 0){
+            tpl = '<div class="allLB-wrapper">' +
+                    '<div class="allLB-list">' +
+                    '<div class="row allLB-item">' +
+                    '<div class="allLB-user-noresults-wrapper">Нет лидеров в данной категории</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+        }
+
         _t.wrapper.html(Mustache.to_html(tpl, mO));
         //debugger;
 
