@@ -1881,3 +1881,32 @@ input[type="text"].filter-ctrl{
     background-color: #dc7a3b;
     text-decoration: none;
 }
+.allLB-user-img-wrapper{
+    display: inline-block;
+    vertical-align: middle;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.allLB-user-img-wrapper img{
+    width: 100%;
+}
+.allLB-user-fio-wrapper{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+    font-size: 16px;
+}
+.allLB-user-pos-wrapper {
+    text-align: center;
+    padding-top: 20px;
+}
+.allLB-wrapper{
+    background-color: rgba(0,0,0,0.4);
+    color: #fff;
+    border-radius: 10px;
+}
+.allLB-item{
+    padding: 10px;
+}

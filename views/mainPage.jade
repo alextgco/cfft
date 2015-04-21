@@ -35,8 +35,36 @@ block content
                                             | Подать заявку!
         .fullWidthRatingBg
         .container
-            p.white.marTop10
-                | Лидерборд временно недоступен.
+            .row
+                .h2
+                    | Лидерборд
+
+                .col-md-6
+                    .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all",  data-range_where="male")
+                .col-md-6
+                    .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all",  data-range_where="famale")
+                //div.event-results-tabs(role="tabpanel")
+                //    ul.nav.nav-pills(role="tablist")
+                //        li.active(role="leaderboard")
+                //            a(href="#male", aria-controls="male", role="tab", data-toggle="tab") Мужчины
+                //        //li(role="event_leaderboard")
+                //        //    a(href="#male40", aria-controls="male40", role="tab", data-toggle="tab") Мужчины 40+
+                //        //li(role="event_leaderboard")
+                //        //    a(href="#famale", aria-controls="famale", role="tab", data-toggle="tab") Женщины
+                //        //li(role="event_leaderboard")
+                //        //    a(href="#famale40", aria-controls="famale40", role="tab", data-toggle="tab") Женщины 40+
+                //    .tab-content
+                //        .tab-pane.active(role="tabpanel", id="male")
+                //            .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all",  data-range_where="male")
+                //        //.tab-pane(role="tabpanel", id="male40")
+                //        //    .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all", data-range_where="male40")
+                //        //.tab-pane(role="tabpanel", id="famale")
+                //        //    .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all", data-range_where="famale")
+                //        //.tab-pane(role="tabpanel", id="famale40")
+                //        //    .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all", data-range_where="famale40")
+
+    script(type="text/javascript", src="js/html/totalLeaderBoardTable.js")
+
     .page-content.wid100pr.whiteBg
         .container.marBot30.noPad
             h3.fullDarkHeader

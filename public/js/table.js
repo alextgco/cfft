@@ -81,6 +81,7 @@
         this.tempPage =         1;
         this.specialColumns =   p.specialColumns || [];
         this.isLeaderBoard =    p.isLeaderBoard || false;
+        this.isAllLeaderBoard = p.isAllLeaderBoard || '';
         this.gender_sys_name =  p.gender_sys_name || '';
         this.age =              p.age || '';
         this.action_id =        p.action_id || '';
@@ -102,6 +103,41 @@
 
     CF.Table.prototype.getData = function(cb){
         var _t = this;
+
+        if(_t.isAllLeaderBoard){
+            var o = {
+                command: 'allActionLeaderBoard',
+                object: 'results',
+                params: {
+                    gender_sys_name: _t.gender_sys_name,
+                    age: _t.age,
+                    action_id: _t.action_id,
+                    where: _t.where,
+                    limit: _t.limit,
+                    sort: _t.sort,
+                    columns: _t.columns
+                }
+            };
+
+            sendQuery(o, function(res){
+                _t.totalCount = res.totalCount;
+                _t.data = res.data;
+                _t.columns = res.columns;
+
+                console.log('КОЛОНКИ' , _t.data);
+
+                if(typeof cb == 'function'){
+                    cb();
+                }
+                return;
+            });
+
+            //if(typeof cb == 'function'){
+            //    cb();
+            //}
+
+            return;
+        }
 
         if(_t.isLeaderBoard){
 
@@ -147,7 +183,7 @@
         };
 
         sendQuery(o, function(res){
-            if(_t.isLeaderBoard){
+            if(_t.isLeaderBoard || _t.isAllLeaderBoard){
                 if(res.code == -10){
                     _t.totalCount = res.totalCount;
                     _t.data = res.data;
@@ -229,6 +265,15 @@
             }
             return;
         }
+
+        if(_t.isAllLeaderBoard){
+            _t.renderAllLeaderBoard();
+            if(typeof cb == 'function'){
+                cb();
+            }
+            return;
+        }
+
         if(_t.isLeaderBoard){
             _t.renderLeaderBoard();
             if(typeof cb == 'function'){
@@ -330,6 +375,95 @@
         }
     };
 
+    CF.Table.prototype.renderAllLeaderBoard = function(){
+        var _t = this;
+        //var tpl = '<div class="refresh_table fa fa-refresh"></div><table class="table simpleView leaderBoardTable">' +
+        //    '<thead>' +
+        //    '<tr>{{#columns}}' +
+        //    '<th data-column="{{name}}">{{title}}</th>{{/columns}}' +
+        //    '</tr>' +
+        //    '</thead>' +
+        //    '<tbody>' +
+        //    '{{#rows}}' +
+        //    '<tr data-id="{{id}}">' +
+        //    '{{#tds}}' +
+        //    '<td>{{value}}</td>' +
+        //    '{{/tds}}' +
+        //    '</tr>' +
+        //    '{{/rows}}' +
+        //    '</tbody>' +
+        //    '</table>' ;
+
+        var tpl = '<div class="allLB-wrapper">' +
+                    '<div class="allLB-list">' +
+                        '{{#leaders}}' +
+                            '<div class="row allLB-item">' +
+                                '<div class="col-md-1">' +
+                                    '<div class="allLB-user-pos-wrapper">' +
+                                        '{{position}}' +
+                                    '</div>' +
+                                '</div>' +
+                                '<div class="col-md-9">' +
+                                    '<div class="allLB-user-img-wrapper">' +
+                                        '<img src="upload/{{photo}}" />' +
+                                    '</div>' +
+                                    '<div class="allLB-user-fio-wrapper">{{fio}}</div>' +
+                                '</div>' +
+                                '<div class="col-md-2">{{rating}}</div>' +
+                            '</div>' +
+                        '{{/leaders}}' +
+                    '</div>' +
+                    '</div>';
+
+        console.log(_t.columns, _t.data);
+
+        for(var i in _t.data){
+            var item = _t.data[i];
+            if(item.photo.length == 0){
+                _t.data[i].photo = 'default_user_m.jpg';
+            }
+        }
+
+        var mO = {
+            leaders: _t.data
+        };
+        _t.wrapper.html(Mustache.to_html(tpl, mO));
+        //debugger;
+
+        return;
+
+        var rows = [];
+
+
+        for(var i in _t.data){
+            var it = _t.data[i];
+            rows.push({
+                id: i,
+                tds:[]
+            });
+        }
+
+        for(var i in _t.data){
+            var it = _t.data[i];
+            var idx = 0;
+            for(var k in it){
+                rows[i].tds.push({
+                    value: it[k]
+                });
+            }
+            idx++;
+        }
+
+        var mO = {
+            columns: _t.columns,
+            rows: rows
+        };
+
+        console.log('leaderBoard', mO);
+
+        _t.wrapper.html(Mustache.to_html(tpl, mO));
+    };
+
     CF.Table.prototype.renderLeaderBoard = function(){
         var _t = this;
         var tpl = '<div class="refresh_table fa fa-refresh"></div><table class="table simpleView leaderBoardTable">' +
@@ -372,11 +506,13 @@
             idx++;
         }
 
-        console.log('ROWS', rows);
+
         var mO = {
             columns: _t.columns,
             rows: rows
         };
+
+        console.log('leaderBoard', mO);
 
         _t.wrapper.html(Mustache.to_html(tpl, mO));
     };
@@ -625,7 +761,7 @@
         });
 
 
-        if(_t.isLeaderBoard){
+        if(_t.isLeaderBoard || _t.isAllLeaderBoard){
             _t.wrapper.find('th').off('click').on('click', function(){
                 _t.sort = {};
                 _t.sort[$(this).data('column')] = 'ASC';
