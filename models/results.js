@@ -429,8 +429,6 @@ module.exports = function(callback){
                 if (err) {
                     return callback(err);
                 }
-
-                console.log('test');
                 conn.query('select id from action_parts',[], function (err, rows) {
                     if (err) {
                         return callback(err);
@@ -699,8 +697,8 @@ module.exports = function(callback){
 
             var columns = [
                 {title:'Место',name:'position'},
-                {title:'Атлет',name:'fio'},
                 {title:'Фото',name:'photo'},
+                {title:'Атлет',name:'fio'},
                 {title:'Рейтинг',name:'raiting'}
             ];
 
