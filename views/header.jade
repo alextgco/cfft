@@ -1,5 +1,5 @@
 block header
-    - var slides = slider.data;
+    - var slides = (slider)? slider.data: [];
     if(user)
         input(type="hidden" id="auth-user-firstname" value="#{user.firstname}")
         input(type="hidden" id="auth-user-surname" value="#{user.surname}")
