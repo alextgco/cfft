@@ -85,7 +85,7 @@ sendQuery(o,function(r){console.log(r);});*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+    var err = new Error('Страница не найдена');
     err.status = 404;
     next(err);
 });
@@ -107,10 +107,11 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
+    //return res.redirect('/error');
     console.log('On Error: ', err);
     res.status(err.status || 500);
     res.render('error', {
-        message: err.message,
+        message: err.message || "Что-то пошло не так",
         error: {}
     });
 });

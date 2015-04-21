@@ -1,6 +1,7 @@
 var checkAuth = require('../middleware/checkAuth');
 var checkAuthApi = require('../middleware/checkAuthApi');
 var checkAdmin = require('../middleware/checkAdmin');
+var loadSlider = require('../middleware/loadSlider');
 module.exports = function (app) {
 
   app.get('/test', function(req, res, next){
@@ -10,7 +11,7 @@ module.exports = function (app) {
         res.render('test2');
     });
 
-    app.get('/', require('./mainPage').get);
+    app.get('/', loadSlider, require('./mainPage').get);
   app.get('/admin', checkAdmin, require('./admin').get);
   app.post('/admin/api', checkAdmin, require('./adminApi').post);
   app.post('/api', require('./userApi').post);
@@ -22,60 +23,60 @@ module.exports = function (app) {
   app.post('/login', require('./login').post);
   app.post('/logout', require('./logout').post);
   app.get('/private', checkAuth, require('./private').get);
-  app.get('/registration', require('./registration').get);
+  app.get('/registration', loadSlider, require('./registration').get);
   app.post('/registration', require('./registration').post);
-  app.get('/reqConfirm', require('./reqConfirm').get);
+  app.get('/reqConfirm', loadSlider, require('./reqConfirm').get);
   app.get('/unsubscribe', require('./unsubscribe').get);
 
-  app.get('/events', require('./events').get);
+  app.get('/events', loadSlider, require('./events').get);
 
-  app.get('/event', require('./event').get);
+  app.get('/event', loadSlider, require('./event').get);
 
-  app.get('/wow', require('./wow').get);
+  app.get('/wow', loadSlider, require('./wow').get);
 
-  app.get('/wows', require('./wows').get);
+  app.get('/wows', loadSlider, require('./wows').get);
 
-  app.get('/edit_profile', checkAuth, require('./edit_profile').get);
+  app.get('/edit_profile', loadSlider, checkAuth, require('./edit_profile').get);
 
-  app.get('/profile', checkAuth, require('./profile').get);
-
-
+  app.get('/profile', loadSlider, checkAuth, require('./profile').get);
 
 
-  app.get('/for_athlets', function(req, res, next){
+
+
+  app.get('/for_athlets', loadSlider, function(req, res, next){
     res.render('for_athlets');
   });
 
-  app.get('/clubs', require('./clubs').get);
-  app.get('/club', require('./club').get);
+  app.get('/clubs', loadSlider, require('./clubs').get);
+  app.get('/club', loadSlider, require('./club').get);
 
-  app.get('/articles', require('./articles').get);
-  app.get('/article', require('./article').get);
+  app.get('/articles', loadSlider, require('./articles').get);
+  app.get('/article', loadSlider, require('./article').get);
 
-  app.get('/for_partners', function(req, res, next){
+  app.get('/for_partners', loadSlider, function(req, res, next){
     res.render('for_partners');
   });
 
-  app.get('/contacts', function(req, res, next){
+  app.get('/contacts', loadSlider, function(req, res, next){
     res.render('contacts');
   });
 
 
-  app.get('/rules_games', function(req, res, next){
+  app.get('/rules_games', loadSlider, function(req, res, next){
     res.render('rules_games');
   });
 
-  app.get('/rules_wow', function(req, res, next){
+  app.get('/rules_wow', loadSlider, function(req, res, next){
     res.render('rules_wow');
   });
 
-  app.get('/registration_error', function(req, res, next){
+  app.get('/registration_error', loadSlider, function(req, res, next){
     res.render('registration_error');
   });
-  app.get('/registration_success', function(req, res, next){
+  app.get('/registration_success', loadSlider, function(req, res, next){
     res.render('registration_success');
   });
-  app.get('/reqConfirm', require('./reqConfirm').get);
+  //app.get('/reqConfirm', require('./reqConfirm').get);
 
 
   app.get('/admin_users', checkAdmin, function(req, res, next){
