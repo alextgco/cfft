@@ -223,7 +223,7 @@ module.exports = function(callback){
 
         };
         action.updateRealResults = function(obj,callback){
-            return;
+            //return;
             if (typeof obj!='object'){
                 return callback(new MyError('Не передан параметр obj в updateRealResults'));
             }

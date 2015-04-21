@@ -5,137 +5,137 @@ var funcs = require('../libs/functions');
 var moment = require('moment');
 var async = require('async');
 var api = require('../libs/api');
-module.exports = function(callback){
+module.exports = function (callback) {
     var results = new Model({
-        allowedForUserCommand:['get','addOrder','actionLeaderBoard','allActionLeaderBoard'],
+        allowedForUserCommand: ['get', 'addOrder', 'actionLeaderBoard', 'allActionLeaderBoard'],
         table: 'results',
         table_ru: 'Результат',
-        ending:'',
-        required_fields:['action_part_id','result_type_id','user_id'],
-        additionalColumns:['action_id','gender_id'],
-        sort:'position',
+        ending: '',
+        required_fields: ['action_part_id', 'result_type_id', 'user_id'],
+        additionalColumns: ['action_id', 'gender_id'],
+        sort: 'position',
         // var avaliable_fields = ['video_url','concat_result','result_min','result_sec','result_repeat','result_approach','isAff'].
         validation: {
             /*video_url:'url',*/
-            result_type_id:'number',
-            action_part_id:'number',
-            result_min:'number',
-            result_sec:'number',
-            result_repeat:'number',
-            result_approach:'number',
-            isAff:'number'
+            result_type_id: 'number',
+            action_part_id: 'number',
+            result_min: 'number',
+            result_sec: 'number',
+            result_repeat: 'number',
+            result_approach: 'number',
+            isAff: 'number'
         },
         /*concatFields:[{
          result:['result_min',':','result_sec']
          }],*/
-        getFormating:{
-            video_url:"parseBlob"
+        getFormating: {
+            video_url: "parseBlob"
         },
-        join_objs:[
+        join_objs: [
             {
-                action_part_id:{
-                    table:"action_parts",
-                    fields:[
+                action_part_id: {
+                    table: "action_parts",
+                    fields: [
                         {
-                            column:"id",
-                            alias:"action_part_id"
+                            column: "id",
+                            alias: "action_part_id"
                         },
                         {
-                            column:"title",
-                            alias:"action_part"
+                            column: "title",
+                            alias: "action_part"
                         }
                     ]
                 },
-                action_id:{
-                    table:"actions",
-                    joinTable:'action_parts',
-                    fields:[
+                action_id: {
+                    table: "actions",
+                    joinTable: 'action_parts',
+                    fields: [
                         {
-                            column:"id",
-                            alias:"action_id"
+                            column: "id",
+                            alias: "action_id"
                         },
                         {
-                            column:"title",
-                            alias:"action_title"
+                            column: "title",
+                            alias: "action_title"
                         }
                     ]
                 },
-                result_type_id:{
-                    table:"result_types",
-                    fields:[
+                result_type_id: {
+                    table: "result_types",
+                    fields: [
                         {
-                            column:"id",
-                            alias:"result_type_id"
+                            column: "id",
+                            alias: "result_type_id"
                         },
                         {
-                            column:"name",
-                            alias:"result_type"
+                            column: "name",
+                            alias: "result_type"
                         }
                     ]
                 },
-                status_id:{
-                    table:"result_statuses",
-                    fields:[
+                status_id: {
+                    table: "result_statuses",
+                    fields: [
                         {
-                            column:"id",
-                            alias:"status_id"
+                            column: "id",
+                            alias: "status_id"
                         },
                         {
-                            column:"name",
-                            alias:"status_name"
+                            column: "name",
+                            alias: "status_name"
                         },
                         {
-                            column:"sys_name",
-                            alias:"status_name_sys"
+                            column: "sys_name",
+                            alias: "status_name_sys"
                         }
                     ]
                 },
 
-                user_id:{
-                    table:"users",
-                    fields:[
+                user_id: {
+                    table: "users",
+                    fields: [
                         {
-                            column:"id",
-                            alias:"user_id"
+                            column: "id",
+                            alias: "user_id"
                         },
                         {
-                            column:"firstname",
-                            alias:"user_firstname"
+                            column: "firstname",
+                            alias: "user_firstname"
                         },
                         {
-                            column:"surname",
-                            alias:"user_surname"
+                            column: "surname",
+                            alias: "user_surname"
                         }
                     ]
                 },
-                gender_id:{
-                    table:'gender',
-                    joinTable:'users',
-                    fields:[
+                gender_id: {
+                    table: 'gender',
+                    joinTable: 'users',
+                    fields: [
                         {
-                            column:'name',
-                            alias:'gender'
+                            column: 'name',
+                            alias: 'gender'
                         }
                     ]
                 },
-                club_id:{
-                    table:"clubs",
-                    fields:[
+                club_id: {
+                    table: "clubs",
+                    fields: [
                         {
-                            column:"id",
-                            alias:"club_id"
+                            column: "id",
+                            alias: "club_id"
                         },
                         {
-                            column:"name",
-                            alias:"club"
+                            column: "name",
+                            alias: "club"
                         }
                     ]
                 }
             }
         ]
-    },function(err){
+    }, function (err) {
         var self = this;
-        if (err){
+        if (err) {
             console.log(err);
         }
         //var protoGet = results.get;
@@ -144,32 +144,32 @@ module.exports = function(callback){
             var exludedColumns = ['published', 'created', 'deleted'];
             var columns = obj.columns || funcs.cloneObj(results.columns);
             for (var i in exludedColumns) {
-                columns.splice(columns.indexOf(exludedColumns[i]),1);
+                columns.splice(columns.indexOf(exludedColumns[i]), 1);
                 //delete columns[columns.indexOf(exludedColumns[i])];
             }
             //columns = funcs.clearEmpty(columns);
             obj.columns = columns;
-            results.getDirectoryId('result_statuses','REJECTED',function(err,result_status_id){
+            results.getDirectoryId('result_statuses', 'REJECTED', function (err, result_status_id) {
 
-                if (typeof obj.where !== 'object'){
+                if (typeof obj.where !== 'object') {
                     obj.where = {};
                 }
-                obj.where.status_id = '<>'+result_status_id;
-                return callback(null,obj);
+                obj.where.status_id = '<>' + result_status_id;
+                return callback(null, obj);
             });
 
         };
-        results.addOrder = function(obj,callback){
-            if (typeof obj!=='object'){
+        results.addOrder = function (obj, callback) {
+            if (typeof obj !== 'object') {
                 return callback(new MyError('Не корректный объект'));
             }
-            if(!obj.user_id){
+            if (!obj.user_id) {
                 callback(null, funcs.formatResponse(1, 'error', 'Для отправки заявки необходимо авторизоваться..'));
             }
 
-            switch (obj.result_type){
+            switch (obj.result_type) {
                 case "TIME":
-                    obj.concat_result = obj.result_min+':'+obj.result_sec;
+                    obj.concat_result = obj.result_min + ':' + obj.result_sec;
                     break;
                 case "REPEAT":
                     obj.concat_result = obj.result_repeat;
@@ -187,9 +187,9 @@ module.exports = function(callback){
 
 
             var required_fields = [].concat(results.required_fields);
-            var avaliable_fields = ['published','video_url','concat_result','result_min','result_sec','result_repeat','result_approach','isAff','club_id'].concat(required_fields);
+            var avaliable_fields = ['published', 'video_url', 'concat_result', 'result_min', 'result_sec', 'result_repeat', 'result_approach', 'isAff', 'club_id'].concat(required_fields);
             for (var i0 in obj) {
-                if (avaliable_fields.indexOf(i0)==-1) {
+                if (avaliable_fields.indexOf(i0) == -1) {
                     delete obj[i0];
                 }
             }
@@ -197,7 +197,7 @@ module.exports = function(callback){
             for (var i in required_fields) {
                 var finded = false;
                 for (var j in obj) {
-                    if (j == required_fields[i] || obj[j]=='') {
+                    if (j == required_fields[i] || obj[j] == '') {
                         finded = true;
                         break;
                     }
@@ -208,33 +208,33 @@ module.exports = function(callback){
                 return callback(new MyError('Не переданы (или переданы не корректно) обязательные поля. ' + notFinded.join(', ')));
             }
             obj.isAff = +obj.isAff || 0;
-            pool.getConn(function(err,conn){
-                conn.queryRow('select gender_id, age from users where id = ?',[obj.user_id], function (err, row) {
+            pool.getConn(function (err, conn) {
+                conn.queryRow('select gender_id, age from users where id = ?', [obj.user_id], function (err, row) {
                     conn.release();
-                    if (err){
+                    if (err) {
                         return callback(err);
                     }
                     var gender_id = row.gender_id;
                     var age = row.age;
 
-                    results.getDirectoryId('action_statuses','OPENED',function(err,action_status_id){
-                        results.getDirectoryId('statuses_of_action_parts','OPENED',function(err,action_part_status_id){
-                            pool.getConn(function(err,conn){
-                                if (err){
+                    results.getDirectoryId('action_statuses', 'OPENED', function (err, action_status_id) {
+                        results.getDirectoryId('statuses_of_action_parts', 'OPENED', function (err, action_part_status_id) {
+                            pool.getConn(function (err, conn) {
+                                if (err) {
                                     return callback(err);
                                 }
                                 conn.queryValue("select count(*) from action_parts ap left join actions as a on ap.action_id = a.id where a.status_id=? and ap.status_id=? and ap.id = ?",
                                     [action_part_status_id, action_status_id, obj.action_part_id],
                                     function (err, v) {
                                         conn.release();
-                                        if (err){
+                                        if (err) {
                                             return callback(err);
                                         }
-                                        if (v==0){
+                                        if (v == 0) {
                                             return callback(null, funcs.formatResponse(1, 'error', 'Регистрация закрыта.'));
                                         }
-                                        results.getDirectoryId('result_statuses','IN_QUEUE',function(err,id){
-                                            if (err){
+                                        results.getDirectoryId('result_statuses', 'IN_QUEUE', function (err, id) {
+                                            if (err) {
                                                 return callback(new MyError('Нет подходящего статуса'));
                                             }
                                             obj.status_id = id;
@@ -242,33 +242,33 @@ module.exports = function(callback){
                                             obj.age = age;
 
 
-                                            results.getDirectoryId('result_statuses','IN_HISTORY',function(err,result_status_id){
-                                                if (err){
+                                            results.getDirectoryId('result_statuses', 'IN_HISTORY', function (err, result_status_id) {
+                                                if (err) {
                                                     return callback(new MyError('Нет такого статуса'));
                                                 }
-                                                results.add(obj, function(err,result){
+                                                results.add(obj, function (err, result) {
                                                     //{"code":0,"toastr":{"type":"success","message":"Результат успешно добавлен."},"data":{"id":36}}
-                                                    if(err){
-                                                        return callback(err,result);
+                                                    if (err) {
+                                                        return callback(err, result);
                                                     }
-                                                    if (result.code!=0){
-                                                        return callback(err,result);
+                                                    if (result.code != 0) {
+                                                        return callback(err, result);
                                                     }
                                                     var id = result.data.id;
 
-                                                    pool.getConn(function(err,conn){
+                                                    pool.getConn(function (err, conn) {
                                                         var sql = 'update results set published = NULL, status_id = ? where user_id = ? AND action_part_id = ? AND published IS NOT NULL AND id <> ?';
-                                                        conn.query(sql,[result_status_id, obj.user_id,obj.action_part_id,id],function(err,affected){
-                                                            if (err){
+                                                        conn.query(sql, [result_status_id, obj.user_id, obj.action_part_id, id], function (err, affected) {
+                                                            if (err) {
                                                                 console.log(err);
                                                             }
                                                             conn.release();
-                                                            callback(null,funcs.formatResponse(0, 'success', 'Заявка принята.'));
+                                                            callback(null, funcs.formatResponse(0, 'success', 'Заявка принята.'));
                                                             results.rePosition({
-                                                                action_part_id:obj.action_part_id,
-                                                                gender_id:gender_id,
-                                                                age:age
-                                                            }, function(err,r){
+                                                                action_part_id: obj.action_part_id,
+                                                                gender_id: gender_id,
+                                                                age: age
+                                                            }, function (err, r) {
 
                                                             });
                                                         })
@@ -286,37 +286,37 @@ module.exports = function(callback){
 
 
         };
-        results.approve = function(obj,callback){
-            results.getDirectoryId('result_statuses',obj.status,function(err,id){
-                if (err){
-                    return callback(null, funcs.formatResponse(1, 'error', 'Не удалось указать статус заявки. Нет такого статуса '+obj.status));
+        results.approve = function (obj, callback) {
+            results.getDirectoryId('result_statuses', obj.status, function (err, id) {
+                if (err) {
+                    return callback(null, funcs.formatResponse(1, 'error', 'Не удалось указать статус заявки. Нет такого статуса ' + obj.status));
                 }
                 var o = {
-                    id:obj.id,
-                    status_id:id,
-                    reject_reason:obj.reject_reason || ''
+                    id: obj.id,
+                    status_id: id,
+                    reject_reason: obj.reject_reason || ''
                 };
-                pool.getConn(function(err, conn) {
+                pool.getConn(function (err, conn) {
                     if (err) {
                         return callback(err);
                     }
-                    conn.queryRow('select gender_id, age, action_part_id from results where id = ?',[obj.id],function(err,row){
+                    conn.queryRow('select gender_id, age, action_part_id from results where id = ?', [obj.id], function (err, row) {
                         conn.release();
-                        if (err){
+                        if (err) {
                             return callback(null, funcs.formatResponse(1, 'error', 'Не удалось найти заявку'));
                         }
                         var gender_id = row.gender_id;
                         var age = row.age;
                         var action_part_id = row.action_part_id;
-                        results.modify(o,function(err,result){
-                            callback(err,result);
+                        results.modify(o, function (err, result) {
+                            callback(err, result);
                             // Переприсвоить позиции
-                            if (action_part_id){
+                            if (action_part_id) {
                                 results.rePosition({
-                                    action_part_id:action_part_id,
-                                    gender_id:gender_id,
-                                    age:age
-                                }, function(err,r){
+                                    action_part_id: action_part_id,
+                                    gender_id: gender_id,
+                                    age: age
+                                }, function (err, r) {
 
                                 });
                             }
@@ -329,36 +329,36 @@ module.exports = function(callback){
             });
 
         };
-        results.rePosition = function(obj,callback){
-            if (typeof obj!='object'){
+        results.rePosition = function (obj, callback) {
+            if (typeof obj != 'object') {
                 console.log('Не корректно переданы параметры. rePosition');
                 return callback(new MyError('Не корректно переданы параметры. rePosition'));
             }
             var action_part_id = obj.action_part_id;
-            if (isNaN(+action_part_id)){
+            if (isNaN(+action_part_id)) {
                 console.log('Не корректно передан action_part_id параметры. rePosition');
                 return callback(new MyError('Не корректно передан action_part_id параметры. rePosition'));
             }
 
             var gender_id = obj.gender_id;
-            var age = (+obj.age<=40)? ' <= 40 ' : ' > 40 ';
+            var age = (+obj.age <= 40) ? ' <= 40 ' : ' > 40 ';
 
 
             // Получим тип (формат) результата
-            pool.getConn(function(err, conn){
-                if (err){
+            pool.getConn(function (err, conn) {
+                if (err) {
                     return callback(err);
                 }
                 conn.queryRow('select rt.id as id,rt.sys_name as name from action_parts ap left join result_types as rt on ap.result_type_id = rt.id ' +
-                'where ap.id = ?',action_part_id, function(err,r1){
+                'where ap.id = ?', action_part_id, function (err, r1) {
                     conn.release();
-                    if (err){
+                    if (err) {
                         return callback(err);
                     }
                     var result_type_id = r1.id;
                     var result_type = r1.name;
                     var sort = '';
-                    switch (result_type){
+                    switch (result_type) {
                         case "TIME":
                             sort = ' order by result_min, result_sec';
                             break;
@@ -380,34 +380,34 @@ module.exports = function(callback){
                     var sql = "SELECT r.id, r.result_type_id, r.result_repeat, r.result_min, r.result_sec, r.result_approach from results r " +
                         "left join result_statuses as rs on r.status_id = rs.id " +
                         "where r.action_part_id = ? and r.result_type_id = ? and r.published is not null and rs.sys_name in ('IN_QUEUE','IN_PROGERSS','ACCEPTED') " +
-                        //"where r.action_part_id = ? and r.result_type_id = ? and r.published is not null and rs.sys_name in ('ACCEPTED') " +
-                        "and r.gender_id = ? and r.age "+age;
+                            //"where r.action_part_id = ? and r.result_type_id = ? and r.published is not null and rs.sys_name in ('ACCEPTED') " +
+                        "and r.gender_id = ? and r.age " + age;
                     sql += sort;
                     console.log(sql);
-                    pool.getConn(function(err,conn){
-                        if (err){
+                    pool.getConn(function (err, conn) {
+                        if (err) {
                             return callback(err);
                         }
-                        conn.query(sql,[action_part_id,result_type_id,gender_id],function(err, r2){
+                        conn.query(sql, [action_part_id, result_type_id, gender_id], function (err, r2) {
                             conn.release();
-                            if (err){
+                            if (err) {
                                 console.log(err);
                                 return callback(err);
                             }
                             for (var i in r2) {
-                                r2[i].position = +i+1;
+                                r2[i].position = +i + 1;
                             }
-                            async.each(r2,function(item, callback){
+                            async.each(r2, function (item, callback) {
                                 results.modify({
-                                    id:item.id,
-                                    position:item.position
-                                },function(err,affected){
-                                    if (err){
+                                    id: item.id,
+                                    position: item.position
+                                }, function (err, affected) {
+                                    if (err) {
                                         console.log(err);
                                     }
-                                    callback(null,affected);
+                                    callback(null, affected);
                                 })
-                            },function(err){
+                            }, function (err) {
                                 callback(err, null);
                             })
 
@@ -415,11 +415,8 @@ module.exports = function(callback){
                     });
 
 
-
-
                 });
             });
-
 
 
         };
@@ -429,67 +426,67 @@ module.exports = function(callback){
                 if (err) {
                     return callback(err);
                 }
-                conn.query('select id from action_parts',[], function (err, rows) {
+                conn.query('select id from action_parts', [], function (err, rows) {
                     if (err) {
                         return callback(err);
                     }
                     async.series([
                         function (callback) {
-                            async.eachSeries(rows,function(item,callback){
-                                results.rePosition({action_part_id:item.id,age:26,gender_id:1},callback);
-                            },function(err){
-                                callback(err,null);
+                            async.eachSeries(rows, function (item, callback) {
+                                results.rePosition({action_part_id: item.id, age: 26, gender_id: 1}, callback);
+                            }, function (err) {
+                                callback(err, null);
                             });
                         },
                         function (callback) {
-                            async.eachSeries(rows,function(item,callback){
-                                results.rePosition({action_part_id:item.id,age:26,gender_id:2},callback);
-                            },function(err){
-                                callback(err,null);
+                            async.eachSeries(rows, function (item, callback) {
+                                results.rePosition({action_part_id: item.id, age: 26, gender_id: 2}, callback);
+                            }, function (err) {
+                                callback(err, null);
                             });
                         },
                         function (callback) {
-                            async.eachSeries(rows,function(item,callback){
-                                results.rePosition({action_part_id:item.id,age:50,gender_id:1},callback);
-                            },function(err){
-                                callback(err,null);
+                            async.eachSeries(rows, function (item, callback) {
+                                results.rePosition({action_part_id: item.id, age: 50, gender_id: 1}, callback);
+                            }, function (err) {
+                                callback(err, null);
                             });
                         },
                         function (callback) {
-                            async.eachSeries(rows,function(item,callback){
-                                results.rePosition({action_part_id:item.id,age:50,gender_id:2},callback);
-                            },function(err){
-                                callback(err,null);
+                            async.eachSeries(rows, function (item, callback) {
+                                results.rePosition({action_part_id: item.id, age: 50, gender_id: 2}, callback);
+                            }, function (err) {
+                                callback(err, null);
                             });
                         }
-                    ],function(err){
-                        callback(err,null);
+                    ], function (err) {
+                        callback(err, null);
                     });
 
                 });
             });
         };
-            results.actionLeaderBoard = function(obj, callback){
-            if (typeof obj!=='object'){
+        results.actionLeaderBoard = function (obj, callback) {
+            if (typeof obj !== 'object') {
                 return callback(new MyError('Не переданы обязательные параметры'));
             }
-            if (!obj.action_id){
+            if (!obj.action_id) {
                 return callback(new MyError('Не указано мероприятие.'));
             }
-            if (!obj.gender_sys_name || !obj.age){
+            if (!obj.gender_sys_name || !obj.age) {
                 return callback(new MyError('Не переданы параметры пола и возраста'));
             }
             var action_id = obj.action_id;
             var gender_sys_name = obj.gender_sys_name;
-            var age = (obj.age=='40')? ' <= 40 ' : ' > 40 ';
+            var age = (obj.age == '40') ? ' <= 40 ' : ' > 40 ';
 
             var columns = [
-                {title:'Место',name:'position'},
-                {title:'Атлет',name:'fio'}
+                {title: 'Место', name: 'position'},
+                {title: 'Атлет', name: 'fio'}
             ];
 
-            results.getDirectoryId('gender',gender_sys_name, function (err,gender_id) {
-                pool.getConn(function(err,conn) {
+            results.getDirectoryId('gender', gender_sys_name, function (err, gender_id) {
+                pool.getConn(function (err, conn) {
                     if (err) {
                         return callback(err);
                     }
@@ -500,28 +497,28 @@ module.exports = function(callback){
                     'where ap.action_id = ? ' +
                     'AND rs.sys_name in ("IN_QUEUE","IN_PROGERSS","ACCEPTED") ' +
                     'AND r.age' + age +
-                    'AND r.gender_id = ' + gender_id + ' '+
-                    'GROUP BY user_id',[action_id],function(err, rows){
+                    'AND r.gender_id = ' + gender_id + ' ' +
+                    'GROUP BY user_id', [action_id], function (err, rows) {
                         conn.release();
                         if (err) {
                             return callback(err);
                         }
-                        if (rows.length==0){
+                        if (rows.length == 0) {
                             return pool.getConn(function (err, conn) {
-                                conn.query('select ap.id, ap.title from action_parts ap LEFT JOIN actions as a on ap.action_id = a.id where a.id = ?',[action_id], function (err, rows) {
+                                conn.query('select ap.id, ap.title from action_parts ap LEFT JOIN actions as a on ap.action_id = a.id where a.id = ?', [action_id], function (err, rows) {
                                     conn.release();
-                                    if (err){
+                                    if (err) {
                                         return callback(err);
                                     }
                                     for (var i in rows) {
 
                                         columns.push({
-                                            title:rows[i].title,
-                                            name:'ap'+rows[i].id
+                                            title: rows[i].title,
+                                            name: 'ap' + rows[i].id
                                         });
                                     }
-                                    return callback(null,{
-                                        columns:columns,
+                                    return callback(null, {
+                                        columns: columns,
                                         data: []
                                     })
                                 })
@@ -536,8 +533,8 @@ module.exports = function(callback){
                                 action_finish_date = rows[i].date_end;
                             }
                         }
-                        pool.getConn(function(err,conn){
-                            if (err){
+                        pool.getConn(function (err, conn) {
+                            if (err) {
                                 return callback(err);
                             }
                             var sql = "SELECT r.action_part_id as id, max(r.position+1) as max_pos, ap.title FROM results r " +
@@ -547,11 +544,11 @@ module.exports = function(callback){
                                 "rs.sys_name in ('IN_QUEUE','IN_PROGERSS','ACCEPTED') AND" +
                                 " ap.action_id = ? " +
                                 'AND r.age' + age +
-                                'AND r.gender_id = ' + gender_id + ' '+
+                                'AND r.gender_id = ' + gender_id + ' ' +
                                 " GROUP BY r.action_part_id ";
-                            conn.query(sql,[action_id], function (err, res1) {
+                            conn.query(sql, [action_id], function (err, res1) {
                                 conn.release();
-                                if (err){
+                                if (err) {
                                     return callback(err);
                                 }
 
@@ -561,47 +558,47 @@ module.exports = function(callback){
                                     parts[item.id] = {
 
                                         id: item.id,
-                                        max_pos:item.max_pos,
-                                        title:item.title,
-                                        sqlPos:"SELECT r.position as pos " +
+                                        max_pos: item.max_pos,
+                                        title: item.title,
+                                        sqlPos: "SELECT r.position as pos " +
                                         "FROM results r " +
                                         "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
                                         "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
                                         "where rs.sys_name in ('IN_QUEUE','IN_PROGERSS','ACCEPTED')  " +
                                         "and r.user_id = u.id " +
-                                        "and ap.id = "+ item.id,
-                                        sqlRes:"SELECT CAST(concat(r.position,'(',r.concat_result,')') AS CHAR(10000) CHARACTER SET utf8) as res " +
+                                        "and ap.id = " + item.id,
+                                        sqlRes: "SELECT CAST(concat(r.position,'(',r.concat_result,')') AS CHAR(10000) CHARACTER SET utf8) as res " +
                                         "FROM results r " +
                                         "LEFT JOIN action_parts as ap on r.action_part_id = ap.id " +
                                         "LEFT JOIN result_statuses as rs on r.status_id = rs.id " +
                                         "where rs.sys_name in ('IN_QUEUE','IN_PROGERSS','ACCEPTED') " +
                                         "and r.user_id = u.id " +
                                         'AND r.age' + age +
-                                        'AND r.gender_id = ' + gender_id + ' '+
-                                        "and ap.id = "+ item.id
+                                        'AND r.gender_id = ' + gender_id + ' ' +
+                                        "and ap.id = " + item.id
                                     };
                                     columns.push({
-                                        title:item.title,
-                                        name:'ap'+item.id
+                                        title: item.title,
+                                        name: 'ap' + item.id
                                     });
                                 }
                                 console.log(parts);
                                 var arr = [];
-                                pool.getConn(function(err,conn){
-                                    if (err){
+                                pool.getConn(function (err, conn) {
+                                    if (err) {
                                         return callback(err);
                                     }
                                     var sql = "SELECT 0 as position, concat(u.firstname, ' ',u.surname) as fio, u.id as user_id, u.gender_id as gender_id, u.age as age ";
                                     for (var i in parts) {
-                                        sql+= ', ('+parts[i].sqlPos+') as ap' +parts[i].id;
-                                        sql+= ', ('+parts[i].sqlRes+') as res' +parts[i].id;
+                                        sql += ', (' + parts[i].sqlPos + ') as ap' + parts[i].id;
+                                        sql += ', (' + parts[i].sqlRes + ') as res' + parts[i].id;
                                     }
-                                    sql += ' from users as u where u.id in ('+user_ids.join(',')+')';
+                                    sql += ' from users as u where u.id in (' + user_ids.join(',') + ')';
                                     //console.log(sql);
                                     //return callback(null);
-                                    conn.query(sql,[],function(err, res2){
+                                    conn.query(sql, [], function (err, res2) {
                                         conn.release();
-                                        if (err){
+                                        if (err) {
                                             return callback(err);
                                         }
                                         var action_population = res2.length;
@@ -609,20 +606,20 @@ module.exports = function(callback){
                                             var row = res2[i];
                                             var sum_pos = 0;
                                             for (var k in parts) {
-                                                if (row['ap'+parts[k].id] == null){
-                                                    row['ap'+parts[k].id] = parts[k].max_pos;
+                                                if (row['ap' + parts[k].id] == null) {
+                                                    row['ap' + parts[k].id] = parts[k].max_pos;
                                                 }
 
-                                                sum_pos += row['ap'+parts[k].id];
+                                                sum_pos += row['ap' + parts[k].id];
                                             }
                                             row.sum_pos = sum_pos;
                                         }
-                                        res2.sort(function(a, b){
-                                            if (a.sum_pos>b.sum_pos){
+                                        res2.sort(function (a, b) {
+                                            if (a.sum_pos > b.sum_pos) {
                                                 return 1;
-                                            }else if (a.sum_pos<b.sum_pos){
+                                            } else if (a.sum_pos < b.sum_pos) {
                                                 return -1;
-                                            }else{
+                                            } else {
                                                 return 0;
                                             }
                                         });
@@ -631,9 +628,9 @@ module.exports = function(callback){
                                         var pos = 0;
                                         var action_resS = [];
                                         for (var j in res2) {
-                                            if (res2[j].sum_pos == oldSum){
+                                            if (res2[j].sum_pos == oldSum) {
                                                 plusCounter++;
-                                            }else{
+                                            } else {
                                                 oldSum = +res2[j].sum_pos;
                                                 pos += plusCounter + 1;
                                                 plusCounter = 0;
@@ -641,8 +638,8 @@ module.exports = function(callback){
                                             res2[j].position = pos;
                                             delete res2[j].sum_pos;
                                             for (var c in parts) {
-                                                res2[j]['ap'+parts[c].id] = res2[j]['res'+parts[c].id] || '-';
-                                                delete res2[j]['res'+parts[c].id];
+                                                res2[j]['ap' + parts[c].id] = res2[j]['res' + parts[c].id] || '-';
+                                                delete res2[j]['res' + parts[c].id];
                                             }
                                             api('updateRealResults', 'action', {
                                                 action_id: action_id,
@@ -665,8 +662,8 @@ module.exports = function(callback){
                                             delete res2[j].gender_id;
                                         }
 
-                                        callback(null,{
-                                            columns:columns,
+                                        callback(null, {
+                                            columns: columns,
                                             data: res2
                                         });
                                     })
@@ -680,30 +677,28 @@ module.exports = function(callback){
             });
 
 
-
-
-
         };
-        results.allActionLeaderBoard = function(obj, callback){
-            if (typeof obj!=='object'){
+        results.allActionLeaderBoard = function (obj, callback) {
+            if (typeof obj !== 'object') {
                 return callback(new MyError('Не переданы обязательные параметры'));
             }
-            if (!obj.gender_sys_name || !obj.age){
+            if (!obj.gender_sys_name || !obj.age) {
                 return callback(new MyError('Не переданы параметры пола и возраста'));
             }
             var action_id = obj.action_id;
             var gender_sys_name = obj.gender_sys_name;
-            var age = (obj.age=='40')? ' <= 40 ' : ' > 40 ';
+            var age = (obj.age == '40') ? ' <= 40 ' : ' > 40 ';
+            var limit = obj.limit || 5;
 
             var columns = [
-                {title:'Место',name:'position'},
-                {title:'Фото',name:'photo'},
-                {title:'Атлет',name:'fio'},
-                {title:'Рейтинг',name:'raiting'}
+                {title: 'Место', name: 'position'},
+                {title: 'Фото', name: 'photo'},
+                {title: 'Атлет', name: 'fio'},
+                {title: 'Рейтинг', name: 'raiting'}
             ];
 
-            results.getDirectoryId('gender',gender_sys_name, function (err,gender_id) {
-                pool.getConn(function(err,conn) {
+            results.getDirectoryId('gender', gender_sys_name, function (err, gender_id) {
+                pool.getConn(function (err, conn) {
                     if (err) {
                         return callback(err);
                     }
@@ -711,34 +706,35 @@ module.exports = function(callback){
                     var m1 = moment();
                     var m2 = moment.duration(2, 'years');
                     var now = funcs.getDateMySQL();
-                    var twoYearsBefore = moment(m1-m2).format('YYYY-MM-DD');
-                    var sql ='SELECT r.user_id, u.photo from real_action_results r' +
+                    var twoYearsBefore = moment(m1 - m2).format('YYYY-MM-DD');
+                    var sql = 'SELECT r.user_id, u.photo from real_action_results r' +
                         ' left join users as u on r.user_id = u.id' +
                         ' where r.action_finish_date between ? and ?' +
                         ' AND r.age' + age +
                         ' AND r.gender_id = ' + gender_id +
-                        ' GROUP BY r.user_id';
+                        ' GROUP BY r.user_id' +
+                        ' LIMIT '+ limit;
 
-                    conn.query(sql,[twoYearsBefore,now],function(err, rows){
+                    conn.query(sql, [twoYearsBefore, now], function (err, rows) {
                         conn.release();
                         if (err) {
                             return callback(err);
                         }
                         var users = rows;
 
-/*
-                        user_id
-                        action_id
-                        action_finish_date
-                        position
-                        age
-                        gender_id
-                        concat_results
-                        action_population
-*/
+                        /*
+                         user_id
+                         action_id
+                         action_finish_date
+                         position
+                         age
+                         gender_id
+                         concat_results
+                         action_population
+                         */
 
-                        pool.getConn(function(err,conn){
-                            if (err){
+                        pool.getConn(function (err, conn) {
+                            if (err) {
                                 return callback(err);
                             }
                             var sql = 'select * from real_action_results' +
@@ -747,9 +743,9 @@ module.exports = function(callback){
                                 ' AND gender_id = ' + gender_id;
 
 
-                            conn.query(sql,[twoYearsBefore, now], function (err, rows2) {
+                            conn.query(sql, [twoYearsBefore, now], function (err, rows2) {
                                 conn.release();
-                                if (err){
+                                if (err) {
                                     return callback(err);
                                 }
                                 var actions = rows2;
@@ -761,47 +757,47 @@ module.exports = function(callback){
                                     var action_count = 0;
                                     for (var j in actions) {
 
-                                        if (actions[j].user_id!==one_res_user.user_id){
+                                        if (actions[j].user_id !== one_res_user.user_id) {
                                             continue;
                                         }
                                         var one_res = actions[j];
                                         var action_population_coeff = 0.1;
                                         var action_time_coeff = 1;
                                         var timeAgo = moment().diff(moment(one_res.action_finish_date));
-                                        switch (true){
-                                            case (timeAgo<=moment.duration(3, 'months')):
+                                        switch (true) {
+                                            case (timeAgo <= moment.duration(3, 'months')):
                                                 action_population_coeff = 1;
                                                 break;
-                                            case (timeAgo<=moment.duration(6, 'months')):
+                                            case (timeAgo <= moment.duration(6, 'months')):
                                                 action_population_coeff = 0.75;
                                                 break;
-                                            case (timeAgo<=moment.duration(9, 'months')):
+                                            case (timeAgo <= moment.duration(9, 'months')):
                                                 action_population_coeff = 0.5;
                                                 break;
-                                            case (timeAgo<=moment.duration(12, 'months')):
+                                            case (timeAgo <= moment.duration(12, 'months')):
                                                 action_population_coeff = 0.25;
                                                 break;
                                         }
-                                        switch (true){
-                                            case (one_res.action_population>0 && one_res.action_population<=10):
+                                        switch (true) {
+                                            case (one_res.action_population > 0 && one_res.action_population <= 10):
                                                 action_population_coeff = 0.5;
                                                 break;
-                                            case (one_res.action_population>10 && one_res.action_population<=20):
+                                            case (one_res.action_population > 10 && one_res.action_population <= 20):
                                                 action_population_coeff = 0.75;
                                                 break;
                                         }
-                                        sum_pos += (one_res.action_population+1-one_res.position)/(action_RAITING*action_time_coeff*action_population_coeff);
+                                        sum_pos += (one_res.action_population + 1 - one_res.position) / (action_RAITING * action_time_coeff * action_population_coeff);
                                         action_count++;
                                     }
                                     var o = {
-                                        fio:one_res.user_fio,
-                                        photo:users[i].photo,
-                                        raiting:sum_pos
+                                        fio: one_res.user_fio,
+                                        photo: users[i].photo,
+                                        raiting: sum_pos
                                     };
                                     board.push(o);
 
                                 }
-                                board.sort(function(a,b){
+                                board.sort(function (a, b) {
                                     if (a.raiting < b.raiting) return 1;
                                     else if (a.raiting > b.raiting) return -1;
                                     else return 0;
@@ -812,14 +808,14 @@ module.exports = function(callback){
                                 var prevRes;
                                 for (var b in board) {
                                     placeCounter++;
-                                    if (prevRes != board[b].raiting){
+                                    if (prevRes != board[b].raiting) {
                                         currentPos = placeCounter;
                                     }
                                     prevRes = board[b].raiting;
                                     board[b].position = currentPos;
                                 }
-                                callback(null,{
-                                    columns:columns,
+                                callback(null, {
+                                    columns: columns,
                                     data: board
                                 });
                             })
@@ -828,9 +824,6 @@ module.exports = function(callback){
 
                 });
             });
-
-
-
 
 
         };
