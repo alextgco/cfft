@@ -14,7 +14,12 @@ block content
                     .col-md-12
                         .form-group
                             label Ссылка:
-                            input.fc-field.form-control(type='text', data-server_name="title", value="", data-name="title")
+                            input.fc-field.form-control(type='text', data-server_name="url", value="", data-name="url")
+                .row
+                    .col-md-12
+                        .form-group
+                            label Порядок:
+                            input.fc-field.form-control(type='text', data-server_name="sort_no", value="", data-name="sort_no")
                 .row
                     .col-md-3
                         .col-md-12
@@ -35,14 +40,19 @@ block content
                 .row
                     .col-md-12
                         .form-group
-                            label Наименование:
-                            input.fc-field.form-control(type='text', data-server_name="title", value="#{slide.title}", data-name="title")
+                            label Ссылка:
+                            input.fc-field.form-control(type='text', data-server_name="url", value="#{slide.url}", data-name="url")
+                .row
+                    .col-md-12
+                        .form-group
+                            label Порядок:
+                            input.fc-field.form-control(type='text', data-server_name="sort_no", value="#{slide.sort_no}", data-name="sort_no")
                 .row
                     .col-md-3
                         .col-md-12
                             .form-group
                                 label.control-label
-                                    | Фото
+                                    | Картинка
                                 div.input-group
                                     .input-group-addon
                                         i.fa.fa-image
