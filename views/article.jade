@@ -10,7 +10,7 @@ block content
                     .art-features-wrapper
                         .art-feature.atr-date
                             .fa.fa-calendar-o &nbsp;&nbsp;
-                            | #{article.published}
+                            | #{article.publication_date}
                         .art-feature.atr-author
                             .fa.fa-user &nbsp;&nbsp;
                             | #{article.author}
@@ -29,11 +29,11 @@ block content
                         .art-footer-list-item
                             | Источник:&nbsp;&nbsp;
                             a(href="#{article.original_url}")
-                                | #{article.original_url}
+                                | #{article.original}
                         .art-footer-list-item
                             | Лицензия СС:&nbsp;&nbsp;#{article.license}
                         .art-footer-list-item
-                            | Дата публикации:&nbsp;&nbsp;#{article.published}
+                            | Дата публикации:&nbsp;&nbsp;#{article.publication_date}
                     .art-social.col-md-6
                         div Нравится? &nbsp;
                             b Расскажи друзьям!
@@ -84,5 +84,5 @@ block content
         //            | !{article.body}
         //            p
         //                .ta-right
-        //                    | #{article.published}
+        //                    | #{article.publication_date}
 
