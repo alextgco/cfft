@@ -36,13 +36,36 @@ block content
         .fullWidthRatingBg
         .container
             .row
-                .h2
-                    | Лидерборд
+                .col-md-6
+                    .row
+                        .col-md-12.marTop20
+                            h4.white
+                                | Мужчины
+                        .col-md-12
+                            .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all",  data-range_where="male")
+                .col-md-6
+                    .row
+                        .col-md-12.marTop20
+                            h4.white
+                                | Женщины
+                        .col-md-12
+                            .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all",  data-range_where="famale")
+            .row
+                .col-md-6
+                    .row
+                        .col-md-12.marTop20
+                            h4.white
+                                | Мужчины 40+
+                        .col-md-12
+                            .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all",  data-range_where="male40")
+                .col-md-6
+                    .row
+                        .col-md-12.marTop20
+                            h4.white
+                                | Женщины 40+
+                        .col-md-12
+                            .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all",  data-range_where="famale40")
 
-                .col-md-6
-                    .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all",  data-range_where="male")
-                .col-md-6
-                    .totalLeaderBoardTable.posRel(data-get_object="results", data-action_id="all",  data-range_where="famale")
                 //div.event-results-tabs(role="tabpanel")
                 //    ul.nav.nav-pills(role="tablist")
                 //        li.active(role="leaderboard")

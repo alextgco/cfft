@@ -113,7 +113,7 @@
                     age: _t.age,
                     action_id: _t.action_id,
                     where: _t.where,
-                    limit: _t.limit,
+                    limit: 2,
                     sort: _t.sort,
                     columns: _t.columns
                 }
@@ -404,12 +404,16 @@
                                     '</div>' +
                                 '</div>' +
                                 '<div class="col-md-9">' +
-                                    '<div class="allLB-user-img-wrapper">' +
-                                        '<img src="upload/{{photo}}" />' +
+                                    '<div class="allLB-user-img-wrapper" style="background-image: url(upload/{{photo}})">' +
+                                        //'<img src="upload/{{photo}}" />' +
                                     '</div>' +
                                     '<div class="allLB-user-fio-wrapper">{{fio}}</div>' +
                                 '</div>' +
-                                '<div class="col-md-2">{{rating}}</div>' +
+                                '<div class="col-md-2">' +
+                                    '<div class="allLB-user-rat-wrapper">' +
+                                        '{{raiting}}' +
+                                    '</div>' +
+                                '</div>' +
                             '</div>' +
                         '{{/leaders}}' +
                     '</div>' +
@@ -420,7 +424,7 @@
         for(var i in _t.data){
             var item = _t.data[i];
             if(item.photo.length == 0){
-                _t.data[i].photo = 'default_user_m.jpg';
+                _t.data[i].photo = 'user_default_m.jpg';
             }
         }
 

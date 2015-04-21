@@ -1888,6 +1888,7 @@ input[type="text"].filter-ctrl{
     height: 60px;
     border-radius: 50%;
     overflow: hidden;
+    background-size: cover;
 }
 .allLB-user-img-wrapper img{
     width: 100%;
@@ -1909,4 +1910,15 @@ input[type="text"].filter-ctrl{
 }
 .allLB-item{
     padding: 10px;
+}
+.allLB-user-rat-wrapper{
+    text-align: center;
+    padding-top: 20px;
+}
+.marTopBot20{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.marTop20{
+    margin-top: 20px;
 }
