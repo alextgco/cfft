@@ -29,7 +29,7 @@ block content
                                 div.input-group
                                     .input-group-addon
                                         i.fa.fa-image
-                                    input.form-control.fc-field.userPhotoInput(type="text", data-server_name="photo", data-title="Фото", data-required="false", data-editor="text", placeholder="Выберите изображение")
+                                    input.autoUpload.fc-field.form-control(type='text', data-server_name="photo", value="", data-name="photo")
                         .col-md-12
                             .user-photo-wrapper
                                 .user-photo-clear
@@ -56,7 +56,7 @@ block content
                                 div.input-group
                                     .input-group-addon
                                         i.fa.fa-image
-                                    input.form-control.fc-field.userPhotoInput(type="text", data-server_name="photo", data-title="Фото", data-required="false", data-editor="text", placeholder="Выберите изображение", value="#{slide.photo}")
+                                    input.autoUpload.fc-field.form-control(type='text', data-server_name="photo", value="#{slide.photo}", data-name="photo")
                         .col-md-12
                             .user-photo-wrapper
                                 .user-photo-clear
