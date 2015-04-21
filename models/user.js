@@ -21,11 +21,13 @@ module.exports = function(callback){
             birthday:'userFriendlyDate'
         },
         setFormating:{
-            birthday:'getDateTimeMySQL'
+            birthday:'getDateTimeMySQL',
+
         },
         validation: {
             birthday:'isDate',
-            gender:'number'
+            gender:'number',
+            club_id:'number'
         },
         concatFields:[{
             title:['firstname',' ','surname']
@@ -260,6 +262,9 @@ module.exports = function(callback){
             if (obj.name){
                 obj.firstname = obj.name;
             }
+            if (obj.birthday){
+                obj.age = funcs.age(obj.birthday,'DD.MM.YYYY');
+            }
             for (var i0 in user.setFormating) {
                 if (typeof funcs[user.setFormating[i0]]=='function'){
                     if (obj[i0]){
@@ -289,9 +294,7 @@ module.exports = function(callback){
             if (!finded) {
                 return callback(new MyError('Не переданы (или переданы не корректно) обязательные поля. ' + notFinded.join(', ')));
             }
-            if (obj.birthday){
-                obj.age = funcs.age(obj.birthday,'DD.MM.YYYY');
-            }
+
             if (obj.isAgree){
                 obj.isAgree = (obj.isAgree)?1:0;
             }
