@@ -141,7 +141,7 @@ block content
                 .row.article-item(data-id="#{a.id}")
                     .col-md-12
                         .col-md-4.article-image-wrapper
-                            -var path = (a.photo)? 'upload/'+a.photo: 'img/def_article.jpg';
+                            -var path = (!a.photo || a.photo.length==0 || a.photo=='')? 'img/def_article.jpg' : 'upload/'+a.photo;
                             .art_img(style="background-image: url(#{path})")
                         .col-md-8
                             .art-header

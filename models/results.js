@@ -427,6 +427,7 @@ module.exports = function (callback) {
                     return callback(err);
                 }
                 conn.query('select id from action_parts', [], function (err, rows) {
+                    conn.release();
                     if (err) {
                         return callback(err);
                     }

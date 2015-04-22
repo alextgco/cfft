@@ -354,10 +354,10 @@ Model.prototype.add = function (obj, callback) {
     var addToModel = function (conn, callback) {
         obj.created = funcs.getDateTimeMySQL();
         conn.insert(self.table, obj, function (err, recordId) {
+            conn.release();
             if (err){
                 console.log(err);
             }
-            conn.release();
             callback(err, recordId);
         });
     };
@@ -412,10 +412,10 @@ Model.prototype.modify = function (obj, callback) {
         }
         //console.log(conn.where(obj));
         conn.update(self.table, obj, function (err, affected) {
+            conn.release();
             if (err){
                 console.log(err);
             }
-            conn.release();
             callback(err, affected);
         })
     };
@@ -459,10 +459,10 @@ Model.prototype.remove = function (obj, callback) {
     var self = this;
     var removeModel = function (conn, callback) {
         conn.delete(self.table, {id: obj.id}, function (err, affected) {
+            conn.release();
             if (err){
                 console.log(err);
             }
-            conn.release();
             callback(err, affected);
         })
     };

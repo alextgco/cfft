@@ -233,6 +233,7 @@ module.exports = function(callback){
                     return callback(new MyError('Не удалось установить подключение updateRealResults'));
                 }
                 conn.upsert('real_action_results',obj, function (err, affected) {
+                    conn.release();
                     if (err){
                         return callback(err,affected);
                     }

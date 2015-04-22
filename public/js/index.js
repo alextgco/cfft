@@ -1122,8 +1122,10 @@ $(document).ready(function(){
                 wowWrapper.data('to_date', data.date_start);
                 header.html(data.title);
                 short.html(data.description2);
-                console.log(photo, 'upload/'+data.thumb);
-                photo.attr('src', 'upload/'+data.thumb);
+                var thumb = (!data.thumb || data.thumb.length==0 || data.thumb=='')? 'def_wow.jpg' : data.thumb;
+                console.log(photo, 'upload/'+ thumb);
+
+                photo.attr('src', 'upload/'+thumb);
                 link.attr('href', 'wow?id='+data.id);
                 CF.initBackTimer();
             }

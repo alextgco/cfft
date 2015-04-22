@@ -423,7 +423,8 @@
 
         for(var i in _t.data){
             var item = _t.data[i];
-            if(item.photo.length == 0 || item.photo == 'null'){
+            console.log(item.photo);
+            if(!item.photo || item.photo == '' || item.photo == 'null'){
                 _t.data[i].photo = 'user_default_m.jpg';
             }
         }
